@@ -11,9 +11,9 @@ const Index = () => {
   return (
     <Layout>
       <Hero />
-      <AboutPreview />
-      <Services />
+      {/*<AboutPreview />*/}
       <QuickLinks />
+      <Services />
       <NewsPreview />
       <EventCalendar />
     </Layout>

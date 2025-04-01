@@ -1,8 +1,12 @@
 
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-gray-100 border-t border-gray-200">
       <div className="container mx-auto py-12 px-4">
@@ -17,7 +21,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              An international institution for commercial dispute resolution founded on the initiative of the European Union.
+              {t('footer.about')}
             </p>
             <div className="flex items-center space-x-4">
               <a href="#" className="text-gray-600 hover:text-eac-primary">
@@ -33,11 +37,14 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            <div className="mt-4">
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Column 2 - Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">Quick Links</h3>
+            <h3 className="font-semibold text-lg mb-4 text-eac-dark">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/eac/about" className="text-gray-600 hover:text-eac-primary">About Us</Link></li>
               <li><Link to="/arbitration/rules" className="text-gray-600 hover:text-eac-primary">Arbitration Rules</Link></li>
@@ -50,7 +57,7 @@ export default function Footer() {
 
           {/* Column 3 - Services */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">Our Services</h3>
+            <h3 className="font-semibold text-lg mb-4 text-eac-dark">{t('footer.services')}</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/arbitration" className="text-gray-600 hover:text-eac-primary">International Commercial Arbitration</Link></li>
               <li><Link to="/expertise" className="text-gray-600 hover:text-eac-primary">Expert Studies</Link></li>
@@ -62,7 +69,7 @@ export default function Footer() {
 
           {/* Column 4 - Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">Contact Us</h3>
+            <h3 className="font-semibold text-lg mb-4 text-eac-dark">{t('footer.contactUs')}</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0 mt-0.5" />
@@ -83,7 +90,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 mt-8 pt-6">
           <p className="text-sm text-center text-gray-500">
-            © {new Date().getFullYear()} European Arbitration Chamber. All rights reserved.
+            © {new Date().getFullYear()} European Arbitration Chamber. {t('footer.rights')}
           </p>
         </div>
       </div>

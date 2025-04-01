@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 type NavItem = {
   title: string;
+  translationKey: string;
   href: string;
   children?: NavItem[];
 };
@@ -14,63 +17,70 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     title: "EAC",
+    translationKey: "menu.eac",
     href: "/eac",
     children: [
-      { title: "About Us", href: "/eac/about" },
-      { title: "EAC Council", href: "/eac/council" },
-      { title: "News", href: "/eac/news" },
-      { title: "Event Calendar", href: "/eac/events" },
+      { title: "About Us", translationKey: "menu.about", href: "/eac/about" },
+      { title: "EAC Council", translationKey: "menu.council", href: "/eac/council" },
+      { title: "News", translationKey: "menu.news", href: "/eac/news" },
+      { title: "Event Calendar", translationKey: "menu.events", href: "/eac/events" },
     ],
   },
   {
     title: "Arbitration",
+    translationKey: "menu.arbitration",
     href: "/arbitration",
     children: [
-      { title: "ICAC at EAC", href: "/arbitration/icac" },
-      { title: "Rules", href: "/arbitration/rules" },
-      { title: "Fee Regulations", href: "/arbitration/fees" },
-      { title: "Cost Calculator", href: "/arbitration/calculator" },
-      { title: "Arbitration Clause", href: "/arbitration/clause" },
-      { title: "List of Arbitrators", href: "/arbitration/arbitrators" },
-      { title: "Legal Resources", href: "/arbitration/resources" },
+      { title: "ICAC at EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
+      { title: "Rules", translationKey: "menu.rules", href: "/arbitration/rules" },
+      { title: "Fee Regulations", translationKey: "menu.fees", href: "/arbitration/fees" },
+      { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
+      { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
+      { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },
+      { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
     ],
   },
   {
     title: "Expertise",
+    translationKey: "menu.expertise",
     href: "/expertise",
     children: [
-      { title: "About ICSE at EAC", href: "/expertise/icse" },
-      { title: "Expertise", href: "/expertise/services" },
+      { title: "About ICSE at EAC", translationKey: "menu.icse", href: "/expertise/icse" },
+      { title: "Expertise", translationKey: "menu.services", href: "/expertise/services" },
     ],
   },
   {
     title: "Art Expertise",
+    translationKey: "menu.art-expertise",
     href: "/art-expertise",
     children: [
-      { title: "Authentication", href: "/art-expertise/authentication" },
-      { title: "Valuation", href: "/art-expertise/valuation" },
-      { title: "Art Passport", href: "/art-expertise/passport" },
-      { title: "International Register of Artworks", href: "/art-expertise/register" },
+      { title: "Authentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
+      { title: "Valuation", translationKey: "menu.valuation", href: "/art-expertise/valuation" },
+      { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
+      { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],
   },
   {
     title: "Training",
+    translationKey: "menu.training",
     href: "/training",
     children: [
-      { title: "Qualification Course for Arbitrators", href: "/training/qualification" },
+      { title: "Qualification Course for Arbitrators", translationKey: "menu.qualification", href: "/training/qualification" },
     ],
   },
   {
     title: "Membership",
+    translationKey: "menu.membership",
     href: "/membership",
     children: [
-      { title: "Join", href: "/membership/join" },
-      { title: "Membership Benefits", href: "/membership/benefits" },
-      { title: "Application Form", href: "/membership/apply" },
+      { title: "Join", translationKey: "menu.join", href: "/membership/join" },
+      { title: "Membership Benefits", translationKey: "menu.benefits", href: "/membership/benefits" },
+      { title: "Application Form", translationKey: "menu.apply", href: "/membership/apply" },
     ],
   },
   {
     title: "Contacts",
+    translationKey: "menu.contacts",
     href: "/contacts",
   },
 ];
@@ -78,6 +88,7 @@ const navItems: NavItem[] = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const toggleDropdown = (title: string) => {
     if (activeDropdown === title) {
@@ -111,7 +122,7 @@ export default function Header() {
                   )}
                   onClick={() => toggleDropdown(item.title)}
                 >
-                  {item.title}
+                  {t(item.translationKey)}
                   {item.children && <ChevronDown size={16} />}
                 </Button>
 
@@ -132,17 +143,22 @@ export default function Header() {
                 )}
               </div>
             ))}
+            <div className="ml-2 flex items-center">
+              <LanguageSwitcher />
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitcher mode="compact" />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -157,7 +173,7 @@ export default function Header() {
                   className="w-full justify-between text-eac-dark hover:text-eac-primary"
                   onClick={() => toggleDropdown(item.title)}
                 >
-                  {item.title}
+                  {t(item.translationKey)}
                   {item.children && <ChevronDown size={16} />}
                 </Button>
 

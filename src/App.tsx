@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -23,43 +24,48 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          
-          {/* EAC Routes */}
-          <Route path="/eac/about" element={<EacAbout />} />
-          <Route path="/eac/council" element={<Council />} />
-          <Route path="/eac/news" element={<News />} />
-          <Route path="/eac/events" element={<NotFound />} />
-          
-          {/* Arbitration Routes */}
-          <Route path="/arbitration/icac" element={<ICAC />} />
-          <Route path="/arbitration/rules" element={<Rules />} />
-          <Route path="/arbitration/fees" element={<FeeRegulations />} />
-          <Route path="/arbitration/calculator" element={<CostCalculator />} />
-          <Route path="/arbitration/clause" element={<ArbitrationClause />} />
-          <Route path="/arbitration/arbitrators" element={<NotFound />} />
-          <Route path="/arbitration/resources" element={<NotFound />} />
-          
-          {/* Other routes */}
-          <Route path="/expertise/*" element={<NotFound />} />
-          <Route path="/art-expertise/*" element={<NotFound />} />
-          <Route path="/training/*" element={<NotFound />} />
-          <Route path="/membership/*" element={<NotFound />} />
-          <Route path="/contacts" element={<NotFound />} />
-          
-          {/* Legacy route - can be removed later */}
-          <Route path="/about" element={<About />} />
-          
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            
+            {/* EAC Routes */}
+            <Route path="/eac/about" element={<EacAbout />} />
+            <Route path="/eac/council" element={<Council />} />
+            <Route path="/eac/news" element={<News />} />
+            <Route path="/eac/events" element={<NotFound />} />
+            
+            {/* Arbitration Routes */}
+            <Route path="/arbitration/icac" element={<ICAC />} />
+            <Route path="/arbitration/rules" element={<Rules />} />
+            <Route path="/arbitration/fees" element={<FeeRegulations />} />
+            <Route path="/arbitration/calculator" element={<CostCalculator />} />
+            <Route path="/arbitration/clause" element={<ArbitrationClause />} />
+            <Route path="/arbitration/arbitrators" element={<NotFound />} />
+            <Route path="/arbitration/resources" element={<NotFound />} />
+            
+            {/* Other routes */}
+            <Route path="/expertise/*" element={<NotFound />} />
+            <Route path="/art-expertise/*" element={<NotFound />} />
+            <Route path="/training/*" element={<NotFound />} />
+            <Route path="/membership/*" element={<NotFound />} />
+            <Route path="/contacts" element={<NotFound />} />
+            
+            {/* Legacy route - can be removed later */}
+            <Route path="/about" element={<About />} />
+            
+            {/* News item routes */}
+            <Route path="/eac/news/:id" element={<News />} />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

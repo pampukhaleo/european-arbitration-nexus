@@ -92,7 +92,11 @@ export default function Header() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center">
-            <h1 className="text-xl font-bold text-eac-primary tracking-tight">European Arbitration Chamber</h1>
+            <img 
+              src="/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png" 
+              alt="European Arbitration Chamber Logo" 
+              className="h-12 mr-2" 
+            />
           </Link>
 
           {/* Desktop Navigation */}

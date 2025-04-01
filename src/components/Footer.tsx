@@ -9,7 +9,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-primary">European Arbitration Chamber</h3>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png" 
+                alt="European Arbitration Chamber Logo" 
+                className="h-12 mb-3" 
+              />
+            </div>
             <p className="text-sm text-gray-600 mb-4">
               An international institution for commercial dispute resolution founded on the initiative of the European Union.
             </p>

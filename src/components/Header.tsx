@@ -102,16 +102,16 @@ export default function Header() {
     <header className="sticky top-0 w-full bg-white shadow-md z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center flex-shrink-0">
             <img 
-              src="/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png" 
+              src="/lovable-uploads/logo.jpg" 
               alt="European Arbitration Chamber Logo" 
-              className="h-12 mr-2" 
+              className="h-12 w-auto" 
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-1">
+          {/* Desktop Navigation - changed breakpoint from lg to custom */}
+          <nav className="hidden xl:flex space-x-1">
             {navItems.map((item) => (
               <div key={item.title} className="relative group">
                 <Button
@@ -135,7 +135,7 @@ export default function Header() {
                           to={child.href}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-eac-light hover:text-eac-primary"
                         >
-                          {child.title}
+                          {t(child.translationKey)}
                         </Link>
                       ))}
                     </div>
@@ -148,8 +148,8 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
+          {/* Mobile Menu Button - changed breakpoint from lg to custom */}
+          <div className="xl:hidden flex items-center gap-2">
             <LanguageSwitcher mode="compact" />
             <Button
               variant="ghost"
@@ -162,9 +162,9 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - changed breakpoint from lg to custom */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-lg">
+        <div className="xl:hidden bg-white shadow-lg">
           <nav className="container mx-auto px-4 py-4 space-y-1">
             {navItems.map((item) => (
               <div key={item.title} className="relative">
@@ -186,7 +186,7 @@ export default function Header() {
                         className="block py-2 text-sm text-gray-700 hover:text-eac-primary"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {child.title}
+                        {t(child.translationKey)}
                       </Link>
                     ))}
                   </div>

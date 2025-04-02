@@ -26,8 +26,8 @@ export const navItems: NavItem[] = [
     href: "/arbitration",
     children: [
       { title: "About the ICAC under the EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
-      { title: "Rules", translationKey: "menu.rules", href: "/arbitration/rules" },
-      { title: "Fee Regulations", translationKey: "menu.fees", href: "/arbitration/fees" },
+      { title: "ICAC Rules ", translationKey: "menu.rules", href: "/arbitration/rules" },
+      { title: "ICAC Provisions on Arbitration Costs", translationKey: "menu.fees", href: "/arbitration/fees" },
       { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
       { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
       { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },

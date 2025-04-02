@@ -16,7 +16,7 @@ const Rules = () => {
           
           <div className="my-8">
             <p className="text-lg font-medium mb-4">You can download the ICAC Rules here:</p>
-            <Button className="mb-4 bg-eac-primary hover:bg-eac-primary/90 rounded-full" asChild>
+            <Button variant="outline" className="mb-4 border-eac-primary hover:bg-eac-primary/90 hover:!text-white rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
                 ICAC Arbitration Rules in English 2020
@@ -24,7 +24,7 @@ const Rules = () => {
             </Button>
             
             <p className="text-lg font-medium mb-4 mt-8">Translation:</p>
-            <Button className="bg-eac-primary hover:bg-eac-primary/90 rounded-full" asChild>
+            <Button variant="outline" className="border-eac-primary hover:bg-eac-primary/90 hover:!text-white rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
                 ICAC Arbitration Rules in Russian 2020

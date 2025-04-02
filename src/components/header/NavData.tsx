@@ -35,16 +35,16 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    title: "Expertise",
+    title: "expertise",
     translationKey: "menu.expertise",
     href: "/expertise",
     children: [
-      { title: "About ICSE at EAC", translationKey: "menu.icse", href: "/expertise/icse" },
-      { title: "Expertise", translationKey: "menu.services", href: "/expertise/services" },
+      { title: "About ICJE at EAC", translationKey: "menu.icje", href: "/expertise/icje" },
+      { title: "expertiseFields", translationKey: "menu.expertiseFields", href: "/expertise/expertiseFields" },
     ],
   },
   {
-    title: "Art Expertise",
+    title: "Art expertise",
     translationKey: "menu.art-expertise",
     href: "/art-expertise",
     children: [

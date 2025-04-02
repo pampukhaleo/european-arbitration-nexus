@@ -7,7 +7,7 @@ const Council = () => {
     {
       name: "Hennadii PAMPUKHA",
       position: "President of the EAC and member of the EAC Council",
-      description: "President of the EAC and member of the EAC Council, Vice-President of International Commercial Arbitration Court under the European Court of Arbitration, international arbitrator, judicial expert certified by the Ministry of Justice of Ukraine, founding partner of the Expert Legal Group \"Independent Institute of Judicial Expertise\" (Ukraine), Chairman of the Board of the All-Ukrainian Chamber of Experts, Managing Partner of Attorney's Association \"Princip\" (Ukraine), Board member of I.I.Expertise (Estonia)."
+      description: "President of the EAC and member of the EAC Council, Vice-President of International Commercial Arbitration Court under the European Court of Arbitration, international arbitrator, judicial expert certified by the Ministry of Justice of Ukraine, founding partner of the Expert Legal Group \"Independent Institute of Judicial expertise\" (Ukraine), Chairman of the Board of the All-Ukrainian Chamber of Experts, Managing Partner of Attorney's Association \"Princip\" (Ukraine), Board member of I.I.expertise (Estonia)."
     },
     {
       name: "Andrea MOJA",
@@ -26,7 +26,7 @@ const Council = () => {
     },
     {
       name: "Patrick LAYCOCK",
-      position: "Head of the International Centre for Judicial and ADR Expertise under the European Arbitration Chamber",
+      position: "Head of the International Centre for Judicial and ADR expertise under the European Arbitration Chamber",
       description: "Mr. Laycock is an art historian and serves as a scientific adviser to the Brussels Art Laboratory. He is recognized and endorsed by several esteemed organizations, including the European Arbitration Chamber, Chambre Belge des Experts chargés de Missions Judiciaires et d’Arbitrages, Chambre d’Arbitrage et de Médiation d’Experts Techniques et Juridiques, and the Court of First Instance of Brussels. Mr. Laycock is a lifelong member of the Siam Society under Royal Patronage in Bangkok and holds the position of President at the Institut Belge des Hautes Etudes Chinoises within the Musée Royal d'Art et d'Histoire."
     }
   ];

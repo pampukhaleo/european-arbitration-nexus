@@ -25,7 +25,7 @@ export const navItems: NavItem[] = [
     translationKey: "menu.arbitration",
     href: "/arbitration",
     children: [
-      { title: "ICAC at EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
+      { title: "About the ICAC under the EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
       { title: "Rules", translationKey: "menu.rules", href: "/arbitration/rules" },
       { title: "Fee Regulations", translationKey: "menu.fees", href: "/arbitration/fees" },
       { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },

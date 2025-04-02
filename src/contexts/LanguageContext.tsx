@@ -23,7 +23,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.news': 'News',
     'menu.events': 'Event Calendar',
     'menu.arbitration': 'Arbitration',
-    'menu.icac': 'ICAC at EAC',
+    'menu.icac': 'About the ICAC under the EAC',
     'menu.rules': 'Rules',
     'menu.fees': 'Fee Regulations',
     'menu.calculator': 'Cost Calculator',

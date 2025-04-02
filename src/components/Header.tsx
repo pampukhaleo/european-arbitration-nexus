@@ -107,6 +107,7 @@ export default function Header() {
               src="/lovable-uploads/logo.jpg" 
               alt="European Arbitration Chamber Logo" 
               className="h-12 w-auto" 
+              style={{ maxWidth: '100%' }}
             />
           </Link>
 
@@ -122,7 +123,7 @@ export default function Header() {
                   )}
                   onClick={() => toggleDropdown(item.title)}
                 >
-                  {t(item.translationKey)}
+                  {t(item.translationKey) || item.title}
                   {item.children && <ChevronDown size={16} />}
                 </Button>
 
@@ -135,7 +136,7 @@ export default function Header() {
                           to={child.href}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-eac-light hover:text-eac-primary"
                         >
-                          {t(child.translationKey)}
+                          {t(child.translationKey) || child.title}
                         </Link>
                       ))}
                     </div>
@@ -173,7 +174,7 @@ export default function Header() {
                   className="w-full justify-between text-eac-dark hover:text-eac-primary"
                   onClick={() => toggleDropdown(item.title)}
                 >
-                  {t(item.translationKey)}
+                  {t(item.translationKey) || item.title}
                   {item.children && <ChevronDown size={16} />}
                 </Button>
 
@@ -186,7 +187,7 @@ export default function Header() {
                         className="block py-2 text-sm text-gray-700 hover:text-eac-primary"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {t(child.translationKey)}
+                        {t(child.translationKey) || child.title}
                       </Link>
                     ))}
                   </div>

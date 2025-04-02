@@ -1,7 +1,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export type Language = 'en' | 'fr' | 'de' | 'ru';
+export type Language = 'en' | 'fr' | 'ru';
 
 interface LanguageContextType {
   language: Language;
@@ -14,7 +14,6 @@ const translations: Record<Language, Record<string, string>> = {
     // Common
     'language.english': 'EN',
     'language.french': 'FR',
-    'language.german': 'DE',
     'language.russian': 'RU',
     
     // Menu items
@@ -63,7 +62,6 @@ const translations: Record<Language, Record<string, string>> = {
     // Common
     'language.english': 'EN',
     'language.french': 'FR',
-    'language.german': 'DE',
     'language.russian': 'RU',
     
     // Menu items
@@ -108,60 +106,10 @@ const translations: Record<Language, Record<string, string>> = {
     'home.viewAllNews': 'Voir Toutes les Actualités',
     'home.readMore': 'Lire Plus',
   },
-  de: {
-    // Common
-    'language.english': 'EN',
-    'language.french': 'FR',
-    'language.german': 'DE',
-    'language.russian': 'RU',
-    
-    // Menu items
-    'menu.eac': 'EAK',
-    'menu.about': 'Über Uns',
-    'menu.council': 'EAK-Rat',
-    'menu.news': 'Nachrichten',
-    'menu.events': 'Veranstaltungskalender',
-    'menu.arbitration': 'Schiedsverfahren',
-    'menu.icac': 'ICAC bei EAK',
-    'menu.rules': 'Regeln',
-    'menu.fees': 'Gebührenordnung',
-    'menu.calculator': 'Kostenrechner',
-    'menu.clause': 'Schiedsklausel',
-    'menu.arbitrators': 'Liste der Schiedsrichter',
-    'menu.resources': 'Rechtliche Ressourcen',
-    'menu.expertise': 'Fachkenntnisse',
-    'menu.icse': 'Über ICSE bei EAK',
-    'menu.services': 'Fachkenntnisse',
-    'menu.art-expertise': 'Kunst-Expertise',
-    'menu.authentication': 'Authentifizierung',
-    'menu.valuation': 'Bewertung',
-    'menu.passport': 'Kunst-Pass',
-    'menu.register': 'Internationales Register für Kunstwerke',
-    'menu.training': 'Ausbildung',
-    'menu.qualification': 'Qualifikationskurs für Schiedsrichter',
-    'menu.membership': 'Mitgliedschaft',
-    'menu.join': 'Beitreten',
-    'menu.benefits': 'Mitgliedschaftsvorteile',
-    'menu.apply': 'Antragsformular',
-    'menu.contacts': 'Kontakte',
-    
-    // Footer sections
-    'footer.about': 'Eine internationale Institution zur Beilegung kommerzieller Streitigkeiten, gegründet auf Initiative der Europäischen Union.',
-    'footer.quickLinks': 'Schnellzugriff',
-    'footer.services': 'Unsere Dienstleistungen',
-    'footer.contactUs': 'Kontaktieren Sie uns',
-    'footer.rights': 'Alle Rechte vorbehalten.',
-    
-    // Home page
-    'home.latestNews': 'Neueste Nachrichten',
-    'home.viewAllNews': 'Alle Nachrichten anzeigen',
-    'home.readMore': 'Mehr lesen',
-  },
   ru: {
     // Common
     'language.english': 'EN',
     'language.french': 'FR',
-    'language.german': 'DE',
     'language.russian': 'RU',
     
     // Menu items

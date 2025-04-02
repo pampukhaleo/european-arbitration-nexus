@@ -10,7 +10,6 @@ export default function LanguageSwitcher({ mode = "full" }: { mode?: "full" | "c
   const languages: { code: Language; name: string }[] = [
     { code: 'en', name: t('language.english') },
     { code: 'fr', name: t('language.french') },
-    { code: 'de', name: t('language.german') },
     { code: 'ru', name: t('language.russian') }
   ];
   

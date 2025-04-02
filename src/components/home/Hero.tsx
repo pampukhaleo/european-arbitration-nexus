@@ -27,7 +27,7 @@ export default function Hero() {
             <Button 
               asChild 
               variant="outline"
-              className="border-white text-white hover:bg-white/10 rounded-full"
+              className="border-white text-eac-primary hover:bg-eac-primary hover:text-white rounded-full"
             >
               <Link to="/eac/about">
                 Learn More

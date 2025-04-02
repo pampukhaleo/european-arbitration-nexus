@@ -6,7 +6,7 @@ import { FileText } from "lucide-react";
 const FeeRegulations = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
+      <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark">Fee Regulations</h1>
         
         <div className="prose max-w-none">

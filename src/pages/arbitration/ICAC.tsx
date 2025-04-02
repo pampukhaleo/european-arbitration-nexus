@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 const ICAC = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
+      <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark">ICAC at EAC</h1>
         
         <div className="prose max-w-none">

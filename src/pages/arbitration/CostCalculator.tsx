@@ -5,7 +5,7 @@ import CostCalculator from "@/components/arbitration/CostCalculator";
 const CostCalculatorPage = () => {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
+      <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark">Cost Calculator</h1>
         
         <div className="prose max-w-none mb-8">

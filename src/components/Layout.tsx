@@ -13,6 +13,9 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const path = location.pathname;
   
+  // Check if we're on the home page
+  const isHomePage = path === "/";
+  
   // Determine the current section from the path
   const getSectionKey = () => {
     if (path.startsWith('/eac/')) return 'eac';
@@ -30,18 +33,24 @@ export default function Layout({ children }: LayoutProps) {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <div className="col-span-1 lg:col-span-3">
-              {children}
-            </div>
-            {sectionKey && (
-              <div className="col-span-1">
-                <SectionNav sectionKey={sectionKey} />
-              </div>
-            )}
+        {isHomePage ? (
+          <div className="container mx-auto px-4 py-8">
+            {children}
           </div>
-        </div>
+        ) : (
+          <div className="container mx-auto px-4 py-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              <div className="col-span-1 lg:col-span-3">
+                {children}
+              </div>
+              {sectionKey && (
+                <div className="col-span-1">
+                  <SectionNav sectionKey={sectionKey} />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </main>
       <Footer />
     </div>

@@ -34,7 +34,7 @@ export default function Layout({ children }: LayoutProps) {
       <Header />
       <main className="flex-grow">
         {isHomePage ? (
-          <div className="container mx-auto px-4 py-8">
+          <div className="w-full max-w-full px-0">
             {children}
           </div>
         ) : (

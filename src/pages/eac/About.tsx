@@ -5,25 +5,51 @@ const About = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">About Us</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark">About the European Arbitration Chamber (EAC)</h1>
         <div className="prose max-w-none">
           <p className="mb-4 text-lg text-gray-600">
-            The European Arbitration Chamber the main goal of which is unification and development of the international arbitration in the Eastern and Western Europe has been founded on the initiative of the European Union. The professionals with a long-term experience in the field of ADR and international arbitration from Belgium, France and Ukraine have teamed up to found the European Arbitration Chamber. The international nonprofit association European Arbitration Chamber has been registered by the Belgium Ministry of Justice (Direction Générale de la législation, Royaume de Belgique Service Public Fédéral Justice # 6/SN/15.677/S).
+            <b>The European Arbitration Chamber (EAC)</b> is an international non-profit association dedicated to
+            helping businesses efficiently and swiftly resolve commercial disputes through international arbitration.
+          </p>
+          <h3 className="mb-4 text-lg">Our Mission</h3>
+          <p className="mb-4 text-lg text-gray-600">
+            EAC’s mission is to <b>promote and develop commercial arbitration, mediation, judicial expertise, and the
+            Alternative Dispute Resolution (ADR) system</b> globally, providing businesses with effective and reliable
+            dispute resolution mechanisms.
+          </p>
+          <h3 className="mb-4 text-lg">Our History</h3>
+          <p className="mb-4 text-lg text-gray-600">
+            Founded in <b>Belgium in 2008</b>, the EAC was established by professionals in <b>commercial arbitration and
+            mediation</b> from Belgium, France, and Ukraine. It operates in full compliance with the <b>Law of the
+            Kingdom of Belgium on Non-Profit Associations, International Non-Profit Associations, and Foundations of
+            June 27, 1921.</b>
+          </p>
+          <h3 className="mb-4 text-lg">Our Global Reach</h3>
+          <p className="mb-4 text-lg text-gray-600">
+            Today, the EAC unites representatives from 35 countries, including:
+            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
+              <li className="ml-5 mt-2">Arbitrators</li>
+              <li className="ml-5">Mediators</li>
+              <li className="ml-5">Judicial experts</li>
+              <li className="ml-5">Business professionals</li>
+            </ul>
           </p>
           <p className="mb-4 text-lg text-gray-600">
-            Membership in the European Arbitration Chamber is for individual persons only. The citizens of the EU and CIS-countries, Canada, USA and Asia who are professional lawyers, partners of the law firms, international arbitrators, judges, mediators, businessmen, representatives of political quaters, scientists and public figures are the members of the European Arbitration Chamber.
+            Key Areas of Activity
+            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
+              <li className="ml-5 mt-2"><b>Commercial Arbitration</b> – Resolving cross-border business disputes through
+                international arbitration.</li>
+              <li className="ml-5 mt-2"><b>Judicial Expertise</b> – Providing expert assessments for legal and arbitration proceedings.</li>
+              <li className="ml-5 mt-2"><b>Training & Education</b> – Offering specialized courses and programs in ADR, arbitration, and mediation.</li>
+            </ul>
           </p>
           <p className="mb-4 text-lg text-gray-600">
-            The International Commercial Arbitration Court (ICAC) has been established as an administrative facility of the European Arbitration Chamber. It is an independent permanent Court of Arbitration, which operates under the Regulation and articles 1676-1723 of the The Belgian Judicial Code.
+            The International Commercial Arbitration Court (ICAC) has been established as an administrative facility of
+            the European Arbitration Chamber. It is an independent permanent Court of Arbitration, which operates under
+            the Regulation and articles 1676-1723 of the The Belgian Judicial Code.
           </p>
           <p className="mb-4 text-lg text-gray-600">
-            The address of the ICAC's secretariat is 146 Avenu Louise, B-1050 Brussels (Belgium).
-          </p>
-          <p className="mb-4 text-lg text-gray-600">
-            ICAC under the EACh unites the leading experts in the sphere of the international arbitration from the Eastern and Western Europe, Asia, North America. It gives an opportunity to offer the most professional arbitrators who are keenly aware of legislative, state and economic peculiarities of the different countries.
-          </p>
-          <p className="mb-4 text-lg text-gray-600">
-            The European Arbitration Chamber is ruled by its President and the General Members' Meetings.
+            EAC is committed to fostering a fair, efficient, and globally recognized dispute resolution framework, empowering businesses and legal professionals worldwide.
           </p>
         </div>
       </div>

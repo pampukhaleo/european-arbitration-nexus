@@ -16,7 +16,7 @@ const FeeRegulations = () => {
           
           <div className="my-8">
             <p className="text-lg font-medium mb-4">You can download the ICAC Provisions on Arbitration Costs here:</p>
-            <Button className="mb-4 bg-eac-primary hover:bg-eac-primary/90 rounded-full" asChild>
+            <Button variant="outline" className="mb-4 border-eac-primary hover:!text-white hover:bg-eac-primary/90 rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
                 ICAC Provisions on Arbitration Costs as of 11.11.2020 in English
@@ -24,7 +24,7 @@ const FeeRegulations = () => {
             </Button>
             
             <p className="text-lg font-medium mb-4 mt-8">Translation:</p>
-            <Button className="bg-eac-primary hover:bg-eac-primary/90 rounded-full" asChild>
+            <Button variant="outline" className="border-eac-primary hover:!text-white hover:bg-eac-primary/90 rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
                 ICAC Provisions on Arbitration Costs as of 11.11.2020 in Russian

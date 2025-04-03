@@ -25,8 +25,9 @@ import ArbitrationClause from "./pages/arbitration/ArbitrationClause";
 import ICJE from "./pages/expertise/ICJE.tsx";
 import ExpertiseFields from "./pages/expertise/ExpertiseFields.tsx";
 
-// Expertise Routes
+// Art Expertise Routes
 import ArtAuthentication from "@/pages/artExpertise/ArtAuthentication.tsx";
+import ArtAppraisal from "@/pages/artExpertise/ArtAppraisal.tsx";
 
 
 const queryClient = new QueryClient();
@@ -63,6 +64,7 @@ const App = () => (
 
             {/* Art Authentication routes */}
             <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
+            <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
 
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />

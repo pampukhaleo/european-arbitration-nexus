@@ -48,8 +48,8 @@ export const navItems: NavItem[] = [
     translationKey: "menu.art-expertise",
     href: "/art-expertise",
     children: [
-      { title: "ArtAuthentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
-      { title: "Valuation", translationKey: "menu.valuation", href: "/art-expertise/valuation" },
+      { title: "Art Authentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
+      { title: "Art Appraisal", translationKey: "menu.appraisal", href: "/art-expertise/appraisal" },
       { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
       { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],

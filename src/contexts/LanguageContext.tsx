@@ -35,7 +35,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.expertiseFields': 'Fields of Expertise',
     'menu.art-expertise': 'Art expertise',
     'menu.authentication': 'Art Authentication',
-    'menu.valuation': 'Valuation',
+    'menu.appraisal': 'Art Appraisal',
     'menu.passport': 'Art Passport',
     'menu.register': 'International Register of Artworks',
     'menu.training': 'Training',

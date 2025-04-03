@@ -21,9 +21,12 @@ import FeeRegulations from "./pages/arbitration/FeeRegulations";
 import CostCalculator from "./pages/arbitration/CostCalculator";
 import ArbitrationClause from "./pages/arbitration/ArbitrationClause";
 
-// expertise Routes
+// Expertise Routes
 import ICJE from "./pages/expertise/ICJE.tsx";
 import ExpertiseFields from "./pages/expertise/ExpertiseFields.tsx";
+
+// Expertise Routes
+import ArtAuthentication from "@/pages/artExpertise/ArtAuthentication.tsx";
 
 
 const queryClient = new QueryClient();
@@ -58,8 +61,10 @@ const App = () => (
             <Route path="/expertise/icje" element={<ICJE />} />
             <Route path="/expertise/expertiseFields" element={<ExpertiseFields />} />
 
+            {/* Art Authentication routes */}
+            <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
+
             {/* Other routes */}
-            <Route path="/art-expertise/*" element={<NotFound />} />
             <Route path="/training/*" element={<NotFound />} />
             <Route path="/membership/*" element={<NotFound />} />
             <Route path="/contacts" element={<NotFound />} />

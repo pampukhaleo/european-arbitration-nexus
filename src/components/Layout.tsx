@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
     if (path.startsWith('/art-expertise/')) return 'art-expertise';
     if (path.startsWith('/training/')) return 'training';
     if (path.startsWith('/membership/')) return 'membership';
-    if (path.startsWith('/contacts/')) return 'contacts';
+    if (path === '/contacts') return 'contacts';
     return '';
   };
   
@@ -44,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
               <div className="col-span-1 lg:col-span-3">
                 {children}
               </div>
-              {sectionKey && (
+              {sectionKey && sectionKey !== 'contacts' && (
                 <div className="col-span-1">
                   <SectionNav sectionKey={sectionKey} />
                 </div>

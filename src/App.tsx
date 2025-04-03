@@ -28,6 +28,7 @@ import ExpertiseFields from "./pages/expertise/ExpertiseFields.tsx";
 // Art Expertise Routes
 import ArtAuthentication from "@/pages/artExpertise/ArtAuthentication.tsx";
 import ArtAppraisal from "@/pages/artExpertise/ArtAppraisal.tsx";
+import ArtPassport from "@/pages/artExpertise/ArtPassport.tsx";
 
 
 const queryClient = new QueryClient();
@@ -65,6 +66,8 @@ const App = () => (
             {/* Art Authentication routes */}
             <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
             <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
+            <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
+            <Route path="/art-expertise/passport" element={<ArtPassport />} />
 
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />

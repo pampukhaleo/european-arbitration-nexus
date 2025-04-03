@@ -24,6 +24,7 @@ export default function Layout({ children }: LayoutProps) {
     if (path.startsWith('/art-expertise/')) return 'art-expertise';
     if (path.startsWith('/training/')) return 'training';
     if (path.startsWith('/membership/')) return 'membership';
+    if (path.startsWith('/contacts/')) return 'contacts';
     return '';
   };
   

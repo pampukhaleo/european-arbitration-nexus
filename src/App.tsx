@@ -35,6 +35,8 @@ import MembershipBenefits from "@/pages/membership/MembershipBenefits.tsx";
 import HowToJoin from "@/pages/membership/HowToJoin.tsx";
 import CodeOfConduct from "@/pages/membership/CodeOfConduct.tsx";
 
+// Contacts page
+import Contacts from "@/pages/Contacts.tsx";
 
 const queryClient = new QueryClient();
 
@@ -71,7 +73,6 @@ const App = () => (
             {/* Art Authentication routes */}
             <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
             <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
-            <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
             <Route path="/art-expertise/passport" element={<ArtPassport />} />
 
             {/* Membership routes */}
@@ -79,9 +80,11 @@ const App = () => (
             <Route path="/membership/join" element={<HowToJoin />} />
             <Route path="/membership/conductCode" element={<CodeOfConduct />} />
 
+            {/* Contact route */}
+            <Route path="/contacts" element={<Contacts />} />
+            
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />
-            <Route path="/contacts" element={<NotFound />} />
             
             {/* Legacy route - can be removed later */}
             <Route path="/about" element={<About />} />

@@ -82,7 +82,7 @@ Belgium, Brussels, B-1050, Avenue Louise, 146</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0" />
-                <a href="mailto:secretary@chea-taic.be" className="text-gray-600 hover:text-eac-primary">info@eac.court</a>
+                <a href="mailto:secretary@chea-taic.be" className="text-gray-600 hover:text-eac-primary">secretary@chea-taic.be</a>
               </li>
             </ul>
           </div>

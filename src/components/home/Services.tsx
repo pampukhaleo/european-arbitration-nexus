@@ -28,7 +28,7 @@ export default function Services() {
                 Efficient resolution of commercial disputes by experienced arbitrators. Our arbitration process is designed to provide a fast, fair, and cost-effective alternative to litigation.
               </CardDescription>
               <Button asChild variant="outline" className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white">
-                <Link to="/arbitration">Learn More</Link>
+                <Link to="/arbitration/icac">Learn More</Link>
               </Button>
             </CardContent>
           </Card>
@@ -62,7 +62,7 @@ export default function Services() {
                 Independent expert studies conducted by specialists in various fields. Our experts provide objective analyses and opinions to help resolve complex technical or specialized disputes.
               </CardDescription>
               <Button asChild variant="outline" className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white">
-                <Link to="/expertise">Learn More</Link>
+                <Link to="/expertise/icje">Learn More</Link>
               </Button>
             </CardContent>
           </Card>
@@ -79,7 +79,7 @@ export default function Services() {
                 Authentication, valuation, and art passport issuance services provided by experienced art professionals. Our art experts use the latest techniques and methods to ensure accurate results.
               </CardDescription>
               <Button asChild variant="outline" className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white">
-                <Link to="/art-expertise">Learn More</Link>
+                <Link to="/art-expertise/authentication">Learn More</Link>
               </Button>
             </CardContent>
           </Card>

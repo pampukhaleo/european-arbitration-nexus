@@ -48,7 +48,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/eac/about" className="text-gray-600 hover:text-eac-primary">About Us</Link></li>
               <li><Link to="/arbitration/rules" className="text-gray-600 hover:text-eac-primary">Arbitration Rules</Link></li>
-              <li><Link to="/arbitration/clause" className="text-gray-600 hover:text-eac-primary">Model Arbitration Clause</Link></li>
+              <li><Link to="/arbitration/clause" className="text-gray-600 hover:text-eac-primary">Arbitration Clause</Link></li>
               <li><Link to="/arbitration/calculator" className="text-gray-600 hover:text-eac-primary">Cost Calculator</Link></li>
               <li><Link to="/membership/join" className="text-gray-600 hover:text-eac-primary">Join EAC</Link></li>
               <li><Link to="/eac/news" className="text-gray-600 hover:text-eac-primary">Latest News</Link></li>
@@ -61,9 +61,9 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link to="/arbitration" className="text-gray-600 hover:text-eac-primary">International Commercial Arbitration</Link></li>
               <li><Link to="/expertise" className="text-gray-600 hover:text-eac-primary">Expert Studies</Link></li>
-              <li><Link to="/art-expertise" className="text-gray-600 hover:text-eac-primary">Art Authentication</Link></li>
-              <li><Link to="/art-expertise/valuation" className="text-gray-600 hover:text-eac-primary">Art Valuation</Link></li>
-              <li><Link to="/training" className="text-gray-600 hover:text-eac-primary">Arbitrator Training</Link></li>
+              <li><Link to="/art-expertise/authentication" className="text-gray-600 hover:text-eac-primary">Art Authentication</Link></li>
+              <li><Link to="/art-expertise/appraisal" className="text-gray-600 hover:text-eac-primary">Art Valuation</Link></li>
+              {/*<li><Link to="/training" className="text-gray-600 hover:text-eac-primary">Arbitrator Training</Link></li>*/}
             </ul>
           </div>
 
@@ -73,15 +73,16 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0 mt-0.5" />
-                <span className="text-gray-600">146 Avenue Louise, B-1050 Brussels, Belgium</span>
+                <span className="text-gray-600">International non-profit association "European Arbitration Chamber"
+Belgium, Brussels, B-1050, Avenue Louise, 146</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0" />
-                <span className="text-gray-600">+32 (0) 2 808 77 54</span>
+                <span className="text-gray-600">+32 2 808 77 54</span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0" />
-                <a href="mailto:info@eac.court" className="text-gray-600 hover:text-eac-primary">info@eac.court</a>
+                <a href="mailto:secretary@chea-taic.be" className="text-gray-600 hover:text-eac-primary">info@eac.court</a>
               </li>
             </ul>
           </div>

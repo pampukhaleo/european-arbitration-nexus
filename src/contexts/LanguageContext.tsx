@@ -57,6 +57,23 @@ const translations: Record<Language, Record<string, string>> = {
     'home.latestNews': 'Latest News',
     'home.viewAllNews': 'View All News',
     'home.readMore': 'Read More',
+
+    // Contacts page
+    'contacts.title': 'Contact Us',
+    'contacts.information': 'Address and Email',
+    'contacts.address': 'Address',
+    'contacts.phone': 'Phone',
+    'contacts.email': 'Email',
+    'contacts.emailPlaceholder': 'Your Email',
+    'contacts.sendMessage': 'Contact Form',
+    'contacts.name': 'Name',
+    'contacts.namePlaceholder': 'Your Name',
+    'contacts.subject': 'Subject',
+    'contacts.subjectPlaceholder': 'type name of the subject',
+    'contacts.message': 'Message',
+    'contacts.messagePlaceholder': 'Type your message',
+    'contacts.send': 'Send',
+    'contacts.location': 'Our location'
   },
   fr: {
     // Common

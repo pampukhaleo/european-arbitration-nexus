@@ -41,7 +41,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.training': 'Training',
     'menu.qualification': 'Qualification Course for Arbitrators',
     'menu.membership': 'Membership',
-    'menu.join': 'Join',
+    'menu.join': 'How to Join',
     'menu.benefits': 'Membership Benefits',
     'menu.apply': 'Application Form',
     'menu.contacts': 'Contacts',

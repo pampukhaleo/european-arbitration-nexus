@@ -32,6 +32,7 @@ import ArtPassport from "@/pages/artExpertise/ArtPassport.tsx";
 
 // Membership Routes
 import MembershipBenefits from "@/pages/membership/MembershipBenefits.tsx";
+import HowToJoin from "@/pages/membership/HowToJoin.tsx";
 
 
 const queryClient = new QueryClient();
@@ -74,6 +75,7 @@ const App = () => (
 
             {/* Membership routes */}
             <Route path="/membership/benefits" element={<MembershipBenefits />} />
+            <Route path="/membership/join" element={<HowToJoin />} />
 
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />

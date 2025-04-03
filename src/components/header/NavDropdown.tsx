@@ -24,6 +24,24 @@ export default function NavDropdown({
 }: NavDropdownProps) {
   const { t } = useLanguage();
   
+  // If the item doesn't have children, render a simple Link instead of a dropdown
+  if (!item.children) {
+    return (
+      <div className={isMobile ? "relative" : "relative group"}>
+        <Link
+          to={item.href}
+          className={cn(
+            "flex items-center gap-1 px-3 py-2 text-eac-dark hover:text-eac-primary",
+            isMobile && "w-full block"
+          )}
+          onClick={closeMobileMenu}
+        >
+          {t(item.translationKey) || item.title}
+        </Link>
+      </div>
+    );
+  }
+  
   return (
     <div className={isMobile ? "relative" : "relative group"}>
       <Button

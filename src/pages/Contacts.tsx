@@ -4,7 +4,6 @@ import Layout from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from "@/components/contact/ContactForm";
-import About from "@/pages/About.tsx";
 
 const Contacts = () => {
   const { t } = useLanguage();

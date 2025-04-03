@@ -69,7 +69,7 @@ export const navItems: NavItem[] = [
     children: [
       { title: "Membership Benefits", translationKey: "menu.benefits", href: "/membership/benefits" },
       { title: "How To Join", translationKey: "menu.join", href: "/membership/join" },
-      { title: "Application Form", translationKey: "menu.apply", href: "/membership/apply" },
+      { title: "Code of Conduct", translationKey: "menu.conductCode", href: "/membership/conductCode" },
     ],
   },
   {

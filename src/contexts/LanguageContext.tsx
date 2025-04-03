@@ -43,7 +43,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.membership': 'Membership',
     'menu.join': 'How to Join',
     'menu.benefits': 'Membership Benefits',
-    'menu.apply': 'Application Form',
+    'menu.conductCode': 'Code of Conduct',
     'menu.contacts': 'Contacts',
     
     // Footer sections

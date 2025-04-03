@@ -15,7 +15,7 @@ const Index = () => {
       <QuickLinks />
       <Services />
       <NewsPreview />
-      <EventCalendar />
+      {/*<EventCalendar />*/}
     </Layout>
   );
 };

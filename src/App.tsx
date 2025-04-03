@@ -30,6 +30,9 @@ import ArtAuthentication from "@/pages/artExpertise/ArtAuthentication.tsx";
 import ArtAppraisal from "@/pages/artExpertise/ArtAppraisal.tsx";
 import ArtPassport from "@/pages/artExpertise/ArtPassport.tsx";
 
+// Membership Routes
+import MembershipBenefits from "@/pages/membership/MembershipBenefits.tsx";
+
 
 const queryClient = new QueryClient();
 
@@ -69,9 +72,11 @@ const App = () => (
             <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
             <Route path="/art-expertise/passport" element={<ArtPassport />} />
 
+            {/* Membership routes */}
+            <Route path="/membership/benefits" element={<MembershipBenefits />} />
+
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />
-            <Route path="/membership/*" element={<NotFound />} />
             <Route path="/contacts" element={<NotFound />} />
             
             {/* Legacy route - can be removed later */}

@@ -52,6 +52,9 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.services': 'Our Services',
     'footer.contactUs': 'Contact Us',
     'footer.rights': 'All rights reserved.',
+    'footer.privacy': 'Privacy Policy',
+    'footer.terms': 'Terms of Services',
+    'footer.cookies': 'Cookies Policy',
     
     // Home page
     'home.latestNews': 'Latest News',

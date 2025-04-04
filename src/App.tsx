@@ -38,6 +38,11 @@ import CodeOfConduct from "@/pages/membership/CodeOfConduct.tsx";
 // Contacts page
 import Contacts from "@/pages/Contacts.tsx";
 
+//Policies Routes
+import PrivacyPolicy from "@/pages/policies/PrivacyPolicy.tsx";
+import TermsOfService from "@/pages/policies/TermsOfService.tsx";
+import CookiesPolicy from "@/pages/policies/CookiesPolicy.tsx";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -82,6 +87,11 @@ const App = () => (
 
             {/* Contact route */}
             <Route path="/contacts" element={<Contacts />} />
+
+            {/* Policies route */}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/serviceTerms" element={<TermsOfService />} />
+            <Route path="/cookies" element={<CookiesPolicy />} />
             
             {/* Other routes */}
             <Route path="/training/*" element={<NotFound />} />

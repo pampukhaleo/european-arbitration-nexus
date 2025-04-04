@@ -90,8 +90,15 @@ Belgium, Brussels, B-1050, Avenue Louise, 146</span>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-200 mt-8 pt-6">
+          <div className="text-sm text-center text-gray-500 mb-2">
+            <ul className="space-x-2 text-sm flex justify-center">
+              <li><Link to="/privacy" className="text-gray-600 hover:text-eac-primary">Privacy Policy</Link></li>
+              <li><Link to="/serviceTerms" className="text-gray-600 hover:text-eac-primary">Terms of Service</Link></li>
+              <li><Link to="/cookies" className="text-gray-600 hover:text-eac-primary">Cookies Policy</Link></li>
+            </ul>
+          </div>
           <p className="text-sm text-center text-gray-500">
-            © {new Date().getFullYear()} European Arbitration Chamber. {t('footer.rights')}
+            © { new Date().getFullYear() } European Arbitration Chamber. { t('footer.rights') }
           </p>
         </div>
       </div>

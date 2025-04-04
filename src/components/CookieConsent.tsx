@@ -60,15 +60,8 @@ export const CookieConsent = () => {
           </span>
         </div>
         <SheetFooter className="mt-4 sm:justify-start gap-4">
-          <Button onClick={acceptCookies} className="bg-eac-blue hover:bg-eac-blue/90">
+          <Button onClick={acceptCookies} className="bg-blue-400 text-white hover:bg-blue-800">
             Accept All Cookies
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => setShowConsent(false)}
-            className="border-eac-dark text-eac-dark hover:bg-gray-100"
-          >
-            Close
           </Button>
         </SheetFooter>
       </SheetContent>

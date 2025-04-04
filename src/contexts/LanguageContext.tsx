@@ -49,7 +49,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.home': 'Main page',
     
     // Footer sections
-    'footer.about': 'An international institution for commercial dispute resolution founded on the initiative of the European Union.',
+    'footer.about': 'Resolving disputes, advancing arbitration.',
     'footer.quickLinks': 'Quick Links',
     'footer.services': 'Our Services',
     'footer.contactUs': 'Contact Us',

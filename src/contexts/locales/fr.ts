@@ -181,7 +181,59 @@ const fr = {
         timingTitle: "Délais et coûts optimaux",
         timingDesc: "Une procédure accélérée et des frais d’arbitrage fixes permettent un règlement rapide, efficace et peu coûteux des litiges.",
       }
+    },
+    rules: {
+      title: "Règlement",
+      description: "Une nouvelle version du règlement de la CIAC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de l’association internationale sans but lucratif « Chambre Européenne d’Arbitrage ». Elle s’applique à toutes les procédures engagées après le 10 novembre 2020 ou qui seront engagées à l’avenir. Parmi toutes les versions linguistiques du règlement, la version anglaise prévaut.",
+      downloadLabel: "Vous pouvez télécharger le règlement de la CIAC ici :",
+      translationLabel: "Traduction :",
+      englishBtn: "Règlement d’arbitrage CIAC en anglais 2020",
+      russianBtn: "Règlement d’arbitrage CIAC en russe 2020"
+    },
+    fees: {
+      title: "Règlement des Frais",
+      description: "Une nouvelle version des Dispositions sur les Frais d’Arbitrage de la CIAC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de l’association internationale sans but lucratif « Chambre Européenne d’Arbitrage ». Elle s’applique à toutes les procédures commencées après le 10 novembre 2020 ou à venir. Parmi toutes les versions linguistiques, la version anglaise prévaut.",
+      downloadLabel: "Vous pouvez télécharger les Dispositions sur les Frais d’Arbitrage ici :",
+      translationLabel: "Traduction :",
+      englishBtn: "Dispositions sur les Frais d’Arbitrage (11.11.2020) – Anglais",
+      russianBtn: "Dispositions sur les Frais d’Arbitrage (11.11.2020) – Russe"
+    },
+    calculator: {
+      title: "Calculateur de Coûts",
+      description: "Les frais d’arbitrage sont payés par les parties sur chaque réclamation reçue pour examen par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Bruxelles, Belgique) (ci-après - 'la CIAC auprès de la CEA') pour couvrir les coûts de l’arbitrage. Le montant des frais d’arbitrage est calculé conformément aux Dispositions sur les frais d’arbitrage de la CIAC auprès de la CEA.",
+      registrationFeeTitle: "Les frais d’enregistrement sont un paiement fixe, payé par le demandeur lors du dépôt de sa Demande d’Arbitrage à la CIAC auprès de la CEA, dont le montant est :",
+      registrationFee: {
+        excludingVat: "1.000,00 EUR (hors TVA)",
+        includingVat: "1.210,00 EUR (y compris la TVA de 21 % si applicable)."
+      },
+      currencyConversion: "Pour déterminer le montant des frais d’arbitrage dans chaque cas, le montant en litige (sauf s’il est exprimé en EUR) doit être converti en EUR au taux de change de la Banque nationale de Belgique, établi à la date de dépôt de la Demande d’Arbitrage.",
+      exchangeRateLink: "Taux de change",
+      exchangeRateUrl: "https://www.nbb.be/en/about-national-bank/eurosystem/exchange-rates"
+    },
+    clause: {
+      title: "Clause d’Arbitrage",
+      future: {
+        title: "Litiges futurs",
+        description: "Les parties, en concluant un contrat et souhaitant que les litiges susceptibles de survenir soient soumis à la Cour d’arbitrage conformément au Règlement de la CIAC, sont invitées à inclure dans leur contrat la clause d’arbitrage suivante (les mots ou espaces entre crochets doivent être supprimés ou complétés) :",
+        clause1: `Tout litige découlant de ou lié à ce contrat, y compris toute question relative à son existence, sa validité ou sa résiliation, sera soumis et définitivement tranché par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise, 146) conformément au Règlement de cette CIAC, lequel, en raison de ce renvoi, est considéré comme faisant partie de cette clause.`,
+        clause2: "Le nombre d’arbitres sera de [un / trois].",
+        clause3: "Le siège, ou lieu légal, de l’arbitrage sera [ville et/ou pays].",
+        clause4: "La langue de la procédure arbitrale sera [___].",
+        clause5: "La loi applicable au contrat sera celle de [pays].",
+        note: `Si les parties ne sont pas des personnes physiques de nationalité belge ou des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également prévoir : « Les parties excluent expressément toute demande d’annulation de la sentence arbitrale ».`
+      },
+      existing: {
+        title: "Litiges existants",
+        description: "En cas de litige existant entre les parties sans accord préalable sur le mode de règlement ou si les parties souhaitent modifier la clause d’arbitrage existante pour recourir à la CIAC, la clause suivante est recommandée (les mots ou espaces entre crochets doivent être supprimés ou complétés) :",
+        clause1: `Un litige étant survenu entre les parties concernant [ ], les parties conviennent que ce litige sera soumis et définitivement tranché par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise, 146), conformément au Règlement de cette CIAC.`,
+        clause2: "Le nombre d’arbitres sera de [un / trois].",
+        clause3: "Le siège, ou lieu légal, de l’arbitrage sera [ville et/ou pays].",
+        clause4: "La langue de la procédure arbitrale sera [___].",
+        clause5: "La loi applicable au contrat sera celle de [pays].",
+        note: `Si les parties ne sont pas des personnes physiques de nationalité belge ou des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également prévoir : « Les parties excluent expressément toute demande d’annulation de la sentence arbitrale ».`
+      }
     }
+
   }
 };
 

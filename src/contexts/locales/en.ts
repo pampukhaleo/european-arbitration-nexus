@@ -181,6 +181,57 @@ const en = {
         timingTitle: "Optimal timing and cost",
         timingDesc: "The accelerated process of dispute resolution and the fixed amount of the arbitration fee make the dispute resolution procedure not only quick and efficient, but also comparatively low-cost.",
       }
+    },
+    rules: {
+      title: "Rules",
+      description: "A new version of the ICAC Rules entered into force on November 11, 2020. This version was approved by the Council of the International non-profit association \"European Arbitration Chamber\". It applies to all proceedings that commenced after November 10, 2020 or will commence in the future. Of all the language versions of the ICAC Arbitration Rules, the English version is considered prevailing.",
+      downloadLabel: "You can download the ICAC Rules here:",
+      translationLabel: "Translation:",
+      englishBtn: "ICAC Arbitration Rules in English 2020",
+      russianBtn: "ICAC Arbitration Rules in Russian 2020"
+    },
+    fees: {
+      title: "Fee Regulations",
+      description: "A new version of the ICAC Provisions on Arbitration Costs entered into force on November 11, 2020. This version was approved by the Council of the International non-profit association \"European Arbitration Chamber\". It applies to all proceedings that commenced after November 10, 2020 or will commence in the future. Of all the language versions of the ICAC Provisions on Arbitration Costs, the English version is considered prevailing.",
+      downloadLabel: "You can download the ICAC Provisions on Arbitration Costs here:",
+      translationLabel: "Translation:",
+      englishBtn: "ICAC Provisions on Arbitration Costs as of 11.11.2020 in English",
+      russianBtn: "ICAC Provisions on Arbitration Costs as of 11.11.2020 in Russian"
+    },
+    calculator: {
+      title: "Cost Calculator",
+      description: "Arbitration fee is paid by the parties on each received claim for consideration by the International Commercial Arbitration Court under the INA 'European Arbitration Chamber' (Brussels, Belgium) (hereinafter - 'the ICAC under the EAC') for the costs of the arbitration. The amount of the arbitration fee is calculated in accordance with the Provisions on arbitration costs of the ICAC under the EAC.",
+      registrationFeeTitle: "Registration fee is fixed payment, which is paid by the claimant upon filing its Request for Arbitration to the ICAC under the EAC, which amount is:",
+      registrationFee: {
+        excludingVat: "1.000,00 EUR (excluding VAT)",
+        includingVat: "1.210,00 EUR (including 21% VAT if applicable)."
+      },
+      currencyConversion: "To determine the amount of Arbitration fee in each case, the amount in dispute (unless it is expressed in EUR) must be converted into EUR currency at the exchange rate of the Belgium National Bank established on the date of filing the Request for Arbitration.",
+      exchangeRateLink: "Exchange rates",
+      exchangeRateUrl: "https://www.nbb.be/en/about-national-bank/eurosystem/exchange-rates"
+    },
+    clause: {
+      title: "Arbitration Clause",
+      future: {
+        title: "Future disputes",
+        description: "The parties, entering the contract and wishing that the disputes that may arise in the future are referred to the Arbitration Court according to the ICAC Rules, are recommended to include the following arbitration clause (words or blanks in square brackets should be removed or filled out correspondently) into the contract:",
+        clause1: `Any dispute arising out of or in connection with this contract, including any question regarding its existence, validity or termination, shall be referred to and finally resolved by the International Commercial Arbitration Court under the European Arbitration Chamber (Belgium, Brussels, Avenue Louise, 146) according to the Rules of this ICAC, which, as a result of referring to it, is considered as the part of this clause.`,
+        clause2: "The number of arbitrators shall be- [one / three].",
+        clause3: "The seat, or legal place, of arbitration shall be [city and/or country].",
+        clause4: "The language to be used in the arbitral proceedings shall be [___].",
+        clause5: "The governing law of the contract shall be the substantive law of [country].",
+        note: `In the event that the parties involved are not natural persons of Belgian nationality or legal persons, having its registered office in Belgium, within the meaning of Article 1718 of the Belgian Judicial Code, they may also stipulate the following: "The parties expressly exclude any application for setting aside the Arbitral Award".`
+      },
+      existing: {
+        title: "Existing disputes",
+        description: "If there is a dispute between the parties by the contract, and at that, there is no agreement about the dispute settlement by the proceeding between the parties, or if the parties wish to change the existing clause for the case of dispute settlement so that it provides the dispute settlement in the ICAC, the following clause is recommended for these parties (words or blanks in square brackets should be removed or filled out correspondently):",
+        clause1: `Dispute having arisen between the parties concerning [ ], the parties hereby agree that the dispute shall be referred to and finally resolved by the International Commercial Arbitration Court under the European Arbitration Chamber (Belgium, Brussels, Avenue Louise, 146), according to the Rules of this ICAC.`,
+        clause2: "The number of arbitrators shall be- [one / three].",
+        clause3: "The seat, or legal place, of arbitration shall be [city and/or country].",
+        clause4: "The language to be used in the arbitral proceedings shall be [___].",
+        clause5: "The governing law of the contract shall be the substantive law of [country].",
+        note: `In the event that the parties involved are not natural persons of Belgian nationality or legal persons, having its registered office in Belgium, within the meaning of Article 1718 of the Belgian Judicial Code, they may also stipulate the following: "The parties expressly exclude any application for setting aside the Arbitral Award".`
+      }
     }
   }
 

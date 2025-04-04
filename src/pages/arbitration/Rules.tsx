@@ -1,33 +1,33 @@
-
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { FileText } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Rules = () => {
+  const { t } = useLanguage();
+
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">Rules</h1>
-        
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.rules.title")}</h1>
+
         <div className="prose max-w-none">
-          <p className="mb-6 text-lg text-gray-600">
-            A new version of the ICAC Rules entered into force on November 11, 2020. This version was approved by the Council of the International non-profit association "European Arbitration Chamber". It applies to all proceedings that commenced after November 10, 2020 or will commence in the future. Of all the language versions of the ICAC Arbitration Rules, the English version is considered prevailing.
-          </p>
-          
+          <p className="mb-6 text-lg text-gray-600">{t("arbitration.rules.description")}</p>
+
           <div className="my-8">
-            <p className="text-lg font-medium mb-4">You can download the ICAC Rules here:</p>
+            <p className="text-lg font-medium mb-4">{t("arbitration.rules.downloadLabel")}</p>
             <Button variant="outline" className="mb-4 border-eac-primary hover:bg-eac-primary/90 hover:!text-white rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
-                ICAC Arbitration Rules in English 2020
+                {t("arbitration.rules.englishBtn")}
               </a>
             </Button>
-            
-            <p className="text-lg font-medium mb-4 mt-8">Translation:</p>
+
+            <p className="text-lg font-medium mb-4 mt-8">{t("arbitration.rules.translationLabel")}</p>
             <Button variant="outline" className="border-eac-primary hover:bg-eac-primary/90 hover:!text-white rounded-full" asChild>
               <a href="#" className="flex items-center gap-2">
                 <FileText size={18} />
-                ICAC Arbitration Rules in Russian 2020
+                {t("arbitration.rules.russianBtn")}
               </a>
             </Button>
           </div>

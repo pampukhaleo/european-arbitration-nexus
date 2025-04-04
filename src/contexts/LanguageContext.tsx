@@ -46,6 +46,7 @@ const translations: Record<Language, Record<string, string>> = {
     'menu.conductCode': 'Code of Conduct',
     'menu.contacts': 'Contacts',
     'menu.sections': 'Menu',
+    'menu.home': 'Main page',
     
     // Footer sections
     'footer.about': 'An international institution for commercial dispute resolution founded on the initiative of the European Union.',

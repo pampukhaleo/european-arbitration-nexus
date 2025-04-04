@@ -73,7 +73,6 @@ const en = {
       membershipDesc: "Become a member of the European Arbitration Chamber as an arbitrator, expert, or business partner. We unite specialists from diverse fields across the globe, providing access to valuable opportunities and a global network.",
       learnMore: "Learn More"
     },
-
     latestNews: 'Latest News',
     viewAllNews: 'View All News',
     readMore: 'Read More',

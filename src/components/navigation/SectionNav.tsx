@@ -57,17 +57,17 @@ export default function SectionNav({ sectionKey }: SectionNavProps) {
 
   return (
     <Card className="p-4">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="font-medium text-lg">{t(currentSection.translationKey) || currentSection.title}</h3>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="p-1" 
+      <div className="flex items-center mb-3">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="p-1"
           onClick={() => setShowMainMenu(true)}
           aria-label="Back to main menu"
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
+        <h3 className="font-medium text-lg ml-2">{t(currentSection.translationKey) || currentSection.title}</h3>
       </div>
       <div className="space-y-2">
         {currentSection.children.map((child) => (

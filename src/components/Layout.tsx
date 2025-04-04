@@ -42,9 +42,9 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         ) : (
           // Regular layout with sidebar for other pages
-          <div className="container mx-auto px-4 py-8 text-justify">
+          <div className="container mx-auto px-4 py-8">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              <div className="col-span-1 lg:col-span-3">
+              <div className="col-span-1 lg:col-span-3 text-justify">
                 {children}
               </div>
               {sectionKey && sectionKey !== 'contacts' && (

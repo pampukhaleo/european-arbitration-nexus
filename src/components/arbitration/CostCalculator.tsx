@@ -152,11 +152,6 @@ export default function CostCalculator() {
             <h3 className="text-lg font-medium mb-4">Estimated arbitration costs:</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <p className="text-sm text-gray-500">Registration fee:</p>
-                <p className="font-medium">€1,000.00 (excl. VAT)</p>
-                <p className="font-medium">€1,210.00 (incl. 21% VAT if applicable)</p>
-              </div>
-              <div>
                 <p className="text-sm text-gray-500">Arbitration fee:</p>
                 <p className="font-medium">€{calculationResult.baseAmount.toFixed(2)} (excl. VAT)</p>
                 <p className="text-sm text-gray-500 mt-3">VAT (21%):</p>

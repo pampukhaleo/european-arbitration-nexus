@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
+
 interface CouncilMemberProps {
   name: string;
   position: string;

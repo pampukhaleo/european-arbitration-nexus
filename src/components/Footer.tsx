@@ -14,8 +14,8 @@ export default function Footer() {
           {/* Column 1 - About */}
           <div>
             <div className="mb-4">
-              <img 
-                src="/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png" 
+              <img
+                src={`${import.meta.env.BASE_URL}lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png`}
                 alt="European Arbitration Chamber Logo" 
                 className="h-12 mb-3" 
               />

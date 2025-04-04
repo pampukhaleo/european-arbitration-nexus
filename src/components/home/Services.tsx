@@ -9,10 +9,7 @@ export default function Services() {
     <div className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-eac-dark mb-2">Dispute Resolution Services</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            The European Arbitration Chamber offers comprehensive dispute resolution services
-          </p>
+          <h2 className="text-3xl font-bold text-eac-dark mb-2">Dispute Resolution & Expertise</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

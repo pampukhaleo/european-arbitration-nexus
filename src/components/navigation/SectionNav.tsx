@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { navItems, NavItem } from "@/components/header/NavData";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SectionNavProps {
@@ -27,6 +27,16 @@ export default function SectionNav({ sectionKey }: SectionNavProps) {
       <Card className="p-4">
         <h3 className="font-medium text-lg mb-3">{t("menu.sections") || "Sections"}</h3>
         <div className="space-y-2">
+          {/* Home link */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 block py-2 px-3 text-sm rounded-md transition-colors text-gray-600 hover:bg-gray-100"
+            onClick={() => setShowMainMenu(false)}
+          >
+            <Home className="h-4 w-4" />
+            {t("menu.home") || "Home"}
+          </Link>
+          
           {navItems
             .filter(item => item.children && item.children.length > 0)
             .map((section) => (

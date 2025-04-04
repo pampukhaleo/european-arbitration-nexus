@@ -16,7 +16,7 @@ const ICAC = () => {
             Ukraine and the UAE and other countries.
           </p>
           <p className="mb-6 text-lg text-gray-600 font-bold">
-            Since 2009, the President of ICAC is Johan Billiet, international arbitrator, mediator, lawyer at the
+            Since 2011, the President of ICAC is Johan Billiet, international arbitrator, mediator, lawyer at the
             Brussels Bar, founding partner of Billiet & Co., author of various books, including the manual of the Vrije
             Universiteit Brussel (VUB) on International Investment Arbitration.
           </p>

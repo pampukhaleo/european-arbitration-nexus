@@ -147,7 +147,43 @@ const en = {
         description: "Mr. Laycock is an art historian and serves as a scientific adviser to the Brussels Art Laboratory. He is recognized and endorsed by several esteemed organizations, including the European Arbitration Chamber, Chambre Belge des Experts chargés de Missions Judiciaires et d’Arbitrages, Chambre d’Arbitrage et de Médiation d’Experts Techniques et Juridiques, and the Court of First Instance of Brussels. Mr. Laycock is a lifelong member of the Siam Society under Royal Patronage in Bangkok and holds the position of President at the Institut Belge des Hautes Etudes Chinoises within the Musée Royal d'Art et d'Histoire.",
       }
     }
+  },
+  arbitration: {
+    icac: {
+      title: "About the ICAC under the EAC",
+      intro: "The International Commercial Arbitration Court under the European Arbitration Chamber (ICAC) is an independent permanent arbitration court, operating under its Rules, Articles 1676-1723 of the Belgian Judicial Code and Statute of European Arbitration Chamber. The main secretariat of ICAC is located in Brussels, having also its representative offices in Italy, the Czech Republic, Poland, Armenia, Georgia, Ukraine and the UAE and other countries.",
+      president: "Since 2011, the President of ICAC is Johan Billiet, international arbitrator, mediator, lawyer at the Brussels Bar, founding partner of Billiet & Co., author of various books, including the manual of the Vrije Universiteit Brussel (VUB) on International Investment Arbitration.",
+      competenceTitle: "The competence of the ICAC includes the consideration of disputes that arise during the implementation of international trade or other types of economic relations, namely:",
+      competenceList: {
+        sale: "relations of sale (supply) of goods;",
+        services: "performance of work, provision of services;",
+        exchange: "exchange of goods and/or services;",
+        finance: "financial operations;",
+        insurance: "insurance etc.",
+      },
+      featuresTitle: "Features of ICAC under EAC:",
+      features: {
+        multinationalTitle: "A wide multinational panel of arbitrators",
+        multinationalDesc: "The leading experts in the field of international arbitration from 35 jurisdictions, who are practicing lawyers in the field of international trade, investment, contract and corporate law, international logistic, intellectual property, information technologies and other areas of business, are accredited as arbitrators in ICAC under EAC. Disputes are considered by arbitrators who are chosen by the parties or appointed by the President of ICAC from the recommended panel of arbitrators.",
+
+        principlesTitle: "ICAC Principles",
+        principlesDesc: "ICAC under EAC is guided by the standards of independence, impartiality and integrity as paramount and crucial features for its proper functioning.",
+
+        flexibilityTitle: "Flexible arbitration procedure",
+        flexibilityDesc: "The parties have autonomy regarding the choice of substantive and procedural law governing the dispute, as well as the language of the proceedings, the place of the hearings, the number of arbitrators and the format of the arbitration (traditional arbitration and oral hearings or a simplified procedure of online arbitration).",
+
+        techTitle: "Using advanced technology",
+        techDesc: "According to ICAC Rules parties may resolve disputes online, which significantly facilitates the resolution procedure and saves legal costs and time expenses.",
+
+        finalityTitle: "Final and binding arbitral award",
+        finalityDesc: "In accordance with ICAC Rules the arbitral award is final and binding for the parties. The dispute resolution procedure in ICAC under EAC does not provide an appeal.",
+
+        timingTitle: "Optimal timing and cost",
+        timingDesc: "The accelerated process of dispute resolution and the fixed amount of the arbitration fee make the dispute resolution procedure not only quick and efficient, but also comparatively low-cost.",
+      }
+    }
   }
+
 };
 
 export default en;

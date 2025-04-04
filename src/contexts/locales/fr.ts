@@ -147,6 +147,41 @@ const fr = {
         description: "M. Laycock est historien de l’art et conseiller scientifique au laboratoire d’art de Bruxelles. Il est reconnu et soutenu par plusieurs institutions de renom, dont la Chambre Européenne d’Arbitrage, la Chambre Belge des Experts Judiciaires, la Chambre d’Arbitrage et de Médiation des Experts Techniques et Juridiques, et le tribunal de première instance de Bruxelles. Il est membre à vie de la Siam Society sous patronage royal (Bangkok) et président de l’Institut Belge des Hautes Études Chinoises au Musée Royal d’Art et d’Histoire."
       }
     }
+  },
+  arbitration: {
+    icac: {
+      title: "À propos de la CIAC auprès de la CEA",
+      intro: "La Cour d’Arbitrage Commercial International (CIAC) auprès de la Chambre Européenne d’Arbitrage est une cour permanente d’arbitrage indépendante, opérant selon son règlement, les articles 1676 à 1723 du Code judiciaire belge et le statut de la Chambre Européenne d’Arbitrage. Le secrétariat principal de la CIAC est situé à Bruxelles, avec des bureaux de représentation en Italie, République tchèque, Pologne, Arménie, Géorgie, Ukraine, aux Émirats arabes unis et dans d’autres pays.",
+      president: "Depuis 2011, le président de la CIAC est Johan Billiet, arbitre international, médiateur, avocat au barreau de Bruxelles, fondateur du cabinet Billiet & Co., auteur de plusieurs ouvrages, dont un manuel de l’Université Libre de Bruxelles (VUB) sur l’arbitrage en matière d’investissement international.",
+      competenceTitle: "Les compétences de la CIAC incluent le traitement de litiges issus de relations commerciales ou économiques internationales, notamment :",
+      competenceList: {
+        sale: "relations de vente (fourniture) de biens ;",
+        services: "exécution de travaux, prestation de services ;",
+        exchange: "échange de biens et/ou services ;",
+        finance: "opérations financières ;",
+        insurance: "assurance, etc.",
+      },
+      featuresTitle: "Caractéristiques de la CIAC auprès de la CEA :",
+      features: {
+        multinationalTitle: "Un large panel multinational d’arbitres",
+        multinationalDesc: "Des experts renommés en arbitrage international issus de 35 juridictions, praticiens du droit du commerce international, de l’investissement, du droit des contrats et des sociétés, de la logistique internationale, de la propriété intellectuelle, des technologies de l’information et autres domaines, sont accrédités comme arbitres de la CIAC. Les différends sont examinés par les arbitres choisis par les parties ou nommés par le président de la CIAC parmi le panel recommandé.",
+
+        principlesTitle: "Principes de la CIAC",
+        principlesDesc: "La CIAC est guidée par les principes d’indépendance, d’impartialité et d’intégrité, considérés comme fondamentaux pour son bon fonctionnement.",
+
+        flexibilityTitle: "Procédure d’arbitrage flexible",
+        flexibilityDesc: "Les parties disposent de l’autonomie quant au choix du droit matériel et procédural applicable, de la langue de la procédure, du lieu d’audience, du nombre d’arbitres et du format de l’arbitrage (traditionnel ou procédure simplifiée en ligne).",
+
+        techTitle: "Utilisation des technologies avancées",
+        techDesc: "Selon le règlement de la CIAC, les parties peuvent résoudre leurs différends en ligne, ce qui simplifie la procédure et réduit les coûts juridiques et le temps.",
+
+        finalityTitle: "Sentence arbitrale finale et contraignante",
+        finalityDesc: "Conformément au règlement de la CIAC, la sentence arbitrale est définitive et contraignante. Aucun appel n’est prévu.",
+
+        timingTitle: "Délais et coûts optimaux",
+        timingDesc: "Une procédure accélérée et des frais d’arbitrage fixes permettent un règlement rapide, efficace et peu coûteux des litiges.",
+      }
+    }
   }
 };
 

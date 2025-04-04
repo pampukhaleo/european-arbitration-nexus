@@ -94,6 +94,31 @@ const fr = {
     send: 'Envoyer',
     location: 'Notre localisation',
   },
+  aboutEAC: {
+    title: "À propos de la Chambre Européenne d’Arbitrage (CEA)",
+    intro: "La Chambre Européenne d’Arbitrage (CEA) est une association internationale à but non lucratif dédiée à aider les entreprises à résoudre efficacement et rapidement les litiges commerciaux grâce à l’arbitrage international.",
+    missionTitle: "Notre Mission",
+    missionText: "La mission de la CEA est de promouvoir et développer l’arbitrage commercial, la médiation, l’expertise judiciaire, et les systèmes de résolution alternative des litiges (ADR) à l’échelle mondiale, en fournissant aux entreprises des mécanismes de résolution efficaces et fiables.",
+    historyTitle: "Notre Histoire",
+    historyText: "Fondée en Belgique en 2008, la CEA a été créée par des professionnels en arbitrage commercial et médiation venant de Belgique, de France et d’Ukraine. Elle fonctionne conformément à la loi du Royaume de Belgique sur les associations sans but lucratif, les associations internationales sans but lucratif et les fondations du 27 juin 1921.",
+    globalReachTitle: "Notre Portée Internationale",
+    globalReachText: "Aujourd’hui, la CEA regroupe des représentants de 35 pays, notamment :",
+    globalReachList: {
+      arbitrators: "Arbitres",
+      mediators: "Médiateurs",
+      experts: "Experts judiciaires",
+      professionals: "Professionnels du monde des affaires",
+    },
+    keyAreasTitle: "Domaines Clés d’Activité",
+    keyAreas: {
+      commercial: "Arbitrage Commercial – Résolution des litiges commerciaux transfrontaliers par arbitrage international.",
+      judicial: "Expertise Judiciaire – Évaluations expertes pour les procédures juridiques et arbitrales.",
+      education: "Formation & Éducation – Cours et programmes spécialisés en ADR, arbitrage et médiation.",
+    },
+    icac: "La Cour d’Arbitrage Commercial International (CIAC) a été établie en tant qu’unité administrative de la Chambre Européenne d’Arbitrage. C’est une cour d’arbitrage permanente et indépendante, opérant conformément au règlement et aux articles 1676 à 1723 du Code judiciaire belge.",
+    conclusion: "La CEA s’engage à promouvoir un cadre de résolution des litiges équitable, efficace et reconnu à l’échelle mondiale, au service des entreprises et professionnels du droit du monde entier.",
+  }
+
 };
 
 export default fr;

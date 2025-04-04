@@ -94,6 +94,31 @@ const en = {
     send: 'Send',
     location: 'Our location',
   },
+  aboutEAC: {
+    title: "About the European Arbitration Chamber (EAC)",
+    intro: "The European Arbitration Chamber (EAC) is an international non-profit association dedicated to helping businesses efficiently and swiftly resolve commercial disputes through international arbitration.",
+    missionTitle: "Our Mission",
+    missionText: "EAC’s mission is to promote and develop commercial arbitration, mediation, judicial expertise, and the Alternative Dispute Resolution (ADR) system globally, providing businesses with effective and reliable dispute resolution mechanisms.",
+    historyTitle: "Our History",
+    historyText: "Founded in Belgium in 2008, the EAC was established by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine. It operates in full compliance with the Law of the Kingdom of Belgium on Non-Profit Associations, International Non-Profit Associations, and Foundations of June 27, 1921.",
+    globalReachTitle: "Our Global Reach",
+    globalReachText: "Today, the EAC unites representatives from 35 countries, including:",
+    globalReachList: {
+      arbitrators: "Arbitrators",
+      mediators: "Mediators",
+      experts: "Judicial experts",
+      professionals: "Business professionals",
+    },
+    keyAreasTitle: "Key Areas of Activity",
+    keyAreas: {
+      commercial: "Commercial Arbitration – Resolving cross-border business disputes through international arbitration.",
+      judicial: "Judicial Expertise – Providing expert assessments for legal and arbitration proceedings.",
+      education: "Training & Education – Offering specialized courses and programs in ADR, arbitration, and mediation.",
+    },
+    icac: "The International Commercial Arbitration Court (ICAC) has been established as an administrative facility of the European Arbitration Chamber. It is an independent permanent Court of Arbitration, which operates under the Regulation and articles 1676-1723 of the The Belgian Judicial Code.",
+    conclusion: "EAC is committed to fostering a fair, efficient, and globally recognized dispute resolution framework, empowering businesses and legal professionals worldwide.",
+  }
+
 };
 
 export default en;

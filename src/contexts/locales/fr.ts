@@ -268,8 +268,90 @@ const fr = {
       ],
       finalNote: "Notre équipe d’experts certifiés garantit l’exactitude, la fiabilité et la conformité aux normes internationales. Contactez-nous pour en savoir plus ou demander une expertise."
     }
-
+  },
+  artExpertise: {
+    authentication: {
+      title: "Authentification d'œuvres d'art",
+      p1: "Garantir l'authenticité d'une œuvre d'art est essentiel pour les collectionneurs, les investisseurs, les musées et les galeries. Le Centre International d'Expertise Judiciaire et ADR (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification pour vérifier l'originalité, l'auteur et la provenance des œuvres.",
+      p2: "L'authentification est une analyse détaillée menée par des experts pour déterminer si une œuvre est authentique.",
+      processTitle: "Ce processus comprend :",
+      processList: [
+        "Analyse d’attribution – Confirmation de l’identité de l’artiste et évaluation des caractéristiques stylistiques et techniques.",
+        "Examen des matériaux – Analyse des pigments, toiles, papiers, etc. pour vérifier leur cohérence avec la période revendiquée.",
+        "Recherche de provenance – Étude de l’historique de propriété de l’œuvre et de son origine.",
+        "Analyse comparative – Comparaison avec d'autres œuvres documentées de l’artiste ou de la même époque."
+      ],
+      importanceTitle: "Pourquoi l’authentification est-elle importante ?",
+      importanceList: [
+        "Protège contre les contrefaçons et erreurs d’attribution.",
+        "Augmente la valeur et la commercialisation de l’œuvre.",
+        "Offre une sécurité juridique et financière pour les transactions, assurances et successions.",
+        "Assure la conformité aux réglementations internationales pour les expositions et ventes."
+      ],
+      certificateTitle: "Certificat d’Authenticité",
+      certificateText: "Après vérification, l’ICJE délivre un certificat d’authenticité officiel pouvant être utilisé pour les ventes, expositions, assurances et usages juridiques.",
+      closingText: "Pour plus d'informations ou pour demander une authentification, contactez-nous dès aujourd’hui."
+    },
+    appraisal: {
+      title: "ÉVALUATION D’ŒUVRES D’ART",
+      intro1: "Pour déterminer la valeur marchande d’une œuvre d’art, un processus complet d’examen et d’évaluation est mené.",
+      intro2: "L’expertise artistique consiste à évaluer l’authenticité et la valeur artistique d’une œuvre, tandis que l’évaluation détermine sa valeur marchande.",
+      factorsTitle: "L’évaluation professionnelle prend en compte plusieurs facteurs, notamment :",
+      evaluationFactors: [
+        "Ses caractéristiques et son année de création",
+        "La réputation et l’importance de l’artiste",
+        "La qualité de l’œuvre selon des indices de valeur socioculturels",
+        "L’historique et la provenance de l’œuvre"
+      ],
+      summary: "Cette analyse approfondie permet d’établir la valeur globale de l’œuvre, d’en prévoir l’évolution future et d’évaluer les pertes financières potentielles en cas de perte totale.",
+      stagesTitle: "Étapes de l’évaluation artistique",
+      stagesList: [
+        "Expertise artistique et attribution – Vérification de l’authenticité et de l’auteur",
+        "Estimation de la valeur marchande – Évaluation de la valeur financière",
+        "Autorisation et certification – Délivrance d’un passeport unique pour l’œuvre"
+      ],
+      conclusion: "Cette approche structurée garantit une évaluation précise et crédible, essentielle pour les collectionneurs, investisseurs, assureurs et le marché de l’art.",
+      contactNote: "Pour plus d’informations ou pour demander un service d’authentification d’art, contactez-nous dès aujourd’hui."
+    },
+    passport: {
+      title: "AUTORISATION DES ŒUVRES D'ART",
+      intro: "Les experts du Centre International d’Expertise Judiciaire et ADR de la Chambre Européenne d’Arbitrage fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques.",
+      eligibleObjectsTitle: "Objets pouvant être autorisés et certifiés :",
+      eligibleObjects: [
+        "Peintures",
+        "Sculptures",
+        "Œuvres photographiques",
+        "Œuvres d’art appliqué (tissage décoratif, céramique, sculpture sur bois, fonderie, verre artistique, bijoux, etc.)",
+        "Illustrations, cartes, dessins, croquis et œuvres plastiques",
+        "Œuvres littéraires, y compris la fiction, le journalisme, les écrits scientifiques, techniques et autres (livres, brochures, articles, etc.)",
+        "Instruments de musique",
+        "Objets numismatiques",
+        "Antiquités et autres objets de collection"
+      ],
+      certificationTitle: "Qu’est-ce que la certification d’un objet d’art ?",
+      certificationDesc: "La certification est une vérification officielle des caractéristiques essentielles de l’œuvre, incluant son auteur, sa période de création, son historique de propriété, les restaurations effectuées, sa valeur, sa provenance et son lien avec des événements historiques ou culturels.",
+      passportContentTitle: "Quelles informations contient le passeport d'une œuvre d'art ?",
+      passportContentIntro: "Le passeport comprend les informations suivantes :",
+      passportFields: [
+        "Une photographie de l’œuvre",
+        "Titre de l’œuvre",
+        "Nom de l’artiste et année de création",
+        "Dimensions",
+        "Technique et matériaux utilisés"
+      ],
+      whyImportantTitle: "Pourquoi l’autorisation et la certification d’une œuvre d’art sont-elles importantes ?",
+      whyImportantIntro: "Le passeport d’une œuvre d’art offre plusieurs avantages, notamment la possibilité de :",
+      advantages: [
+        "Présenter l’œuvre (peinture, sculpture, céramique, etc.) sur les marchés internationaux de l’art",
+        "Exposer l’œuvre lors d’expositions et salons internationaux",
+        "Vérifier son authenticité après une exposition",
+        "Simplifier les démarches d’assurance et réduire les risques",
+        "Faciliter l’achat et la vente de l’œuvre sans nécessiter de nouvelle authentification"
+      ],
+      finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de l’ICJE. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire."
+    }
   }
+
 
 };
 

@@ -267,8 +267,91 @@ const en = {
         "In accordance with other legal and procedural requirements."
       ],
       finalNote: "Our team of certified experts ensures accuracy, reliability, and compliance with international standards in all expert evaluations. Contact us to learn more or request an expert examination."
+    },
+  },
+  artExpertise: {
+    authentication: {
+      title: "Art Authentication",
+      p1: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. The International Center of Judicial and ADR Expertise (ICJE) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks.",
+      p2: "Art authentication is a detailed examination conducted by experts to determine whether a piece of art is genuine.",
+      processTitle: "This process involves:",
+      processList: [
+        "Attribution Analysis – Confirming the artist’s identity and assessing stylistic and technical characteristics.",
+        "Material Examination – Analyzing pigments, canvas, paper, and other materials to verify consistency with the claimed period.",
+        "Provenance Research – Investigating the artwork’s ownership history and tracing its origins.",
+        "Comparative Analysis – Cross-referencing the artwork with documented pieces from the same artist or period."
+      ],
+      importanceTitle: "Why is Art Authentication Important?",
+      importanceList: [
+        "Protects against forgeries and misattributions.",
+        "Increases an artwork’s value and marketability.",
+        "Provides legal and financial security for transactions, insurance, and inheritance matters.",
+        "Ensures compliance with international regulations for exhibitions and sales."
+      ],
+      certificateTitle: "Certification of Authenticity",
+      certificateText: "Upon successful verification, the ICJE issues a Certificate of Authenticity, which serves as official documentation of the artwork’s legitimacy. This certificate can be used for sales, exhibitions, insurance, and legal purposes.",
+      closingText: "For more information or to request an art authentication service, contact us today."
+    },
+    appraisal: {
+      title: "ART APPRAISAL",
+      intro1: "To determine the market value of artworks, a thorough art examination and appraisal process is conducted.",
+      intro2: "Art expertise involves assessing the authenticity and artistic value of a work, while appraisal determines its market value.",
+      factorsTitle: "A professional evaluation of an artwork takes into account various factors, including:",
+      evaluationFactors: [
+        "Its characteristics and year of creation",
+        "The reputation and significance of the artist",
+        "The quality of the work based on socio-cultural value indices",
+        "The artwork’s history and provenance"
+      ],
+      summary: "This comprehensive analysis establishes the overall value of the artwork, helps forecast its future worth, and assesses potential financial losses in case of total loss.",
+      stagesTitle: "Stages of Art Appraisal",
+      stagesList: [
+        "Art expertise and attribution – Verification of authenticity and authorship",
+        "Market value estimation – Assessment of its financial worth",
+        "Authorization and certification – Issuance of a unique passport for the artwork"
+      ],
+      conclusion: "This structured approach ensures an accurate and credible valuation, essential for collectors, investors, insurers, and the art market.",
+      contactNote: "For more information or to request an art authentication service, contact us today."
+    },
+    passport: {
+      title: "AUTHORIZATION OF WORKS OF ART",
+      intro: "Experts at the International Center of Judicial and ADR Expertise under the European Arbitration Chamber provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features.",
+      eligibleObjectsTitle: "Objects eligible for authorization and certification include:",
+      eligibleObjects: [
+        "Paintings",
+        "Sculpture",
+        "Photographic works",
+        "Works of applied art (decorative weaving, ceramics, carving, foundry, art glass, jewelry, etc).",
+        "Illustrations, maps, drawings, sketches, and plastic works",
+        "Literary works, including fiction, journalism, scientific, technical, and other writings (books, brochures, articles, etc.)",
+        "Musical instruments",
+        "Numismatic objects",
+        "Antiques and other collectible items."
+      ],
+      certificationTitle: "What is the certification of an art object?",
+      certificationDesc: "Certification is an official verification of an artwork’s key attributes, including its authorship, period of creation, history of ownership, past restorations, value, provenance, and its connection to historical and cultural events.",
+      passportContentTitle: "What information does the passport of an artwork contain?",
+      passportContentIntro: "The passport includes the following details:",
+      passportFields: [
+        "A photograph of the artwork",
+        "Title of the artwork",
+        "Artist’s name and year of creation",
+        "Dimensions",
+        "Technique and materials used"
+      ],
+      whyImportantTitle: "Why is the authorization and certification of an artwork important?",
+      whyImportantIntro: "A passport of an artwork provides several advantages, including the ability to:",
+      advantages: [
+        "Present the artwork (painting, sculpture, ceramics, etc.) in international art markets",
+        "Exhibit the artwork in international exhibitions and expositions",
+        "Verify its authenticity upon return from an exhibition",
+        "Simplify the insurance process and minimize insurance risks",
+        "Facilitate the purchase and sale of the artwork without requiring additional authentication"
+      ],
+      finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICJE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request."
     }
   }
+
 
 
 };

@@ -117,8 +117,37 @@ const fr = {
     },
     icac: "La Cour d’Arbitrage Commercial International (CIAC) a été établie en tant qu’unité administrative de la Chambre Européenne d’Arbitrage. C’est une cour d’arbitrage permanente et indépendante, opérant conformément au règlement et aux articles 1676 à 1723 du Code judiciaire belge.",
     conclusion: "La CEA s’engage à promouvoir un cadre de résolution des litiges équitable, efficace et reconnu à l’échelle mondiale, au service des entreprises et professionnels du droit du monde entier.",
+  },
+  council: {
+    title: "Membres du Conseil de la CEA",
+    members: {
+      pampukha: {
+        name: "Hennadii PAMPUKHA",
+        position: "Président de la CEA et membre du Conseil de la CEA",
+        description: "Président de la CEA et membre du Conseil de la CEA, vice-président de la Cour d’Arbitrage Commercial International auprès de la Cour Européenne d’Arbitrage, arbitre international, expert judiciaire certifié par le Ministère de la Justice d’Ukraine, associé fondateur du groupe juridique d’experts « Institut Indépendant d’Expertise Judiciaire » (Ukraine), président du conseil de la Chambre Nationale des Experts d’Ukraine, associé directeur de l’Association d’Avocats « Princip » (Ukraine), membre du conseil d’administration de I.I.expertise (Estonie)."
+      },
+      moja: {
+        name: "Andrea MOJA",
+        position: "Membre du Conseil de la CEA",
+        description: "Membre du Conseil de la CEA, professeur de droit européen et des trusts à l’Université de Brescia, membre du comité scientifique de STEP Italie, associé principal du cabinet juridique S.L.C. – Studio Legale Commerciale (Italie) avec plus de 25 ans d’expérience dans le droit des trusts, des successions, la planification patrimoniale, les litiges commerciaux internationaux majeurs et les transactions transfrontalières. Arbitre international de la Cour d’Arbitrage Commercial International."
+      },
+      marcinkowski: {
+        name: "Ryszard MARCINKOWSKI",
+        position: "Membre du Conseil de la CEA",
+        description: "Membre du Conseil de la CEA, associé principal du cabinet « Marcinkowski Marcinkowska Trzeciak », avocat avec plus de 32 ans d’expérience, vice-doyen de l’Ordre des Avocats de Łódź (Pologne), arbitre international de la Cour d’Arbitrage Commercial International. Il enseigne le droit civil, notamment en matière de recours civils."
+      },
+      billiet: {
+        name: "Johan BILLIET",
+        position: "Président de la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage",
+        description: "Depuis 2011, Johan Billiet est président de la CIAC, arbitre international, médiateur, avocat au barreau de Bruxelles, fondateur du cabinet Billiet & Co., auteur de plusieurs ouvrages, dont un manuel de l’Université Libre de Bruxelles (VUB) sur l’arbitrage en matière d’investissement international."
+      },
+      laycock: {
+        name: "Patrick LAYCOCK",
+        position: "Directeur du Centre International d’Expertise Judiciaire et ADR auprès de la Chambre Européenne d’Arbitrage",
+        description: "M. Laycock est historien de l’art et conseiller scientifique au laboratoire d’art de Bruxelles. Il est reconnu et soutenu par plusieurs institutions de renom, dont la Chambre Européenne d’Arbitrage, la Chambre Belge des Experts Judiciaires, la Chambre d’Arbitrage et de Médiation des Experts Techniques et Juridiques, et le tribunal de première instance de Bruxelles. Il est membre à vie de la Siam Society sous patronage royal (Bangkok) et président de l’Institut Belge des Hautes Études Chinoises au Musée Royal d’Art et d’Histoire."
+      }
+    }
   }
-
 };
 
 export default fr;

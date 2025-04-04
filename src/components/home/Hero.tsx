@@ -12,18 +12,18 @@ export default function Hero() {
             European Arbitration Chamber
           </h1>
           <p className="mt-6 text-xl text-white/90">
-            An international institution for commercial dispute resolution founded on the initiative of the European Union
+            Resolving disputes, advancing arbitration.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Button 
-              asChild 
-              className="bg-white text-eac-primary hover:bg-gray-100 rounded-full"
-            >
-              <Link to="/arbitration/request">
-                Submit Arbitration Request
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            {/*<Button */}
+            {/*  asChild */}
+            {/*  className="bg-white text-eac-primary hover:bg-gray-100 rounded-full"*/}
+            {/*>*/}
+            {/*  <Link to="/arbitration/request">*/}
+            {/*    Submit Arbitration Request*/}
+            {/*    <ArrowRight className="ml-2 h-4 w-4" />*/}
+            {/*  </Link>*/}
+            {/*</Button>*/}
             <Button 
               asChild 
               variant="outline"

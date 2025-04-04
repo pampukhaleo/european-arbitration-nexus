@@ -72,6 +72,10 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				quickLinks: {
+					primary: '#4A4A4A',
+					secondary: '#3A3C3B',
 				}
 			},
 			borderRadius: {

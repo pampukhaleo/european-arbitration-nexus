@@ -6,7 +6,7 @@ import { Calculator, FileText, Scale } from "lucide-react";
 
 export default function QuickLinks() {
   return (
-    <div className="py-12 bg-eac-dark">
+    <div className="py-12 bg-quickLinks-secondary">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition">

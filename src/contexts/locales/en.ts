@@ -233,7 +233,43 @@ const en = {
         note: `In the event that the parties involved are not natural persons of Belgian nationality or legal persons, having its registered office in Belgium, within the meaning of Article 1718 of the Belgian Judicial Code, they may also stipulate the following: "The parties expressly exclude any application for setting aside the Arbitral Award".`
       }
     }
+  },
+  expertise: {
+    icje: {
+      title: "ICJE: EXPERT EXAMINATION",
+      description1: "In an increasingly complex business landscape, disputes and conflicts can arise unexpectedly, posing challenges to partnerships and agreements. At the International Centre for Judicial and ADR Expertise (ICJE), we believe that expertise is the key to resolving disputes effectively and maintaining fruitful collaborations. Our dedicated team of experts specializes in a wide range of fields, offering a comprehensive solution to address disputes, whether they are of a technical or legal nature.",
+      description2: "The ICJE operates as a separate department of the European Arbitration Chamber on the basis of EAC Statute and its Provisions."
+    },
+    fields: {
+      title: "ICJE – Main Areas of Expert Research",
+      description1: "The International Center of Judicial and ADR Expertise (ICJE) provides a wide range of expert research and examination services across various industries, including:",
+      areas: [
+        "Engineering Inspection",
+        "Construction Inspection",
+        "Land Surveying",
+        "Electrical Engineering Inspection",
+        "Transportation and Traffic Engineering Inspection",
+        "Financial Audit & Forensic Accounting",
+        "Environmental Assessment",
+        "Commodity Inspection & Quality Control",
+        "Intellectual Property Valuation",
+        "Art Appraisal & Authentication",
+        "Linguistic Analysis & Forensic Linguistics",
+        "Handwriting Analysis & Signature Verification",
+        "Document Examination & Forensic Document Analysis"
+      ],
+      subtitle: "Expert Examinations Conducted by ICJE",
+      description2: "ICJE provides expert examinations:",
+      providedFor: [
+        "At the request of international arbitration courts (without jurisdictional limitations).",
+        "At the request of state courts for legal proceedings.",
+        "On behalf of lawyers, legal entities, and individuals seeking professional assessments.",
+        "In accordance with other legal and procedural requirements."
+      ],
+      finalNote: "Our team of certified experts ensures accuracy, reliability, and compliance with international standards in all expert evaluations. Contact us to learn more or request an expert examination."
+    }
   }
+
 
 };
 

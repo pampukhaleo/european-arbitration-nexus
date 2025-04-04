@@ -233,8 +233,44 @@ const fr = {
         note: `Si les parties ne sont pas des personnes physiques de nationalité belge ou des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également prévoir : « Les parties excluent expressément toute demande d’annulation de la sentence arbitrale ».`
       }
     }
+  },
+  expertise: {
+    icje: {
+      title: "CIJE : EXPERTISE JUDICIAIRE",
+      description1: "Dans un environnement commercial de plus en plus complexe, des litiges peuvent surgir de manière inattendue, mettant à l’épreuve les partenariats et les accords. Au Centre International d’Expertise Judiciaire et de Règlement Alternatif des Litiges (CIJE), nous croyons que l’expertise est la clé pour résoudre les litiges efficacement et maintenir des collaborations fructueuses. Notre équipe d’experts couvre un large éventail de domaines pour offrir des solutions techniques et juridiques adaptées.",
+      description2: "Le CIJE fonctionne en tant que département distinct de la Chambre Européenne d’Arbitrage conformément au Statut et aux dispositions de la CEA."
+    },
+    fields: {
+      title: "CIJE – Principaux Domaines d'Expertise",
+      description1: "Le Centre International d’Expertise Judiciaire et de Règlement Alternatif des Litiges (CIJE) fournit une large gamme de services d’expertise dans divers secteurs, notamment :",
+      areas: [
+        "Inspection en ingénierie",
+        "Inspection de la construction",
+        "Arpentage foncier",
+        "Inspection en ingénierie électrique",
+        "Inspection du transport et de la circulation",
+        "Audit financier et comptabilité judiciaire",
+        "Évaluation environnementale",
+        "Inspection des marchandises et contrôle qualité",
+        "Évaluation de la propriété intellectuelle",
+        "Expertise et authentification d'œuvres d'art",
+        "Analyse linguistique et linguistique judiciaire",
+        "Analyse graphologique et vérification de signature",
+        "Examen de documents et analyse de documents judiciaires"
+      ],
+      subtitle: "Expertises réalisées par le CIJE",
+      description2: "Le CIJE réalise des expertises :",
+      providedFor: [
+        "À la demande de tribunaux arbitraux internationaux (sans limitations juridictionnelles).",
+        "À la demande de juridictions étatiques.",
+        "À la demande d’avocats, de personnes morales ou de particuliers.",
+        "Conformément à d'autres exigences légales ou procédurales."
+      ],
+      finalNote: "Notre équipe d’experts certifiés garantit l’exactitude, la fiabilité et la conformité aux normes internationales. Contactez-nous pour en savoir plus ou demander une expertise."
+    }
 
   }
+
 };
 
 export default fr;

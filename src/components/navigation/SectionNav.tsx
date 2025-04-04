@@ -35,7 +35,8 @@ export default function SectionNav({ sectionKey }: SectionNavProps) {
                 to={section.children?.[0]?.href || section.href}
                 className={cn(
                   "block py-2 px-3 text-sm rounded-md transition-colors",
-                  section.href.includes(sectionKey)
+                  // Fix: Only highlight if the current path starts with this section's path
+                  currentPath.startsWith(section.href) 
                     ? "bg-eac-primary text-white font-medium" 
                     : "text-gray-600 hover:bg-gray-100"
                 )}

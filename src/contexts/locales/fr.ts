@@ -350,7 +350,92 @@ const fr = {
       ],
       finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de l’ICJE. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire."
     }
+  },
+  membership: {
+    benefits: {
+      title: "5 Raisons de Devenir Membre de la CEA",
+      reasons: [
+        {
+          title: "Évolution de Carrière & Réseautage",
+          description: "Développez votre réseau professionnel, améliorez votre réputation dans les communautés d'arbitrage international et ouvrez de nouvelles opportunités de carrière."
+        },
+        {
+          title: "Formations & Événements Exclusifs",
+          description: "Accédez à des services essentiels et participez à des séminaires, formations, masterclass, tables rondes et congrès organisés par la CEA et ses partenaires — souvent à tarif réduit."
+        },
+        {
+          title: "Informations & Ressources Précieuses",
+          description: "Restez informé des dernières décisions, évolutions procédurales et tendances du secteur ayant un impact sur votre pratique en arbitrage."
+        },
+        {
+          title: "Visibilité & Promotion",
+          description: "Les membres de la CEA peuvent publier des actualités professionnelles et présenter leur profil sur le site web de la CEA, augmentant leur visibilité dans la communauté de l’arbitrage."
+        },
+        {
+          title: "Accréditation comme Arbitre",
+          description: "Ayez l’opportunité de suivre une formation qualifiante et d’obtenir une accréditation en tant qu’arbitre international de la CIAC après avoir réussi l’examen."
+        }
+      ]
+    },
+    join: {
+      title: "Adhésion à la Chambre Européenne d'Arbitrage",
+      description: "Si vous souhaitez devenir membre associé de la Chambre Européenne d'Arbitrage, suivez ces étapes :",
+      steps: [
+        {
+          title: "Soumettre une demande",
+          description: "en remplissant le formulaire de demande d'adhésion en ligne."
+        },
+        {
+          title: "Processus de vérification",
+          description: "Le Secrétariat de la CEA examinera votre demande et évaluera votre admissibilité."
+        },
+        {
+          title: "Compléter votre adhésion",
+          description: "en payant la cotisation annuelle après vérification réussie."
+        }
+      ],
+      fee: "La cotisation annuelle est de 301,29 EUR (TVA incluse).",
+      verification: "Tous les candidats doivent passer par un processus de vérification avant d’être acceptés comme membres.",
+      formPrompt: "Pour demander l’adhésion, veuillez remplir le formulaire ici :",
+      formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
+      followUp: "Le Secrétariat de la CEA vous contactera avec des instructions supplémentaires."
+    },
+    code: {
+      title: "Code de Conduite",
+      intro: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de Conduite afin de garantir que ses membres respectent les normes éthiques et professionnelles les plus élevées. Tous les membres sont tenus d’adhérer strictement à ces principes.",
+      obligations: {
+        title: "Obligations",
+        description: "Chaque membre de la CEA s’engage à :",
+        list: [
+          "Respecter les normes juridiques – Promouvoir le respect du droit international ainsi que de la législation nationale applicable à l’arbitrage et à la résolution des litiges.",
+          "Promouvoir la résolution alternative des litiges (ADR) – Soutenir le développement et l’intégration de l’ADR et de l’arbitrage international dans les pratiques commerciales mondiales.",
+          "Favoriser la collaboration institutionnelle – Développer des relations constructives avec les autorités et les organisations internationales pour promouvoir la justice, l’état de droit et un climat d’affaires favorable.",
+          "S’impliquer dans la communauté de la CEA – Collaborer avec les autres membres et représentants pour développer l’ADR au niveau national et international.",
+          "Participer activement – Participer aux événements officiels, conférences et activités organisés par ou en partenariat avec la CEA.",
+          "Faire connaître l’ADR – Contribuer à la diffusion des connaissances professionnelles sur les systèmes ADR dans le monde entier.",
+          "Respecter les règlements de la CEA – Se conformer strictement aux principes et exigences énoncés dans les statuts de la CEA."
+        ]
+      },
+      responsibilities: {
+        title: "Responsabilités",
+        description: "Chaque membre est personnellement responsable de :",
+        list: [
+          "Intégrité et conduite éthique – Agir avec honnêteté, équité et respect des droits humains, conformément à la Déclaration universelle des droits de l’homme. Éviter toute forme de discrimination basée sur la race, le genre, la religion ou les convictions politiques.",
+          "Engagement envers la société – Prendre en compte les intérêts de la société en agissant loyalement et honnêtement selon les politiques de la CEA.",
+          "Respect professionnel – S’abstenir de nuire à la réputation professionnelle d’autrui.",
+          "Respect des droits de propriété – Respecter les droits de propriété intellectuelle et autres protections juridiques liées à la propriété.",
+          "Confidentialité – Maintenir la confidentialité de toute information privilégiée obtenue dans l’exercice de ses fonctions.",
+          "Compétence et objectivité – Accepter uniquement les missions pour lesquelles on est qualifié et émettre des opinions professionnelles avec objectivité."
+        ]
+      },
+      sanctions: {
+        title: "Sanctions en cas de non-conformité",
+        description: "Le non-respect de ce Code de Conduite, s’il est établi par la Chambre Européenne d’Arbitrage, peut entraîner la révocation immédiate de l’adhésion."
+      }
+    }
+
   }
+
 
 
 };

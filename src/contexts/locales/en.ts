@@ -350,7 +350,91 @@ const en = {
       ],
       finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICJE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request."
     }
+  },
+  membership: {
+    benefits: {
+      title: "5 Reasons to Become an EAC Member",
+      reasons: [
+        {
+          title: "Career Growth & Networking",
+          description: "Expand your professional network, enhance your reputation in international arbitration communities, and open doors to new career opportunities."
+        },
+        {
+          title: "Exclusive Training & Events",
+          description: "Access essential business services and participate in seminars, training sessions, masterclasses, round tables, and congresses organized by EAC and its partners—often at discounted rates."
+        },
+        {
+          title: "Valuable Insights & Resources",
+          description: "Stay informed with timely updates on key decisions, procedural developments, and industry trends that impact your arbitration practice."
+        },
+        {
+          title: "Visibility & Promotion",
+          description: "EAC members can publish corporate news and showcase their professional profiles on the EAC website, increasing their visibility in the arbitration community."
+        },
+        {
+          title: "Accreditation as an Arbitrator",
+          description: "Gain the opportunity to take a qualification course for arbitrators and obtain accreditation as an international arbitrator of ICAC upon successfully completing the course and exam."
+        }
+      ]
+    },
+    join: {
+      title: "Membership in the European Arbitration Chamber",
+      description: "If you would like to become an associated member of the European Arbitration Chamber, follow these steps:",
+      steps: [
+        {
+          title: "Submit an application",
+          description: "by filling out the online membership request form."
+        },
+        {
+          title: "Verification process",
+          description: "The EAC Secretariat will review your application and assess your eligibility."
+        },
+        {
+          title: "Complete your membership",
+          description: "by paying the annual fee after successful verification."
+        }
+      ],
+      fee: "The annual membership fee is 301.29 EUR (VAT included).",
+      verification: "All applicants must undergo a verification process before being accepted as members.",
+      formPrompt: "To request membership, please complete the form here:",
+      formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
+      followUp: "The EAC Secretariat will reach out to you with further instructions."
+    },
+    code: {
+      title: "Code of Conduct",
+      intro: "The European Arbitration Chamber (EAC) has established this Code of Conduct to ensure its members uphold the highest ethical and professional standards. All members are expected to adhere to these principles with strict observance.",
+      obligations: {
+        title: "Obligations",
+        description: "Each member of the EAC is committed to:",
+        list: [
+          "Upholding Legal Standards – Promote the observance of international law, as well as national legislation relevant to arbitration and dispute resolution.",
+          "Advancing Alternative Dispute Resolution (ADR) – Support the growth and integration of ADR and international arbitration within global business practices.",
+          "Fostering Institutional Collaboration – Develop constructive relationships with authorities and international organizations to uphold justice, the rule of law, and a favorable global business climate.",
+          "Engaging with the EAC Community – Collaborate with fellow EAC members and representatives to further the development of ADR on both national and international levels.",
+          "Active Participation – Take part in official events, conferences, and activities organized by or in partnership with the EAC.",
+          "Promoting ADR Awareness – Contribute to the dissemination of professional knowledge about ADR systems worldwide.",
+          "Compliance with EAC Regulations – Adhere strictly to the principles and requirements outlined in the EAC’s Articles of Association."
+        ]
+      },
+      responsibilities: {
+        title: "Responsibilities",
+        description: "Each member is personally responsible for:",
+        list: [
+          "Integrity & Ethical Conduct – Act with honesty, fairness, and respect for human rights, in alignment with the principles of the UN Declaration of Human Rights. Avoid all forms of discrimination based on race, gender, religion, or political beliefs.",
+          "Commitment to Society – Consider societal interests by acting loyally and honestly in accordance with EAC policies.",
+          "Professional Respect – Refrain from harming, defaming, or recklessly undermining the professional reputation of others.",
+          "Respect for Property Rights – Uphold intellectual property rights and other property-related legal protections.",
+          "Confidentiality – Maintain strict confidentiality regarding any privileged information encountered during professional duties.",
+          "Competence & Objectivity – Accept only work they are qualified to perform and provide professional opinions with the highest degree of objectivity."
+        ]
+      },
+      sanctions: {
+        title: "Sanctions for Non-Compliance",
+        description: "Failure to adhere to this Code of Conduct, if substantiated by the European Arbitration Chamber, may result in immediate revocation of membership."
+      }
+    }
   }
+
 
 
 

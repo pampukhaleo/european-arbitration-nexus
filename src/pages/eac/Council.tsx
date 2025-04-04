@@ -22,7 +22,7 @@ const Council = () => {
     {
       name: "Johan BILLIET",
       position: "President of the International Commercial Arbitration Court under the European Arbitration Chamber",
-      description: "Since 2009, the President of ICAC is Johan Billiet, international arbitrator, mediator, lawyer at the Brussels Bar, founding partner of Billiet & Co., author of various books, including the manual of the Vrije Universiteit Brussel (VUB) on International Investment Arbitration."
+      description: "Since 2011, the President of ICAC is Johan Billiet, international arbitrator, mediator, lawyer at the Brussels Bar, founding partner of Billiet & Co., author of various books, including the manual of the Vrije Universiteit Brussel (VUB) on International Investment Arbitration."
     },
     {
       name: "Patrick LAYCOCK",

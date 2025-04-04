@@ -34,7 +34,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow text-justify">
         {isHomePage || isContactsPage ? (
           // Full-width layout for home and contacts pages
           <div className="w-full max-w-full">

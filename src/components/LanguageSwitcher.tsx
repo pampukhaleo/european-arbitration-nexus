@@ -15,7 +15,6 @@ export default function LanguageSwitcher({ mode = "full" }: { mode?: "full" | "c
   
   return (
     <div className={`flex items-center ${mode === "compact" ? "space-x-2" : "space-x-1"}`}>
-      {mode === "full" && <Globe size={16} className="text-gray-600" />}
       {languages.map((lang) => (
         <Button
           key={lang.code}

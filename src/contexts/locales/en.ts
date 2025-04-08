@@ -200,13 +200,13 @@ const en = {
     },
     calculator: {
       title: "Cost Calculator",
-      description: "Arbitration fee is paid by the parties on each received claim for consideration by the International Commercial Arbitration Court under the INA 'European Arbitration Chamber' (Brussels, Belgium) (hereinafter - 'the ICAC under the EAC') for the costs of the arbitration. The amount of the arbitration fee is calculated in accordance with the Provisions on arbitration costs of the ICAC under the EAC.",
-      registrationFeeTitle: "Registration fee is fixed payment, which is paid by the claimant upon filing its Request for Arbitration to the ICAC under the EAC, which amount is:",
+      description: "The arbitration fee is payable by the parties for each claim submitted to the International Commercial Arbitration Court under the European Arbitration Chamber to cover the costs of arbitration. The fee amount is calculated in accordance with the Provisions on Arbitration Costs of the ICAC under the EAC.",
+      registrationFeeTitle: "The registration fee is a fixed payment made by the claimant when submitting the Request for Arbitration. The current amount is:",
       registrationFee: {
-        excludingVat: "1.000,00 EUR (excluding VAT)",
-        includingVat: "1.210,00 EUR (including 21% VAT if applicable)."
+        excludingVat: "EUR 1,000.00 (excluding VAT)",
+        includingVat: "EUR 1,210.00 (including 21% VAT, if applicable)"
       },
-      currencyConversion: "To determine the amount of Arbitration fee in each case, the amount in dispute (unless it is expressed in EUR) must be converted into EUR currency at the exchange rate of the Belgium National Bank established on the date of filing the Request for Arbitration.",
+      currencyConversion: "To determine the arbitration fee, the amount in dispute (if not expressed in EUR) must be converted into euros using the exchange rate of the National Bank of Belgium on the date the Request for Arbitration is filed.",
       exchangeRateLink: "Exchange rates",
       exchangeRateUrl: "https://www.nbb.be/en/about-national-bank/eurosystem/exchange-rates"
     },

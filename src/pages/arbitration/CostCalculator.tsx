@@ -12,7 +12,7 @@ const CostCalculatorPage = () => {
       <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.calculator.title")}</h1>
 
-        <div className="prose max-w-none mb-8">
+        <div className="prose max-w-none">
           <p className="text-lg text-gray-600 mb-4">{t("arbitration.calculator.description")}</p>
 
           <p className="text-lg text-gray-600 mb-4">{t("arbitration.calculator.registrationFeeTitle")}</p>
@@ -24,19 +24,14 @@ const CostCalculatorPage = () => {
 
           <p className="text-lg text-gray-600">{t("arbitration.calculator.currencyConversion")}</p>
         </div>
-
-        <CostCalculator />
-
-        <div className="py-6">
-          {/*<p className="text-lg text-gray-600">*/}
-          {/*  {t("arbitration.calculator.exchangeRateLink")}*/}
-          {/*  <a href={t("arbitration.calculator.exchangeRateUrl")}><b>{t("arbitration.calculator.exchangeRateUrl")}</b></a>*/}
-          {/*</p>*/}
+        <div className="py-1 mb-5">
           <Button href={t("arbitration.calculator.exchangeRateUrl")} target="_blank">
-            Go to Website
+            {t("arbitration.calculator.exchangeRateLink")}
           </Button>
-          {/*<a href={t("arbitration.calculator.exchangeRateUrl")}><b>{t("arbitration.calculator.exchangeRateUrl")}</b></a>*/}
         </div>
+
+        <CostCalculator/>
+
       </div>
     </Layout>
   );

@@ -238,7 +238,15 @@ const en = {
     icje: {
       title: "ICJE: EXPERT EXAMINATION",
       description1: "In an increasingly complex business landscape, disputes and conflicts can arise unexpectedly, posing challenges to partnerships and agreements. At the International Centre for Judicial and ADR Expertise (ICJE), we believe that expertise is the key to resolving disputes effectively and maintaining fruitful collaborations. Our dedicated team of experts specializes in a wide range of fields, offering a comprehensive solution to address disputes, whether they are of a technical or legal nature.",
-      description2: "The ICJE operates as a separate department of the European Arbitration Chamber on the basis of EAC Statute and its Provisions."
+      description2: {
+        text: "The ICJE operates as a separate department of the European Arbitration Chamber and conducts expert examinations:",
+        examinations: [
+          "Upon the request of international arbitration courts (without jurisdictional limitations).",
+          "Upon the request of state courts for legal proceedings.",
+          "Upon the request of lawyers, legal entities, and individuals seeking professional assessments."
+        ],
+        footer: "Our team of certified experts ensures accuracy, reliability, and compliance with international standards in all expert evaluations. Contact us to learn more or request an expert examination."
+      }
     },
     fields: {
       title: "ICJE – Main Areas of Expert Research",

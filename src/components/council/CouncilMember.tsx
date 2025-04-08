@@ -8,7 +8,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-
 interface CouncilMemberProps {
   name: string;
   position: string;
@@ -42,7 +41,6 @@ export default function CouncilMember({ name, position, description, imageSrc }:
             </AvatarFallback>
           )}
         </Avatar>
-
 
         <h3 className="text-xl font-semibold text-eac-dark text-center">{name}</h3>
         <p className="text-sm text-eac-gray text-center mt-1">{position}</p>

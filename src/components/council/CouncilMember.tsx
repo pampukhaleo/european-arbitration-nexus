@@ -25,7 +25,7 @@ export default function CouncilMember({ name, position, description, imageSrc }:
 
   return (
     <>
-      <div 
+      <div
         className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
         onClick={() => setOpen(true)}
       >
@@ -44,7 +44,7 @@ export default function CouncilMember({ name, position, description, imageSrc }:
         </Avatar>
 
 
-        <h3 className="text-xl font-semibold text-eac-dark">{name}</h3>
+        <h3 className="text-xl font-semibold text-eac-dark text-center">{name}</h3>
         <p className="text-sm text-eac-gray text-center mt-1">{position}</p>
       </div>
 

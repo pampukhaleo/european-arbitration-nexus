@@ -46,14 +46,14 @@ const NewsItem = ({ title, date, description }: NewsItemProps) => {
           </CardHeader>
 
           <CardContent className="flex flex-col flex-1">
-            <CardDescription className="text-gray-600 mb-4">
+            <CardDescription className="text-gray-600 mb-4 line-clamp-3">
               {paragraphs[0]}
             </CardDescription>
 
             <div className="mt-auto">
               <Button
                 variant="link"
-                className="p-0 text-eac-primary"
+                className="p-0 text-eac-primary hover:text-eac-primary/80"
                 ref={triggerRef}
               >
                 {t("home.readMore")}

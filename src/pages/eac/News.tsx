@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "@/components/Layout";
 import NewsItem from "@/components/news/NewsItem";
@@ -9,17 +8,14 @@ import { newsItems } from "@/data/newsData";
 const News = () => {
   const { t } = useLanguage();
   const { id } = useParams<{ id?: string }>();
-  const [selectedNewsId, setSelectedNewsId] = useState<string | null>(null);
-  
+  const refsMap = useRef<Record<string, HTMLDivElement | null>>({});
+
   useEffect(() => {
     if (id && newsItems.some(item => item.id === id)) {
-      setSelectedNewsId(id);
-      
-      // Simulate clicking on the news item to open the dialog
       setTimeout(() => {
-        const newsElement = document.querySelector(`[data-news-id="${id}"]`);
-        if (newsElement) {
-          (newsElement as HTMLElement).click();
+        const target = refsMap.current[id];
+        if (target) {
+          target.click();
         }
       }, 100);
     }
@@ -28,10 +24,17 @@ const News = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-8 text-eac-dark">News</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 className="text-3xl font-bold mb-8 text-eac-dark">
+          {t("home.latestNews")}
+        </h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {newsItems.map((item) => (
-            <div key={item.id} data-news-id={item.id}>
+            <div
+              key={item.id}
+              ref={(el) => (refsMap.current[item.id] = el)}
+              className="flex"
+            >
               <NewsItem
                 title={item.title}
                 date={item.date}

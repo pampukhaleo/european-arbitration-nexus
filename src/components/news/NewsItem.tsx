@@ -1,3 +1,4 @@
+
 import { useRef, useMemo } from "react";
 import {
   Card,
@@ -14,16 +15,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Image as ImageIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface NewsItemProps {
   title: string;
   date: string;
   description: string;
+  mainImage: string;
+  images?: string[];
 }
 
-const NewsItem = ({ title, date, description }: NewsItemProps) => {
+const NewsItem = ({ title, date, description, mainImage, images = [] }: NewsItemProps) => {
   const { t } = useLanguage();
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -40,6 +43,15 @@ const NewsItem = ({ title, date, description }: NewsItemProps) => {
     <Dialog>
       <DialogTrigger asChild>
         <Card className="flex flex-col h-full cursor-pointer hover:shadow-md transition-shadow">
+          {mainImage && (
+            <div className="h-48 overflow-hidden">
+              <img 
+                src={mainImage} 
+                alt={title} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
           <CardHeader className="pb-2">
             <RenderDate />
             <CardTitle className="text-xl mt-2">{title}</CardTitle>
@@ -73,6 +85,20 @@ const NewsItem = ({ title, date, description }: NewsItemProps) => {
             <RenderDate />
           </div>
         </DialogHeader>
+
+        {images.length > 0 && (
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {images.map((image, index) => (
+              <div key={index} className="relative rounded-lg overflow-hidden aspect-[16/9]">
+                <img 
+                  src={image} 
+                  alt={`${title} - image ${index + 1}`} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        )}
 
         <div id="news-item-content" className="mt-4 space-y-4">
           {paragraphs.map((paragraph, index) => (

@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "@/components/Layout";
@@ -39,6 +40,8 @@ const News = () => {
                 title={item.title}
                 date={item.date}
                 description={item.description}
+                mainImage={item.mainImage}
+                images={item.images}
               />
             </div>
           ))}

@@ -28,6 +28,15 @@ export default function NewsPreview() {
               key={item.id}
               className="flex flex-col justify-between overflow-hidden border border-gray-200 rounded-2xl hover:shadow-md transition"
             >
+              {item.mainImage && (
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={item.mainImage} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
               <CardHeader className="pb-2">
                 <div className="flex items-center text-sm text-gray-500 mb-2">
                   <CalendarIcon className="mr-2 h-4 w-4" />

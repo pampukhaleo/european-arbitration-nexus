@@ -6,13 +6,21 @@ export interface NewsItem {
   date: string;
   excerpt: string;
   description: string;
-  mainImage: string;
+  mainImage?: string;
   images?: string[];
   link?: string;
 }
 
 // Shared news data to be used across components
 export const newsItems: NewsItem[] = [
+  {
+    id: "11",
+    title: "EAC Welcomes New Member to the Council",
+    date: "Apr 5 2025",
+    excerpt: "The European Arbitration Chamber is pleased to announce the appointment of a new member to its Council of arbitrators.",
+    description: "The European Arbitration Chamber is pleased to announce the appointment of a new member to its Council of arbitrators.\n\nThe new member brings decades of experience in international commercial law and dispute resolution, further strengthening the EAC's expertise in handling complex arbitration cases.\n\nThis appointment reflects our ongoing commitment to maintaining a diverse and highly qualified panel of arbitrators to serve the needs of the international business community.",
+    // No mainImage or images provided for this news item
+  },
   {
     id: "10",
     title: "Beware of Fraud and Scams!",

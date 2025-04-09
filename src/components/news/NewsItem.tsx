@@ -22,7 +22,7 @@ interface NewsItemProps {
   title: string;
   date: string;
   description: string;
-  mainImage: string;
+  mainImage?: string;
   images?: string[];
 }
 

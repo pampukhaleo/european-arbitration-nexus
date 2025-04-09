@@ -29,6 +29,9 @@ const buttonVariants = cva(
   }
 );
 
+/**
+ * Extended button props that include href for anchor functionality
+ */
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -36,8 +39,10 @@ export interface ButtonProps
   href?: string;
 }
 
+type ButtonOrAnchorRef = HTMLButtonElement | HTMLAnchorElement;
+
 const Button = React.forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
+  ButtonOrAnchorRef,
   ButtonProps
 >(({ className, variant, size, asChild = false, href, ...props }, ref) => {
   const classes = cn(buttonVariants({ variant, size, className }));
@@ -49,14 +54,13 @@ const Button = React.forwardRef<
   }
 
   if (href) {
-    const anchorProps = props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
-
+    // For href usage, properly cast to anchor element props
     return (
       <a
         href={href}
         className={classes}
         ref={ref as React.Ref<HTMLAnchorElement>}
-        {...anchorProps}
+        {...(props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       />
     );
   }

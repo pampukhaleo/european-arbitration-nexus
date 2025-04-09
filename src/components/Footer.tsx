@@ -132,8 +132,8 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0 mt-0.5" />
                 <span className="text-gray-600">
-                  International non-profit association "European Arbitration Chamber" <br />
-                  Belgium, Brussels, B-1050, Avenue Louise, 146
+                  {t('contacts.addressName')} <br />
+                  {t("contacts.address")}
                 </span>
               </li>
               <li className="flex items-center">

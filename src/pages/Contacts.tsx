@@ -13,7 +13,7 @@ const Contacts = () => {
           {t('contacts.title') || "Contact Us"}
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
           {/* Address Information */}
           <div>
             <h2 className="text-xl font-semibold mb-4 text-eac-primary">
@@ -27,13 +27,13 @@ const Contacts = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-eac-dark mb-1">
-                      {t('contacts.address') || "Address"}
+                      {t('contacts.addressTitle') || "Address"}
                     </h3>
                     <p className="text-eac-medium">
-                      International non-profit association "European Arbitration Chamber"
+                      {t('contacts.addressName')}
                     </p>
                     <p className="text-eac-medium">
-                      Belgium, Brussels, B-1050, Avenue Louise, 146
+                      {t('contacts.address')}
                     </p>
                   </div>
                 </div>
@@ -87,70 +87,70 @@ const Contacts = () => {
           </div>
 
           {/* Contact Form */ }
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-eac-primary">
-              { t('contacts.sendMessage') || "Contact Form" }
-            </h2>
-            <div className="bg-white shadow border rounded-lg p-6">
-              <form className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block font-medium text-eac-dark mb-2">
-                    {t('contacts.name') || "Name"}
-                  </label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    placeholder={t('contacts.namePlaceholder') || "Your Name"} 
-                    className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"
-                  />
-                </div>
+          {/*<div>*/}
+          {/*  <h2 className="text-xl font-semibold mb-4 text-eac-primary">*/}
+          {/*    { t('contacts.sendMessage') || "Contact Form" }*/}
+          {/*  </h2>*/}
+          {/*  <div className="bg-white shadow border rounded-lg p-6">*/}
+          {/*    <form className="space-y-4">*/}
+          {/*      <div>*/}
+          {/*        <label htmlFor="name" className="block font-medium text-eac-dark mb-2">*/}
+          {/*          {t('contacts.name') || "Name"}*/}
+          {/*        </label>*/}
+          {/*        <input */}
+          {/*          type="text" */}
+          {/*          id="name" */}
+          {/*          placeholder={t('contacts.namePlaceholder') || "Your Name"} */}
+          {/*          className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"*/}
+          {/*        />*/}
+          {/*      </div>*/}
 
-                <div>
-                  <label htmlFor="email" className="block font-medium text-eac-dark mb-2">
-                    {t('contacts.email') || "Email"}
-                  </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    placeholder={t('contacts.emailPlaceholder') || "Your Email"} 
-                    className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"
-                  />
-                </div>
+          {/*      <div>*/}
+          {/*        <label htmlFor="email" className="block font-medium text-eac-dark mb-2">*/}
+          {/*          {t('contacts.email') || "Email"}*/}
+          {/*        </label>*/}
+          {/*        <input */}
+          {/*          type="email" */}
+          {/*          id="email" */}
+          {/*          placeholder={t('contacts.emailPlaceholder') || "Your Email"} */}
+          {/*          className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"*/}
+          {/*        />*/}
+          {/*      </div>*/}
 
-                <div>
-                  <label htmlFor="subject" className="block font-medium text-eac-dark mb-2">
-                    {t('contacts.subject') || "Subject"}
-                  </label>
-                  <input 
-                    type="text" 
-                    id="subject" 
-                    placeholder={t('contacts.subjectPlaceholder') || "type name of the subject"} 
-                    className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block font-medium text-eac-dark mb-2">
-                    {t('contacts.message') || "Message"}
-                  </label>
-                  <textarea 
-                    id="message" 
-                    placeholder={t('contacts.messagePlaceholder') || "Type your message"} 
-                    rows={4} 
-                    className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"
-                  ></textarea>
-                </div>
+          {/*      <div>*/}
+          {/*        <label htmlFor="subject" className="block font-medium text-eac-dark mb-2">*/}
+          {/*          {t('contacts.subject') || "Subject"}*/}
+          {/*        </label>*/}
+          {/*        <input */}
+          {/*          type="text" */}
+          {/*          id="subject" */}
+          {/*          placeholder={t('contacts.subjectPlaceholder') || "type name of the subject"} */}
+          {/*          className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"*/}
+          {/*        />*/}
+          {/*      </div>*/}
+          {/*      */}
+          {/*      <div>*/}
+          {/*        <label htmlFor="message" className="block font-medium text-eac-dark mb-2">*/}
+          {/*          {t('contacts.message') || "Message"}*/}
+          {/*        </label>*/}
+          {/*        <textarea */}
+          {/*          id="message" */}
+          {/*          placeholder={t('contacts.messagePlaceholder') || "Type your message"} */}
+          {/*          rows={4} */}
+          {/*          className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-eac-primary focus:border-transparent"*/}
+          {/*        ></textarea>*/}
+          {/*      </div>*/}
 
-                <button 
-                  type="submit" 
-                  className="w-full bg-eac-primary text-white py-3 px-4 rounded flex items-center justify-center hover:bg-opacity-90 transition-colors"
-                >
-                  <Mail className="h-4 w-4 mr-2" />
-                  {t('contacts.send') || "Send"}
-                </button>
-              </form>
-            </div>
-          </div>
+          {/*      <button */}
+          {/*        type="submit" */}
+          {/*        className="w-full bg-eac-primary text-white py-3 px-4 rounded flex items-center justify-center hover:bg-opacity-90 transition-colors"*/}
+          {/*      >*/}
+          {/*        <Mail className="h-4 w-4 mr-2" />*/}
+          {/*        {t('contacts.send') || "Send"}*/}
+          {/*      </button>*/}
+          {/*    </form>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
     </Layout>

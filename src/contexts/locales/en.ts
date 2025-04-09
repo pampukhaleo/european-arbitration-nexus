@@ -80,7 +80,9 @@ const en = {
   contacts: {
     title: 'Contact Us',
     information: 'Address and Email',
-    address: 'Address',
+    addressTitle: 'Address',
+    addressName: 'International non-profit association "European Arbitration Chamber" ',
+    address: 'Belgium, Brussels, B-1050, Avenue Louise, 146',
     phone: 'Phone',
     email: 'Email',
     emailPlaceholder: 'Your Email',

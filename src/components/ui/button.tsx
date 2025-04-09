@@ -33,34 +33,42 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  href?: string; // Add href as an optional prop
+  href?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
-    const Comp = asChild ? Slot : href ? "a" : "button"; // Render as a <a> tag if href is provided, otherwise <button>
+const Button = React.forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(({ className, variant, size, asChild = false, href, ...props }, ref) => {
+  const classes = cn(buttonVariants({ variant, size, className }));
 
-    if (href) {
-      // If href is provided, ensure the button behaves like a link
-      return (
-        <Comp
-          href={href}
-          className={cn(buttonVariants({ variant, size, className }))}
-          ref={ref}
-          {...props}
-        />
-      );
-    }
+  if (asChild) {
+    return (
+      <Slot className={classes} ref={ref} {...props} />
+    );
+  }
+
+  if (href) {
+    const anchorProps = props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
+      <a
+        href={href}
+        className={classes}
+        ref={ref as React.Ref<HTMLAnchorElement>}
+        {...anchorProps}
       />
     );
   }
-);
+
+  return (
+    <button
+      className={classes}
+      ref={ref as React.Ref<HTMLButtonElement>}
+      {...props}
+    />
+  );
+});
 
 Button.displayName = "Button";
 

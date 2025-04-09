@@ -25,8 +25,10 @@ const CostCalculatorPage = () => {
           <p className="text-lg text-gray-600">{t("arbitration.calculator.currencyConversion")}</p>
         </div>
         <div className="py-1 mb-5">
-          <Button href={t("arbitration.calculator.exchangeRateUrl")} target="_blank">
-            {t("arbitration.calculator.exchangeRateLink")}
+          <Button asChild>
+            <a href={t("arbitration.calculator.exchangeRateUrl")} target="_blank" rel="noopener noreferrer">
+              {t("arbitration.calculator.exchangeRateLink")}
+            </a>
           </Button>
         </div>
 

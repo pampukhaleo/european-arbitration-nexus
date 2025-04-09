@@ -4,31 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-// Sample news data - this should match the data in the News page
-const news = [
-  {
-    id: 1,
-    title: "Beware of Fraud and Scams!",
-    date: "Feb 26 2025",
-    excerpt: "The Secretariat of the European Arbitration Chamber (EAC) has been made aware of fraudulent letters and documents falsely stating to be issued by or associated with the EAC or/and International Commercial Arbitration Court under the EAC (ICAC).",
-    link: "/eac/news/1",
-  },
-  {
-    id: 2,
-    title: "16th Anniversary of the European Arbitration Chamber!",
-    date: "Dec 12 2024",
-    excerpt: "Today marks 16 incredible years of the European Arbitration Chamber! Since 2008, the EAC has been committed to providing fair, impartial, and efficient dispute resolution, helping businesses across the globe navigate complex legal challenges.",
-    link: "/eac/news/2",
-  },
-  {
-    id: 3,
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    link: "/eac/news/3",
-  },
-];
+import { newsItems } from "@/data/newsData";
 
 export default function NewsPreview() {
   const { t } = useLanguage();
@@ -44,7 +20,7 @@ export default function NewsPreview() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {news.map((item) => (
+          {newsItems.map((item) => (
             <Card key={item.id} className="overflow-hidden border border-gray-200 rounded-2xl hover:shadow-md transition">
               <CardHeader className="pb-2">
                 <div className="flex items-center text-sm text-gray-500 mb-2">

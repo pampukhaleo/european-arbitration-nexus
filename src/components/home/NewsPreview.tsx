@@ -9,6 +9,9 @@ import { newsItems } from "@/data/newsData";
 export default function NewsPreview() {
   const { t } = useLanguage();
   
+  // Get only the 3 most recent news items
+  const latestNewsItems = [...newsItems].slice(0, 3);
+  
   return (
     <div className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -20,7 +23,7 @@ export default function NewsPreview() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsItems.map((item) => (
+          {latestNewsItems.map((item) => (
             <Card
               key={item.id}
               className="flex flex-col justify-between overflow-hidden border border-gray-200 rounded-2xl hover:shadow-md transition"

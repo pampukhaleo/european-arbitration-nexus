@@ -18,10 +18,13 @@ export default function NewsPreview() {
             <Link to="/eac/news">{t('home.viewAllNews')}</Link>
           </Button>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((item) => (
-            <Card key={item.id} className="overflow-hidden border border-gray-200 rounded-2xl hover:shadow-md transition">
+            <Card
+              key={item.id}
+              className="flex flex-col justify-between overflow-hidden border border-gray-200 rounded-2xl hover:shadow-md transition"
+            >
               <CardHeader className="pb-2">
                 <div className="flex items-center text-sm text-gray-500 mb-2">
                   <CalendarIcon className="mr-2 h-4 w-4" />
@@ -29,11 +32,20 @@ export default function NewsPreview() {
                 </div>
                 <CardTitle className="text-xl">{item.title}</CardTitle>
               </CardHeader>
-              <CardContent>
+
+              <CardContent className="flex flex-col flex-1">
                 <CardDescription className="text-gray-600 mb-4">{item.excerpt}</CardDescription>
-                <Button asChild variant="link" className="p-0 text-eac-primary hover:text-eac-primary/80">
-                  <Link to={`/eac/news/${item.id}`}>{t('home.readMore')}</Link>
-                </Button>
+
+                {/* Push this button to the bottom */}
+                <div className="mt-auto">
+                  <Button
+                    asChild
+                    variant="link"
+                    className="p-0 text-eac-primary hover:text-eac-primary/80"
+                  >
+                    <Link to={`/eac/news/${item.id}`}>{t('home.readMore')}</Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

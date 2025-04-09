@@ -31,5 +31,55 @@ export const newsItems: NewsItem[] = [
     date: "Aug 02 2024",
     excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
     description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
-  }
+  },
+  {
+    id: "4",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "5",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "6",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "7",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "8",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "9",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+  {
+    id: "10",
+    title: "ISTAW 2024",
+    date: "Aug 02 2024",
+    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
+    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/"
+  },
+
 ];

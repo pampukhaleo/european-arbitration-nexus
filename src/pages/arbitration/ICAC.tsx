@@ -10,7 +10,7 @@ const ICAC = () => {
         <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.icac.title")}</h1>
         <div className="prose max-w-none">
           <p className="mb-6 text-lg text-gray-600">{t("arbitration.icac.intro")}</p>
-          <p className="mb-6 text-lg text-gray-600 font-bold">{t("arbitration.icac.president")}</p>
+          <p className="mb-6 text-lg text-gray-600">{t("arbitration.icac.secretariat")}</p>
 
           <p className="mb-4 text-lg text-gray-600">{t("arbitration.icac.competenceTitle")}</p>
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
@@ -21,15 +21,15 @@ const ICAC = () => {
             <li className="ml-5">{t("arbitration.icac.competenceList.insurance")}</li>
           </ul>
 
-          <h3 className="text-lg font-semibold mb-4 text-eac-dark italic">{t("arbitration.icac.featuresTitle")}</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-eac-dark">{t("arbitration.icac.featuresTitle")}</h3>
 
           {[
             "multinational",
             "principles",
             "flexibility",
             "tech",
+            "timing",
             "finality",
-            "timing"
           ].map((key) => (
             <div key={key}>
               <p className="text-lg font-semibold mb-4 text-eac-dark">{t(`arbitration.icac.features.${key}Title`)}</p>

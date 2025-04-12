@@ -1,7 +1,6 @@
 import Layout from "@/components/Layout";
 import CostCalculator from "@/components/arbitration/CostCalculator";
 import { useLanguage } from "@/contexts/LanguageContext";
-import {Link} from "react-router-dom";
 import {Button} from "@/components/ui/button.tsx";
 
 const CostCalculatorPage = () => {

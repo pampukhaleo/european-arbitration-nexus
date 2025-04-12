@@ -98,27 +98,16 @@ const fr = {
   },
   aboutEAC: {
     title: "À propos de la Chambre Européenne d’Arbitrage (CEA)",
-    intro: "La Chambre Européenne d’Arbitrage (CEA) est une association internationale à but non lucratif dédiée à aider les entreprises à résoudre efficacement et rapidement les litiges commerciaux grâce à l’arbitrage international.",
-    missionTitle: "Notre Mission",
-    missionText: "La mission de la CEA est de promouvoir et développer l’arbitrage commercial, la médiation, l’expertise judiciaire, et les systèmes de résolution alternative des litiges (ADR) à l’échelle mondiale, en fournissant aux entreprises des mécanismes de résolution efficaces et fiables.",
-    historyTitle: "Notre Histoire",
-    historyText: "Fondée en Belgique en 2008, la CEA a été créée par des professionnels en arbitrage commercial et médiation venant de Belgique, de France et d’Ukraine. Elle fonctionne conformément à la loi du Royaume de Belgique sur les associations sans but lucratif, les associations internationales sans but lucratif et les fondations du 27 juin 1921.",
-    globalReachTitle: "Notre Portée Internationale",
-    globalReachText: "Aujourd’hui, la CEA regroupe des représentants de 35 pays, notamment :",
-    globalReachList: {
-      arbitrators: "Arbitres",
-      mediators: "Médiateurs",
-      experts: "Experts judiciaires",
-      professionals: "Professionnels du monde des affaires",
-    },
+    intro: "L'association internationale sans but lucratif Chambre Européenne d'Arbitrage (CEA) a été fondée en Belgique en 2008 à l’initiative de professionnels de l’arbitrage commercial et de la médiation provenant de Belgique, de France et d’Ukraine.",
+    missionText: "La mission de la CEA est de promouvoir le développement des modes alternatifs de résolution des conflits, de rassembler les professionnels du secteur et de régler de manière efficace et rapide les litiges transfrontaliers liés aux activités commerciales, par le biais de l’arbitrage et de l’expertise internationaux.",
+    historyText: "La CEA exerce ses activités conformément à loi du 27 juin 1921 sur les associations sans but lucratif, les associations internationales sans but lucratif et les fondations",
+    representativesText: "Aujourd’hui, la CEA regroupe des représentants de 35 pays à travers le monde – arbitres, médiateurs, experts judiciaires, chefs d’entreprise, personnalités publiques et étudiants – œuvrant ensemble pour le développement de l’arbitrage commercial, de la médiation, de l’expertise judiciaire et, plus largement, du système de règlement alternatif des différends (ADR).",
     keyAreasTitle: "Domaines Clés d’Activité",
     keyAreas: {
-      commercial: "Arbitrage Commercial – Résolution des litiges commerciaux transfrontaliers par arbitrage international.",
-      judicial: "Expertise Judiciaire – Évaluations expertes pour les procédures juridiques et arbitrales.",
-      education: "Formation & Éducation – Cours et programmes spécialisés en ADR, arbitrage et médiation.",
+      commercial: "Arbitrage commercial – résolution des litiges commerciaux transfrontaliers par le biais de l’arbitrage international.",
+      judicial: "Expertise judiciaire – réalisation d’expertises destinées aux procédures judiciaires et arbitrales.",
+      education: "Formation et perfectionnement – organisation de cours et de programmes de qualification dans les domaines de l’ADR, de l’arbitrage, de l’expertise et de la médiation.",
     },
-    icac: "La Cour d’Arbitrage Commercial International (CIAC) a été établie en tant qu’unité administrative de la Chambre Européenne d’Arbitrage. C’est une cour d’arbitrage permanente et indépendante, opérant conformément au règlement et aux articles 1676 à 1723 du Code judiciaire belge.",
-    conclusion: "La CEA s’engage à promouvoir un cadre de résolution des litiges équitable, efficace et reconnu à l’échelle mondiale, au service des entreprises et professionnels du droit du monde entier.",
   },
   council: {
     title: "Membres du Conseil de la CEA",
@@ -140,57 +129,57 @@ const fr = {
       },
       billiet: {
         name: "Johan BILLIET",
-        position: "Président de la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage",
+        position: "Président du Tribunal d’arbitrage international de commerce auprès de la CEA",
         description: "Depuis 2011, Johan Billiet est président de la CIAC, arbitre international, médiateur, avocat au barreau de Bruxelles, fondateur du cabinet Billiet & Co., auteur de plusieurs ouvrages, dont un manuel de l’Université Libre de Bruxelles (VUB) sur l’arbitrage en matière d’investissement international."
       },
       laycock: {
         name: "Patrick LAYCOCK",
-        position: "Directeur du Centre International d’Expertise Judiciaire et ADR auprès de la Chambre Européenne d’Arbitrage",
+        position: "Président du Centre International d'Expertise Judiciaire et ADR sous la CEA",
         description: "M. Laycock est historien de l’art et conseiller scientifique au laboratoire d’art de Bruxelles. Il est reconnu et soutenu par plusieurs institutions de renom, dont la Chambre Européenne d’Arbitrage, la Chambre Belge des Experts Judiciaires, la Chambre d’Arbitrage et de Médiation des Experts Techniques et Juridiques, et le tribunal de première instance de Bruxelles. Il est membre à vie de la Siam Society sous patronage royal (Bangkok) et président de l’Institut Belge des Hautes Études Chinoises au Musée Royal d’Art et d’Histoire."
       }
     }
   },
   arbitration: {
     icac: {
-      title: "À propos de la CIAC auprès de la CEA",
-      intro: "La Cour d’Arbitrage Commercial International (CIAC) auprès de la Chambre Européenne d’Arbitrage est une cour permanente d’arbitrage indépendante, opérant selon son règlement, les articles 1676 à 1723 du Code judiciaire belge et le statut de la Chambre Européenne d’Arbitrage. Le secrétariat principal de la CIAC est situé à Bruxelles, avec des bureaux de représentation en Italie, République tchèque, Pologne, Arménie, Géorgie, Ukraine, aux Émirats arabes unis et dans d’autres pays.",
-      president: "Depuis 2011, le président de la CIAC est Johan Billiet, arbitre international, médiateur, avocat au barreau de Bruxelles, fondateur du cabinet Billiet & Co., auteur de plusieurs ouvrages, dont un manuel de l’Université Libre de Bruxelles (VUB) sur l’arbitrage en matière d’investissement international.",
-      competenceTitle: "Les compétences de la CIAC incluent le traitement de litiges issus de relations commerciales ou économiques internationales, notamment :",
+      title: "À propos du  TAIC auprès la CEA",
+      intro: "Le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d'Arbitrage (ci-après, \"TAIC auprès de la CEA\") est un tribunal arbitral indépendant et permanent, qui exerce ses activités conformément au Code judiciaire de Belgique (articles 1676-1722), aux statuts de la Chambre Européenne d'Arbitrage et à son propre Règlement.",
+      secretariat: "Le secrétariat central du TAIC auprès de la CEA est situé à Bruxelles, avec des représentations en Italie, en République tchèque, en Pologne, en Arménie, en Géorgie, en Ukraine et aux Émirats arabes unis.",
+      competenceTitle: "Le TAIC examine les différends liés à l'exécution de relations commerciales internationales ou autres types de relations économiques extérieures, concernant notamment:",
       competenceList: {
-        sale: "relations de vente (fourniture) de biens ;",
-        services: "exécution de travaux, prestation de services ;",
-        exchange: "échange de biens et/ou services ;",
-        finance: "opérations financières ;",
-        insurance: "assurance, etc.",
+        sale: "la vente (livraison) de biens;",
+        services: "l'exécution de travaux, la fourniture de services;",
+        exchange: "l'échange de biens et/ou de services;",
+        finance: "les opérations de crédit et de règlement;",
+        insurance: " l'assurance, etc.",
       },
-      featuresTitle: "Caractéristiques de la CIAC auprès de la CEA :",
+      featuresTitle: "PARTICULARITÉS DU TAIC AUPRÈS DE LA CEA:",
       features: {
         multinationalTitle: "Un large panel multinational d’arbitres",
-        multinationalDesc: "Des experts renommés en arbitrage international issus de 35 juridictions, praticiens du droit du commerce international, de l’investissement, du droit des contrats et des sociétés, de la logistique internationale, de la propriété intellectuelle, des technologies de l’information et autres domaines, sont accrédités comme arbitres de la CIAC. Les différends sont examinés par les arbitres choisis par les parties ou nommés par le président de la CIAC parmi le panel recommandé.",
+        multinationalDesc: "Le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d'Arbitrage (ci-après, \"TAIC auprès de la CEA\") dispose d’un panel d’arbitres issus de 35 juridictions à travers le monde. Ces arbitres sont spécialisés en droit international, en investissements, en droit commercial et des sociétés, en propriété intellectuelle, en technologies de l’information, en commerce international, etc. Les litiges portés devant le TAIC auprès de la CEA sont examinés par des arbitres choisis par les parties ou nommés par le Président du TAIC parmi les membres du panel ayant prêté serment et n’ayant aucun conflit d’intérêts.",
 
         principlesTitle: "Principes de la CIAC",
-        principlesDesc: "La CIAC est guidée par les principes d’indépendance, d’impartialité et d’intégrité, considérés comme fondamentaux pour son bon fonctionnement.",
+        principlesDesc: "Le TAIC auprès de la CEA considère les principes d’indépendance, d’impartialité et de bonne foi comme fondamentaux et essentiels pour son bon fonctionnement.",
 
-        flexibilityTitle: "Procédure d’arbitrage flexible",
-        flexibilityDesc: "Les parties disposent de l’autonomie quant au choix du droit matériel et procédural applicable, de la langue de la procédure, du lieu d’audience, du nombre d’arbitres et du format de l’arbitrage (traditionnel ou procédure simplifiée en ligne).",
+        flexibilityTitle: "Procédure arbitrale flexible",
+        flexibilityDesc: "Les parties disposent d’une autonomie dans le choix du droit matériel et procédural applicable au litige, ainsi que de la langue de la procédure, du lieu des audiences, des candidats arbitres et de leur nombre, et du format de la procédure arbitrale (arbitrage traditionnel avec audiences ou procédure simplifiée en ligne).",
 
-        techTitle: "Utilisation des technologies avancées",
-        techDesc: "Selon le règlement de la CIAC, les parties peuvent résoudre leurs différends en ligne, ce qui simplifie la procédure et réduit les coûts juridiques et le temps.",
+        techTitle: "Utilisation de technologies avancées",
+        techDesc: "Les litiges peuvent être examinés en ligne, ce qui permet de réduire considérablement les coûts et le temps de procédure.",
 
-        finalityTitle: "Sentence arbitrale finale et contraignante",
-        finalityDesc: "Conformément au règlement de la CIAC, la sentence arbitrale est définitive et contraignante. Aucun appel n’est prévu.",
+        timingTitle: "SDélais et coûts optimisés",
+        timingDesc: "La procédure accélérée de règlement des litiges et le montant fixe des frais d’arbitrage rendent la procédure devant le TAIC rapide et rentable.",
 
-        timingTitle: "Délais et coûts optimaux",
-        timingDesc: "Une procédure accélérée et des frais d’arbitrage fixes permettent un règlement rapide, efficace et peu coûteux des litiges.",
+        finalityTitle: "Caractère définitif et obligatoire de la sentence arbitrale",
+        finalityDesc: "Conformément au Règlement du TAIC, la sentence arbitrale est définitive et obligatoire pour les parties dès sa date de prononcé. La procédure de règlement des litiges devant le TAIC auprès de la CEA ne prévoit pas de recours en appel.",
       }
     },
     rules: {
-      title: "Règlement",
-      description: "Une nouvelle version du règlement de la CIAC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de l’association internationale sans but lucratif « Chambre Européenne d’Arbitrage ». Elle s’applique à toutes les procédures engagées après le 10 novembre 2020 ou qui seront engagées à l’avenir. Parmi toutes les versions linguistiques du règlement, la version anglaise prévaut.",
-      downloadLabel: "Vous pouvez télécharger le règlement de la CIAC ici :",
+      title: "LE RÈGLEMENT D'ARBITRAGE DU TAIC",
+      description: "Une nouvelle version du Règlement du TAIC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de la Chambre Européenne d’Arbitrage. Elle s’applique à toutes les procédures entamées après le 10 novembre 2020 ou qui seront engagées à l’avenir. Parmi toutes les versions linguistiques du Règlement d’arbitrage du TAIC, la version anglaise fait foi.",
+      downloadLabel: "Vous pouvez télécharger le Règlement du TAIC ici:",
       translationLabel: "Traduction :",
-      englishBtn: "Règlement d’arbitrage CIAC en anglais 2020",
-      russianBtn: "Règlement d’arbitrage CIAC en russe 2020"
+      englishBtn: "Règlement d’arbitrage du TAIC en anglais – 2020",
+      russianBtn: "Règlement d’arbitrage du TAIC en russe – 2020"
     },
     fees: {
       title: "Règlement des Frais",
@@ -202,37 +191,49 @@ const fr = {
     },
     calculator: {
       title: "Calculateur de Coûts",
-      description: "Les frais d’arbitrage sont payés par les parties sur chaque réclamation reçue pour examen par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Bruxelles, Belgique) (ci-après - 'la CIAC auprès de la CEA') pour couvrir les coûts de l’arbitrage. Le montant des frais d’arbitrage est calculé conformément aux Dispositions sur les frais d’arbitrage de la CIAC auprès de la CEA.",
-      registrationFeeTitle: "Les frais d’enregistrement sont un paiement fixe, payé par le demandeur lors du dépôt de sa Demande d’Arbitrage à la CIAC auprès de la CEA, dont le montant est :",
+      description: "Les frais d’arbitrage sont payés par les parties pour chaque demande acceptée à l’examen par le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage (Bruxelles, Belgique) (ci-après – TAIC), afin de couvrir les frais liés à l’organisation et au déroulement de la procédure arbitrale. Le montant des frais d’arbitrage est calculé conformément aux Dispositions relatives aux frais d’arbitrage du TAIC.",
+      registrationFeeTitle: "Le droit d’enregistrement est un paiement fixe dû par le demandeur lors du dépôt de la Demande d’arbitrage auprès du TAIC, et s’élève à:",
       registrationFee: {
-        excludingVat: "1.000,00 EUR (hors TVA)",
-        includingVat: "1.210,00 EUR (y compris la TVA de 21 % si applicable)."
+        excludingVat: "1 000,00 EUR (hors TVA)",
+        includingVat: "1 210,00 EUR (TVA de 21 % incluse, si applicable)."
       },
-      currencyConversion: "Pour déterminer le montant des frais d’arbitrage dans chaque cas, le montant en litige (sauf s’il est exprimé en EUR) doit être converti en EUR au taux de change de la Banque nationale de Belgique, établi à la date de dépôt de la Demande d’Arbitrage.",
+      currencyConversion: "Pour déterminer le montant des frais d’arbitrage dans chaque affaire, la valeur du litige (si elle n’est pas exprimée en euros) est convertie en euros selon le taux de change de la Banque nationale de Belgique en vigueur à la date de dépôt de la demande.",
       exchangeRateLink: "Taux de change",
-      exchangeRateUrl: "https://www.nbb.be/en/about-national-bank/eurosystem/exchange-rates"
+      exchangeRateUrl: "https://www.nbb.be/en/about-national-bank/eurosystem/exchange-rates",
+      amount: "Montant du litige (EUR)",
+      submitBtn: "Calculer",
+      composition: "Composition du tribunal arbitral",
+      oneArbitrator: "1 arbitre",
+      threeArbitrators: "3 arbitres",
+      costs: "Frais d’arbitrage:",
+      fee: "Frais d’arbitrage",
+      vat: "TVA (21 %)",
+      total: "Montant total",
+      estimate: "* Le montant final des frais d’arbitrage peut varier en fonction des spécificités de l’affaire.",
+      inclVAT: "(hors TVA)",
+      exclVAT: "(TVA incluse)",
     },
     clause: {
-      title: "Clause d’Arbitrage",
+      title: "Typique clause compromissoire au Tribunal d’arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage",
       future: {
         title: "Litiges futurs",
-        description: "Les parties, en concluant un contrat et souhaitant que les litiges susceptibles de survenir soient soumis à la Cour d’arbitrage conformément au Règlement de la CIAC, sont invitées à inclure dans leur contrat la clause d’arbitrage suivante (les mots ou espaces entre crochets doivent être supprimés ou complétés) :",
-        clause1: `Tout litige découlant de ou lié à ce contrat, y compris toute question relative à son existence, sa validité ou sa résiliation, sera soumis et définitivement tranché par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise, 146) conformément au Règlement de cette CIAC, lequel, en raison de ce renvoi, est considéré comme faisant partie de cette clause.`,
+        description: "Les parties concluant le contrat et souhaitant que les litiges pouvant survenir à l'avenir soient soumis au Tribunal arbitral conformément au Règlement du TAIC, sont invitées à inclure la clause compromissoire suivante dans le contrat (les mots ou espaces entre crochets doivent être supprimés ou complétés en conséquence):",
+        clause1: `"Tout litige découlant du présent contrat ou en relation avec celui-ci, y compris toute question relative à son existence, sa validité ou sa résiliation, sera soumis et définitivement tranché par le Tribunal d’arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise 146), conformément au Règlement de ce TAIC, lequel, en vertu de cette référence, est réputé faire partie intégrante de la présente clause.`,
         clause2: "Le nombre d’arbitres sera de [un / trois].",
-        clause3: "Le siège, ou lieu légal, de l’arbitrage sera [ville et/ou pays].",
-        clause4: "La langue de la procédure arbitrale sera [___].",
-        clause5: "La loi applicable au contrat sera celle de [pays].",
-        note: `Si les parties ne sont pas des personnes physiques de nationalité belge ou des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également prévoir : « Les parties excluent expressément toute demande d’annulation de la sentence arbitrale ».`
+        clause3: "Le siège, ou lieu juridique, de l’arbitrage sera [ville et/ou pays].",
+        clause4: "La langue utilisée dans la procédure arbitrale sera le [___].",
+        clause5: "La loi applicable au contrat sera le droit substantiel de [pays].\"",
+        note: `Dans le cas où les parties ne sont ni des personnes physiques de nationalité belge ni des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également stipuler ce qui suit: “Les parties excluent expressément toute demande en annulation de la sentence arbitrale».`
       },
       existing: {
         title: "Litiges existants",
-        description: "En cas de litige existant entre les parties sans accord préalable sur le mode de règlement ou si les parties souhaitent modifier la clause d’arbitrage existante pour recourir à la CIAC, la clause suivante est recommandée (les mots ou espaces entre crochets doivent être supprimés ou complétés) :",
-        clause1: `Un litige étant survenu entre les parties concernant [ ], les parties conviennent que ce litige sera soumis et définitivement tranché par la Cour d’Arbitrage Commercial International auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise, 146), conformément au Règlement de cette CIAC.`,
+        description: "S’il existe un litige entre les parties lié au contrat, sans qu’un accord ait été conclu quant au mode de règlement du différend, ou si les parties souhaitent modifier la clause existante afin de prévoir le règlement du litige par le TAIC, la clause suivante est recommandée (les mots ou espaces entre crochets doivent être supprimés ou complétés en conséquence):",
+        clause1: `"Un litige étant survenu entre les parties concernant [ ], les parties conviennent par les présentes que ce litige sera soumis et définitivement tranché par le Tribunal d’arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage (Belgique, Bruxelles, Avenue Louise 146), conformément au Règlement de ce TAIC.`,
         clause2: "Le nombre d’arbitres sera de [un / trois].",
-        clause3: "Le siège, ou lieu légal, de l’arbitrage sera [ville et/ou pays].",
-        clause4: "La langue de la procédure arbitrale sera [___].",
-        clause5: "La loi applicable au contrat sera celle de [pays].",
-        note: `Si les parties ne sont pas des personnes physiques de nationalité belge ou des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également prévoir : « Les parties excluent expressément toute demande d’annulation de la sentence arbitrale ».`
+        clause3: "Le siège, ou lieu juridique, de l’arbitrage sera [ville et/ou pays]",
+        clause4: "La langue utilisée dans la procédure arbitrale sera le [___].",
+        clause5: "La loi applicable au contrat sera le droit substantiel de [pays].\"",
+        note: `Dans le cas où les parties ne sont ni des personnes physiques de nationalité belge ni des personnes morales ayant leur siège social en Belgique, au sens de l’article 1718 du Code judiciaire belge, elles peuvent également stipuler ce qui suit: “Les parties excluent expressément toute demande en annulation de la sentence arbitrale”.`
       }
     }
   },

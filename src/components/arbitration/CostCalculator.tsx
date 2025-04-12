@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FormSchema = z.object({
   disputeAmount: z.coerce.number().min(1, "Amount must be greater than 0"),
@@ -18,6 +19,7 @@ const FormSchema = z.object({
 type FormValues = z.infer<typeof FormSchema>;
 
 export default function CostCalculator() {
+  const { t } = useLanguage();
   const [calculationResult, setCalculationResult] = useState<{
     baseAmount: number;
     vatAmount: number;
@@ -91,7 +93,7 @@ export default function CostCalculator() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor="dispute-amount" className="text-sm font-medium text-gray-700">
-                      Amount in dispute (EUR)
+                      {t("arbitration.calculator.amount")}
                     </FormLabel>
                     <FormControl>
                       <Input
@@ -113,7 +115,7 @@ export default function CostCalculator() {
                 type="submit"
                 className="w-full bg-eac-primary hover:bg-eac-primary/90 rounded-full"
               >
-                Calculate
+                {t("arbitration.calculator.submitBtn")}
               </Button>
             </div>
           </div>
@@ -123,7 +125,7 @@ export default function CostCalculator() {
             name="arbitrators"
             render={({ field }) => (
               <FormItem className="space-y-3">
-                <FormLabel>Composition of the arbitral tribunal</FormLabel>
+                <FormLabel>{t("arbitration.calculator.composition")}</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -132,11 +134,11 @@ export default function CostCalculator() {
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="1" id="r1" />
-                      <Label htmlFor="r1">1 Arbitrator</Label>
+                      <Label htmlFor="r1">{t("arbitration.calculator.oneArbitrator")}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="3" id="r3" />
-                      <Label htmlFor="r3">3 Arbitrators</Label>
+                      <Label htmlFor="r3">{t("arbitration.calculator.threeArbitrators")}s</Label>
                     </div>
                   </RadioGroup>
                 </FormControl>
@@ -149,21 +151,21 @@ export default function CostCalculator() {
       {calculationResult && (
         <Card className="border-eac-primary">
           <CardContent className="pt-6">
-            <h3 className="text-lg font-medium mb-4">Estimated arbitration costs:</h3>
+            <h3 className="text-lg font-medium mb-4">{t("arbitration.calculator.costs")}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <p className="text-sm text-gray-500">Arbitration fee:</p>
-                <p className="font-medium">€{calculationResult.baseAmount.toFixed(2)} (excl. VAT)</p>
-                <p className="text-sm text-gray-500 mt-3">VAT (21%):</p>
+                <p className="text-sm text-gray-500">{t("arbitration.calculator.fee")}</p>
+                <p className="font-medium">€{calculationResult.baseAmount.toFixed(2)} {t("arbitration.calculator.exclVAT")}</p>
+                <p className="text-sm text-gray-500 mt-3">{t("arbitration.calculator.vat")}</p>
                 <p className="font-medium">€{calculationResult.vatAmount.toFixed(2)}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">Total amount:</p>
-                <p className="font-medium text-lg text-eac-primary">€{calculationResult.totalAmount.toFixed(2)} (incl. VAT)</p>
+                <p className="text-sm text-gray-500">{t("arbitration.calculator.total")}</p>
+                <p className="font-medium text-lg text-eac-primary">€{calculationResult.totalAmount.toFixed(2)} {t("arbitration.calculator.inclVAT")}</p>
               </div>
             </div>
             <p className="mt-4 text-sm text-gray-500">
-              * This is an estimate. The final fee may vary based on specific case details.
+              {t("arbitration.calculator.estimate")}
             </p>
           </CardContent>
         </Card>

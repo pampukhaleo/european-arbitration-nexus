@@ -406,7 +406,6 @@ const en = {
         }
       ],
       fee: "The annual membership fee is 301.29 EUR (VAT included).",
-      verification: "All applicants must undergo a verification process before being accepted as members.",
       formPrompt: "To request membership, please complete the form here:",
       formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
       followUp: "The EAC Secretariat will reach out to you with further instructions."

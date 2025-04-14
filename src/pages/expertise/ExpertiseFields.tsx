@@ -25,9 +25,6 @@ const ExpertiseFields = () => {
           <h2 className="text-2xl font-bold mb-6 text-eac-dark">
             {t("expertise.fields.subtitle")}
           </h2>
-          <p className="mb-4 text-lg text-gray-600">
-            {t("expertise.fields.description2")}
-          </p>
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
             {providedFor.map((item, idx) => (
               <li className="ml-5 mt-2" key={idx}>{item}</li>

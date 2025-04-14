@@ -24,8 +24,6 @@ const HowToJoin = () => {
           </ul>
 
           <p className="mb-4 text-lg text-gray-600">{t("membership.join.fee")}</p>
-          <p className="mb-4 text-lg text-gray-600">{t("membership.join.verification")}</p>
-
           <p className="mb-4 text-lg text-gray-600">
             {t("membership.join.formPrompt")}
             <p>

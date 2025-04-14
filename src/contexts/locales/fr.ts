@@ -239,27 +239,35 @@ const fr = {
   },
   expertise: {
     icje: {
-      title: "CIJE : EXPERTISE JUDICIAIRE",
-      description1: "Dans un environnement commercial de plus en plus complexe, des litiges peuvent surgir de manière inattendue, mettant à l’épreuve les partenariats et les accords. Au Centre International d’Expertise Judiciaire et de Règlement Alternatif des Litiges (CIJE), nous croyons que l’expertise est la clé pour résoudre les litiges efficacement et maintenir des collaborations fructueuses. Notre équipe d’experts couvre un large éventail de domaines pour offrir des solutions techniques et juridiques adaptées.",
-      description2: "Le CIJE fonctionne en tant que département distinct de la Chambre Européenne d’Arbitrage conformément au Statut et aux dispositions de la CEA."
+      title: "Expertise au ICJE",
+      description1: "Au sein de la Chambre Européenne d'Arbitrage, le Centre International d'Expertise Judiciaire et ADR (ICJE) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage.",
+      description2: {
+        text: "Le ICJE réalise des expertises judiciaires:",
+        examinations: [
+          "par ordonnance  des tribunaux d'arbitrage internationaux (sans limitations de juridiction);",
+          "par ordonnance des juridictions étatiques dans le cadre de la procédure judiciaire;",
+          "à la demande d'avocats, de personnes morales et de particuliers."
+        ],
+        footer: "Notre équipe d'experts accrédités, travaillant selon des normes internationales, garantit la précision, la fiabilité et la conformité aux exigences légales. Nous sommes prêts à fournir des expertises judiciaires de qualité pour résoudre vos besoins."
+      }
     },
     fields: {
-      title: "CIJE – Principaux Domaines d'Expertise",
-      description1: "Le Centre International d’Expertise Judiciaire et de Règlement Alternatif des Litiges (CIJE) fournit une large gamme de services d’expertise dans divers secteurs, notamment :",
+      title: "ICJE – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE",
+      description1: "Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) offre une large gamme de services d'expertise et d'examen dans divers secteurs, notamment:",
       areas: [
-        "Inspection en ingénierie",
-        "Inspection de la construction",
-        "Arpentage foncier",
-        "Inspection en ingénierie électrique",
-        "Inspection du transport et de la circulation",
-        "Audit financier et comptabilité judiciaire",
-        "Évaluation environnementale",
-        "Inspection des marchandises et contrôle qualité",
-        "Évaluation de la propriété intellectuelle",
-        "Expertise et authentification d'œuvres d'art",
-        "Analyse linguistique et linguistique judiciaire",
-        "Analyse graphologique et vérification de signature",
-        "Examen de documents et analyse de documents judiciaires"
+        "Inspection en ingénierie;",
+        "Inspection de la construction;",
+        "Géomatique;",
+        "Inspection en génie électrique;",
+        "Inspection en génie des transports et du trafic;",
+        "Audit financier et comptabilité judiciaire;",
+        "Évaluation environnementale;",
+        "Inspection des marchandises et contrôle qualité;",
+        "Évaluation de la propriété intellectuelle;",
+        "Expertise et authentification d'œuvres d'art;",
+        "Analyse linguistique et linguistique judiciaire;",
+        "Analyse de l'écriture manuscrite et vérification des signatures;",
+        "Examen de documents et analyse judiciaire de documents."
       ],
       subtitle: "Expertises réalisées par le CIJE",
       description2: "Le CIJE réalise des expertises :",
@@ -274,26 +282,26 @@ const fr = {
   },
   artExpertise: {
     authentication: {
-      title: "Authentification d'œuvres d'art",
-      p1: "Garantir l'authenticité d'une œuvre d'art est essentiel pour les collectionneurs, les investisseurs, les musées et les galeries. Le Centre International d'Expertise Judiciaire et ADR (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification pour vérifier l'originalité, l'auteur et la provenance des œuvres.",
-      p2: "L'authentification est une analyse détaillée menée par des experts pour déterminer si une œuvre est authentique.",
-      processTitle: "Ce processus comprend :",
+      title: "Authentification d'Art",
+      p1: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres.",
+      p2: "L'authentification d'art est un examen détaillé réalisé par des experts afin de déterminer si une œuvre est authentique.",
+      processTitle: "Ce processus inclut:",
       processList: [
-        "Analyse d’attribution – Confirmation de l’identité de l’artiste et évaluation des caractéristiques stylistiques et techniques.",
-        "Examen des matériaux – Analyse des pigments, toiles, papiers, etc. pour vérifier leur cohérence avec la période revendiquée.",
-        "Recherche de provenance – Étude de l’historique de propriété de l’œuvre et de son origine.",
-        "Analyse comparative – Comparaison avec d'autres œuvres documentées de l’artiste ou de la même époque."
+        "Analyse d'Attribution – Confirmation de l'identité de l'artiste et évaluation des caractéristiques stylistiques et techniques.",
+        "Examen des Matériaux – Analyse des pigments, toiles, papiers et autres matériaux pour vérifier la cohérence avec la période revendiquée.",
+        "Recherche de Provenance – Enquête sur l'historique de propriété de l'œuvre et traçage de ses origines.",
+        "Analyse Comparative – Croisement de l'œuvre avec des pièces documentées de l'artiste ou de la période concernée."
       ],
-      importanceTitle: "Pourquoi l’authentification est-elle importante ?",
+      importanceTitle: "Pourquoi l'Authentification d'Art est-elle Importante?",
       importanceList: [
-        "Protège contre les contrefaçons et erreurs d’attribution.",
-        "Augmente la valeur et la commercialisation de l’œuvre.",
-        "Offre une sécurité juridique et financière pour les transactions, assurances et successions.",
-        "Assure la conformité aux réglementations internationales pour les expositions et ventes."
+        "Protège contre les contrefaçons et les erreurs d'attribution.",
+        "Augmente la valeur et la commercialisation d'une œuvre.",
+        "Fournit une sécurité juridique et financière pour les transactions, les assurances et les questions successorales.",
+        "Assure la conformité avec les réglementations internationales pour les expositions et les ventes."
       ],
-      certificateTitle: "Certificat d’Authenticité",
-      certificateText: "Après vérification, l’ICJE délivre un certificat d’authenticité officiel pouvant être utilisé pour les ventes, expositions, assurances et usages juridiques.",
-      closingText: "Pour plus d'informations ou pour demander une authentification, contactez-nous dès aujourd’hui."
+      certificateTitle: "Certification d'Authenticité",
+      certificateText: "Après vérification réussie, l'ICJE délivre un Certificat d'Authenticité, qui sert de document officiel attestant de la légitimité de l'œuvre. Ce certificat peut être utilisé pour les ventes, les expositions, les assurances et les démarches juridiques.",
+      closingText: "Pour plus d'informations ou pour demander un service d'authentification d'art, contactez-nous dès aujourd'hui."
     },
     appraisal: {
       title: "ÉVALUATION D’ŒUVRES D’ART",
@@ -356,91 +364,86 @@ const fr = {
   },
   membership: {
     benefits: {
-      title: "5 Raisons de Devenir Membre de la CEA",
+      title: "5 RAISONS DE DEVENIR MEMBRE DE LA CEA:",
       reasons: [
         {
-          title: "Évolution de Carrière & Réseautage",
-          description: "Développez votre réseau professionnel, améliorez votre réputation dans les communautés d'arbitrage international et ouvrez de nouvelles opportunités de carrière."
+          title: "Accréditation d'arbitre.",
+          description: "Possibilité de suivre une formation qualifiante pour les arbitres et, à l'issue de l'examen, d'obtenir l'accréditation d'arbitre TAIC."
         },
         {
-          title: "Formations & Événements Exclusifs",
-          description: "Accédez à des services essentiels et participez à des séminaires, formations, masterclass, tables rondes et congrès organisés par la CEA et ses partenaires — souvent à tarif réduit."
+          title: "Opportunités de carrière.",
+          description: "Réseautage, organisation de stages professionnels pour les membres de la CEA et élargissement de la base de clients grâce à la coopération entre les membres de la CEA."
         },
         {
-          title: "Informations & Ressources Précieuses",
-          description: "Restez informé des dernières décisions, évolutions procédurales et tendances du secteur ayant un impact sur votre pratique en arbitrage."
+          title: "Améliorer les qualifications professionnelles.",
+          description: "Les membres de la CEA peuvent participer à des séminaires, formations, ateliers, tables rondes et congrès organisés par la CEA et ses partenaires, à des conditions préférentielles."
         },
         {
-          title: "Visibilité & Promotion",
-          description: "Les membres de la CEA peuvent publier des actualités professionnelles et présenter leur profil sur le site web de la CEA, augmentant leur visibilité dans la communauté de l’arbitrage."
+          title: "Échange d'informations professionnelles dans le domaine du droit international et de l'arbitrage.",
+          description: "Revue électronique de la CEA, envoi de nouvelles analytiques, accès à la littérature professionnelle de la CEA et à la jurisprudence du CCI sous la CEA."
         },
         {
-          title: "Accréditation comme Arbitre",
-          description: "Ayez l’opportunité de suivre une formation qualifiante et d’obtenir une accréditation en tant qu’arbitre international de la CIAC après avoir réussi l’examen."
+          title: "Opportunités publicitaires.",
+          description: "Les membres de la CEA peuvent publier leurs informations professionnelles sur le site web de la CEA ainsi que dans les publications périodiques de la CEA."
         }
       ]
     },
     join: {
-      title: "Adhésion à la Chambre Européenne d'Arbitrage",
-      description: "Si vous souhaitez devenir membre associé de la Chambre Européenne d'Arbitrage, suivez ces étapes :",
+      title: "Adhésion à la Chambre Européenne d’Arbitrage",
+      description: "Si vous souhaitez devenir membre associé de la Chambre Européenne d’Arbitrage, suivez ces étapes:",
       steps: [
         {
-          title: "Soumettre une demande",
+          title: "Soumettez votre candidature",
           description: "en remplissant le formulaire de demande d'adhésion en ligne."
         },
         {
-          title: "Processus de vérification",
-          description: "Le Secrétariat de la CEA examinera votre demande et évaluera votre admissibilité."
+          title: "Procédure de vérification",
+          description: "le Secrétariat de la CAE examinera votre candidature et évaluera votre éligibilité."
         },
         {
-          title: "Compléter votre adhésion",
-          description: "en payant la cotisation annuelle après vérification réussie."
+          title: "Finalisez votre adhésio",
+          description: "en payant la cotisation annuelle après vérification."
         }
       ],
-      fee: "La cotisation annuelle est de 301,29 EUR (TVA incluse).",
-      verification: "Tous les candidats doivent passer par un processus de vérification avant d’être acceptés comme membres.",
-      formPrompt: "Pour demander l’adhésion, veuillez remplir le formulaire ici :",
+      fee: "La cotisation annuelle s'élève à 301,29 EUR (TVA incluse).",
+      formPrompt: "Pour demander l'adhésion, veuillez remplir le formulaire ici:",
       formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
-      followUp: "Le Secrétariat de la CEA vous contactera avec des instructions supplémentaires."
+      followUp: "Le Secrétariat de la CEA vous contactera pour vous fournir des instructions supplémentaires."
     },
     code: {
-      title: "Code de Conduite",
-      intro: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de Conduite afin de garantir que ses membres respectent les normes éthiques et professionnelles les plus élevées. Tous les membres sont tenus d’adhérer strictement à ces principes.",
+      title: "Code de déontologie de la CEA",
+      intro: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de déontologie pour garantir que ses membres respectent les plus hauts standards éthiques et professionnels. Tous les membres sont tenus de respecter strictement ces principes.",
       obligations: {
         title: "Obligations",
-        description: "Chaque membre de la CEA s’engage à :",
+        description: "Chaque membre de la CEA s'engage à:",
         list: [
-          "Respecter les normes juridiques – Promouvoir le respect du droit international ainsi que de la législation nationale applicable à l’arbitrage et à la résolution des litiges.",
-          "Promouvoir la résolution alternative des litiges (ADR) – Soutenir le développement et l’intégration de l’ADR et de l’arbitrage international dans les pratiques commerciales mondiales.",
-          "Favoriser la collaboration institutionnelle – Développer des relations constructives avec les autorités et les organisations internationales pour promouvoir la justice, l’état de droit et un climat d’affaires favorable.",
-          "S’impliquer dans la communauté de la CEA – Collaborer avec les autres membres et représentants pour développer l’ADR au niveau national et international.",
-          "Participer activement – Participer aux événements officiels, conférences et activités organisés par ou en partenariat avec la CEA.",
-          "Faire connaître l’ADR – Contribuer à la diffusion des connaissances professionnelles sur les systèmes ADR dans le monde entier.",
+          "Respecter les normes juridiques – Promouvoir l’observation du droit international et des législations nationales pertinentes à l’arbitrage et aux modes alternatifs de règlement des conflits (MARC).",
+          "Promouvoir les modes alternatifs de règlement des conflits (MARC) – Soutenir le développement et l’intégration des MARC et de l’arbitrage international dans les pratiques commerciales mondiales.",
+          "Favoriser la collaboration institutionnelle – Développer des relations constructives avec les autorités et les organisations internationales pour soutenir la justice, l’état de droit et un climat favorable aux affaires mondiales.",
+          "Participer activement à la communauté de la CEA – Collaborer avec les membres de la CEA pour faire progresser les MARC au niveau national et international.",
+          "Participer activement – Prendre part aux événements officiels, conférences et activités organisées par la CEA.",
+          "Promouvoir la sensibilisation aux MARC – Contribuer à la diffusion des connaissances professionnelles sur les systèmes MARC à l’échelle mondiale.",
           "Respecter les règlements de la CEA – Se conformer strictement aux principes et exigences énoncés dans les statuts de la CEA."
         ]
       },
       responsibilities: {
         title: "Responsabilités",
-        description: "Chaque membre est personnellement responsable de :",
+        description: "Chaque membre est personnellement responsable de:",
         list: [
-          "Intégrité et conduite éthique – Agir avec honnêteté, équité et respect des droits humains, conformément à la Déclaration universelle des droits de l’homme. Éviter toute forme de discrimination basée sur la race, le genre, la religion ou les convictions politiques.",
-          "Engagement envers la société – Prendre en compte les intérêts de la société en agissant loyalement et honnêtement selon les politiques de la CEA.",
-          "Respect professionnel – S’abstenir de nuire à la réputation professionnelle d’autrui.",
-          "Respect des droits de propriété – Respecter les droits de propriété intellectuelle et autres protections juridiques liées à la propriété.",
-          "Confidentialité – Maintenir la confidentialité de toute information privilégiée obtenue dans l’exercice de ses fonctions.",
-          "Compétence et objectivité – Accepter uniquement les missions pour lesquelles on est qualifié et émettre des opinions professionnelles avec objectivité."
+          "Intégrité et conduite éthique – Agir avec honnêteté, équité et respect des droits humains, en alignement avec la Déclaration universelle des droits de l'homme. Éviter toute forme de discrimination.",
+          "Engagement envers la société – Agir loyalement et honnêtement selon les politiques de la CEA.",
+          "Respect professionnel – S'abstenir de nuire à la réputation professionnelle d'autrui.",
+          "Respect des droits de propriété – Respecter les droits de propriété intellectuelle et autres protections légales liées à la propriété.",
+          "Confidentialité – Maintenir la stricte confidentialité concernant toute information privilégiée obtenue dans le cadre de l’exercice professionnel.",
+          "Compétence et objectivité – N’accepter que des missions pour lesquelles ils sont qualifiés et fournir des avis professionnels avec le plus haut degré d'objectivité."
         ]
       },
       sanctions: {
-        title: "Sanctions en cas de non-conformité",
-        description: "Le non-respect de ce Code de Conduite, s’il est établi par la Chambre Européenne d’Arbitrage, peut entraîner la révocation immédiate de l’adhésion."
+        title: "Sanctions pour non-conformité",
+        description: "Le non-respect de ce Code de déontologie, s'il est confirmé par la CEA, peut entraîner la révocation immédiate de l’adhésion."
       }
     }
-
   }
-
-
-
 };
 
 export default fr;

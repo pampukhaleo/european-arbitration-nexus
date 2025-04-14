@@ -31,7 +31,7 @@ const fr = {
     membership: 'Adhésion',
     join: 'Comment adhérer',
     benefits: 'Avantages de l’adhésion',
-    conductCode: 'Code de déontologie',
+    conductCode: 'Code de conduite',
     contacts: 'Contacts',
     sections: 'Menu',
     home: 'Page d’accueil',
@@ -412,8 +412,8 @@ const fr = {
       followUp: "Le Secrétariat de la CEA vous contactera pour vous fournir des instructions supplémentaires."
     },
     code: {
-      title: "Code de déontologie de la CEA",
-      intro: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de déontologie pour garantir que ses membres respectent les plus hauts standards éthiques et professionnels. Tous les membres sont tenus de respecter strictement ces principes.",
+      title: "Code de conduite de la CEA",
+      intro: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de conduite pour garantir que ses membres respectent les plus hauts standards éthiques et professionnels. Tous les membres sont tenus de respecter strictement ces principes.",
       obligations: {
         title: "Obligations",
         description: "Chaque membre de la CEA s'engage à:",

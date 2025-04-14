@@ -9,7 +9,7 @@ const CostCalculatorPage = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.calculator.title")}</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">{t("arbitration.calculator.title")}</h1>
 
         <div className="prose max-w-none">
           <p className="text-lg text-gray-600 mb-4">{t("arbitration.calculator.description")}</p>

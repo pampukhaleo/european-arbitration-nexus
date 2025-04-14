@@ -5,7 +5,7 @@ const TermsOfService = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">Terms of Service</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Terms of Service</h1>
         <div className="prose max-w-none">
           <h3 className="mb-4 text-lg">Terms of Service ("Terms")</h3>
           <p className="mb-4 text-lg text-gray-600">

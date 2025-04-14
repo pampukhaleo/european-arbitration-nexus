@@ -9,7 +9,7 @@ const Rules = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.rules.title")}</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">{t("arbitration.rules.title")}</h1>
 
         <div className="prose max-w-none">
           <p className="mb-6 text-lg text-gray-600">{t("arbitration.rules.description")}</p>

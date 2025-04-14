@@ -7,7 +7,7 @@ const ICAC = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">{t("arbitration.icac.title")}</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">{t("arbitration.icac.title")}</h1>
         <div className="prose max-w-none">
           <p className="mb-6 text-lg text-gray-600">{t("arbitration.icac.intro")}</p>
           <p className="mb-6 text-lg text-gray-600">{t("arbitration.icac.secretariat")}</p>

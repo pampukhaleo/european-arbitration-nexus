@@ -5,7 +5,7 @@ const CookiesPolicy = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">Cookies Policy</h1>
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Cookies Policy</h1>
         <div className="prose max-w-none">
           <p className="mb-4 text-lg text-gray-600">Last update: 29/08/2019</p>
           <h3 className="mb-4 text-lg">Introduction</h3>

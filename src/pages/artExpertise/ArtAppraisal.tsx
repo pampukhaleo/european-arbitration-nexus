@@ -10,7 +10,7 @@ const ArtAppraisal = () => {
   return (
     <Layout>
       <div className="py-6">
-        <h1 className="text-3xl font-bold mb-6 text-eac-dark">
+        <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">
           {t("artExpertise.appraisal.title")}
         </h1>
 

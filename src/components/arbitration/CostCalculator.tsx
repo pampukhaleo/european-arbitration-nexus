@@ -138,7 +138,7 @@ export default function CostCalculator() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="3" id="r3" />
-                      <Label htmlFor="r3">{t("arbitration.calculator.threeArbitrators")}s</Label>
+                      <Label htmlFor="r3">{t("arbitration.calculator.threeArbitrators")}</Label>
                     </div>
                   </RadioGroup>
                 </FormControl>

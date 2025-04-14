@@ -25,7 +25,7 @@ const News = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-8 text-eac-dark">
+        <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase">
           {t("home.latestNews")}
         </h1>
 

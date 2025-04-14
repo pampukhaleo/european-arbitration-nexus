@@ -7,7 +7,7 @@ const ArbitrationClause = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold mb-8 text-eac-dark">{t("arbitration.clause.title")}</h1>
+        <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase">{t("arbitration.clause.title")}</h1>
 
         <div className="prose max-w-none">
           {/* Future disputes */}

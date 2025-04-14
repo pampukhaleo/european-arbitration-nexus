@@ -240,11 +240,11 @@ const en = {
   expertise: {
     icje: {
       title: "ICJE: EXPERT EXAMINATION",
-      description1: "In an increasingly complex business landscape, disputes and conflicts can arise unexpectedly, posing challenges to partnerships and agreements. At the International Centre for Judicial and ADR Expertise (ICJE), we believe that expertise is the key to resolving disputes effectively and maintaining fruitful collaborations. Our dedicated team of experts specializes in a wide range of fields, offering a comprehensive solution to address disputes, whether they are of a technical or legal nature.",
+      description1: "The International Centre of Judicial and ADR Expertise (ICJE) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber.",
       description2: {
-        text: "The ICJE operates as a separate department of the European Arbitration Chamber and conducts expert examinations:",
+        text: "The ICJE conducts expert examinations:",
         examinations: [
-          "Upon the request of international arbitration courts (without jurisdictional limitations).",
+          "upon the request of international arbitration courts (without jurisdictional limitations).",
           "Upon the request of state courts for legal proceedings.",
           "Upon the request of lawyers, legal entities, and individuals seeking professional assessments."
         ],
@@ -255,19 +255,19 @@ const en = {
       title: "ICJE – Main Areas of Expert Research",
       description1: "The International Center of Judicial and ADR Expertise (ICJE) provides a wide range of expert research and examination services across various industries, including:",
       areas: [
-        "Engineering Inspection",
-        "Construction Inspection",
-        "Land Surveying",
-        "Electrical Engineering Inspection",
-        "Transportation and Traffic Engineering Inspection",
-        "Financial Audit & Forensic Accounting",
-        "Environmental Assessment",
-        "Commodity Inspection & Quality Control",
-        "Intellectual Property Valuation",
-        "Art Appraisal & Authentication",
-        "Linguistic Analysis & Forensic Linguistics",
-        "Handwriting Analysis & Signature Verification",
-        "Document Examination & Forensic Document Analysis"
+        "Construction and Technical Expertise",
+        "Land and Cadastral Expertise",
+        "Electrical Engineering Expertise",
+        "Transport Analysis",
+        "Economic and Financial Expertise",
+        "Environmental Expertise",
+        "Commodity and Product Valuation Expertise",
+        "Intellectual Property Expertise",
+        "Art Expertise",
+        "Linguistic Expertise",
+        "Handwriting (Graphological) Expertise",
+        "Document Technical Examination",
+        "Psychological Expertise"
       ],
       subtitle: "Expert Examinations Conducted by ICJE",
       description2: "ICJE provides expert examinations:",
@@ -359,7 +359,8 @@ const en = {
         "Simplify the insurance process and minimize insurance risks",
         "Facilitate the purchase and sale of the artwork without requiring additional authentication"
       ],
-      finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICJE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request."
+      finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICJE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request.",
+      consultation: "For more detailed information on the authorization of works of art, please contact the Secretariat of the EAС."
     }
   },
   membership: {

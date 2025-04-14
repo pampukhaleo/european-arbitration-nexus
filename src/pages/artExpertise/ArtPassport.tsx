@@ -16,51 +16,53 @@ const ArtPassport = () => {
         </h1>
         <div className="prose max-w-none">
           <p className="mb-4 text-lg text-gray-600">
-            {t("artExpertise.passport.intro")}
+            { t("artExpertise.passport.intro") }
           </p>
 
           <h3 className="mb-4 text-lg">
-            {t("artExpertise.passport.eligibleObjectsTitle")}
+            { t("artExpertise.passport.eligibleObjectsTitle") }
           </h3>
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-            {eligibleObjects.map((item, idx) => (
-              <li className="ml-5 mt-2" key={idx}>{item}</li>
-            ))}
+            { eligibleObjects.map((item, idx) => (
+              <li className="ml-5 mt-2" key={ idx }>{ item }</li>
+            )) }
           </ul>
 
           <h3 className="mb-4 text-lg">
-            {t("artExpertise.passport.certificationTitle")}
+            { t("artExpertise.passport.certificationTitle") }
           </h3>
           <p className="mb-4 text-lg text-gray-600">
-            {t("artExpertise.passport.certificationDesc")}
+            { t("artExpertise.passport.certificationDesc") }
           </p>
 
           <h3 className="mb-4 text-lg">
-            {t("artExpertise.passport.passportContentTitle")}
+            { t("artExpertise.passport.passportContentTitle") }
           </h3>
           <p className="mb-4 text-lg text-gray-600">
-            {t("artExpertise.passport.passportContentIntro")}
+            { t("artExpertise.passport.passportContentIntro") }
           </p>
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-            {passportFields.map((item, idx) => (
-              <li className="ml-5 mt-2" key={idx}>{item}</li>
-            ))}
+            { passportFields.map((item, idx) => (
+              <li className="ml-5 mt-2" key={ idx }>{ item }</li>
+            )) }
           </ul>
 
           <h3 className="mb-4 text-lg">
-            {t("artExpertise.passport.whyImportantTitle")}
+            { t("artExpertise.passport.whyImportantTitle") }
           </h3>
           <p className="mb-4 text-lg text-gray-600">
-            {t("artExpertise.passport.whyImportantIntro")}
+            { t("artExpertise.passport.whyImportantIntro") }
           </p>
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-            {passportAdvantages.map((item, idx) => (
-              <li className="ml-5 mt-2" key={idx}>{item}</li>
-            ))}
+            { passportAdvantages.map((item, idx) => (
+              <li className="ml-5 mt-2" key={ idx }>{ item }</li>
+            )) }
           </ul>
-
           <p className="mb-4 text-lg text-gray-600">
-            {t("artExpertise.passport.finalNote")}
+            { t("artExpertise.passport.finalNote") }
+          </p>
+          <p className="mb-4 text-lg text-gray-600 font-bold">
+            { t("artExpertise.passport.consultation") }
           </p>
         </div>
       </div>

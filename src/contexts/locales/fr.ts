@@ -255,19 +255,19 @@ const fr = {
       title: "ICJE – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE",
       description1: "Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) offre une large gamme de services d'expertise et d'examen dans divers secteurs, notamment:",
       areas: [
-        "Inspection en ingénierie;",
-        "Inspection de la construction;",
-        "Géomatique;",
-        "Inspection en génie électrique;",
-        "Inspection en génie des transports et du trafic;",
-        "Audit financier et comptabilité judiciaire;",
-        "Évaluation environnementale;",
-        "Inspection des marchandises et contrôle qualité;",
-        "Évaluation de la propriété intellectuelle;",
-        "Expertise et authentification d'œuvres d'art;",
-        "Analyse linguistique et linguistique judiciaire;",
-        "Analyse de l'écriture manuscrite et vérification des signatures;",
-        "Examen de documents et analyse judiciaire de documents."
+        "Expertise technique en construction;",
+        "Expertise foncière et cadastrale;",
+        "Expertise en ingénierie électrique;",
+        "Expertise en transport et analyse de traces (tracologie);",
+        "Expertise économique et financière;",
+        "Expertise environnementale;",
+        "Expertise en évaluation des marchandises et des produits;",
+        "Expertise en propriété intellectuelle;",
+        "Expertise en œuvres d'art et biens culturels;",
+        "Expertise linguistique (linguistique judiciaire);",
+        "Expertise en écriture manuscrite (graphologie);",
+        "Expertise technique des documents;",
+        "Expertise psychologique."
       ],
       subtitle: "Expertises réalisées par le CIJE",
       description2: "Le CIJE réalise des expertises :",
@@ -359,7 +359,8 @@ const fr = {
         "Simplifier les démarches d’assurance et réduire les risques",
         "Faciliter l’achat et la vente de l’œuvre sans nécessiter de nouvelle authentification"
       ],
-      finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de l’ICJE. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire."
+      finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de l’ICJE. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire.",
+      consultation: "Pour des informations plus détaillées sur l'autorisation des œuvres d'art, veuillez contacter le Secrétariat de la CEA."
     }
   },
   membership: {

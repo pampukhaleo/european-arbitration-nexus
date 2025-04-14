@@ -1,4 +1,3 @@
-
 import { useRef, useMemo } from "react";
 import {
   Card,
@@ -50,14 +49,12 @@ const NewsItem = ({
   const NewsContent = () => (
     <>
       {mainImage ? (
-        <div className="overflow-hidden rounded-t-lg">
-          <div className="w-full h-[200px] bg-gray-50">
-            <img 
-              src={mainImage} 
-              alt={title} 
-              className="w-full h-full object-contain"
-            />
-          </div>
+        <div className="w-full">
+          <img 
+            src={mainImage} 
+            alt={title} 
+            className="w-full"
+          />
         </div>
       ) : (
         <div className="h-4"></div> // Small spacer when no image
@@ -88,10 +85,10 @@ const NewsItem = ({
 
   const PopupContent = () => (
     <DialogContent
-      className="max-w-4xl max-h-[90vh] overflow-y-auto"
+      className="max-w-4xl max-h-[90vh] overflow-y-auto p-0"
       aria-describedby="news-item-content"
     >
-      <DialogHeader>
+      <DialogHeader className="p-6 pb-2">
         <DialogTitle className="text-2xl">{title}</DialogTitle>
         <div className="mt-2">
           <RenderDate />
@@ -99,20 +96,20 @@ const NewsItem = ({
       </DialogHeader>
 
       {images && images.length > 0 && (
-        <div className="mt-4 grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1">
           {images.map((image, index) => (
-            <div key={index} className="relative rounded-lg overflow-hidden w-full bg-gray-50 flex justify-center">
+            <div key={index} className="w-full">
               <img 
                 src={image} 
                 alt={`${title} - image ${index + 1}`} 
-                className="max-w-full max-h-[500px] object-contain"
+                className="w-full"
               />
             </div>
           ))}
         </div>
       )}
 
-      <div id="news-item-content" className="mt-4 space-y-4">
+      <div id="news-item-content" className="p-6 pt-4 space-y-4">
         {paragraphs.map((paragraph, index) => (
           <p key={index} className="text-gray-700">
             {paragraph}

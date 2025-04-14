@@ -50,23 +50,23 @@ const NewsItem = ({
     <>
       {mainImage ? (
         <div className="w-full">
-          <img 
-            src={mainImage} 
-            alt={title} 
-            className="w-full"
+          <img
+            src={ mainImage }
+            alt={ title }
+            className="w-full h-[180px] object-cover object-top"
           />
         </div>
       ) : (
         <div className="h-4"></div> // Small spacer when no image
       )}
-      
+
       <CardHeader className={`${!mainImage ? 'pt-6' : 'pt-4'} pb-2`}>
         <RenderDate />
         <CardTitle className="text-xl mt-2">{title}</CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col flex-1">
-        <CardDescription className="text-gray-600 mb-4 line-clamp-3">
+        <CardDescription className="text-gray-600 mb-4">
           {paragraphs[0]}
         </CardDescription>
 

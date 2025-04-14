@@ -15,125 +15,57 @@ export interface NewsItem {
 export const newsItems: NewsItem[] = [
   {
     id: "11",
-    title: "EAC Welcomes New Member to the Council",
-    date: "Apr 5 2025",
-    excerpt: "The European Arbitration Chamber is pleased to announce the appointment of a new member to its Council of arbitrators.",
-    description: "The European Arbitration Chamber is pleased to announce the appointment of a new member to its Council of arbitrators.\n\nThe new member brings decades of experience in international commercial law and dispute resolution, further strengthening the EAC's expertise in handling complex arbitration cases.\n\nThis appointment reflects our ongoing commitment to maintaining a diverse and highly qualified panel of arbitrators to serve the needs of the international business community.",
-    // No mainImage or images provided for this news item
+    title: "Alexandre Maciel joined the ICAC Panel",
+    date: "Aug 02 2024",
+    excerpt: "We are pleased to announce that Alexandre Maciel has joined the Arbitral Panel of the ICAC under the European Arbitration Chamber.",
+    description: "We are pleased to announce that Alexandre Maciel has joined the Arbitral Panel of the ICAC under the European Arbitration Chamber.\n" +
+      "\n" +
+      "Mr. Maciel, a Portuguese national, is an arbitrator and lawyer with extensive experience in both domestic and international arbitration. He specializes in a diverse range of fields, including the sale of goods, construction, civil engineering, industrial facilities, environment, energy, mining, insurance, securities, intellectual property, labor, and real estate.\n" +
+      "\n" +
+      "He is a Fellow (FCIArb) of the Chartered Institute of Arbitrators (CIARB) and serves as an arbitrator for numerous prestigious institutions such as CAAD, CAL, CAPI (ESAI), CNA (AICCOPN), CNIACC, ARBITRARE, TRIAVE, CIMPAS, CONCÓRDIA, CACM (Mozambique), WTC Macau (Arbitration Centre), CIAB, CICAP, HKIAC (Hong Kong International Arbitration Center), HIAC (Hainan International Arbitration Court), AIAC (Asian International Arbitration Centre), CI-MAC (Cayman International Mediation and Arbitration Centre), SIAC (Singapore International Arbitration Centre), MIAC (Maldives International Arbitration Centre), ACICA (Australian Centre for International Commercial Arbitration), Abu Dhabi International Arbitration Centre (arbitrateAD), AIFC (Court and International Arbitration Centre), BVI IAC (British Virgin Islands International Arbitration Centre), and the lists of arbitrators from TCASul, TRGuimarães, TRCoimbra, TRPorto, and TRLisboa.\n" +
+      "\n" +
+      "Mr. Maciel is also a member of several esteemed organizations, including the Portuguese Arbitration Association (APA), Spanish Arbitration Club (CEA), Boston International Arbitration Council (BIAC), Lusophone Association of Arbitration and Mediation (ALAM), SCC Arbitration Institute (Sweden), and Vienna International Arbitral Centre (VIAC), among others.\n" +
+      "\n" +
+      "He holds a degree in Law from the University of Minho School of Law and has completed numerous advanced courses and training in arbitration, including the Higher Arbitration Course (VIII Edition) at CIAMEN/CIarb, the Advanced Course in Lusophone International Arbitration at Almedina, and the Diploma in International Arbitration from the University of Basel.\n" +
+      "\n" +
+      "We are confident that Mr. Maciel's vast expertise and dedication will significantly enhance arbitration proceedings and uphold the high standards of the ICAC. We warmly welcome him and look forward to his valuable contributions to the field of arbitration in Belgium. ",
   },
   {
     id: "10",
-    title: "Beware of Fraud and Scams!",
-    date: "Feb 26 2025",
-    excerpt: "The Secretariat of the European Arbitration Chamber (EAC) has been made aware of fraudulent letters and documents falsely stating to be issued by or associated with the EAC or/and International Commercial Arbitration Court under the EAC (ICAC).",
-    description: "The Secretariat of the European Arbitration Chamber (EAC) has been made aware of fraudulent letters and documents falsely stating to be issued by or associated with the EAC or/and International Commercial Arbitration Court under the EAC (ICAC).\n\nThese scams, which may attempt to obtain money and/or personal details from recipients, are fraudulent.\n\nThe Secretariat of the EAC warns the public about these fraudulent activities and urges vigilance against various fraud schemes misusing name of the EAC.\n\nWe strongly advise recipients of such fraudulent communications to exercise extreme caution. Transferring money or personal information to scammers can result in financial loss or identity theft.\n\nIn the event of receiving suspicious letters containing statements about the existence of arbitration proceedings and allegedly coming from the EAC or the ICAC, we recommend that you immediately contact the EAC Secretariat to verify the authenticity of the information by this email: secretary@chea-taic.be\n\nThe European Arbitration Chamber has reported these fraudulent activities to the relevant law enforcement authorities, including the criminal police.",
-    mainImage: "/images/news/fraud-alert.jpg",
+    title: "The EAC celebrates 15th anniversary!",
+    date: "Dec 12 2023",
+    excerpt: "Today, December 12, marks the 15th anniversary of the European Arbitration Chamber (Brussels, Belgium)",
+    description: "Today, December 12, marks the 15th anniversary of the European Arbitration Chamber (Brussels, Belgium)!\n" +
+      "\n" +
+      "The EAС was established in Belgium in 2008 through the collaborative effort of professionals from Belgium, France, and Ukraine. Its primary objective was the advancement and promotion of commercial arbitration, mediation, and expertise as effective alternative mechanisms for resolving commercial disputes.\n" +
+      "\n" +
+      "At present, the European Arbitration Chamber unites arbitrators, mediators, experts, lawyers, attorneys, and business representatives from 33 jurisdictions worldwide.\n" +
+      "\n" +
+      "Operated under the EAС, the International Commercial Arbitration Court and the International Center for Judicial and ADR Expertise actively provide businesses with effective tools to settle commercial disputes.\n" +
+      "\n" +
+      "The EAC's scope of activities extends to educational initiatives. Notably, comprehensive qualification training programs have been designed for lawyers aspiring to become arbitrators, enhancing their professionalism and contributing to the growth of the alternative dispute resolution industry.\n" +
+      "\n" +
+      "These fifteen years have been marked by significant professional achievements and widespread recognition! On behalf of the EAC Board, we extend our sincere gratitude to all our members, colleagues, and partners for the engaging and productive cooperation, which has been and continues to be a pivotal factor in our success! We are confident that new projects, achievements, and ongoing growth await us in the future.",
+    mainImage: "/images/news/15anniversary.png",
     images: [
-      "/images/news/fraud-alert.jpg",
-      "/images/news/fraud-document-example.jpg",
-      "/images/news/scam-warning.jpg"
+      "/images/news/15anniversary.png",
     ]
   },
   {
     id: "9",
-    title: "16th Anniversary of the European Arbitration Chamber!",
-    date: "Dec 12 2024",
-    excerpt: "Today marks 16 incredible years of the European Arbitration Chamber! Since 2008, the EAC has been committed to providing fair, impartial, and efficient dispute resolution, helping businesses across the globe navigate complex legal challenges.",
-    description: "Today marks 16 incredible years of the European Arbitration Chamber!\n\nSince 2008, the EAC has been committed to providing fair, impartial, and efficient dispute resolution, helping businesses across the globe navigate complex legal challenges.\n\nThis milestone reflects the trust of our members and partners, the unwavering dedication of our team, and the invaluable support of the international arbitration community.\n\nOn behalf of the EAC Board, we extend our heartfelt gratitude to every member, colleague, and partner for your collaboration. Together, we've achieved so much - and we look forward to continuing this journey with you.\n\nHere's to many more years of advancing excellence in arbitration!",
-    mainImage: "/images/news/anniversary.jpg",
+    title: "Istanbul Arbitration Week 2023",
+    date: "Sep 20 2023",
+    excerpt: "We're thrilled to announce that the European Arbitration Chamber is Supporting organization for the Istanbul Arbitration Week (ISTAW)!",
+    description: "We're thrilled to announce that the European Arbitration Chamber is Supporting organization for the Istanbul Arbitration Week (ISTAW)!\n" +
+      "\n" +
+      "Istanbul Arbitration Week is an international arbitration event hosted by the Energy Disputes Arbitration Center (EDAC) and consists of a series of events related to international investment, trade, and arbitration. The event aims to bring together arbitrators, lawyers, academics, and arbitration experts from all over the world.\n" +
+      "\n" +
+      "ISTAW 2023’s panels will follow a dynamic format and foster an open discussion forum regarding the future of international arbitration. They will shed light on new arbitration techniques, focus on developments and evolving interpretations and views, and discuss the best practices for international arbitration in the new virtual reality.\n" +
+      "\n" +
+      "Visit the official website of ISTAW for more details: https://istaw.com/",
+    mainImage: "/images/news/Istanbul.jpg",
     images: [
-      "/images/news/anniversary.jpg",
-      "/images/news/anniversary-celebration.jpg",
-      "/images/news/eac-team.jpg"
-    ]
-  },
-  {
-    id: "8",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/images/news/istaw2024.jpg",
-    images: [
-      "/images/news/istaw2024.jpg",
-      "/images/news/istaw-venue.jpg"
-    ]
-  },
-  {
-    id: "7",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "6",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "5",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "4",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "3",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "2",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
-    ]
-  },
-  {
-    id: "1",
-    title: "ISTAW 2024",
-    date: "Aug 02 2024",
-    excerpt: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024. Booking early is recommended to take advantage of the early bird ticket price.",
-    description: "The European Arbitration Chamber is supporter of ISTAW 2024. Registrations are now open for #ISTAW2024.\n\nBooking early is recommended to take advantage of the early bird ticket price.\n\nAs a special offer, members of the European Arbitration Chamber will receive a 10% discount on registration. The event will take place from 30 September to 4 October at Mandarin Oriental Bosphorus and this year's event is coming with surprises that will be announced soon.\n\nFind out more about ISTAW and register by visiting: https://istaw.com/",
-    mainImage: "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-    images: [
-      "/public/lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png"
+      "/images/news/Istanbul.jpg",
     ]
   },
 ];

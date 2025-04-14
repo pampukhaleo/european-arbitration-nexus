@@ -51,15 +51,17 @@ const NewsItem = ({
     <>
       {mainImage ? (
         <div className="overflow-hidden rounded-t-lg">
-          <div className="w-full h-[200px]">
+          <div className="w-full h-[200px] bg-gray-50">
             <img 
               src={mainImage} 
               alt={title} 
-              className="w-full h-full object-contain bg-gray-50"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="h-4"></div> // Small spacer when no image
+      )}
       
       <CardHeader className={`${!mainImage ? 'pt-6' : 'pt-4'} pb-2`}>
         <RenderDate />

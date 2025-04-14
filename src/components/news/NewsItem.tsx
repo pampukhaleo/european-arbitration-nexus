@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/dialog";
 import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface NewsItemProps {
   title: string;
@@ -50,18 +49,19 @@ const NewsItem = ({
 
   const NewsContent = () => (
     <>
-      {mainImage && (
+      {mainImage ? (
         <div className="overflow-hidden rounded-t-lg">
           <div className="w-full h-[200px]">
             <img 
               src={mainImage} 
               alt={title} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-gray-50"
             />
           </div>
         </div>
-      )}
-      <CardHeader className={`pb-2 ${!mainImage ? 'pt-6' : ''}`}>
+      ) : null}
+      
+      <CardHeader className={`${!mainImage ? 'pt-6' : 'pt-4'} pb-2`}>
         <RenderDate />
         <CardTitle className="text-xl mt-2">{title}</CardTitle>
       </CardHeader>
@@ -99,11 +99,11 @@ const NewsItem = ({
       {images && images.length > 0 && (
         <div className="mt-4 grid grid-cols-1 gap-4">
           {images.map((image, index) => (
-            <div key={index} className="relative rounded-lg overflow-hidden w-full">
+            <div key={index} className="relative rounded-lg overflow-hidden w-full bg-gray-50 flex justify-center">
               <img 
                 src={image} 
                 alt={`${title} - image ${index + 1}`} 
-                className="w-full h-auto max-h-[600px] object-contain"
+                className="max-w-full max-h-[500px] object-contain"
               />
             </div>
           ))}
@@ -120,15 +120,19 @@ const NewsItem = ({
     </DialogContent>
   );
 
+  const cardStyles = useCardWrapper 
+    ? "flex flex-col cursor-pointer hover:shadow-md transition-shadow h-full" 
+    : "flex flex-col h-full cursor-pointer rounded-lg border border-gray-200 hover:shadow-md transition-shadow bg-white";
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         {useCardWrapper ? (
-          <Card className={`flex flex-col cursor-pointer hover:shadow-md transition-shadow ${!mainImage ? 'h-full' : ''}`}>
+          <Card className={cardStyles}>
             <NewsContent />
           </Card>
         ) : (
-          <div className={`flex flex-col h-full cursor-pointer rounded-lg border border-gray-200 hover:shadow-md transition-shadow ${!mainImage ? 'bg-white' : ''}`}>
+          <div className={cardStyles}>
             <NewsContent />
           </div>
         )}

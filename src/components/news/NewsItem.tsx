@@ -52,13 +52,13 @@ const NewsItem = ({
     <>
       {mainImage && (
         <div className="overflow-hidden rounded-t-lg">
-          <AspectRatio ratio={16/9}>
+          <div className="w-full h-[200px]">
             <img 
               src={mainImage} 
               alt={title} 
               className="w-full h-full object-cover"
             />
-          </AspectRatio>
+          </div>
         </div>
       )}
       <CardHeader className={`pb-2 ${!mainImage ? 'pt-6' : ''}`}>
@@ -100,13 +100,11 @@ const NewsItem = ({
         <div className="mt-4 grid grid-cols-1 gap-4">
           {images.map((image, index) => (
             <div key={index} className="relative rounded-lg overflow-hidden w-full">
-              <AspectRatio ratio={16/9}>
-                <img 
-                  src={image} 
-                  alt={`${title} - image ${index + 1}`} 
-                  className="w-full h-full object-cover"
-                />
-              </AspectRatio>
+              <img 
+                src={image} 
+                alt={`${title} - image ${index + 1}`} 
+                className="w-full h-auto max-h-[600px] object-contain"
+              />
             </div>
           ))}
         </div>

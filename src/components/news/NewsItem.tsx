@@ -15,8 +15,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { CalendarIcon, Image as ImageIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface NewsItemProps {
   title: string;
@@ -24,9 +25,17 @@ interface NewsItemProps {
   description: string;
   mainImage?: string;
   images?: string[];
+  useCardWrapper?: boolean;
 }
 
-const NewsItem = ({ title, date, description, mainImage, images = [] }: NewsItemProps) => {
+const NewsItem = ({ 
+  title, 
+  date, 
+  description, 
+  mainImage, 
+  images = [],
+  useCardWrapper = false
+}: NewsItemProps) => {
   const { t } = useLanguage();
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -39,75 +48,95 @@ const NewsItem = ({ title, date, description, mainImage, images = [] }: NewsItem
     </div>
   );
 
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Card className="flex flex-col h-full cursor-pointer hover:shadow-md transition-shadow">
-          {mainImage && (
-            <div className="h-48 overflow-hidden">
-              <img 
-                src={mainImage} 
-                alt={title} 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-          <CardHeader className="pb-2">
-            <RenderDate />
-            <CardTitle className="text-xl mt-2">{title}</CardTitle>
-          </CardHeader>
+  const NewsContent = () => (
+    <>
+      {mainImage && (
+        <div className="overflow-hidden rounded-t-lg">
+          <AspectRatio ratio={16/9}>
+            <img 
+              src={mainImage} 
+              alt={title} 
+              className="w-full h-full object-cover"
+            />
+          </AspectRatio>
+        </div>
+      )}
+      <CardHeader className={`pb-2 ${!mainImage ? 'pt-6' : ''}`}>
+        <RenderDate />
+        <CardTitle className="text-xl mt-2">{title}</CardTitle>
+      </CardHeader>
 
-          <CardContent className="flex flex-col flex-1">
-            <CardDescription className="text-gray-600 mb-4 line-clamp-3">
-              {paragraphs[0]}
-            </CardDescription>
+      <CardContent className="flex flex-col flex-1">
+        <CardDescription className="text-gray-600 mb-4 line-clamp-3">
+          {paragraphs[0]}
+        </CardDescription>
 
-            <div className="mt-auto">
-              <Button
-                variant="link"
-                className="p-0 text-eac-primary hover:text-eac-primary/80"
-                ref={triggerRef}
-              >
-                {t("home.readMore")}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </DialogTrigger>
+        <div className="mt-auto">
+          <Button
+            variant="link"
+            className="p-0 text-eac-primary hover:text-eac-primary/80"
+            ref={triggerRef}
+          >
+            {t("home.readMore")}
+          </Button>
+        </div>
+      </CardContent>
+    </>
+  );
 
-      <DialogContent
-        className="max-w-4xl max-h-[80vh] overflow-y-auto"
-        aria-describedby="news-item-content"
-      >
-        <DialogHeader>
-          <DialogTitle className="text-2xl">{title}</DialogTitle>
-          <div className="mt-2">
-            <RenderDate />
-          </div>
-        </DialogHeader>
+  const PopupContent = () => (
+    <DialogContent
+      className="max-w-4xl max-h-[90vh] overflow-y-auto"
+      aria-describedby="news-item-content"
+    >
+      <DialogHeader>
+        <DialogTitle className="text-2xl">{title}</DialogTitle>
+        <div className="mt-2">
+          <RenderDate />
+        </div>
+      </DialogHeader>
 
-        {images.length > 0 && (
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {images.map((image, index) => (
-              <div key={index} className="relative rounded-lg overflow-hidden aspect-[16/9]">
+      {images && images.length > 0 && (
+        <div className="mt-4 grid grid-cols-1 gap-4">
+          {images.map((image, index) => (
+            <div key={index} className="relative rounded-lg overflow-hidden w-full">
+              <AspectRatio ratio={16/9}>
                 <img 
                   src={image} 
                   alt={`${title} - image ${index + 1}`} 
                   className="w-full h-full object-cover"
                 />
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div id="news-item-content" className="mt-4 space-y-4">
-          {paragraphs.map((paragraph, index) => (
-            <p key={index} className="text-gray-700">
-              {paragraph}
-            </p>
+              </AspectRatio>
+            </div>
           ))}
         </div>
-      </DialogContent>
+      )}
+
+      <div id="news-item-content" className="mt-4 space-y-4">
+        {paragraphs.map((paragraph, index) => (
+          <p key={index} className="text-gray-700">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    </DialogContent>
+  );
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {useCardWrapper ? (
+          <Card className={`flex flex-col cursor-pointer hover:shadow-md transition-shadow ${!mainImage ? 'h-full' : ''}`}>
+            <NewsContent />
+          </Card>
+        ) : (
+          <div className={`flex flex-col h-full cursor-pointer rounded-lg border border-gray-200 hover:shadow-md transition-shadow ${!mainImage ? 'bg-white' : ''}`}>
+            <NewsContent />
+          </div>
+        )}
+      </DialogTrigger>
+
+      <PopupContent />
     </Dialog>
   );
 };

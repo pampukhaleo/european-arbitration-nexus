@@ -1,10 +1,9 @@
 
 import { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
-import { CalendarIcon } from "lucide-react";
 import { newsItems } from "@/data/newsData";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -25,7 +24,15 @@ const NewsDetail = () => {
     return null;
   }
   
-  const paragraphs = newsItem.description.split("\n\n");
+  // Convert newlines to <br> tags and parse simple HTML tags
+  const createMarkup = (html: string) => {
+    return { __html: html
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br/>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    };
+  };
   
   return (
     <Layout>
@@ -61,11 +68,10 @@ const NewsDetail = () => {
             )}
             
             <div className="flex-grow prose prose-lg max-w-none">
-              {paragraphs.map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
+              <div 
+                dangerouslySetInnerHTML={createMarkup(newsItem.description)} 
+                className="news-content"
+              />
             </div>
           </div>
           
@@ -92,4 +98,3 @@ const NewsDetail = () => {
 };
 
 export default NewsDetail;
-

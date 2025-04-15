@@ -15,6 +15,7 @@ import About from "./pages/About";
 import EacAbout from "./pages/eac/About";
 import Council from "./pages/eac/Council";
 import News from "./pages/eac/News";
+import NewsDetail from "./pages/eac/NewsDetail";
 
 // Arbitration Routes
 import ICAC from "./pages/arbitration/ICAC";
@@ -63,6 +64,7 @@ const App = () => (
             <Route path="/eac/about" element={<EacAbout />} />
             <Route path="/eac/council" element={<Council />} />
             <Route path="/eac/news" element={<News />} />
+            <Route path="/eac/news/:id" element={<NewsDetail />} />
             <Route path="/eac/events" element={<NotFound />} />
             
             {/* Arbitration Routes */}

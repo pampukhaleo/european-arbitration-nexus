@@ -1,10 +1,9 @@
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { newsItems } from "@/data/newsData";
 import NewsItem from "@/components/news/NewsItem";
+import { Link } from "react-router-dom";
 
 export default function NewsPreview() {
   const { t } = useLanguage();
@@ -18,7 +17,7 @@ export default function NewsPreview() {
         <div className="flex justify-between items-center mb-10">
           <h2 className="text-3xl font-bold text-eac-dark">{t('home.latestNews')}</h2>
           <Button asChild variant="ghost" className="text-eac-primary hover:text-eac-primary hover:bg-eac-light">
-            <a href="/eac/news">{t('home.viewAllNews')}</a>
+            <Link to="/eac/news">{t('home.viewAllNews')}</Link>
           </Button>
         </div>
 
@@ -26,6 +25,7 @@ export default function NewsPreview() {
           {latestNewsItems.map((item) => (
             <NewsItem
               key={item.id}
+              id={item.id}
               title={item.title}
               date={item.date}
               description={item.description}

@@ -22,6 +22,5 @@ export const news2023: NewsItem[] = [
     images: [
       "/images/news/15anniversary.png",
     ]
-  },
-  // ... remaining 2023 news items
+  }
 ];

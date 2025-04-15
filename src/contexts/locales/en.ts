@@ -444,11 +444,10 @@ const en = {
         description: "Failure to adhere to this Code of Conduct, if substantiated by the European Arbitration Chamber, may result in immediate revocation of membership."
       }
     }
+  },
+  common: {
+    backToNews: "Back to News"
   }
-
-
-
-
 };
 
 export default en;

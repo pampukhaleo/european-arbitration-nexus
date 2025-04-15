@@ -1,13 +1,17 @@
 
 import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { CalendarIcon } from "lucide-react";
 import { newsItems } from "@/data/newsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NewsDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   
   const newsItem = newsItems.find(item => item.id === id);
   
@@ -27,6 +31,17 @@ const NewsDetail = () => {
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
+          <Button 
+            variant="ghost" 
+            className="mb-6" 
+            asChild
+          >
+            <Link to="/eac/news">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              {t("common.backToNews")}
+            </Link>
+          </Button>
+
           <h1 className="text-3xl font-bold mb-4">{newsItem.title}</h1>
           
           <div className="flex items-center text-sm text-gray-500 mb-6">
@@ -77,3 +92,4 @@ const NewsDetail = () => {
 };
 
 export default NewsDetail;
+

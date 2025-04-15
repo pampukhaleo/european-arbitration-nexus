@@ -322,7 +322,7 @@ const fr = {
         "Autorisation et certification – Délivrance d’un passeport unique pour l’œuvre"
       ],
       conclusion: "Cette approche structurée garantit une évaluation précise et crédible, essentielle pour les collectionneurs, investisseurs, assureurs et le marché de l’art.",
-      contactNote: "Pour plus d’informations ou pour demander un service d’authentification d’art, contactez-nous dès aujourd’hui."
+      contactNote: "Pour plus d’informations ou pour demander un service d’authentification d’art, contactez-nous dès aujourd'hui."
     },
     passport: {
       title: "AUTORISATION DES ŒUVRES D'ART",
@@ -444,6 +444,9 @@ const fr = {
         description: "Le non-respect de ce Code de déontologie, s'il est confirmé par la CEA, peut entraîner la révocation immédiate de l’adhésion."
       }
     }
+  },
+  common: {
+    backToNews: "Retour aux Actualités"
   }
 };
 

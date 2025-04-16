@@ -1,4 +1,82 @@
 const fr = {
+  seo: {
+    home: {
+      title: "Chambre Européenne d’Arbitrage | Résolution des litiges, promotion de l’arbitrage.",
+      description: "La CEA offre des services d’arbitrage, d’évaluation d’experts et d’accompagnement juridique pour les litiges internationaux et les biens culturels."
+    },
+    eac: {
+      title: "À propos de la Chambre Européenne d’Arbitrage (CEA) | Chambre Européenne d'Arbitrage",
+      description: "L'association internationale sans but lucratif Chambre Européenne d'Arbitrage (CEA) a été fondée en Belgique en 2008 à l’initiative de professionnels de l’arbitrage commercial et de la médiation provenant de Belgique, de France et d’Ukraine."
+    },
+    council: {
+      title: "Membres du Conseil de la CEA | Chambre Européenne d'Arbitrage",
+      description: "Rencontrez les professionnels qui composent le conseil de la Chambre Européenne d'Arbitrage."
+    },
+    news: {
+      title: "Actualités et Mises à Jour | Chambre Européenne d'Arbitrage",
+      description: "Restez informé des dernières nouvelles, événements et développements de la CEA."
+    },
+    icac: {
+      title: "À propos du TAIC auprès la CEA | Chambre Européenne d'Arbitrage",
+      description: "Le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d'Arbitrage (ci-après, \"TAIC auprès de la CEA\") est un tribunal arbitral indépendant et permanent, qui exerce ses activités conformément au Code judiciaire de Belgique (articles 1676-1722), aux statuts de la Chambre Européenne d'Arbitrage et à son propre Règlement."
+    },
+    rules: {
+      title: "LE RÈGLEMENT D'ARBITRAGE DU TAIC | Chambre Européenne d'Arbitrage",
+      description: "Une nouvelle version du Règlement du TAIC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de la Chambre Européenne d’Arbitrage. Elle s’applique à toutes les procédures entamées après le 10 novembre 2020 ou qui seront engagées à l’avenir. Parmi toutes les versions linguistiques du Règlement d’arbitrage du TAIC, la version anglaise fait foi."
+    },
+    fees: {
+      title: "Règlement des Frais | Chambre Européenne d'Arbitrage",
+      description: "Une nouvelle version des Dispositions sur les Frais d’Arbitrage de la CIAC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de l’association internationale sans but lucratif « Chambre Européenne d’Arbitrage ». Elle s’applique à toutes les procédures commencées après le 10 novembre 2020 ou à venir. Parmi toutes les versions linguistiques, la version anglaise prévaut."
+    },
+    calculator: {
+      title: "Calculateur de Coûts | Chambre Européenne d'Arbitrage",
+      description: "Les frais d’arbitrage sont payés par les parties pour chaque demande acceptée à l’examen par le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage (Bruxelles, Belgique) (ci-après – TAIC), afin de couvrir les frais liés à l’organisation et au déroulement de la procédure arbitrale. Le montant des frais d’arbitrage est calculé conformément aux Dispositions relatives aux frais d’arbitrage du TAIC."
+    },
+    clause: {
+      title: "Typique clause compromissoire au Tribunal d’arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage | Chambre Européenne d'Arbitrage",
+      description: "Utilisez la clause type d’arbitrage à inclure dans vos contrats internationaux."
+    },
+    icje: {
+      title: "Expertise au ICJE | Chambre Européenne d'Arbitrage",
+      description: "Au sein de la Chambre Européenne d'Arbitrage, le Centre International d'Expertise Judiciaire et ADR (ICJE) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage."
+    },
+    areas: {
+      title: "ICJE – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE | Chambre Européenne d'Arbitrage",
+      description: "Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) offre une large gamme de services d'expertise et d'examen dans divers secteurs."
+    },
+    authentication: {
+      title: "Authentification d'Art | Chambre Européenne d'Arbitrage",
+      description: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres."
+    },
+    appraisal: {
+      title: "ÉVALUATION D’ŒUVRES D’ART | Chambre Européenne d'Arbitrage",
+      description: "Pour déterminer la valeur marchande d’une œuvre d’art, un processus complet d’examen et d’évaluation est mené."
+    },
+    artPassport: {
+      title: "AUTORISATION DES ŒUVRES D'ART | Chambre Européenne d'Arbitrage",
+      description: "Les experts du Centre International d’Expertise Judiciaire et ADR de la Chambre Européenne d’Arbitrage fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques."
+    },
+    benefits: {
+      title: "5 RAISONS DE DEVENIR MEMBRE DE LA CEA | Chambre Européenne d'Arbitrage",
+      description: "Accréditation d'arbitre. Opportunités de carrière. Améliorer les qualifications professionnelles. Échange d'informations professionnelles dans le domaine du droit international et de l'arbitrage. Opportunités publicitaires."
+    },
+    join: {
+      title: "Adhésion à la Chambre Européenne d’Arbitrage | Chambre Européenne d'Arbitrage",
+      description: "Comment devenir membre associé de la Chambre Européenne d'Arbitrage"
+    },
+    conductCode: {
+      title: "Code de conduite de la CEA | Chambre Européenne d'Arbitrage",
+      description: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de conduite pour garantir que ses membres respectent les plus hauts standards éthiques et professionnels. Tous les membres sont tenus de respecter strictement ces principes."
+    },
+    contacts: {
+      title: "Contactez-nous | Chambre Européenne d'Arbitrage",
+      description: "Prenez contact avec la Chambre Européenne d'Arbitrage pour toute question ou demande d'assistance."
+    },
+    about: {
+      title: "À propos de nous | Chambre Européenne d'Arbitrage",
+      description: "Découvrez la mission, la vision et les valeurs de la Chambre Européenne d'Arbitrage."
+    }
+  },
   language: {
     english: 'EN',
     french: 'FR',

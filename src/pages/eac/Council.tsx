@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout";
 import CouncilMember from "@/components/council/CouncilMember";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Seo } from "@/components/Seo.tsx";
 
 const Council = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   const councilMembers = [
     {
@@ -29,22 +30,26 @@ const Council = () => {
   ];
 
   return (
-    <Layout>
-      <div className="py-6">
-        <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase">{t("council.title")}</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {councilMembers.map((member) => (
-            <CouncilMember
-              key={member.key}
-              name={t(`council.members.${member.key}.name`)}
-              position={t(`council.members.${member.key}.position`)}
-              description={t(`council.members.${member.key}.description`)}
-              imageSrc={member.image}
-            />
-          ))}
+    <>
+      <Seo title={t("seo.council.title")} description={t("seo.council.description")} lang={language}/>
+      <Layout>
+        <div className="py-6">
+          <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase">{t("council.title")}</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {councilMembers.map((member) => (
+              <CouncilMember
+                key={member.key}
+                name={t(`council.members.${member.key}.name`)}
+                position={t(`council.members.${member.key}.position`)}
+                description={t(`council.members.${member.key}.description`)}
+                imageSrc={member.image}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
+
   );
 };
 

@@ -51,7 +51,7 @@ const NewsItem = ({
               <img
                 src={mainImage}
                 alt={title}
-                className="w-full h-full object-cover md:max-h-56"
+                className="w-full h-full object-contain md:max-h-56"
               />
             </div>
           ) : (

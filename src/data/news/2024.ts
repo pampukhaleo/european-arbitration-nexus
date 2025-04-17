@@ -3,7 +3,7 @@ import { NewsItem } from "@/types/news";
 
 export const news2024: NewsItem[] = [
   {
-    id: "1",
+    id: "20241",
     title: "Alexandre Maciel joined the ICAC Panel",
     date: "Aug 02 2024",
     excerpt: "We are pleased to announce that Alexandre Maciel has joined the Arbitral Panel of the ICAC under the European Arbitration Chamber.",

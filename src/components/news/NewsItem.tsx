@@ -55,7 +55,7 @@ const NewsItem = ({
 
       <CardHeader className={`${!mainImage ? 'pt-6' : 'pt-4'} pb-2`}>
         <RenderDate />
-        <CardTitle className="text-xl mt-2">{title}</CardTitle>
+        <CardTitle className="text-lg mt-2 text-center">{title}</CardTitle>
       </CardHeader>
 
       <CardContent className="flex flex-col flex-1">

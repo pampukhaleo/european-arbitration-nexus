@@ -18,6 +18,7 @@ interface NewsItemProps {
   mainImage?: string;
   images?: string[];
   useCardWrapper?: boolean;
+  useInlineLayout?: boolean;
 }
 
 const NewsItem = ({ 
@@ -26,7 +27,8 @@ const NewsItem = ({
   date, 
   description, 
   mainImage, 
-  useCardWrapper = false
+  useCardWrapper = false,
+  useInlineLayout = false
 }: NewsItemProps) => {
   const { t } = useLanguage();
 
@@ -39,6 +41,44 @@ const NewsItem = ({
     </div>
   );
 
+  // Inline layout component
+  if (useInlineLayout) {
+    return (
+      <Card className="overflow-hidden hover:shadow-md transition-shadow">
+        <div className="flex flex-col md:flex-row">
+          {mainImage ? (
+            <div className="md:w-1/3 lg:w-1/4">
+              <img
+                src={mainImage}
+                alt={title}
+                className="w-full h-full object-cover md:max-h-56"
+              />
+            </div>
+          ) : (
+            <div className="md:w-1/3 lg:w-1/4 bg-gray-100"></div>
+          )}
+          
+          <div className="flex-1 p-6">
+            <CardTitle className="text-xl mb-2">{title}</CardTitle>
+            <RenderDate />
+            <CardDescription className="text-gray-600 mt-3 line-clamp-3">
+              {firstParagraph}
+            </CardDescription>
+            <div className="mt-4">
+              <Link
+                to={`/eac/news/${id}`}
+                className="text-eac-primary hover:text-eac-primary/80 font-medium"
+              >
+                {t("home.readMore")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
+  // Original grid layout component
   const NewsContent = () => (
     <>
       {mainImage ? (

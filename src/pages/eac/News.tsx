@@ -17,9 +17,9 @@ const News = () => {
             {t("home.latestNews")}
           </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-col space-y-8">
             {newsItems.map((item) => (
-              <div key={item.id} className="flex">
+              <div key={item.id}>
                 <NewsItem
                   id={item.id}
                   title={item.title}
@@ -27,6 +27,7 @@ const News = () => {
                   description={item.description}
                   mainImage={item.mainImage}
                   images={item.images}
+                  useInlineLayout={true}
                 />
               </div>
             ))}
@@ -34,7 +35,6 @@ const News = () => {
         </div>
       </Layout>
     </>
-
   );
 };
 

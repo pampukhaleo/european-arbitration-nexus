@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,27 +31,32 @@ const quickLinksData = [
 
 export default function QuickLinks() {
   const { t } = useLanguage();
-
+  
   return (
     <div className="py-12 bg-quickLinks-secondary">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {quickLinksData.map(({ icon, titleKey, descriptionKey, buttonKey, link }) => (
-            <Card
-              key={titleKey}
-              className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition"
+            <Link 
+              key={titleKey} 
+              to={link}
+              className="no-underline hover:no-underline"
             >
-              <CardContent className="p-6 flex items-center">
-                {icon}
-                <div>
-                  <h3 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h3>
-                  <p className="text-white/80 text-sm mb-3">{t(descriptionKey)}</p>
-                  <Button asChild variant="link" className="p-0 text-white hover:text-white/80">
-                    <Link to={link}>{t(buttonKey)}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              <Card
+                className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition cursor-pointer"
+              >
+                <CardContent className="p-6 flex items-center">
+                  {icon}
+                  <div>
+                    <h3 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h3>
+                    <p className="text-white/80 text-sm mb-3">{t(descriptionKey)}</p>
+                    <Button variant="link" className="p-0 text-white hover:text-white/80">
+                      {t(buttonKey)}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

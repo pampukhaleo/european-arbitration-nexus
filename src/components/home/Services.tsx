@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -45,29 +46,33 @@ export default function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map(({ icon, titleKey, descriptionKey, link }) => (
-            <Card
+            <Link
               key={titleKey}
-              className="border border-gray-200 rounded-3xl overflow-hidden hover:shadow-md transition"
+              to={link}
+              className="no-underline hover:no-underline"
             >
-              <CardHeader className="bg-eac-light/50 pb-4">
-                <div className="w-12 h-12 bg-eac-primary rounded-full flex items-center justify-center mb-4">
-                  {icon}
-                </div>
-                <CardTitle className="text-2xl">{t(titleKey)}</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-6">
-                <CardDescription className="text-gray-600 text-base mb-6">
-                  {t(descriptionKey)}
-                </CardDescription>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white"
-                >
-                  <Link to={link}>{t("home.services.learnMore")}</Link>
-                </Button>
-              </CardContent>
-            </Card>
+              <Card
+                className="border border-gray-200 rounded-3xl overflow-hidden hover:shadow-md transition cursor-pointer"
+              >
+                <CardHeader className="bg-eac-light/50 pb-4">
+                  <div className="w-12 h-12 bg-eac-primary rounded-full flex items-center justify-center mb-4">
+                    {icon}
+                  </div>
+                  <CardTitle className="text-2xl text-eac-dark">{t(titleKey)}</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <CardDescription className="text-gray-600 text-base mb-6">
+                    {t(descriptionKey)}
+                  </CardDescription>
+                  <Button
+                    variant="outline"
+                    className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white"
+                  >
+                    {t("home.services.learnMore")}
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

@@ -42,21 +42,26 @@ export default function QuickLinks() {
               to={ link }
               className="no-underline hover:no-underline"
             >
-              <Card
-                className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition cursor-pointer h-full">
-                <CardContent className="p-6 flex flex-col justify-between h-full">
-                  <div className="flex items-start">
+              <Card className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition cursor-pointer h-full">
+                <CardContent className="p-6 flex items-center h-full">
+                  {/* Icon on the left, centered vertically */}
+                  <div className="w-15 h-15 flex items-center justify-center mr-4">
                     { icon }
-                    <div>
-                      <h3 className="font-semibold text-white text-lg mb-1">{ t(titleKey) }</h3>
-                      <p className="text-white/80 text-sm mb-3">{ t(descriptionKey) }</p>
-                    </div>
                   </div>
-                  <Button variant="link" className="p-0 text-white hover:text-white/80 mt-4 self-start">
-                    { t(buttonKey) }
-                  </Button>
+
+                  {/* Text + Button on the right */ }
+                  <div className="flex flex-col justify-between items-start h-full">
+                    <div>
+                      <h3 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h3>
+                      <p className="text-white/80 text-sm mb-3">{t(descriptionKey)}</p>
+                    </div>
+                    <Button variant="link" className="p-0 text-white hover:text-white/80">
+                      {t(buttonKey)}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
+
             </Link>
           )) }
         </div>

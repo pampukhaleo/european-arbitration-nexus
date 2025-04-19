@@ -12,11 +12,11 @@ export default function Hero() {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/lovable-uploads/a99b6ca4-a6db-4846-a707-4fa45da70c9e.png')",
+          backgroundImage: "url(\"/images/IMG_3070.JPG\")",
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
@@ -32,7 +32,7 @@ export default function Hero() {
             <Button 
               asChild 
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-eac-primary rounded-full"
+              className="border-white text-eac-primary rounded-full hover:bg-eac-primary hover:text-white"
             >
               <Link to="/eac/about">
                 {t('home.heroBtn')}

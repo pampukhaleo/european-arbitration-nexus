@@ -1,7 +1,7 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, CalendarIcon } from "lucide-react";
+import { ArrowLeft, CalendarIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { newsItems } from "@/data/newsData";
@@ -11,6 +11,7 @@ const NewsDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   const newsItem = newsItems.find(item => item.id === id);
   
@@ -32,6 +33,16 @@ const NewsDetail = () => {
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
     };
+  };
+
+  // Open image in popup
+  const openImagePopup = (imageSrc: string) => {
+    setSelectedImage(imageSrc);
+  };
+
+  // Close image popup
+  const closeImagePopup = () => {
+    setSelectedImage(null);
   };
   
   return (
@@ -62,7 +73,8 @@ const NewsDetail = () => {
                 <img 
                   src={newsItem.mainImage} 
                   alt={newsItem.title}
-                  className="w-full rounded-lg"
+                  className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => openImagePopup(newsItem.mainImage as string)}
                 />
               </div>
             )}
@@ -84,7 +96,8 @@ const NewsDetail = () => {
                     <img 
                       src={image} 
                       alt={`${newsItem.title} - image ${index + 1}`} 
-                      className="w-full rounded-lg"
+                      className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => openImagePopup(image)}
                     />
                   </div>
                 ))}
@@ -93,6 +106,30 @@ const NewsDetail = () => {
           )}
         </div>
       </div>
+
+      {/* Image Popup/Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={closeImagePopup}>
+          <div className="relative max-w-4xl max-h-[90vh] w-full">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white rounded-full z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeImagePopup();
+              }}
+            >
+              <X className="h-6 w-6" />
+            </Button>
+            <img 
+              src={selectedImage} 
+              alt="Enlarged view" 
+              className="max-h-[90vh] max-w-full mx-auto object-contain"
+            />
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };

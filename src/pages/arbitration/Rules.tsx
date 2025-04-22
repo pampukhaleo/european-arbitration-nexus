@@ -7,8 +7,8 @@ import { Seo } from "@/components/Seo.tsx";
 import { Download } from "lucide-react";
 
 const RULES_PDFS = {
-  en: "/rules-english.pdf", // Replace with the actual path
-  ru: "/rules-russian.pdf", // Replace with the actual path
+  en: "/ICAC_Arbitral Rules_11.11.2020.pdf",
+  ru: "/Арбитражный_Регламент_МКАС_от_11_11_2020.pdf",
 };
 
 const Rules = () => {

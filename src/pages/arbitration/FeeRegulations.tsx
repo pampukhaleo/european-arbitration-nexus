@@ -8,8 +8,8 @@ import { Seo } from "@/components/Seo.tsx";
 import { Download } from "lucide-react";
 
 const FEES_PDFS = {
-  en: "/fees-english.pdf", // Replace with the actual path
-  ru: "/fees-russian.pdf", // Replace with the actual path
+  en: "/ICAC Provisions on Arbitration Costs as of November 11, 2020.pdf",
+  ru: "/Положение_о_сборах_МКАС_от_11_ноября_2020.pdf",
 };
 
 const FeeRegulations = () => {

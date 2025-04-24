@@ -12,8 +12,8 @@ interface SeoProps {
 export const Seo = ({
                       title,
                       description = "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine.",
-                      image = "https://belmontleonid.website/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
-                      url = "https://belmontleonid.website",
+                      image = "https://chea-taic.be/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
+                      url = "https://chea-taic.be",
                       lang = "en",
                     }: SeoProps) => {
   return (

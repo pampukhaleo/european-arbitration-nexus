@@ -24,7 +24,7 @@ const Council = () => {
       />
       <Layout>
         <div className="container mx-auto px-4 py-12">
-          <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase">
+          <h1 className="text-3xl font-bold mb-8 text-eac-dark uppercase text-left">
             {t("council.title")}
           </h1>
           <div className="flex flex-col space-y-8">

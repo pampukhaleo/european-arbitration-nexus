@@ -25,25 +25,32 @@ export default function CouncilMember({ name, position, description, imageSrc }:
   return (
     <>
       <div
-        className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+        className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
         onClick={() => setOpen(true)}
       >
-        <Avatar className="w-40 h-40 rounded-lg overflow-hidden bg-gray-100">
-          {imageSrc ? (
-            <AvatarImage
-              src={imageSrc}
-              alt={name}
-              className="w-full h-full object-cover object-top scale-95"
-            />
-          ) : (
-            <AvatarFallback className="text-4xl rounded-lg bg-eac-light text-eac-primary">
-              {initials}
-            </AvatarFallback>
-          )}
-        </Avatar>
-
-        <h3 className="text-xl font-semibold text-eac-dark text-center">{name}</h3>
-        <p className="text-sm text-eac-gray text-center mt-1">{position}</p>
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/3 lg:w-1/4">
+            <Avatar className="w-full h-40 rounded-lg overflow-hidden bg-gray-100">
+              {imageSrc ? (
+                <AvatarImage
+                  src={imageSrc}
+                  alt={name}
+                  className="w-full h-full object-cover object-top"
+                />
+              ) : (
+                <AvatarFallback className="text-4xl rounded-lg bg-eac-light text-eac-primary">
+                  {initials}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </div>
+          
+          <div className="flex-1 p-6">
+            <h3 className="text-xl font-semibold text-eac-dark">{name}</h3>
+            <p className="text-sm text-eac-gray mt-1">{position}</p>
+            <p className="text-gray-600 mt-3 line-clamp-3">{description}</p>
+          </div>
+        </div>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
@@ -51,8 +58,8 @@ export default function CouncilMember({ name, position, description, imageSrc }:
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-eac-primary">{name}</DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <Avatar className="w-40 h-40 rounded-lg overflow-hidden bg-gray-100">
+          <div className="flex flex-col gap-6 items-center">
+            <Avatar className="w-60 h-60 rounded-lg overflow-hidden bg-gray-100">
               {imageSrc ? (
                 <AvatarImage
                   src={imageSrc}
@@ -66,7 +73,7 @@ export default function CouncilMember({ name, position, description, imageSrc }:
               )}
             </Avatar>
 
-            <div>
+            <div className="text-center">
               <h3 className="text-xl font-semibold text-eac-dark mb-2">{position}</h3>
               <p className="text-gray-600 whitespace-pre-wrap">{description}</p>
             </div>

@@ -25,48 +25,41 @@ const FeeRegulations = () => {
           </h1>
           <div className="prose max-w-none">
             <p className="mb-6 text-lg text-gray-600">
-              {t("arbitration.fees.description")}
+              { t("arbitration.fees.description") }
             </p>
+
             <div className="my-8">
               <p className="text-lg font-medium mb-4">
-                {t("arbitration.fees.downloadLabel")}
+                { t("arbitration.fees.downloadLabel") }
               </p>
-              <Button
-                variant="default"
-                className="mb-4 rounded-full"
-                asChild
-              >
+
+              <Button variant="default" className="rounded-full px-6 py-3 w-full sm:w-auto text-center" asChild>
                 <a
-                  href={FEES_PDFS.en}
+                  href={ FEES_PDFS.en }
                   download
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-center whitespace-normal break-words w-full h-full"
                 >
-                  <span className="flex items-center gap-2">
-                    <Download size={18} />
-                    {t("arbitration.fees.englishBtn")}
-                  </span>
+                  <Download size={ 18 }/>
+                  <span className="whitespace-normal break-words">{ t("arbitration.fees.englishBtn") }</span>
                 </a>
               </Button>
 
               <p className="text-lg font-medium mb-4 mt-8">
-                {t("arbitration.fees.translationLabel")}
+                { t("arbitration.fees.translationLabel") }
               </p>
-              <Button
-                variant="default"
-                className="rounded-full"
-                asChild
-              >
+
+              <Button variant="default" className="rounded-full px-6 py-3 w-full sm:w-auto text-center" asChild>
                 <a
-                  href={FEES_PDFS.ru}
+                  href={ FEES_PDFS.ru }
                   download
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-center whitespace-normal break-words w-full h-full"
                 >
-                  <span className="flex items-center gap-2">
-                    <Download size={18} />
-                    {t("arbitration.fees.russianBtn")}
-                  </span>
+                  <Download size={ 18 }/>
+                  <span className="whitespace-normal break-words">{ t("arbitration.fees.russianBtn") }</span>
                 </a>
               </Button>
             </div>

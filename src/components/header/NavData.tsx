@@ -31,7 +31,7 @@ export const navItems: NavItem[] = [
       { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
       { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
       // { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },
-      { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
+      // { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
     ],
   },
   {

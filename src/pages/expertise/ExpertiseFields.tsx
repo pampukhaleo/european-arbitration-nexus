@@ -8,39 +8,47 @@ const ExpertiseFields = () => {
   const areas = t<string[]>("expertise.fields.areas");
   const providedFor = t<string[]>("expertise.fields.providedFor");
 
+  const renderList = (items: string[]) => (
+    <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
+      {items.map((item, idx) => (
+        <li key={idx} className="mt-2">{item}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <>
-      <Seo title={t("seo.areas.title")} description={t("seo.areas.description")} lang={language}/>
+      <Seo
+        title={t("seo.areas.title")}
+        description={t("seo.areas.description")}
+        lang={language}
+      />
       <Layout>
         <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">
+          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">
             {t("expertise.fields.title")}
           </h1>
+
           <div className="prose max-w-none">
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-6">
               {t("expertise.fields.description1")}
             </p>
-            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-              {areas.map((area, idx) => (
-                <li className="ml-5 mt-2" key={idx}>{area}</li>
-              ))}
-            </ul>
-            <h2 className="text-2xl font-bold mb-6 text-eac-dark">
+
+            {renderList(areas)}
+
+            <h2 className="text-2xl font-bold mb-4 text-eac-dark text-left">
               {t("expertise.fields.subtitle")}
             </h2>
-            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-              {providedFor.map((item, idx) => (
-                <li className="ml-5 mt-2" key={idx}>{item}</li>
-              ))}
-            </ul>
-            <p className="mb-4 text-lg text-gray-600">
+
+            {renderList(providedFor)}
+
+            <p className="text-lg text-gray-600">
               {t("expertise.fields.finalNote")}
             </p>
           </div>
         </div>
       </Layout>
     </>
-
   );
 };
 

@@ -74,7 +74,7 @@ const App = () => (
             <Route path="/arbitration/calculator" element={<CostCalculator />} />
             <Route path="/arbitration/clause" element={<ArbitrationClause />} />
             <Route path="/arbitration/arbitrators" element={<NotFound />} />
-            {/*<Route path="/arbitration/resources" element={<NotFound />} />*/}
+            <Route path="/arbitration/resources" element={<NotFound />} />
 
             {/* Expertise Routes */}
             <Route path="/expertise/icje" element={<ICJE />} />

@@ -13,7 +13,7 @@ const ICJE = () => {
       <Seo title={t("seo.icje.title")} description={t("seo.icje.description")} lang={language}/>
       <Layout>
         <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">{t("expertise.icje.title")}</h1>
+          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">{t("expertise.icje.title")}</h1>
           <div className="prose max-w-none">
             <p className="mb-6 text-lg text-gray-600">{t("expertise.icje.description1")}</p>
 

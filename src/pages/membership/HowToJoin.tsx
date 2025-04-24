@@ -15,7 +15,7 @@ const HowToJoin = () => {
       <Seo title={t("seo.join.title")} description={t("seo.join.description")} lang={language}/>
       <Layout>
         <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">{t("membership.join.title")}</h1>
+          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">{t("membership.join.title")}</h1>
           <div className="prose max-w-none">
             <p className="mb-4 text-lg text-gray-600">{t("membership.join.description")}</p>
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">

@@ -8,54 +8,59 @@ const ArtAppraisal = () => {
   const evaluationFactors = t("artExpertise.appraisal.evaluationFactors") as string[];
   const stages = t("artExpertise.appraisal.stagesList") as string[];
 
+  const renderList = (items: string[]) => (
+    <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
+      {items.map((item, idx) => (
+        <li key={idx} className="mt-2">{item}</li>
+      ))}
+    </ul>
+  );
+
   return (
     <>
-      <Seo title={t("seo.appraisal.title")} description={t("seo.appraisal.description")} lang={language}/>
+      <Seo
+        title={t("seo.appraisal.title")}
+        description={t("seo.appraisal.description")}
+        lang={language}
+      />
       <Layout>
         <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">
+          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">
             {t("artExpertise.appraisal.title")}
           </h1>
 
           <div className="prose max-w-none">
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-4">
               {t("artExpertise.appraisal.intro1")}
             </p>
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-6">
               {t("artExpertise.appraisal.intro2")}
             </p>
 
-            <p className="mb-4 text-lg text-gray-600 font-bold">
+            <p className="text-lg text-gray-600 font-bold mb-2">
               {t("artExpertise.appraisal.factorsTitle")}
             </p>
-            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-              {evaluationFactors.map((factor, idx) => (
-                <li className="ml-5 mt-2" key={idx}>{factor}</li>
-              ))}
-            </ul>
+            {renderList(evaluationFactors)}
 
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-6">
               {t("artExpertise.appraisal.summary")}
             </p>
 
-            <h3 className="mb-4 text-lg">{t("artExpertise.appraisal.stagesTitle")}</h3>
-            <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
-              {stages.map((stage, idx) => (
-                <li className="ml-5 mt-2" key={idx}>{stage}</li>
-              ))}
-            </ul>
+            <h3 className="text-lg font-semibold mb-2">
+              {t("artExpertise.appraisal.stagesTitle")}
+            </h3>
+            {renderList(stages)}
 
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-4">
               {t("artExpertise.appraisal.conclusion")}
             </p>
-            <p className="mb-4 text-lg text-gray-600">
+            <p className="text-lg text-gray-600">
               {t("artExpertise.appraisal.contactNote")}
             </p>
           </div>
         </div>
       </Layout>
     </>
-
   );
 };
 

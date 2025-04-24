@@ -19,7 +19,7 @@ const Rules = () => {
       <Seo title={t("seo.rules.title")} description={t("seo.rules.description")} lang={language} />
       <Layout>
         <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">
+          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">
             {t("arbitration.rules.title")}
           </h1>
           <div className="prose max-w-none">

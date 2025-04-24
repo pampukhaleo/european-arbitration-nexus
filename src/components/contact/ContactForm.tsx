@@ -56,14 +56,14 @@ export default function ContactForm() {
     try {
       // Format message for Telegram
       const telegramMessage = `
-📨 New Contact Form Submission
-        
-👤 Name: ${data.name}
-📧 Email: ${data.email}
-📝 Subject: ${data.subject}
-        
-✉️ Message:
-${data.message}
+        📨 New Contact Form Submission
+                
+        👤 Name: ${data.name}
+        📧 Email: ${data.email}
+        📝 Subject: ${data.subject}
+                
+        ✉️ Message:
+        ${data.message}
       `;
 
       // For security reasons, it's better to use a backend API or serverless function

@@ -1,4 +1,3 @@
-
 import { NavItem } from "./NavData";
 import NavDropdown from "./NavDropdown";
 import LanguageSwitcher from "../LanguageSwitcher";

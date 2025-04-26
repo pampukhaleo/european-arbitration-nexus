@@ -35,13 +35,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div>
-            <div className="mb-4">
+            <a href={'/'} className="mb-4">
               <img
-                src={`${import.meta.env.BASE_URL}lovable-uploads/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png`}
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt="European Arbitration Chamber Logo"
                 className="h-12 mb-3"
               />
-            </div>
+            </a>
             <p className="text-sm text-gray-600 mb-4">{t("footer.about")}</p>
 
             {/* Social Media Icons */}

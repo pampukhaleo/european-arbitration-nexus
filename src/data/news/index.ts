@@ -1,4 +1,3 @@
-
 import { NewsItem } from "@/types/news";
 import { news2024 } from "./2024";
 import { news2023 } from "./2023";

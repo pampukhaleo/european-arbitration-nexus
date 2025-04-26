@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import CouncilMember from "@/components/council/CouncilMember";
 import { useLanguage } from "@/contexts/LanguageContext";

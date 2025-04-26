@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import Hero from "@/components/home/Hero";
 import NewsPreview from "@/components/home/NewsPreview";

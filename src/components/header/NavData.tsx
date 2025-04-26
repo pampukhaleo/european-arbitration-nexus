@@ -1,6 +1,3 @@
-
-import { ReactNode } from "react";
-
 export type NavItem = {
   title: string;
   translationKey: string;

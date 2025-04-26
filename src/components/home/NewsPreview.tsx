@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { newsItems } from "@/data/newsData";

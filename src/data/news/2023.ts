@@ -1,4 +1,3 @@
-
 import { NewsItem } from "@/types/news";
 
 export const news2023: NewsItem[] = [

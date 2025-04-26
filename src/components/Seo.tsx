@@ -1,4 +1,3 @@
-// src/components/Seo.tsx
 import { Helmet } from "react-helmet";
 
 interface SeoProps {
@@ -10,9 +9,9 @@ interface SeoProps {
 }
 
 export const Seo = ({
-                      title,
+                      title = 'The European Arbitration Chamber (EAC)',
                       description = "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine.",
-                      image = "https://chea-taic.be/1373ca5d-af25-42c9-bb89-5c42a7e6fa2e.png",
+                      image = "https://chea-taic.be/logo.png",
                       url = "https://chea-taic.be",
                       lang = "en",
                     }: SeoProps) => {

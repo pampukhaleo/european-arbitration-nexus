@@ -45,7 +45,7 @@ export default function Footer() {
             <p className="text-sm text-gray-600 mb-4">{t("footer.about")}</p>
 
             {/* Social Media Icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3.5 ml-3">
               {[
                 {
                   href: "https://www.linkedin.com/company/european-arbitration-chamber/",

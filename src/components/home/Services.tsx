@@ -13,24 +13,28 @@ export default function Services() {
       titleKey: "home.services.arbitrationTitle",
       descriptionKey: "home.services.arbitrationDesc",
       link: "/arbitration/icac",
+      button: t("menu.icac")
     },
     {
       icon: <Lightbulb className="h-6 w-6 text-white" />,
       titleKey: "home.services.expertiseTitle",
       descriptionKey: "home.services.expertiseDesc",
       link: "/expertise/icje",
+      button: t("menu.icje")
     },
     {
       icon: <Palette className="h-6 w-6 text-white" />,
       titleKey: "home.services.artTitle",
       descriptionKey: "home.services.artDesc",
       link: "/art-expertise/authentication",
+      button: t("menu.authentication")
     },
     {
       icon: <BookOpen className="h-6 w-6 text-white" />,
       titleKey: "home.services.membershipTitle",
       descriptionKey: "home.services.membershipDesc",
       link: "/membership/benefits",
+      button: t("menu.membership")
     },
   ];
 
@@ -44,7 +48,7 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map(({ icon, titleKey, descriptionKey, link }) => (
+          {services.map(({ icon, titleKey, descriptionKey, link, button }) => (
             <Link
               key={titleKey}
               to={link}
@@ -67,7 +71,7 @@ export default function Services() {
                     variant="outline"
                     className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white"
                   >
-                    {t("home.services.learnMore")}
+                    {button}
                   </Button>
                 </CardContent>
               </Card>

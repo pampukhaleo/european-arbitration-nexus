@@ -149,7 +149,6 @@ const en = {
       artDesc: "Expert examination, authentication, and valuation of works of art conducted by experienced professionals. Reliable and accurate assessments for collectors, galleries, and institutions.",
       membershipTitle: "MEMBERSHIP",
       membershipDesc: "Become a member of the European Arbitration Chamber as an arbitrator, expert, or business partner. We unite specialists from diverse fields across the globe, providing access to valuable opportunities and a global network.",
-      learnMore: "Learn More"
     },
     latestNews: 'Latest News',
     viewAllNews: 'View All News',

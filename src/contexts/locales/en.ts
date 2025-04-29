@@ -127,7 +127,7 @@ const en = {
   home: {
     heroTitle: 'European Arbitration Chamber',
     heroDescription: 'Resolving disputes, advancing arbitration.',
-    heroBtn: 'Learn More',
+    heroBtn: 'About EAC',
     quickLinks: {
       rulesTitle: 'Arbitration Rules',
       rulesDescription: 'Everything you need to know before starting arbitration proceedings in the ICAC',

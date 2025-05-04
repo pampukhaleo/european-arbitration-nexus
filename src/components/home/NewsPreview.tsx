@@ -28,7 +28,8 @@ export default function NewsPreview() {
               title={item.title}
               date={item.date}
               description={item.description}
-              mainImage={item.mainImage}
+              mainImageJpg={item.mainImageJpg}
+              mainImageWebp={item.mainImageWebp}
               images={item.images}
               useCardWrapper={true}
             />

@@ -17,7 +17,8 @@ export const news2020: NewsItem[] = [
       "The EAC Meeting approved the new members of the Chamber, ICAC arbitrators and the ICJE experts; certificates were solemnly presented to them.\n" +
       "\n" +
       "On behalf of the European Arbitration Chamber, we express our gratitude to all participants for the productive work and cooperation!",
-    mainImage: "/images/news/81546795_2810508622369338_3855292361491873792_n.jpg"
+    mainImageJpg: "/images/news/81546795_2810508622369338_3855292361491873792_n.jpg",
+    mainImageWebp: "/images/news/81546795_2810508622369338_3855292361491873792_n.webp"
   },
   {
     id: "20202",
@@ -70,7 +71,8 @@ export const news2020: NewsItem[] = [
       "TIme: 15:00 Brussels / 16:00 Kyiv\n" +
       "Please register by pressing button below via the Facebook Messenger application.\n" +
       "If you do not have Facebook Messenger, you can apply for participation by e-mail secretary@chea-taic.be",
-    mainImage: "/images/news/engbannerlast.jpg"
+    mainImageJpg: "/images/news/engbannerlast.jpg",
+    mainImageWebp: "/images/news/engbannerlast.webp"
   },
 
 ];

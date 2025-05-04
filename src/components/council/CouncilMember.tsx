@@ -10,10 +10,12 @@ interface CouncilMemberProps {
   name: string;
   position: string;
   description: string;
-  imageSrc?: string;
+  imageJpg?: string;
+  imageWebp?: string;
 }
 
-export default function CouncilMember({ name, position, description, imageSrc }: CouncilMemberProps) {
+
+export default function CouncilMember({ name, position, description, imageJpg, imageWebp }: CouncilMemberProps) {
   const [open, setOpen] = useState(false);
   const initials = name
     .split(" ")
@@ -22,12 +24,15 @@ export default function CouncilMember({ name, position, description, imageSrc }:
 
   const renderAvatar = (size: string) => (
     <div className={`aspect-[3/4] ${size} rounded-lg overflow-hidden bg-transparent`}>
-      {imageSrc ? (
-        <img
-          src={imageSrc}
-          alt={name}
-          className="w-full h-full object-contain object-top"
-        />
+      {imageWebp || imageJpg ? (
+        <picture>
+          {imageWebp && <source srcSet={imageWebp} type="image/webp" />}
+          <img
+            src={imageJpg}
+            alt={name}
+            className="w-full h-full object-contain object-top"
+          />
+        </picture>
       ) : (
         <div className="w-full h-full flex items-center justify-center text-4xl bg-eac-light text-eac-primary">
           {initials}
@@ -35,6 +40,7 @@ export default function CouncilMember({ name, position, description, imageSrc }:
       )}
     </div>
   );
+
 
   return (
     <>

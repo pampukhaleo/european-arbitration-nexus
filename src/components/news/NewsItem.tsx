@@ -14,7 +14,8 @@ interface NewsItemProps {
   title: string;
   date: string;
   description: string;
-  mainImage?: string;
+  mainImageJpg?: string;
+  mainImageWebp?: string;
   images?: string[];
   useCardWrapper?: boolean;
   useInlineLayout?: boolean;
@@ -25,7 +26,8 @@ const NewsItem = ({
                     title,
                     date,
                     description,
-                    mainImage,
+                    mainImageJpg,
+                    mainImageWebp,
                     useCardWrapper = false,
                     useInlineLayout = false,
                   }: NewsItemProps) => {
@@ -47,14 +49,15 @@ const NewsItem = ({
         <Card className="overflow-hidden hover:shadow-md transition-shadow">
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/3 lg:w-1/4">
-              {mainImage ? (
-                <img
-                  src={mainImage}
-                  alt={title}
-                  className="w-full h-full object-contain md:max-h-56 group-hover:opacity-90 transition-opacity"
-                />
-              ) : (
-                <div className="bg-gray-100 h-full w-full" />
+              {(mainImageJpg || mainImageWebp) && (
+                <picture>
+                  {mainImageWebp && <source srcSet={mainImageWebp} type="image/webp" />}
+                  <img
+                    src={mainImageJpg}
+                    alt={title}
+                    className="w-full h-auto object-cover"
+                  />
+                </picture>
               )}
             </div>
 
@@ -85,16 +88,21 @@ const NewsItem = ({
   return (
     <Link to={linkTo} className="block no-underline text-inherit group h-full">
       <Wrapper className={cardClass}>
-        {mainImage && (
-          <img
-            src={mainImage}
-            alt={title}
-            className="w-full object-cover group-hover:opacity-90 transition-opacity"
-          />
+        {(mainImageJpg || mainImageWebp) && (
+          <picture>
+            {mainImageWebp && <source srcSet={mainImageWebp} type="image/webp" />}
+            <img
+              src={mainImageJpg}
+              alt={title}
+              loading="lazy"
+              className="w-full object-cover group-hover:opacity-90 transition-opacity"
+            />
+          </picture>
         )}
 
-        <CardHeader className={`${mainImage ? "pt-4" : "pt-6"} pb-2`}>
-          <RenderDate />
+
+        <CardHeader className={`${(mainImageJpg || mainImageWebp) ? "pt-4" : "pt-6"} pb-2`}>
+        <RenderDate />
           <CardTitle className="text-lg mt-2 text-center group-hover:text-eac-primary/80 transition-colors">
             {title}
           </CardTitle>

@@ -13,7 +13,8 @@ export const news2016: NewsItem[] = [
       "President Hennadii Pampukha EAC made a presentation on the migration situation in Ukraine and Poland, the creation and implementation of the \"road map\" of the citizen of Ukraine in the Republic of Poland, who come to Poland for work,  and creation of the union, which will defend rights of migrants from Ukraine.\n" +
       "\n" +
       "Within the framework of the round table were raised issues of higher education in Ukraine on the path to European integration and the participation of Ukraine in the European Higher Education Area.",
-    mainImage: "/images/news/POL_7696.jpg"
+    mainImageJpg: "/images/news/POL_7696.jpg",
+    mainImageWebp: "/images/news/POL_7696.webp"
   },
   {
     id: "20162",
@@ -32,7 +33,8 @@ export const news2016: NewsItem[] = [
       "Additional information by e-mail: secretary@chea-taic.be\n" +
       "\n" +
       "or by phone: +38 044 581 30 80, +38 067 222 5555",
-    mainImage: "/images/news/IMG_20161007_163419.jpg"
+    mainImageJpg: "/images/news/IMG_20161007_163419.jpg",
+    mainImageWebp: "/images/news/IMG_20161007_163419.webp"
   },
   {
     id: "20163",
@@ -59,6 +61,7 @@ export const news2016: NewsItem[] = [
       "The participants of the Meeting, summarizing the work of the Chamber for the last year and determining its priorities for 2017, one of the main tasks of the European Arbitration Chamber identified the introduction and development of modern educational programs in the field of international arbitration, expertise and mediation. The participants of the meeting decided to resume the Annual International Competition on Commercial Arbitration among students and begin active preparations for this event. Furthermore, it was decided to organize and conduct qualification courses and intensives for the EAC arbitrators and experts.\n" +
       "\n" +
       "The European Arbitration Chamber expressed its gratitude to all members of the EAC, who participated in the Annual Meeting, for their efficient work and fruitful cooperation.",
-    mainImage: "/images/news/IMG_20161122_130900_1479812973057111.jpg"
+    mainImageJpg: "/images/news/IMG_20161122_130900_1479812973057111.jpg",
+    mainImageWebp: "/images/news/IMG_20161122_130900_1479812973057111.webp"
   },
 ];

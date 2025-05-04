@@ -35,18 +35,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div>
-            <a href={'/'} className="mb-4">
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="European Arbitration Chamber Logo"
-                className="h-12 mb-3"
-              />
+            <a href={ '/' } className="mb-4">
+              <picture>
+                <source srcSet={ `${ import.meta.env.BASE_URL }logo.webp` } type="image/webp"/>
+                <img
+                  src={ `${ import.meta.env.BASE_URL }logo.png` }
+                  alt="European Arbitration Chamber Logo"
+                  className="h-12 mb-3"
+                />
+              </picture>
             </a>
-            <p className="text-sm text-gray-600 mb-4">{t("footer.about")}</p>
 
-            {/* Social Media Icons */}
+            <p className="text-sm text-gray-600 mb-4">{ t("footer.about") }</p>
+
+            {/* Social Media Icons */ }
             <div className="flex items-center space-x-3.5 ml-3">
-              {[
+              { [
                 {
                   href: "https://www.linkedin.com/company/european-arbitration-chamber/",
                   label: "LinkedIn",

@@ -35,7 +35,8 @@ export const news2018: NewsItem[] = [
       "The memorial service for Olha Pampukha will take place on October 26, 2018 at 15:30 in the Temple of Nikolai Pritysk (Ukraine, Kyiv, 5-a Horyva strert).\n" +
       "\n" +
       "The funeral dinner will be held in the restaurant \"Scorpion\" at 17:00 (Ukraine, Kyiv, Geroev Stalingrad str., 12-e).",
-    mainImage: "/images/news/401_4.jpg"
+    mainImageJpg: "/images/news/401_4.jpg",
+    mainImageWebp: "/images/news/401_4.webp"
   },
   {
     id: "20182",
@@ -47,7 +48,8 @@ export const news2018: NewsItem[] = [
       "During two intensive days we have conducted meeting with Regional Council of Provence-Alpes-Côte d'Azur  Mr. Christian ESTROSI and French entrepreneurs, signed agreements and discussed projects, aimed at developing of commercial arbitration in the region  Provence-Alpes-Côte d'Azur.\n" +
       "\n" +
       "In particular, within the framework of the forum, memorandum of cooperation was signed between the EAC's partner - the International Women's Expert Law Union and French organizations and companies.",
-    mainImage: "/images/news/36281499_2085121971502648_3298629918069358592_n.jpg"
+    mainImageJpg: "/images/news/36281499_2085121971502648_3298629918069358592_n.jpg",
+    mainImageWebp: "/images/news/36281499_2085121971502648_3298629918069358592_n.webp"
   },
   {
     id: "20183",
@@ -59,7 +61,8 @@ export const news2018: NewsItem[] = [
       "In the framework of the visit the European Arbitration Chamber held seminar for Turkish lawyers. The EAC President Hennadii Pampukha presented lecture, which was devoted to the main activities of the EAC and its division - International Commercial Arbitration Court. The participants of the seminar discussed the procedure of settlement of commercial disputes in accordance with the Belgian procedural law and the Rules of the ICAC under the EAC. The seminar was held with the support of Mr. Yusuf Kuleč and  Yildiz Law Office. The President of the EAC solemnly member’s certificates to the participants of the seminar, who have formalized membership in the EAC.\n" +
       "\n" +
       "The leadership of the European Arbitration Chamber expresses gratitude to the Turkish colleagues for an interesting program of the visit and hospitality.  ",
-    mainImage: "/images/news/turkey istanbul.jpg"
+    mainImageJpg: "/images/news/turkey istanbul.jpg",
+    mainImageWebp: "/images/news/turkey istanbul.webp"
   },
   {
     id: "20184",
@@ -103,7 +106,8 @@ export const news2018: NewsItem[] = [
       "The European Arbitration Chamber and the Organizing Committee of the Competition congratulate the winners and all participants of the V International Competition on Commercial Arbitration! There are no defeated, because only the best have competed!\n" +
       "\n" +
       "The Organizing Committee of the contest expresses sincere gratitude to all the teams and their coaches",
-    mainImage: "/images/news/21.jpg"
+    mainImageJpg: "/images/news/21.jpg",
+    mainImageWebp: "/images/news/21.webp"
   },
   {
     id: "20185",
@@ -115,6 +119,7 @@ export const news2018: NewsItem[] = [
       "The EAC’s President Hennadii Pampukha, who heads International Arbitration Committee of the Ukrainian Advocates' Association, presented the program of the committee for 2018 and outlined the main directions of its activity.\n" +
       "\n" +
       "On behalf of the European Arbitration Chamber, we are happy to invite lawyers, advocates, practicing arbitrators and professionals specializing in international private law and commercial arbitration to join the committee. The application can be submitted by e-mail: secretary@chea-taic.be",
-    mainImage: "/images/news/27752465_1764574550253959_2823128997247396433_n.jpg"
+    mainImageJpg: "/images/news/27752465_1764574550253959_2823128997247396433_n.jpg",
+    mainImageWebp: "/images/news/27752465_1764574550253959_2823128997247396433_n.webp"
   },
 ];

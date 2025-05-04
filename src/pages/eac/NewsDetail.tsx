@@ -55,14 +55,17 @@ const NewsDetail = () => {
 
           {/* Main Content */}
           <div className="flex flex-col md:flex-row gap-6 mb-8">
-            {newsItem.mainImage && (
+            {(newsItem.mainImageWebp || newsItem.mainImageJpg) && (
               <div className="md:w-[300px] flex-shrink-0">
-                <img
-                  src={newsItem.mainImage}
-                  alt={newsItem.title}
-                  className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => handleImageClick(newsItem.mainImage!)}
-                />
+                <picture>
+                  {newsItem.mainImageWebp && <source srcSet={newsItem.mainImageWebp} type="image/webp" />}
+                  <img
+                    src={newsItem.mainImageJpg}
+                    alt={newsItem.title}
+                    className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                    onClick={() => handleImageClick(newsItem.mainImageJpg || newsItem.mainImageWebp!)}
+                  />
+                </picture>
               </div>
             )}
 

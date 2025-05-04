@@ -13,7 +13,8 @@ export const news2021: NewsItem[] = [
       "He is an Arbitrator (Commercial and ISDS disputes), Maritime Expert, Common Law & Evidentiary Expert in High Court India, a fellow of the Chartered Institute of Arbitrators (UK).\n" +
       "\n" +
       "Dr. Parthasarathy specializes in Islamic law, energy, maritime shipping, intellectual property, corporate law, taxation, real estate, finance, contract law, commercial law, investment dispute law, and has led the family office for cross-border mergers for over 12 years and acquisitions (M&A), international taxation, corporate finance, treasury, fundraising, structuring transactions, IPO readiness for small and medium businesses.",
-    mainImage: "/images/news/Srikant.jpg"
+    mainImageJpg: "/images/news/Srikant.jpg",
+    mainImageWebp: "/images/news/Srikant.webp"
   },
   {
     id: "20212",
@@ -21,6 +22,7 @@ export const news2021: NewsItem[] = [
     date: "Sep 08 2021",
     excerpt: "The European Arbitration Chamber is pleased to announce the signing of a cooperation and partnership memorandum with Energy Disputes Arbitration Centre (Turkey).",
     description: "The European Arbitration Chamber is pleased to announce the signing of a cooperation and partnership memorandum with Energy Disputes Arbitration Centre (Turkey). The parties agreed on joint activities aimed at developing commercial arbitration, mediation and expertise, as well as conducting of joint events in the field of alternative dispute resolution, in particular, in the energy sector.",
-    mainImage: "/images/news/EAC EDAC.jpg"
+    mainImageJpg: "/images/news/EAC EDAC.jpg",
+    mainImageWebp: "/images/news/EAC EDAC.webp"
   },
 ];

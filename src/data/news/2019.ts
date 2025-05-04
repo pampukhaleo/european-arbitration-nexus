@@ -15,7 +15,8 @@ export const news2019: NewsItem[] = [
       "This Conference is held since 2003 annually in Prague, Czech Republic. Today this Conference is the only one international experts meeting in the world, devoted to expertise in construction and mostly judicial expertise in construction, which is held on regular basis. During past conference meetings the Conference welcomed the participants from more than 50 countries. \n" +
       "\n" +
       "The organizers are ASN Expert Group, Chamber of  Judicial Experts of the Czech Republic with the support of the European Arbitration Chamber and the European Federation of European Associations EuroExpert.",
-    mainImage: "/images/news/prague 2019.jpg"
+    mainImageJpg: "/images/news/prague 2019.jpg",
+    mainImageWebp: "/images/news/prague 2019.webp"
   },
   {
     id: "201914",
@@ -29,7 +30,8 @@ export const news2019: NewsItem[] = [
       "There was also a dialogue between the EAC board and the Belgian Association of Experts ABEX, which was attended by ABEX President Alain Coppe and Executive Secretary, Forensic Expert Pierre Fabeck.\n" +
       "\n" +
       "Following the meeting, an agreement was reached on cooperation in the field of forensic expertise in the framework of arbitration proceedings.",
-    mainImage: "/images/news/2019-10-08.jpg"
+    mainImageJpg: "/images/news/2019-10-08.jpg",
+    mainImageWebp: "/images/news/2019-10-08.webp"
   },
   {
     id: "20192",
@@ -47,7 +49,8 @@ export const news2019: NewsItem[] = [
       "The jury of the award determined the winner and nominees as follows. Tatyana Korol and Marianna Abramova got into the nomination \"Culture and Art\", while Lyudmila Bushinskaya won. The laureate Daria Mustafina and the nominees Margarita Sichkar and Julia Savostina were noted by nomination “Social Activities”. Tatyana Verbitskaya received an award in the nomination “Business and Management”, Daria Leshchenko and Tatyana Semenchenko got into the nomination with her. In the nomination \"Medicine and Health\" Oksana Dmitrieva was recognized the best, Anna Dyakiv and Elena Mosiychuk were nominated. In the nomination “Jurisprudence and expertise\" Alexandra Sasina became the laureate, Natalia Kovalko and Victoria Ptashnik got the nomination. And finally, Tatyana Tkachenko was recognized as the best in the nomination “Tourism Activities”, and Anna Romanova and Yulia Alekseeva were nominated.\n" +
       "\n" +
       "After the official ceremony, all the guests of the evening took part in festive buffet reception accompanied with an virtuoso instrumental quartet.",
-    mainImage: "/images/news/womenaward.jpg"
+    mainImageJpg: "/images/news/womenaward.jpg",
+    mainImageWebp: "/images/news/womenaward.webp"
   },
   {
     id: "20193",
@@ -63,6 +66,7 @@ export const news2019: NewsItem[] = [
       "10 % discount off the current rate is provided to the members of European Arbitration Chamber at the time of purchase.\n" +
       "\n" +
       "For more information and EAC preferential rate code please contact EAC by e-mail: secretary@chea-taic.be or the Organizer here: http://gar.live/zurich2019",
-    mainImage: "/images/news/GAR Live Zurich - Facebook promo.png"
+    mainImageJpg: "/images/news/GAR Live Zurich - Facebook promo.png",
+    mainImageWebp: "/images/news/GAR Live Zurich - Facebook promo.webp"
   },
 ];

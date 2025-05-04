@@ -5,7 +5,8 @@ export interface NewsItem {
   date: string;
   excerpt: string;
   description: string;
-  mainImage?: string;
+  mainImageJpg?: string;
+  mainImageWebp?: string;
   images?: string[];
   link?: string;
 }

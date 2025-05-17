@@ -54,6 +54,20 @@ export const news2023: NewsItem[] = [
   },
   {
     id: "20234",
+    title: "Beware Fraud",
+    date: "Sep 13 2024",
+    excerpt: "We are pleased to announce that Alexandre Maciel has joined the Arbitral Panel of the ICAC under the European Arbitration Chamber.",
+    description: "The Secretariat of the European Arbitration Chamber (EAC) has been made aware of fraudulent letters and documents falsely stating to be issued by or associated with the EAC or/and International Commercial Arbitration Court under the EAC (ICAC).\n" +
+      "These scams, which may attempt to obtain money and/or personal details from recipients, are fraudulent.\n" +
+      "The Secretariat of the EAC warns the public about these fraudulent activities and urges vigilance against various fraud schemes misusing name of the EAC.\n" +
+      "We strongly advise recipients of such fraudulent communications to exercise extreme caution. Transferring money or personal information to scammers can result in financial loss or identity theft.\n" +
+      "In the event of receiving suspicious letters containing statements about the existence of arbitration proceedings and allegedly coming from the EAC or the ICAC, we recommend that you immediately contact the EAC Secretariat to verify the authenticity of the information.\n" +
+      "The European Arbitration Chamber has reported these fraudulent activities to the relevant law enforcement authorities, including the criminal police.",
+    mainImageJpg: "/images/news/fraud.jpg",
+    mainImageWebp: "/images/news/fraud.jpg",
+  },
+  {
+    id: "20235",
     title: "Meeting between the EAC and the Istanbul Chamber of Commerce Arbitration and Mediation Center",
     date: "Aug 01 2023",
     excerpt: "A meeting took place between the leadership of the European Arbitration Chamber (EAC) and the Istanbul Chamber of Commerce Arbitration and Mediation Center (ITOTAM), during which participants discussed prospects for cooperation.",
@@ -76,7 +90,7 @@ export const news2023: NewsItem[] = [
     mainImageWebp: "/images/news/OSM_9816.webp",
   },
   {
-    id: "20235",
+    id: "20236",
     title: "New Partnership with Asian Arbitration Association",
     date: "Jul 22 2023",
     excerpt: "The EAC is pleased to announce a new cooperation agreement with the Asian Arbitration Association (AAA).",
@@ -93,7 +107,7 @@ export const news2023: NewsItem[] = [
     mainImageWebp: "/images/news/turkey istanbul.webp"
   },
   {
-    id: "20236",
+    id: "20237",
     title: "EAC General Meeting took place in Brussels",
     date: "Mar 10 2023",
     excerpt: "The General Meeting of the founders and members of the International non-profit association 'European Arbitration Chamber' took place on March 2nd, 2023, in Brussels. Representatives from Belgium, Germany, Italy, Poland, Ukraine, Turkey, Azerbaijan, India, and the United Arab Emirates attended the meeting.",

@@ -97,7 +97,7 @@ const en = {
     arbitrators: 'List of Arbitrators',
     resources: 'Legal Resources',
     expertise: 'Expertise',
-    icje: 'About ICJE at EAC',
+    icje: 'About the ICJE at the EAC',
     expertiseFields: 'Fields of Expertise',
     'art-expertise': 'Art expertise',
     authentication: 'Art Authentication',

@@ -55,7 +55,7 @@ export default function Services() {
               className="no-underline hover:no-underline"
             >
               <Card
-                className="border border-gray-200 rounded-3xl overflow-hidden hover:shadow-md transition cursor-pointer"
+                className="h-full flex flex-col border border-gray-200 rounded-3xl overflow-hidden hover:shadow-md transition cursor-pointer"
               >
                 <CardHeader className="bg-eac-light/50 pb-4">
                   <div className="w-12 h-12 bg-eac-primary rounded-full flex items-center justify-center mb-4">

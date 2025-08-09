@@ -1,3 +1,4 @@
+
 export default {
   home: {
     title: "Welcome",
@@ -7,7 +8,6 @@ export default {
     heroBtn: "Learn More",
     latestNews: "Latest News",
     viewAllNews: "View All News",
-    quickLinks: "Quick Links",
     aboutUs: "About Us",
     ourServices: "Our Services",
     eventsCalendar: "Events Calendar",

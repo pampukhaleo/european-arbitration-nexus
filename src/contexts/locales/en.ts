@@ -1,3 +1,4 @@
+
 export default {
   home: {
     title: "Welcome",
@@ -50,6 +51,10 @@ export default {
     title: "Contact Us",
     description: "Get in touch with our team.",
   },
+  menu: {
+    sections: "Sections",
+    home: "Home",
+  },
   nav: {
     home: "Home",
     about: "About",
@@ -80,6 +85,11 @@ export default {
     news: "News",
     events: "Events",
   },
+  language: {
+    english: "EN",
+    french: "FR",
+    russian: "RU",
+  },
   news: {
     readMore: "Read More",
   },
@@ -102,20 +112,6 @@ export default {
     accept: "Accept",
     decline: "Decline",
     learnMore: "Learn More",
-  },
-  seo: {
-    home: {
-      title: "Home - European Arbitration Chamber",
-      description: "The European Arbitration Chamber is a leading institution for dispute resolution.",
-    },
-    about: {
-      title: "About Us - European Arbitration Chamber",
-      description: "Learn more about the European Arbitration Chamber's mission and activities.",
-    },
-    news: {
-      title: "News - European Arbitration Chamber",
-      description: "Stay updated with the latest news and events from the European Arbitration Chamber.",
-    },
   },
   gallery: {
     title: "Gallery",
@@ -196,6 +192,18 @@ export default {
     loadFailed: "Failed to load data"
   },
   seo: {
+    home: {
+      title: "Home - European Arbitration Chamber",
+      description: "The European Arbitration Chamber is a leading institution for dispute resolution.",
+    },
+    about: {
+      title: "About Us - European Arbitration Chamber",
+      description: "Learn more about the European Arbitration Chamber's mission and activities.",
+    },
+    news: {
+      title: "News - European Arbitration Chamber",
+      description: "Stay updated with the latest news and events from the European Arbitration Chamber.",
+    },
     gallery: {
       title: "Art Gallery - Authenticated Paintings Collection",
       description: "Browse our curated collection of authenticated paintings with detailed expertise reports and certificates."

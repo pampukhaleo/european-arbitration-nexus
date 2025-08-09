@@ -1,3 +1,4 @@
+
 export default {
   nav: {
     eac: "CAE",
@@ -118,17 +119,6 @@ export default {
       title: "Code de conduite",
     },
   },
-  seo: {
-    home: {
-      title: "Chambre d'Arbitrage Européenne",
-      description:
-        "Votre partenaire pour la résolution de conflits internationaux.",
-    },
-    news: {
-      title: "Actualités",
-      description: "Les dernières actualités de la Chambre d'Arbitrage Européenne.",
-    },
-  },
   gallery: {
     title: "Galerie",
     paintingsCount: "{count} peintures",
@@ -208,6 +198,15 @@ export default {
     loadFailed: "Échec du chargement des données"
   },
   seo: {
+    home: {
+      title: "Chambre d'Arbitrage Européenne",
+      description:
+        "Votre partenaire pour la résolution de conflits internationaux.",
+    },
+    news: {
+      title: "Actualités",
+      description: "Les dernières actualités de la Chambre d'Arbitrage Européenne.",
+    },
     gallery: {
       title: "Galerie d'art - Collection de peintures authentifiées",
       description: "Parcourez notre collection sélectionnée de peintures authentifiées avec des rapports d'expertise détaillés et des certificats."

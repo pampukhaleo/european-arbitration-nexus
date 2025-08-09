@@ -528,7 +528,6 @@ const en = {
   },
   gallery: {
     searchPlaceholder: "Search images...",
-    categories: "Categories",
     allCategories: "All",
     showingResults: "Showing {{filtered}} of {{total}} images",
     clearFilters: "Clear filters",

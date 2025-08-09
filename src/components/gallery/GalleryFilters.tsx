@@ -83,10 +83,7 @@ export default function GalleryFilters({
       {/* Results count */}
       <div className="flex items-center justify-between text-sm text-gray-600">
         <span>
-          {t("gallery.showingResults", { 
-            filtered: filteredCount, 
-            total: totalImages 
-          }) || `Showing ${filteredCount} of ${totalImages} images`}
+          {`Showing ${filteredCount} of ${totalImages} images`}
         </span>
         
         {(selectedCategory || searchQuery) && (

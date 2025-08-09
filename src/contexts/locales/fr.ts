@@ -134,8 +134,6 @@ const fr = {
     email: "Email",
     message: "Message",
     send: "Envoyer",
-    address: "Adresse",
-    phone: "Téléphone",
     openingHours: "Heures d'ouverture",
     form: {
       name: "Nom",
@@ -236,8 +234,19 @@ const fr = {
   expertise: {
     icje: {
       title: "À propos de l'ICJE à la CEA",
-      description:
-        "Découvrez l'Institut de l'Expertise Judiciaire et de l'Arbitrage (ICJE) à la CEA.",
+      description: "Découvrez l'Institut de l'Expertise Judiciaire et de l'Arbitrage (ICJE) à la CEA.",
+      description1: "L'Institut de l'Expertise Judiciaire et de l'Arbitrage (ICJE) à la CEA fournit des services d'expertise professionnels.",
+      description2: {
+        text: "Nos experts qualifiés effectuent diverses examinations :",
+        examinations: [
+          "Expertise comptable et financière",
+          "Expertise technique et industrielle", 
+          "Expertise immobilière",
+          "Expertise artistique et culturelle",
+          "Expertise juridique et commerciale"
+        ],
+        footer: "Tous nos experts sont certifiés et possèdent une vaste expérience dans leurs domaines respectifs."
+      }
     },
     expertiseFields: {
       title: "Domaines d'Expertise",
@@ -261,6 +270,71 @@ const fr = {
       title: "Registre International des Œuvres d'Art",
       description: "Enregistrez vos œuvres d'art dans notre registre.",
     },
+  },
+  artExpertise: {
+    authentication: {
+      title: "Authentification d'Art",
+      p1: "L'authentification d'art est un processus critique qui détermine l'authenticité, l'attribution et la provenance d'une œuvre d'art.",
+      p2: "Nos experts utilisent des méthodes scientifiques avancées et une analyse stylistique approfondie pour fournir des certificats d'authenticité fiables.",
+      processTitle: "Processus d'authentification :",
+      processList: [
+        "Examen visuel détaillé de l'œuvre",
+        "Analyse technique (rayons X, infrarouge, UV)",
+        "Recherche de provenance et documentation historique",
+        "Comparaison avec d'autres œuvres de l'artiste",
+        "Consultation d'experts spécialisés",
+        "Rédaction du rapport d'expertise"
+      ],
+      importanceTitle: "Importance de l'authentification :",
+      importanceList: [
+        "Établit la valeur marchande de l'œuvre",
+        "Protège contre les contrefaçons",
+        "Facilite les transactions commerciales",
+        "Préserve l'intégrité du marché de l'art",
+        "Assure la traçabilité historique"
+      ],
+      certificateTitle: "Certificat d'Authenticité",
+      certificateText: "À l'issue de l'authentification, un certificat officiel est délivré, incluant une description détaillée de l'œuvre, les résultats des analyses techniques et l'opinion d'expert sur son attribution.",
+      closingText: "Notre équipe d'experts certifiés garantit un processus d'authentification rigoureux et transparent, respectant les standards internationaux les plus élevés."
+    },
+    passport: {
+      title: "Passeport d'Art",
+      intro: "Le passeport d'art est un document officiel qui accompagne une œuvre d'art tout au long de sa vie, fournissant une identification complète et une traçabilité historique.",
+      eligibleObjectsTitle: "Objets éligibles :",
+      eligibleObjects: [
+        "Peintures et dessins",
+        "Sculptures et installations",
+        "Photographies artistiques",
+        "Arts décoratifs et design",
+        "Œuvres d'art contemporain",
+        "Antiquités et objets patrimoniaux"
+      ],
+      certificationTitle: "Certification et Validation",
+      certificationDesc: "Chaque passeport est établi par nos experts certifiés après une analyse approfondie de l'œuvre et de sa documentation.",
+      passportContentTitle: "Contenu du Passeport :",
+      passportContentIntro: "Le passeport d'art comprend :",
+      passportFields: [
+        "Description technique détaillée",
+        "Photographies haute résolution",
+        "Historique de propriété (provenance)",
+        "Rapports d'état et de conservation",
+        "Évaluations et expertises",
+        "Historique des expositions",
+        "Numéro d'identification unique"
+      ],
+      whyImportantTitle: "Pourquoi est-ce important ?",
+      whyImportantIntro: "Le passeport d'art offre de nombreux avantages :",
+      advantages: [
+        "Facilite les transactions et prêts",
+        "Simplifie les procédures d'assurance",
+        "Aide à la récupération en cas de vol",
+        "Préserve l'histoire de l'œuvre",
+        "Augmente la crédibilité sur le marché",
+        "Respecte les réglementations internationales"
+      ],
+      finalNote: "Le passeport d'art devient ainsi la carte d'identité officielle de l'œuvre, reconnue internationalement.",
+      consultation: "Pour établir un passeport d'art, contactez nos experts pour une consultation personnalisée."
+    }
   },
   training: {
     qualification: {

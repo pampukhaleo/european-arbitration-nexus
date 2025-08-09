@@ -525,6 +525,23 @@ const en = {
   },
   common: {
     backToNews: "Back to News"
+  },
+  gallery: {
+    searchPlaceholder: "Search images...",
+    categories: "Categories",
+    allCategories: "All",
+    showingResults: "Showing {{filtered}} of {{total}} images",
+    clearFilters: "Clear filters",
+    noResults: "No images found matching your criteria.",
+    tryDifferentFilters: "Try adjusting your filters or search terms.",
+    categories: {
+      events: "Events",
+      meetings: "Meetings", 
+      conferences: "Conferences",
+      awards: "Awards",
+      training: "Training",
+      partnerships: "Partnerships"
+    }
   }
 };
 

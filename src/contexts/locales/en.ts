@@ -81,6 +81,7 @@ const en = {
     english: 'EN',
     french: 'FR',
     russian: 'RU',
+    code: 'en',
   },
   menu: {
     eac: 'EAC',
@@ -176,7 +177,7 @@ const en = {
   aboutEAC: {
     title: "About The European Arbitration Chamber (EAC)",
     intro: "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine.",
-    missionText: "EAC’s mission is to promote and develop commercial arbitration, mediation, judicial expertise, and the Alternative Dispute Resolution (ADR) system globally, providing businesses with effective and reliable dispute resolution mechanisms.",
+    missionText: "EAC's mission is to promote and develop commercial arbitration, mediation, judicial expertise, and the Alternative Dispute Resolution (ADR) system globally, providing businesses with effective and reliable dispute resolution mechanisms.",
     historyText: "The EAC operates in full compliance with the Law of the Kingdom of Belgium on Non-Profit Associations, International Non-Profit Associations, and Foundations of June 27, 1921.",
     representativesText: "Today, the EAC unites representatives from 35 countries, including arbitrators, mediators, judicial experts and business professionals.",
     keyAreasTitle: "Key Areas of Activity",
@@ -212,7 +213,7 @@ const en = {
       laycock: {
         name: "Patrick LAYCOCK",
         position: "Head of the International Centre for Judicial and ADR expertise under the European Arbitration Chamber",
-        description: "Mr. Laycock is an art historian and serves as a scientific adviser to the Brussels Art Laboratory. He is recognized and endorsed by several esteemed organizations, including the European Arbitration Chamber, Chambre Belge des Experts chargés de Missions Judiciaires et d’Arbitrages, Chambre d’Arbitrage et de Médiation d’Experts Techniques et Juridiques, and the Court of First Instance of Brussels. Mr. Laycock is a lifelong member of the Siam Society under Royal Patronage in Bangkok and holds the position of President at the Institut Belge des Hautes Etudes Chinoises within the Musée Royal d'Art et d'Histoire.",
+        description: "Mr. Laycock is an art historian and serves as a scientific adviser to the Brussels Art Laboratory. He is recognized and endorsed by several esteemed organizations, including the European Arbitration Chamber, Chambre Belge des Experts chargés de Missions Judiciaires et d'Arbitrages, Chambre d'Arbitrage et de Médiation d'Experts Techniques et Juridiques, and the Court of First Instance of Brussels. Mr. Laycock is a lifelong member of the Siam Society under Royal Patronage in Bangkok and holds the position of President at the Institut Belge des Hautes Etudes Chinoises within the Musée Royal d'Art et d'Histoire.",
       }
     }
   },
@@ -364,20 +365,20 @@ const en = {
       p2: "Art authentication is a detailed examination conducted by experts to determine whether a piece of art is genuine.",
       processTitle: "This process involves:",
       processList: [
-        "Attribution Analysis – Confirming the artist’s identity and assessing stylistic and technical characteristics.",
+        "Attribution Analysis – Confirming the artist's identity and assessing stylistic and technical characteristics.",
         "Material Examination – Analyzing pigments, canvas, paper, and other materials to verify consistency with the claimed period.",
-        "Provenance Research – Investigating the artwork’s ownership history and tracing its origins.",
+        "Provenance Research – Investigating the artwork's ownership history and tracing its origins.",
         "Comparative Analysis – Cross-referencing the artwork with documented pieces from the same artist or period."
       ],
       importanceTitle: "Why is Art Authentication Important?",
       importanceList: [
         "Protects against forgeries and misattributions.",
-        "Increases an artwork’s value and marketability.",
+        "Increases an artwork's value and marketability.",
         "Provides legal and financial security for transactions, insurance, and inheritance matters.",
         "Ensures compliance with international regulations for exhibitions and sales."
       ],
       certificateTitle: "Certification of Authenticity",
-      certificateText: "Upon successful verification, the ICJE issues a Certificate of Authenticity, which serves as official documentation of the artwork’s legitimacy. This certificate can be used for sales, exhibitions, insurance, and legal purposes.",
+      certificateText: "Upon successful verification, the ICJE issues a Certificate of Authenticity, which serves as official documentation of the artwork's legitimacy. This certificate can be used for sales, exhibitions, insurance, and legal purposes.",
       closingText: "For more information or to request an art authentication service, contact us today."
     },
     appraisal: {
@@ -389,7 +390,7 @@ const en = {
         "Its characteristics and year of creation",
         "The reputation and significance of the artist",
         "The quality of the work based on socio-cultural value indices",
-        "The artwork’s history and provenance"
+        "The artwork's history and provenance"
       ],
       summary: "This comprehensive analysis establishes the overall value of the artwork, helps forecast its future worth, and assesses potential financial losses in case of total loss.",
       stagesTitle: "Stages of Art Appraisal",
@@ -417,13 +418,13 @@ const en = {
         "Antiques and other collectible items."
       ],
       certificationTitle: "What is the certification of an art object?",
-      certificationDesc: "Certification is an official verification of an artwork’s key attributes, including its authorship, period of creation, history of ownership, past restorations, value, provenance, and its connection to historical and cultural events.",
+      certificationDesc: "Certification is an official verification of an artwork's key attributes, including its authorship, period of creation, history of ownership, past restorations, value, provenance, and its connection to historical and cultural events.",
       passportContentTitle: "What information does the passport of an artwork contain?",
       passportContentIntro: "The passport includes the following details:",
       passportFields: [
         "A photograph of the artwork",
         "Title of the artwork",
-        "Artist’s name and year of creation",
+        "Artist's name and year of creation",
         "Dimensions",
         "Technique and materials used"
       ],
@@ -501,7 +502,7 @@ const en = {
           "Engaging with the EAC Community – Collaborate with fellow EAC members and representatives to further the development of ADR on both national and international levels.",
           "Active Participation – Take part in official events, conferences, and activities organized by or in partnership with the EAC.",
           "Promoting ADR Awareness – Contribute to the dissemination of professional knowledge about ADR systems worldwide.",
-          "Compliance with EAC Regulations – Adhere strictly to the principles and requirements outlined in the EAC’s Articles of Association."
+          "Compliance with EAC Regulations – Adhere strictly to the principles and requirements outlined in the EAC's Articles of Association."
         ]
       },
       responsibilities: {

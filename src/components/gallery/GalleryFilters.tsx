@@ -57,7 +57,7 @@ export default function GalleryFilters({
       {/* Categories */}
       <div className="space-y-2">
         <h3 className="font-medium text-sm text-gray-700">
-          {t("gallery.categories") || "Categories"}
+          {t("gallery.categoriesLabel")}
         </h3>
         <div className="flex flex-wrap gap-2">
           <Button
@@ -65,7 +65,7 @@ export default function GalleryFilters({
             size="sm"
             onClick={() => onCategoryChange(null)}
           >
-            {t("gallery.allCategories") || "All"}
+            {t("gallery.allCategories")}
           </Button>
           {categories.map((category) => (
             <Button

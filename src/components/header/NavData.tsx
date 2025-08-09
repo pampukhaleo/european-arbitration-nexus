@@ -1,3 +1,4 @@
+
 export type NavItem = {
   title: string;
   translationKey: string;
@@ -68,6 +69,11 @@ export const navItems: NavItem[] = [
       { title: "How To Join", translationKey: "menu.join", href: "/membership/join" },
       { title: "Code of Conduct", translationKey: "menu.conductCode", href: "/membership/conductCode" },
     ],
+  },
+  {
+    title: "Gallery",
+    translationKey: "menu.gallery",
+    href: "/gallery",
   },
   {
     title: "Contacts",

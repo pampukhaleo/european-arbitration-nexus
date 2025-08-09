@@ -1,77 +1,130 @@
-export type NavItem = {
-  title: string;
-  translationKey: string;
-  href: string;
-  children?: NavItem[];
+
+import { useLanguage } from "@/contexts/LanguageContext";
+
+export const useNavItems = () => {
+  const { t } = useLanguage();
+
+  return [
+    {
+      title: t("nav.eac"),
+      items: [
+        { title: t("nav.about"), href: "/eac/about" },
+        { title: t("nav.council"), href: "/eac/council" },
+        { title: t("nav.news"), href: "/eac/news" },
+        { title: t("nav.events"), href: "/eac/events" },
+      ],
+    },
+    {
+      title: t("nav.arbitration"),
+      items: [
+        { title: t("nav.icac"), href: "/arbitration/icac" },
+        { title: t("nav.rules"), href: "/arbitration/rules" },
+        { title: t("nav.fees"), href: "/arbitration/fees" },
+        { title: t("nav.calculator"), href: "/arbitration/calculator" },
+        { title: t("nav.clause"), href: "/arbitration/clause" },
+        { title: t("nav.arbitrators"), href: "/arbitration/arbitrators" },
+        { title: t("nav.resources"), href: "/arbitration/resources" },
+      ],
+    },
+    {
+      title: t("nav.expertise"),
+      items: [
+        { title: t("nav.icje"), href: "/expertise/icje" },
+        { title: t("nav.expertiseFields"), href: "/expertise/expertiseFields" },
+      ],
+    },
+    {
+      title: t("nav.artExpertise"),
+      items: [
+        { title: t("nav.authentication"), href: "/art-expertise/authentication" },
+        { title: t("nav.appraisal"), href: "/art-expertise/appraisal" },
+        { title: t("nav.passport"), href: "/art-expertise/passport" },
+      ],
+    },
+    {
+      title: t("nav.training"),
+      items: [
+        { title: t("nav.courses"), href: "/training/courses" },
+        { title: t("nav.workshops"), href: "/training/workshops" },
+      ],
+    },
+    {
+      title: t("nav.membership"),
+      items: [
+        { title: t("nav.benefits"), href: "/membership/benefits" },
+        { title: t("nav.join"), href: "/membership/join" },
+        { title: t("nav.conductCode"), href: "/membership/conductCode" },
+      ],
+    },
+    {
+      title: t("gallery.title"), // New gallery item
+      href: "/gallery",
+    },
+    {
+      title: t("nav.contacts"),
+      href: "/contacts",
+    },
+  ];
 };
 
-export const navItems: NavItem[] = [
+export const navItems = [
   {
-    title: "EAC",
-    translationKey: "menu.eac",
-    href: "/eac",
-    children: [
-      { title: "About Us", translationKey: "menu.about", href: "/eac/about" },
-      { title: "EAC Council", translationKey: "menu.council", href: "/eac/council" },
-      { title: "News", translationKey: "menu.news", href: "/eac/news" },
-      // { title: "Event Calendar", translationKey: "menu.events", href: "/eac/events" },
+    title: "nav.eac",
+    items: [
+      { title: "nav.about", href: "/eac/about" },
+      { title: "nav.council", href: "/eac/council" },
+      { title: "nav.news", href: "/eac/news" },
+      { title: "nav.events", href: "/eac/events" },
     ],
   },
   {
-    title: "Arbitration",
-    translationKey: "menu.arbitration",
-    href: "/arbitration",
-    children: [
-      { title: "About the ICAC under the EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
-      { title: "ICAC Rules ", translationKey: "menu.rules", href: "/arbitration/rules" },
-      { title: "ICAC Provisions on Arbitration Costs", translationKey: "menu.fees", href: "/arbitration/fees" },
-      { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
-      { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
-      // { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },
-      // { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
+    title: "nav.arbitration",
+    items: [
+      { title: "nav.icac", href: "/arbitration/icac" },
+      { title: "nav.rules", href: "/arbitration/rules" },
+      { title: "nav.fees", href: "/arbitration/fees" },
+      { title: "nav.calculator", href: "/arbitration/calculator" },
+      { title: "nav.clause", href: "/arbitration/clause" },
+      { title: "nav.arbitrators", href: "/arbitration/arbitrators" },
+      { title: "nav.resources", href: "/arbitration/resources" },
     ],
   },
   {
-    title: "expertise",
-    translationKey: "menu.expertise",
-    href: "/expertise",
-    children: [
-      { title: "About ICJE at EAC", translationKey: "menu.icje", href: "/expertise/icje" },
-      { title: "expertiseFields", translationKey: "menu.expertiseFields", href: "/expertise/expertiseFields" },
+    title: "nav.expertise",
+    items: [
+      { title: "nav.icje", href: "/expertise/icje" },
+      { title: "nav.expertiseFields", href: "/expertise/expertiseFields" },
     ],
   },
   {
-    title: "Art expertise",
-    translationKey: "menu.art-expertise",
-    href: "/art-expertise",
-    children: [
-      { title: "Art Authentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
-      { title: "Art Appraisal", translationKey: "menu.appraisal", href: "/art-expertise/appraisal" },
-      { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
-      // { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
-    ],
-  },
-  // {
-  //   title: "Training",
-  //   translationKey: "menu.training",
-  //   href: "/training",
-  //   children: [
-  //     { title: "Qualification Course for Arbitrators", translationKey: "menu.qualification", href: "/training/qualification" },
-  //   ],
-  // },
-  {
-    title: "Membership",
-    translationKey: "menu.membership",
-    href: "/membership",
-    children: [
-      { title: "Membership Benefits", translationKey: "menu.benefits", href: "/membership/benefits" },
-      { title: "How To Join", translationKey: "menu.join", href: "/membership/join" },
-      { title: "Code of Conduct", translationKey: "menu.conductCode", href: "/membership/conductCode" },
+    title: "nav.artExpertise",
+    items: [
+      { title: "nav.authentication", href: "/art-expertise/authentication" },
+      { title: "nav.appraisal", href: "/art-expertise/appraisal" },
+      { title: "nav.passport", href: "/art-expertise/passport" },
     ],
   },
   {
-    title: "Contacts",
-    translationKey: "menu.contacts",
+    title: "nav.training",
+    items: [
+      { title: "nav.courses", href: "/training/courses" },
+      { title: "nav.workshops", href: "/training/workshops" },
+    ],
+  },
+  {
+    title: "nav.membership",
+    items: [
+      { title: "nav.benefits", href: "/membership/benefits" },
+      { title: "nav.join", href: "/membership/join" },
+      { title: "nav.conductCode", href: "/membership/conductCode" },
+    ],
+  },
+  {
+    title: "gallery.title", // New gallery item
+    href: "/gallery",
+  },
+  {
+    title: "nav.contacts",
     href: "/contacts",
   },
 ];

@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import CostCalculator from "@/components/arbitration/CostCalculator";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -7,9 +6,6 @@ import { Seo } from "@/components/Seo.tsx";
 
 const CostCalculatorPage = () => {
   const { language, t } = useLanguage();
-
-  const exchangeRateUrl = t("arbitration.calculator.exchangeRateUrl");
-  const isValidUrl = typeof exchangeRateUrl === 'string' && (exchangeRateUrl.startsWith('http://') || exchangeRateUrl.startsWith('https://'));
 
   return (
     <>
@@ -30,21 +26,20 @@ const CostCalculatorPage = () => {
 
             <p className="text-lg text-gray-600">{t("arbitration.calculator.currencyConversion")}</p>
           </div>
-          
-          {isValidUrl && (
-            <div className="py-1 mb-5">
-              <Button asChild>
-                <a href={exchangeRateUrl} target="_blank" rel="noopener noreferrer">
-                  {t("arbitration.calculator.exchangeRateLink")}
-                </a>
-              </Button>
-            </div>
-          )}
+          <div className="py-1 mb-5">
+            <Button asChild>
+              <a href={t("arbitration.calculator.exchangeRateUrl")} target="_blank" rel="noopener noreferrer">
+                {t("arbitration.calculator.exchangeRateLink")}
+              </a>
+            </Button>
+          </div>
 
           <CostCalculator/>
+
         </div>
       </Layout>
     </>
+
   );
 };
 

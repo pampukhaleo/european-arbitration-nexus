@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
@@ -8,9 +7,9 @@ export default function LanguageSwitcher({ mode = "full" }: { mode?: "full" | "c
   const { language, setLanguage, t } = useLanguage();
   
   const languages: { code: Language; name: string }[] = [
-    { code: 'en', name: t('common.english') },
-    { code: 'fr', name: t('common.french') },
-    { code: 'ru', name: t('common.russian') }
+    { code: 'en', name: t('language.english') },
+    { code: 'fr', name: t('language.french') },
+    { code: 'ru', name: t('language.russian') }
   ];
   
   return (

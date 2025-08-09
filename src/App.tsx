@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -37,9 +36,6 @@ import ArtPassport from "@/pages/artExpertise/ArtPassport.tsx";
 import MembershipBenefits from "@/pages/membership/MembershipBenefits.tsx";
 import HowToJoin from "@/pages/membership/HowToJoin.tsx";
 import CodeOfConduct from "@/pages/membership/CodeOfConduct.tsx";
-
-// Gallery page
-import Gallery from "@/pages/Gallery.tsx";
 
 // Contacts page
 import Contacts from "@/pages/Contacts.tsx";
@@ -93,9 +89,6 @@ const App = () => (
             <Route path="/membership/join" element={<HowToJoin />} />
             <Route path="/membership/conductCode" element={<CodeOfConduct />} />
 
-            {/* Gallery route */}
-            <Route path="/gallery" element={<Gallery />} />
-
             {/* Contact route */}
             <Route path="/contacts" element={<Contacts />} />
 
@@ -109,6 +102,9 @@ const App = () => (
             
             {/* Legacy route - can be removed later */}
             <Route path="/about" element={<About />} />
+            
+            {/* News item routes */}
+            <Route path="/eac/news/:id" element={<News />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

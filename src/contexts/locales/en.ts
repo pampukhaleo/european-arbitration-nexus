@@ -1,3 +1,4 @@
+
 export default {
   common: {
     welcome: "Welcome",
@@ -36,6 +37,19 @@ export default {
     required: "Required",
     showMore: "Show more",
     showLess: "Show less",
+  },
+  aboutEAC: {
+    title: "About the European Arbitration Chamber",
+    intro: "The European Arbitration Chamber (EAC) is a non-governmental organization founded in 2010 to promote the development of arbitration and alternative dispute resolution methods.",
+    missionText: "Our mission is to provide efficient, cost-effective, and transparent dispute resolution services for international commercial disputes.",
+    historyText: "Since our establishment in Brussels, Belgium, we have grown to become a leading arbitration institution in Europe, serving clients from around the world.",
+    representativesText: "Our chamber has representatives and partners in major commercial centers across Europe and beyond, ensuring accessibility and local expertise.",
+    keyAreasTitle: "Key Areas of Activity",
+    keyAreas: {
+      commercial: "Commercial Arbitration – Professional arbitration services for international commercial disputes with experienced arbitrators",
+      judicial: "Judicial Expertise – Expert analysis and evaluation services across various commercial and technical fields", 
+      education: "Education and Training – Qualification courses and professional development programs for arbitrators and legal professionals"
+    }
   },
   home: {
     heroTitle: "Welcome to the European Arbitration Chamber",
@@ -175,7 +189,27 @@ export default {
     },
     calculator: {
       title: "Cost Calculator",
-      description: "Calculate the cost of arbitration.",
+      description: "Calculate the cost of arbitration using our online calculator. Enter your dispute amount and select the number of arbitrators to get an estimate.",
+      registrationFeeTitle: "Registration Fee",
+      registrationFee: {
+        excludingVat: "Registration fee: €500 (excluding VAT)",
+        includingVat: "Registration fee: €605 (including 21% VAT)"
+      },
+      currencyConversion: "For currency conversion, please use the current exchange rates:",
+      exchangeRateUrl: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+      exchangeRateLink: "European Central Bank Exchange Rates",
+      amount: "Dispute Amount (€)",
+      composition: "Arbitration Composition",
+      oneArbitrator: "Single Arbitrator (20% discount)",
+      threeArbitrators: "Tribunal of Three Arbitrators",
+      submitBtn: "Calculate Costs",
+      costs: "Arbitration Costs",
+      fee: "Arbitration Fee",
+      exclVAT: "(excl. VAT)",
+      vat: "VAT (21%)",
+      total: "Total Cost",
+      inclVAT: "(incl. VAT)",
+      estimate: "This is an estimate. Final costs may vary depending on the complexity of the case."
     },
     clause: {
       title: "Arbitration Clause",
@@ -231,7 +265,33 @@ export default {
     },
     join: {
       title: "How To Join",
-      description: "Learn how to join the European Arbitration Chamber.",
+      description: "Learn how to become a member of the European Arbitration Chamber and join our legal community.",
+      steps: [
+        {
+          title: "Review membership requirements",
+          description: "Ensure you meet our professional standards and qualifications"
+        },
+        {
+          title: "Complete application form", 
+          description: "Fill out the comprehensive membership application with your credentials"
+        },
+        {
+          title: "Submit supporting documents",
+          description: "Provide necessary documentation including CV and professional references"
+        },
+        {
+          title: "Application review",
+          description: "Our membership committee will review your application within 30 days"
+        },
+        {
+          title: "Payment of membership fee",
+          description: "Upon approval, pay the annual membership fee to activate your membership"
+        }
+      ],
+      fee: "Annual membership fee: €200 (plus applicable taxes)",
+      formPrompt: "To begin your membership application, please fill out our online form:",
+      formLink: "https://europeanarbitration.eu/membership-application",
+      followUp: "After submitting your application, you will receive a confirmation email with further instructions and timeline."
     },
     conductCode: {
       title: "Code of Conduct",

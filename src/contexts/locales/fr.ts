@@ -1,3 +1,4 @@
+
 const fr = {
   common: {
     welcome: "Bienvenue",
@@ -45,6 +46,29 @@ const fr = {
     page: "Page",
     apply: "Appliquer",
     filters: "Filtres",
+    allRightsReserved: "Tous droits réservés",
+    goToTop: "Haut de page",
+    developedBy: "Développé par",
+    cookiePolicy: "Politique des cookies",
+    privacyPolicy: "Politique de confidentialité",
+    termsOfService: "Conditions d'utilisation",
+    cookies: "Cookies",
+    serviceTerms: "Conditions de service",
+    showMore: "Afficher plus",
+    showLess: "Afficher moins",
+  },
+  aboutEAC: {
+    title: "À propos de la Chambre Européenne d'Arbitrage",
+    intro: "La Chambre Européenne d'Arbitrage (CEA) est une organisation non-gouvernementale fondée en 2010 pour promouvoir le développement de l'arbitrage et des méthodes alternatives de résolution des litiges.",
+    missionText: "Notre mission est de fournir des services de résolution de litiges efficaces, économiques et transparents pour les litiges commerciaux internationaux.",
+    historyText: "Depuis notre établissement à Bruxelles, en Belgique, nous sommes devenus une institution d'arbitrage leader en Europe, servant des clients du monde entier.",
+    representativesText: "Notre chambre a des représentants et partenaires dans les principaux centres commerciaux à travers l'Europe et au-delà, garantissant l'accessibilité et l'expertise locale.",
+    keyAreasTitle: "Domaines d'Activité Clés",
+    keyAreas: {
+      commercial: "Arbitrage Commercial – Services d'arbitrage professionnel pour les litiges commerciaux internationaux avec des arbitres expérimentés",
+      judicial: "Expertise Judiciaire – Services d'analyse et d'évaluation d'experts dans divers domaines commerciaux et techniques", 
+      education: "Éducation et Formation – Cours de qualification et programmes de développement professionnel pour arbitres et professionnels juridiques"
+    }
   },
   home: {
     heroTitle: "Bienvenue à la Chambre Européenne d'Arbitrage",
@@ -114,6 +138,26 @@ const fr = {
     address: "Adresse",
     phone: "Téléphone",
     openingHours: "Heures d'ouverture",
+    form: {
+      name: "Nom",
+      email: "Email",
+      message: "Message",
+      success: "Votre message a été envoyé.",
+      error: "Une erreur s'est produite lors de l'envoi de votre message.",
+    },
+    address: {
+      title: "Adresse",
+      address1: "Avenue des Arts 56",
+      address2: "1000 Brussels, Belgium",
+    },
+    phone: {
+      title: "Téléphone",
+      phone1: "+32 2 588 01 49",
+    },
+    email: {
+      title: "Email",
+      email1: "info@europeanarbitration.eu",
+    },
   },
   eac: {
     about: {
@@ -133,6 +177,10 @@ const fr = {
       title: "Événements",
       description: "Rejoignez nos prochains événements et conférences.",
     },
+    newsDetail: {
+      title: "Détail des Actualités",
+      description: "Lisez l'article complet.",
+    },
   },
   arbitration: {
     icac: {
@@ -151,7 +199,27 @@ const fr = {
     },
     calculator: {
       title: "Calculateur de Coûts",
-      description: "Estimez les coûts d'arbitrage avec notre calculateur.",
+      description: "Calculez le coût de l'arbitrage en utilisant notre calculateur en ligne. Entrez le montant de votre litige et sélectionnez le nombre d'arbitres pour obtenir une estimation.",
+      registrationFeeTitle: "Frais d'Inscription",
+      registrationFee: {
+        excludingVat: "Frais d'inscription: €500 (hors TVA)",
+        includingVat: "Frais d'inscription: €605 (TVA 21% comprise)"
+      },
+      currencyConversion: "Pour la conversion monétaire, veuillez utiliser les taux de change actuels :",
+      exchangeRateUrl: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.fr.html",
+      exchangeRateLink: "Taux de Change de la Banque Centrale Européenne",
+      amount: "Montant du Litige (€)",
+      composition: "Composition de l'Arbitrage",
+      oneArbitrator: "Arbitre Unique (20% de réduction)",
+      threeArbitrators: "Tribunal de Trois Arbitres",
+      submitBtn: "Calculer les Coûts",
+      costs: "Coûts d'Arbitrage",
+      fee: "Honoraires d'Arbitrage",
+      exclVAT: "(hors TVA)",
+      vat: "TVA (21%)",
+      total: "Coût Total",
+      inclVAT: "(TVA comprise)",
+      estimate: "Ceci est une estimation. Les coûts finaux peuvent varier selon la complexité de l'affaire."
     },
     clause: {
       title: "Clause d'Arbitrage",
@@ -208,7 +276,33 @@ const fr = {
     },
     join: {
       title: "Comment Adhérer",
-      description: "Apprenez comment devenir membre de la CEA.",
+      description: "Apprenez comment devenir membre de la Chambre Européenne d'Arbitrage et rejoindre notre communauté juridique.",
+      steps: [
+        {
+          title: "Examiner les exigences d'adhésion",
+          description: "Assurez-vous de répondre à nos normes professionnelles et qualifications"
+        },
+        {
+          title: "Compléter le formulaire de candidature", 
+          description: "Remplissez la candidature d'adhésion complète avec vos références"
+        },
+        {
+          title: "Soumettre les documents justificatifs",
+          description: "Fournir la documentation nécessaire y compris CV et références professionnelles"
+        },
+        {
+          title: "Examen de la candidature",
+          description: "Notre comité d'adhésion examinera votre candidature dans les 30 jours"
+        },
+        {
+          title: "Paiement des frais d'adhésion",
+          description: "Après approbation, payez les frais d'adhésion annuels pour activer votre adhésion"
+        }
+      ],
+      fee: "Frais d'adhésion annuels : €200 (plus taxes applicables)",
+      formPrompt: "Pour commencer votre candidature d'adhésion, veuillez remplir notre formulaire en ligne :",
+      formLink: "https://europeanarbitration.eu/membership-application",
+      followUp: "Après avoir soumis votre candidature, vous recevrez un email de confirmation avec des instructions supplémentaires et le calendrier."
     },
     conductCode: {
       title: "Code de Conduite",
@@ -225,6 +319,18 @@ const fr = {
       description: "Consultez nos conditions d'utilisation.",
     },
     cookies: {
+      title: "Politique de cookies",
+      description: "Consultez notre politique de cookies.",
+    },
+    privacyPolicy: {
+      title: "Politique de confidentialité",
+      description: "Consultez notre politique de confidentialité.",
+    },
+    termsOfService: {
+      title: "Conditions d'utilisation",
+      description: "Consultez nos conditions d'utilisation.",
+    },
+    cookiesPolicy: {
       title: "Politique de cookies",
       description: "Consultez notre politique de cookies.",
     },

@@ -1,3 +1,4 @@
+
 import Layout from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Seo } from "@/components/Seo.tsx";
@@ -6,12 +7,30 @@ const About = () => {
   const { language, t } = useLanguage();
 
   const renderKeyArea = (key: string) => {
-    const [title, description] = t(key).split("–");
-    return (
-      <li className="mt-2">
-        <strong>{title.trim()}</strong> – {description.trim()}
-      </li>
-    );
+    try {
+      const translation = t(key);
+      if (typeof translation === 'string' && translation.includes('–')) {
+        const [title, description] = translation.split("–");
+        return (
+          <li className="mt-2">
+            <strong>{title.trim()}</strong> – {description.trim()}
+          </li>
+        );
+      } else {
+        return (
+          <li className="mt-2">
+            {translation}
+          </li>
+        );
+      }
+    } catch (error) {
+      console.error(`Translation error for key ${key}:`, error);
+      return (
+        <li className="mt-2">
+          {key}
+        </li>
+      );
+    }
   };
 
   return (

@@ -1,9 +1,8 @@
-
 const fr = {
   common: {
     welcome: "Bienvenue",
-    submit: "Soumettre",
-    cancel: "Annuler", 
+    submit: "Soumettre", 
+    cancel: "Annuler",
     confirm: "Confirmer",
     edit: "Modifier",
     delete: "Supprimer",

@@ -17,7 +17,7 @@ export default function Gallery() {
     order: 'desc' 
   });
 
-  const { data: paintings, isLoading, error } = usePublicPaintings(searchQuery, language);
+  const { data: paintings, isLoading, error } = usePublicPaintings(searchQuery);
 
   // Extract unique artists and years for filters
   const { artists, years } = useMemo(() => {
@@ -107,8 +107,8 @@ export default function Gallery() {
   return (
     <>
       <Seo 
-        title={t('seo.gallery.title')}
-        description={t('seo.gallery.description')}
+        title={t('gallery.seo.title')}
+        description={t('gallery.seo.description')}
         lang={language}
       />
       
@@ -120,7 +120,7 @@ export default function Gallery() {
             </h1>
             {paintings && (
               <p className="text-muted-foreground">
-                {t('gallery.paintingsCount', { count: paintings.length })}
+                {paintings.length} {t('gallery.paintingsAvailable')}
               </p>
             )}
           </div>
@@ -146,8 +146,8 @@ export default function Gallery() {
               <h2 className="text-xl font-semibold mb-2">{t('gallery.noResults')}</h2>
               <p className="text-muted-foreground">
                 {searchQuery || Object.keys(filters).length > 0 
-                  ? 'Try adjusting your search or filters'
-                  : 'No paintings are currently available'
+                  ? t('gallery.adjustFilters')
+                  : t('gallery.noPaintingsAvailable')
                 }
               </p>
             </div>

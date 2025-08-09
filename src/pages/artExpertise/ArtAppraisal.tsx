@@ -1,6 +1,6 @@
 
 import Layout from "@/components/Layout";
-import Seo from "@/components/Seo";
+import { Seo } from "@/components/Seo";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ArtAppraisal() {
@@ -17,6 +17,7 @@ export default function ArtAppraisal() {
       <Seo 
         title={t("seo.appraisal.title")}
         description={t("seo.appraisal.description")}
+        lang={t("language.code")}
       />
       <Layout>
         <div className="space-y-6">

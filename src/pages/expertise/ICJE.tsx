@@ -1,6 +1,6 @@
 
 import Layout from "@/components/Layout";
-import Seo from "@/components/Seo";
+import { Seo } from "@/components/Seo";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ICJE() {
@@ -14,6 +14,7 @@ export default function ICJE() {
       <Seo 
         title={t("seo.icje.title")}
         description={t("seo.icje.description")}
+        lang={t("language.code")}
       />
       <Layout>
         <div className="space-y-6">

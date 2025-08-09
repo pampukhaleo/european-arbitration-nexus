@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import en from '@/contexts/locales/en';
 import fr from '@/contexts/locales/fr';
@@ -37,8 +38,24 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       if (typeof value === "object" && value !== null && k in value) {
         value = (value as Record<string, unknown>)[k];
       } else {
-        return key as unknown as T;
+        // Fallback to English if key not found in current language
+        let fallbackValue: unknown = translations['en'];
+        for (const fallbackKey of keys) {
+          if (typeof fallbackValue === "object" && fallbackValue !== null && fallbackKey in fallbackValue) {
+            fallbackValue = (fallbackValue as Record<string, unknown>)[fallbackKey];
+          } else {
+            // If even English doesn't have the key, return the key itself
+            console.warn(`Translation key "${key}" not found in ${language} or English fallback`);
+            return key as unknown as T;
+          }
+        }
+        return fallbackValue as T;
       }
+    }
+
+    // Handle array case safely
+    if (Array.isArray(value)) {
+      return value as T;
     }
 
     return value as T;

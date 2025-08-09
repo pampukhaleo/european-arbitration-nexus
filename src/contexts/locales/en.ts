@@ -1,8 +1,8 @@
 export default {
   common: {
     welcome: "Welcome",
-    submit: "Submit",
-    reset: "Reset", 
+    submit: "Submit", 
+    reset: "Reset",
     edit: "Edit",
     delete: "Delete",
     cancel: "Cancel",
@@ -20,7 +20,7 @@ export default {
     menu: "Menu",
     language: "Language",
     english: "English",
-    french: "French",
+    french: "French", 
     russian: "Russian",
     readMore: "Read more",
     allRightsReserved: "All Rights Reserved",

@@ -103,9 +103,6 @@ const App = () => (
             {/* Legacy route - can be removed later */}
             <Route path="/about" element={<About />} />
             
-            {/* News item routes */}
-            <Route path="/eac/news/:id" element={<News />} />
-            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

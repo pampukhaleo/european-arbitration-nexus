@@ -1,60 +1,75 @@
+
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Seo } from "@/components/Seo.tsx";
 
-const ArtAppraisal = () => {
-  const { language, t } = useLanguage();
-
-  const evaluationFactors = t("artExpertise.appraisal.evaluationFactors") as string[];
-  const stages = t("artExpertise.appraisal.stagesList") as string[];
-
-  const renderList = (items: string[]) => (
-    <ul className="list-disc pl-6 mb-6 text-lg text-gray-600">
-      {items.map((item, idx) => (
-        <li key={idx} className="mt-2">{item}</li>
-      ))}
-    </ul>
-  );
+export default function ArtAppraisal() {
+  const { t } = useLanguage();
+  const evaluationFactors = Array.isArray(t<string[]>("artExpertise.appraisal.evaluationFactors")) 
+    ? t<string[]>("artExpertise.appraisal.evaluationFactors") 
+    : [];
+  const stages = Array.isArray(t<string[]>("artExpertise.appraisal.stagesList")) 
+    ? t<string[]>("artExpertise.appraisal.stagesList") 
+    : [];
 
   return (
     <>
-      <Seo
+      <Seo 
         title={t("seo.appraisal.title")}
         description={t("seo.appraisal.description")}
-        lang={language}
       />
       <Layout>
-        <div className="py-6">
-          <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase text-left">
+        <div className="space-y-6">
+          <h1 className="text-3xl font-bold text-gray-900">
             {t("artExpertise.appraisal.title")}
           </h1>
-
-          <div className="prose max-w-none">
-            <p className="text-lg text-gray-600 mb-4">
+          
+          <div className="prose prose-lg max-w-none">
+            <p className="text-lg leading-relaxed">
               {t("artExpertise.appraisal.intro1")}
             </p>
-            <p className="text-lg text-gray-600 mb-6">
+            
+            <p className="text-lg leading-relaxed mt-4">
               {t("artExpertise.appraisal.intro2")}
             </p>
 
-            <p className="text-lg text-gray-600 font-bold mb-2">
-              {t("artExpertise.appraisal.factorsTitle")}
-            </p>
-            {renderList(evaluationFactors)}
+            <div className="mt-6">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                {t("artExpertise.appraisal.factorsTitle")}
+              </h2>
+              
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                {evaluationFactors.map((factor, index) => (
+                  <li key={index} className="text-gray-700">
+                    {factor}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg leading-relaxed mt-6">
               {t("artExpertise.appraisal.summary")}
             </p>
 
-            <h3 className="text-lg font-semibold mb-2">
-              {t("artExpertise.appraisal.stagesTitle")}
-            </h3>
-            {renderList(stages)}
+            <div className="mt-6">
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                {t("artExpertise.appraisal.stagesTitle")}
+              </h2>
+              
+              <ol className="list-decimal list-inside space-y-2 ml-4">
+                {stages.map((stage, index) => (
+                  <li key={index} className="text-gray-700">
+                    {stage}
+                  </li>
+                ))}
+              </ol>
+            </div>
 
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg leading-relaxed mt-6">
               {t("artExpertise.appraisal.conclusion")}
             </p>
-            <p className="text-lg text-gray-600">
+
+            <p className="text-lg leading-relaxed mt-4">
               {t("artExpertise.appraisal.contactNote")}
             </p>
           </div>
@@ -62,6 +77,4 @@ const ArtAppraisal = () => {
       </Layout>
     </>
   );
-};
-
-export default ArtAppraisal;
+}

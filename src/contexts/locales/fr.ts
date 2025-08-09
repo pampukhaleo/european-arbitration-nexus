@@ -3,7 +3,7 @@ export default {
     eac: "CAE",
     about: "À propos de la CAE",
     council: "Conseil",
-    news: "Actualités",
+    news: "Actualités", 
     events: "Événements",
     arbitration: "Arbitrage",
     icac: "CIAC",
@@ -31,33 +31,50 @@ export default {
   },
   home: {
     heroTitle: "Bienvenue à la Chambre d'Arbitrage Européenne",
-    heroSubtitle: "Votre partenaire pour la résolution de conflits internationaux",
+    heroDescription: "Votre partenaire pour la résolution de conflits internationaux",
+    heroBtn: "En savoir plus",
     latestNews: "Dernières actualités",
+    viewAllNews: "Voir toutes les actualités",
     upcomingEvents: "Événements à venir",
     aboutPreviewTitle: "À propos de nous",
-    aboutPreviewText:
-      "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits.",
+    aboutPreviewText: "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits.",
     servicesTitle: "Nos services",
     quickLinksTitle: "Liens rapides",
+    quickLinks: {
+      rulesTitle: "Règlement d'arbitrage",
+      rulesDescription: "Accédez à notre règlement d'arbitrage complet et aux procédures",
+      rulesBtn: "Voir le règlement",
+      clauseTitle: "Clause d'arbitrage",
+      clauseDescription: "Trouvez la clause d'arbitrage appropriée pour vos contrats",
+      clauseBtn: "Obtenir la clause",
+      calculatorTitle: "Calculateur de coûts",
+      calculatorDescription: "Calculez les frais et coûts d'arbitrage",
+      calculatorBtn: "Calculer",
+    },
+    services: {
+      sectionTitle: "Nos Services",
+      arbitrationTitle: "Arbitrage International",
+      arbitrationDesc: "Services d'arbitrage professionnel pour les litiges commerciaux avec des arbitres expérimentés et des procédures modernes.",
+      expertiseTitle: "Expertise Judiciaire",
+      expertiseDesc: "Analyse experte et opinions pour les procédures judiciaires avec des spécialistes certifiés et des normes internationales.",
+      artTitle: "Expertise d'Art",
+      artDesc: "Services d'authentification, d'évaluation et de certification pour les œuvres d'art avec une analyse technique détaillée.",
+      membershipTitle: "Adhésion",
+      membershipDesc: "Rejoignez notre réseau international de professionnels du droit et accédez à des avantages et ressources exclusifs.",
+    },
   },
   about: {
     title: "À propos de la Chambre d'Arbitrage Européenne",
-    text1:
-      "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits. Fondée en 2005, la CAE s'est imposée comme un acteur majeur dans le domaine de l'arbitrage international, offrant une plateforme neutre et efficace pour la résolution de litiges commerciaux.",
-    text2:
-      "La CAE propose une large gamme de services, allant de l'arbitrage ad hoc à l'arbitrage institutionnel, en passant par la médiation et la conciliation. Elle met à la disposition des parties un réseau international d'arbitres et de médiateurs hautement qualifiés, ainsi qu'un ensemble de règles d'arbitrage modernes et adaptées aux besoins du commerce international.",
-    text3:
-      "La CAE est également un centre de formation et de recherche en matière d'arbitrage et de médiation. Elle organise régulièrement des conférences, des séminaires et des ateliers de formation, et publie des études et des articles sur les questions d'actualité en matière de résolution de conflits.",
+    text1: "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits. Fondée en 2005, la CAE s'est imposée comme un acteur majeur dans le domaine de l'arbitrage international, offrant une plateforme neutre et efficace pour la résolution de litiges commerciaux.",
+    text2: "La CAE propose une large gamme de services, allant de l'arbitrage ad hoc à l'arbitrage institutionnel, en passant par la médiation et la conciliation. Elle met à la disposition des parties un réseau international d'arbitres et de médiateurs hautement qualifiés, ainsi qu'un ensemble de règles d'arbitrage modernes et adaptées aux besoins du commerce international.",
+    text3: "La CAE est également un centre de formation et de recherche en matière d'arbitrage et de médiation. Elle organise régulièrement des conférences, des séminaires et des ateliers de formation, et publie des études et des articles sur les questions d'actualité en matière de résolution de conflits.",
   },
   eac: {
     about: {
       title: "À propos de la CAE",
-      text1:
-        "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits. Fondée en 2005, la CAE s'est imposée comme un acteur majeur dans le domaine de l'arbitrage international, offrant une plateforme neutre et efficace pour la résolution de litiges commerciaux.",
-      text2:
-        "La CAE propose une large gamme de services, allant de l'arbitrage ad hoc à l'arbitrage institutionnel, en passant par la médiation et la conciliation. Elle met à la disposition des parties un réseau international d'arbitres et de médiateurs hautement qualifiés, ainsi qu'un ensemble de règles d'arbitrage modernes et adaptées aux besoins du commerce international.",
-      text3:
-        "La CAE est également un centre de formation et de recherche en matière d'arbitrage et de médiation. Elle organise régulièrement des conférences, des séminaires et des ateliers de formation, et publie des études et des articles sur les questions d'actualité en matière de résolution de conflits.",
+      text1: "La Chambre d'Arbitrage Européenne (CAE) est une organisation internationale dédiée à la promotion de l'arbitrage et de la médiation comme moyens de résolution de conflits. Fondée en 2005, la CAE s'est imposée comme un acteur majeur dans le domaine de l'arbitrage international, offrant une plateforme neutre et efficace pour la résolution de litiges commerciaux.",
+      text2: "La CAE propose une large gamme de services, allant de l'arbitrage ad hoc à l'arbitrage institutionnel, en passant par la médiation et la conciliation. Elle met à la disposition des parties un réseau international d'arbitres et de médiateurs hautement qualifiés, ainsi qu'un ensemble de règles d'arbitrage modernes et adaptées aux besoins du commerce international.",
+      text3: "La CAE est également un centre de formation et de recherche en matière d'arbitrage et de médiation. Elle organise régulièrement des conférences, des séminaires et des ateliers de formation, et publie des études et des articles sur les questions d'actualité en matière de résolution de conflits.",
     },
     council: {
       title: "Conseil de la CAE",
@@ -103,8 +120,7 @@ export default {
   },
   contacts: {
     title: "Contacts",
-    description:
-      "N'hésitez pas à nous contacter pour toute question ou demande d'information.",
+    description: "N'hésitez pas à nous contacter pour toute question ou demande d'information.",
   },
   policies: {
     privacy: {
@@ -128,9 +144,40 @@ export default {
       title: "Code de conduite",
     },
   },
+  menu: {
+    sections: "Sections",
+    home: "Accueil",
+    icac: "CIAC",
+    icje: "CIEJ",
+    authentication: "Authentification",
+    membership: "Adhésion",
+  },
+  language: {
+    english: "EN",
+    french: "FR",
+    russian: "RU",
+  },
+  news: {
+    readMore: "Lire la suite",
+  },
+  footer: {
+    aboutUs: "À propos de nous",
+    contactUs: "Nous contacter",
+    usefulLinks: "Liens utiles",
+    privacyPolicy: "Politique de confidentialité",
+    termsOfService: "Conditions d'utilisation",
+    cookiesPolicy: "Politique de cookies",
+    allRightsReserved: "Tous droits réservés",
+  },
+  cookieConsent: {
+    message: "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site web.",
+    accept: "Accepter",
+    decline: "Refuser",
+    learnMore: "En savoir plus",
+  },
   gallery: {
     title: "Galerie",
-    paintingsCount: "{count} peintures",
+    paintingsCount: "peintures",
     search: "Rechercher des peintures...",
     searchBy: "Rechercher par titre, artiste ou année",
     noResults: "Aucune peinture trouvée",
@@ -209,8 +256,7 @@ export default {
   seo: {
     home: {
       title: "Chambre d'Arbitrage Européenne",
-      description:
-        "Votre partenaire pour la résolution de conflits internationaux.",
+      description: "Votre partenaire pour la résolution de conflits internationaux.",
     },
     news: {
       title: "Actualités",

@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Seo } from "@/components/Seo.tsx";
@@ -6,8 +5,8 @@ import { Seo } from "@/components/Seo.tsx";
 const ICJE = () => {
   const { language, t } = useLanguage();
 
-  // Ensure bullets is always an array, with fallback to empty array
-  const bullets = t<string[]>("expertise.icje.description2.examinations") || [];
+  const bullets = t<string[]>("expertise.icje.description2.examinations");
+
 
   return (
     <>
@@ -22,19 +21,19 @@ const ICJE = () => {
               {t("expertise.icje.description2.text")}
             </p>
 
-            {Array.isArray(bullets) && bullets.length > 0 && (
-              <ul className="list-disc ml-5 mb-6">
-                {bullets.map((area, idx) => (
-                  <li className="ml-5 mt-2" key={idx}>{area}</li>
-                ))}
-              </ul>
-            )}
+            <ul className="list-disc ml-5 mb-6">
+
+              {bullets.map((area, idx) => (
+                <li className="ml-5 mt-2" key={idx}>{area}</li>
+              ))}
+            </ul>
 
             <p className="mb-6 text-lg text-gray-600">{t("expertise.icje.description2.footer")}</p>
           </div>
         </div>
       </Layout>
     </>
+
   );
 };
 

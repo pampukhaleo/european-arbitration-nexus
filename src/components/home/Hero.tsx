@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -18,6 +17,7 @@ export default function Hero() {
             src="/images/IMG_3070.JPG"
             alt="Background"
             loading="lazy"
+            fetchPriority="high"
             decoding="async"
             onLoad={() => setLoaded(true)}
             className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ${

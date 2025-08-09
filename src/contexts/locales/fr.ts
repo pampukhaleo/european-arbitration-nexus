@@ -1,4 +1,3 @@
-
 export default {
   nav: {
     eac: "CAE",
@@ -86,11 +85,21 @@ export default {
   },
   expertise: {
     icje: {
-      title: "CIEJ",
-    },
-    expertiseFields: {
-      title: "Domaines d'expertise",
-    },
+      title: "Comité International d'Expertise Judiciaire",
+      description1: "Le Comité International d'Expertise Judiciaire (ICJE) est un organisme spécialisé qui fournit des analyses expertes et des opinions dans les procédures judiciaires.",
+      description2: {
+        text: "L'ICJE effectue des examens dans les domaines suivants :",
+        examinations: [
+          "Analyse de documents et vérification d'authenticité",
+          "Analyse d'écriture manuscrite et de signatures",
+          "Examen technique de documents",
+          "Analyse de preuves numériques",
+          "Comptabilité judiciaire et analyse financière",
+          "Conformité aux normes professionnelles"
+        ],
+        footer: "Tous les examens sont effectués selon les normes internationales et les meilleures pratiques en expertise judiciaire."
+      }
+    }
   },
   contacts: {
     title: "Contacts",

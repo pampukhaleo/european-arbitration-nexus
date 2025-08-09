@@ -1,4 +1,3 @@
-
 export default {
   home: {
     title: "Welcome",
@@ -30,8 +29,22 @@ export default {
     resources: "Resources",
   },
   expertise: {
-    icje: "ICJE",
-    expertiseFields: "Fields of Expertise",
+    icje: {
+      title: "International Committee of Judicial Expertise",
+      description1: "The International Committee of Judicial Expertise (ICJE) is a specialized body that provides expert analysis and opinions in legal proceedings.",
+      description2: {
+        text: "The ICJE conducts examinations in the following areas:",
+        examinations: [
+          "Document analysis and authenticity verification",
+          "Handwriting and signature analysis",
+          "Technical document examination",
+          "Digital evidence analysis",
+          "Forensic accounting and financial analysis",
+          "Professional standards compliance"
+        ],
+        footer: "All examinations are conducted according to international standards and best practices in judicial expertise."
+      }
+    }
   },
   artExpertise: {
     authentication: "Art Authentication",

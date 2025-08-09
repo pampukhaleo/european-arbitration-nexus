@@ -2,7 +2,7 @@ const fr = {
   common: {
     welcome: "Bienvenue",
     submit: "Soumettre",
-    cancel: "Annuler",
+    cancel: "Annuler", 
     confirm: "Confirmer",
     edit: "Modifier",
     delete: "Supprimer",
@@ -45,6 +45,36 @@ const fr = {
     page: "Page",
     apply: "Appliquer",
     filters: "Filtres",
+  },
+  home: {
+    heroTitle: "Bienvenue à la Chambre Européenne d'Arbitrage",
+    heroDescription: "Résolution alternative des litiges pour les entreprises",
+    heroBtn: "En savoir plus",
+    latestNews: "Dernières actualités",
+    viewAllNews: "Voir toutes les actualités",
+    readMore: "Lire la suite",
+    quickLinks: {
+      rulesTitle: "Règlement ICAC",
+      rulesDescription: "Consultez le règlement d'arbitrage ICAC",
+      rulesBtn: "Voir le règlement",
+      clauseTitle: "Clause d'Arbitrage",
+      clauseDescription: "Clause d'arbitrage modèle pour les contrats",
+      clauseBtn: "Voir la clause",
+      calculatorTitle: "Calculateur de Coûts",
+      calculatorDescription: "Calculez les coûts d'arbitrage",
+      calculatorBtn: "Calculer"
+    },
+    services: {
+      sectionTitle: "Nos Services",
+      arbitrationTitle: "Arbitrage",
+      arbitrationDescription: "Services d'arbitrage professionnel pour les litiges commerciaux",
+      expertiseTitle: "Expertise",
+      expertiseDescription: "Services d'analyse et d'évaluation d'experts",
+      artTitle: "Expertise Artistique",
+      artDescription: "Authentification et évaluation d'œuvres d'art",
+      membershipTitle: "Adhésion",
+      membershipDescription: "Rejoignez notre communauté de professionnels juridiques"
+    }
   },
   cookieConsent: {
     message: "Ce site utilise des cookies pour améliorer votre expérience.",
@@ -247,6 +277,78 @@ const fr = {
     }
   },
   seo: {
+    home: {
+      title: "Chambre Européenne d'Arbitrage | Résolution Internationale des Litiges",
+      description: "La Chambre Européenne d'Arbitrage (CEA) fournit des services professionnels d'arbitrage, médiation et expertise pour les litiges commerciaux internationaux."
+    },
+    eac: {
+      title: "À propos de la CEA | Chambre Européenne d'Arbitrage",
+      description: "Découvrez la Chambre Européenne d'Arbitrage, son histoire, sa mission et ses valeurs en matière de résolution internationale des litiges."
+    },
+    council: {
+      title: "Conseil CEA | Chambre Européenne d'Arbitrage", 
+      description: "Rencontrez les membres du Conseil de la Chambre Européenne d'Arbitrage et l'organe dirigeant."
+    },
+    news: {
+      title: "Actualités | Chambre Européenne d'Arbitrage",
+      description: "Restez informé des dernières actualités et événements de la Chambre Européenne d'Arbitrage."
+    },
+    icac: {
+      title: "CICA sous CEA | Cour Internationale d'Arbitrage Commercial",
+      description: "Découvrez la Cour Internationale d'Arbitrage Commercial sous la Chambre Européenne d'Arbitrage."
+    },
+    rules: {
+      title: "Règlement CICA | Cour Internationale d'Arbitrage Commercial",
+      description: "Consultez le règlement d'arbitrage de la Cour Internationale d'Arbitrage Commercial sous la CEA."
+    },
+    fees: {
+      title: "Coûts d'Arbitrage CICA | Barème des Honoraires",
+      description: "Consultez le barème des honoraires et les dispositions de coûts pour les procédures d'arbitrage CICA."
+    },
+    calculator: {
+      title: "Calculateur de Coûts | Honoraires d'Arbitrage CICA",
+      description: "Calculez les coûts estimés pour votre affaire d'arbitrage avec notre calculateur en ligne."
+    },
+    clause: {
+      title: "Clause d'Arbitrage | Modèle de Langue Contractuelle",
+      description: "Utilisez notre clause d'arbitrage modèle pour inclure des dispositions de résolution de litiges dans vos contrats."
+    },
+    authentication: {
+      title: "Authentification d'Art | Chambre Européenne d'Arbitrage",
+      description: "Services d'authentification d'art professionnel par des experts certifiés à la Chambre Européenne d'Arbitrage."
+    },
+    appraisal: {
+      title: "Évaluation d'Art | Chambre Européenne d'Arbitrage",
+      description: "Services d'évaluation et d'expertise d'art par la Chambre Européenne d'Arbitrage."
+    },
+    artPassport: {
+      title: "Passeport d'Art | Chambre Européenne d'Arbitrage",
+      description: "Obtenez un passeport d'art officiel pour votre œuvre d'art de la Chambre Européenne d'Arbitrage."
+    },
+    icje: {
+      title: "ICJE à la CEA | Expertise Commerciale Internationale de Justice",
+      description: "Découvrez les services d'Expertise Commerciale Internationale de Justice à la Chambre Européenne d'Arbitrage."
+    },
+    areas: {
+      title: "Domaines d'Expertise | Chambre Européenne d'Arbitrage",
+      description: "Explorez les divers domaines d'expertise offerts par la Chambre Européenne d'Arbitrage."
+    },
+    benefits: {
+      title: "Avantages d'Adhésion | Chambre Européenne d'Arbitrage",
+      description: "Découvrez les avantages de devenir membre de la Chambre Européenne d'Arbitrage."
+    },
+    join: {
+      title: "Comment Adhérer | Adhésion à la Chambre Européenne d'Arbitrage",
+      description: "Apprenez comment devenir membre de la Chambre Européenne d'Arbitrage et rejoindre notre communauté."
+    },
+    conductCode: {
+      title: "Code de Conduite | Chambre Européenne d'Arbitrage",
+      description: "Consultez le code de conduite pour les membres de la Chambre Européenne d'Arbitrage."
+    },
+    contacts: {
+      title: "Contactez-nous | Chambre Européenne d'Arbitrage",
+      description: "Contactez la Chambre Européenne d'Arbitrage pour des renseignements sur nos services."
+    },
     gallery: {
       title: "Galerie | Chambre Européenne d'Arbitrage",
       description: "Parcourez notre galerie d'événements, réunions, conférences et autres activités de la Chambre Européenne d'Arbitrage."

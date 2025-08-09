@@ -4,7 +4,7 @@ import { Seo } from "@/components/Seo";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ICJE() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const examinations = Array.isArray(t<string[]>("expertise.icje.description2.examinations")) 
     ? t<string[]>("expertise.icje.description2.examinations") 
     : [];
@@ -14,7 +14,7 @@ export default function ICJE() {
       <Seo 
         title={t("seo.icje.title")}
         description={t("seo.icje.description")}
-        lang={t("language.code")}
+        lang={language}
       />
       <Layout>
         <div className="space-y-6">

@@ -2,7 +2,7 @@ export default {
   common: {
     welcome: "Welcome",
     submit: "Submit",
-    reset: "Reset",
+    reset: "Reset", 
     edit: "Edit",
     delete: "Delete",
     cancel: "Cancel",
@@ -36,6 +36,36 @@ export default {
     required: "Required",
     showMore: "Show more",
     showLess: "Show less",
+  },
+  home: {
+    heroTitle: "Welcome to the European Arbitration Chamber",
+    heroDescription: "Alternative dispute resolution for businesses",
+    heroBtn: "Learn More",
+    latestNews: "Latest News",
+    viewAllNews: "View All News",
+    readMore: "Read More",
+    quickLinks: {
+      rulesTitle: "ICAC Rules",
+      rulesDescription: "Read the ICAC arbitration rules",
+      rulesBtn: "View Rules",
+      clauseTitle: "Arbitration Clause",
+      clauseDescription: "Sample arbitration clause for contracts",
+      clauseBtn: "View Clause",
+      calculatorTitle: "Cost Calculator",
+      calculatorDescription: "Calculate arbitration costs",
+      calculatorBtn: "Calculate"
+    },
+    services: {
+      sectionTitle: "Our Services",
+      arbitrationTitle: "Arbitration",
+      arbitrationDescription: "Professional arbitration services for commercial disputes",
+      expertiseTitle: "Expertise",
+      expertiseDescription: "Expert analysis and evaluation services",
+      artTitle: "Art Expertise",
+      artDescription: "Authentication and appraisal of artworks",
+      membershipTitle: "Membership",
+      membershipDescription: "Join our community of legal professionals"
+    }
   },
   index: {
     title: "European Arbitration Chamber",
@@ -270,6 +300,78 @@ export default {
     }
   },
   seo: {
+    home: {
+      title: "European Arbitration Chamber | International Dispute Resolution",
+      description: "The European Arbitration Chamber (EAC) provides professional arbitration, mediation and expertise services for international commercial disputes."
+    },
+    eac: {
+      title: "About EAC | European Arbitration Chamber",
+      description: "Learn about the European Arbitration Chamber, its history, mission and values in international dispute resolution."
+    },
+    council: {
+      title: "EAC Council | European Arbitration Chamber",
+      description: "Meet the members of the European Arbitration Chamber Council and governing body."
+    },
+    news: {
+      title: "News | European Arbitration Chamber",
+      description: "Stay updated with the latest news and events from the European Arbitration Chamber."
+    },
+    icac: {
+      title: "ICAC under EAC | International Commercial Arbitration Court",
+      description: "Learn about the International Commercial Arbitration Court under the European Arbitration Chamber."
+    },
+    rules: {
+      title: "ICAC Rules | International Commercial Arbitration Court",
+      description: "Read the arbitration rules of the International Commercial Arbitration Court under the EAC."
+    },
+    fees: {
+      title: "ICAC Arbitration Costs | Fee Schedule",
+      description: "View the fee schedule and cost provisions for ICAC arbitration proceedings."
+    },
+    calculator: {
+      title: "Cost Calculator | ICAC Arbitration Fees",
+      description: "Calculate the estimated costs for your arbitration case with our online calculator."
+    },
+    clause: {
+      title: "Arbitration Clause | Sample Contract Language",
+      description: "Use our model arbitration clause for including dispute resolution provisions in your contracts."
+    },
+    authentication: {
+      title: "Art Authentication | European Arbitration Chamber",
+      description: "Professional art authentication services from certified experts at the European Arbitration Chamber."
+    },
+    appraisal: {
+      title: "Art Appraisal | European Arbitration Chamber", 
+      description: "Expert art appraisal and valuation services from the European Arbitration Chamber."
+    },
+    artPassport: {
+      title: "Art Passport | European Arbitration Chamber",
+      description: "Obtain an official art passport for your artwork from the European Arbitration Chamber."
+    },
+    icje: {
+      title: "ICJE at EAC | International Commercial Justice Expertise",
+      description: "Learn about the International Commercial Justice Expertise services at the European Arbitration Chamber."
+    },
+    areas: {
+      title: "Expertise Fields | European Arbitration Chamber",
+      description: "Explore the various fields of expertise offered by the European Arbitration Chamber."
+    },
+    benefits: {
+      title: "Membership Benefits | European Arbitration Chamber",
+      description: "Discover the benefits of becoming a member of the European Arbitration Chamber."
+    },
+    join: {
+      title: "How to Join | European Arbitration Chamber Membership",
+      description: "Learn how to become a member of the European Arbitration Chamber and join our community."
+    },
+    conductCode: {
+      title: "Code of Conduct | European Arbitration Chamber",
+      description: "Read the code of conduct for members of the European Arbitration Chamber."
+    },
+    contacts: {
+      title: "Contact Us | European Arbitration Chamber",
+      description: "Get in touch with the European Arbitration Chamber for inquiries about our services."
+    },
     gallery: {
       title: "Gallery | European Arbitration Chamber",
       description: "Browse our gallery of events, meetings, conferences and other activities from the European Arbitration Chamber."

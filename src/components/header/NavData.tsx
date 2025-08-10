@@ -1,3 +1,4 @@
+
 export type NavItem = {
   title: string;
   translationKey: string;
@@ -50,6 +51,11 @@ export const navItems: NavItem[] = [
       { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
       // { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],
+  },
+  {
+    title: "Gallery",
+    translationKey: "menu.gallery",
+    href: "/gallery",
   },
   // {
   //   title: "Training",

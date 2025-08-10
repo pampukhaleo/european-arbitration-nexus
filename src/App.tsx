@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -31,6 +32,11 @@ import ExpertiseFields from "./pages/expertise/ExpertiseFields.tsx";
 import ArtAuthentication from "@/pages/artExpertise/ArtAuthentication.tsx";
 import ArtAppraisal from "@/pages/artExpertise/ArtAppraisal.tsx";
 import ArtPassport from "@/pages/artExpertise/ArtPassport.tsx";
+
+// Gallery Routes
+import Gallery from "@/pages/gallery/Gallery.tsx";
+import PaintingDetail from "@/pages/gallery/PaintingDetail.tsx";
+import PrivateAccess from "@/pages/gallery/PrivateAccess.tsx";
 
 // Membership Routes
 import MembershipBenefits from "@/pages/membership/MembershipBenefits.tsx";
@@ -83,6 +89,11 @@ const App = () => (
             <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
             <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
             <Route path="/art-expertise/passport" element={<ArtPassport />} />
+
+            {/* Gallery routes */}
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery/:id" element={<PaintingDetail />} />
+            <Route path="/gallery/:id/private/:token" element={<PrivateAccess />} />
 
             {/* Membership routes */}
             <Route path="/membership/benefits" element={<MembershipBenefits />} />

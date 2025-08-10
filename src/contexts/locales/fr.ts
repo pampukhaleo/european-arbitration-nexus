@@ -1,3 +1,4 @@
+
 const fr = {
   seo: {
     home: {
@@ -585,7 +586,7 @@ const fr = {
   },
   gallery: {
     title: "Galerie d'art",
-    description: "Découvrez notre collection d'œuvres d'art authentifiées et documentées par des experts.",
+    galleryDescription: "Découvrez notre collection d'œuvres d'art authentifiées et documentées par des experts.",
     searchPlaceholder: "Rechercher par titre ou artiste...",
     allYears: "Toutes les années",
     clearFilters: "Effacer les filtres",

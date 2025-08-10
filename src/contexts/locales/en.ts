@@ -1,3 +1,4 @@
+
 const en = {
   seo: {
     home: {
@@ -458,7 +459,6 @@ const en = {
     backToPainting: "Back to Painting",
     error: "Error",
     paintingNotFound: "Painting not found or not available.",
-    description: "Description",
     expertAccess: "Expert Access",
     expertAccessDescription: "This artwork has been professionally authenticated and documented. Access to detailed technical analysis and expert reports is available through secure QR codes.",
     qrCodeInfo: "Authorized personnel can scan QR codes to access detailed authentication reports, technical analysis, and provenance documentation.",

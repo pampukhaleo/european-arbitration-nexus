@@ -1,4 +1,5 @@
 
+
 const fr = {
   seo: {
     home: {
@@ -192,7 +193,6 @@ const fr = {
     followUs: "Suivez-nous",
     rights: "Tous droits réservés.",
     acceptCookies: "Nous utilisons des cookies pour améliorer votre expérience. En continuant à utiliser notre site, vous acceptez notre",
-    cookiePolicy: "politique des cookies",
     accept: "Accepter",
     decline: "Refuser"
   },

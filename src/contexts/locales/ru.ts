@@ -614,4 +614,4 @@ const ru = {
   }
 };
 
-export default ru as const;
+export default ru;

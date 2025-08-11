@@ -614,4 +614,4 @@ const fr = {
   }
 };
 
-export default fr as const;
+export default fr;

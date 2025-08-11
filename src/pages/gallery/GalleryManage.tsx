@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,7 +10,6 @@ import { Badge } from '@/components/ui/badge';
 import { Plus, Edit, Eye, QrCode, BarChart3 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
-import SeedDataButton from '@/components/gallery/SeedDataButton';
 
 interface Painting {
   id: string;
@@ -93,7 +93,6 @@ const GalleryManage = () => {
             </p>
           </div>
           <div className="flex gap-2">
-            <SeedDataButton />
             <Button 
               onClick={() => navigate('/gallery/manage/add')}
               className="flex items-center gap-2"

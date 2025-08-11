@@ -1,3 +1,5 @@
+
+
 const fr = {
   seo: {
     home: {
@@ -110,8 +112,7 @@ const fr = {
     benefits: "Avantages de l'adhésion",
     join: "Comment adhérer",
     conductCode: "Code de conduite",
-    contacts: "Contacts",
-    galleryManagement: "Gestion de la Galerie"
+    contacts: "Contacts"
   },
   hero: {
     title: "Chambre de Commerce Eurasienne",

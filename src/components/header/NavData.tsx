@@ -4,7 +4,6 @@ export type NavItem = {
   translationKey: string;
   href: string;
   children?: NavItem[];
-  requiresAuth?: boolean;
 };
 
 export const navItems: NavItem[] = [
@@ -16,6 +15,7 @@ export const navItems: NavItem[] = [
       { title: "About Us", translationKey: "menu.about", href: "/eac/about" },
       { title: "EAC Council", translationKey: "menu.council", href: "/eac/council" },
       { title: "News", translationKey: "menu.news", href: "/eac/news" },
+      // { title: "Event Calendar", translationKey: "menu.events", href: "/eac/events" },
     ],
   },
   {
@@ -28,6 +28,8 @@ export const navItems: NavItem[] = [
       { title: "ICAC Provisions on Arbitration Costs", translationKey: "menu.fees", href: "/arbitration/fees" },
       { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
       { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
+      // { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },
+      // { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
     ],
   },
   {
@@ -47,16 +49,22 @@ export const navItems: NavItem[] = [
       { title: "Art Authentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
       { title: "Art Appraisal", translationKey: "menu.appraisal", href: "/art-expertise/appraisal" },
       { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
+      // { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],
   },
   {
     title: "Gallery",
     translationKey: "menu.gallery",
     href: "/gallery",
-    children: [
-      { title: "Gallery Management", translationKey: "menu.galleryManagement", href: "/gallery/manage", requiresAuth: true },
-    ],
   },
+  // {
+  //   title: "Training",
+  //   translationKey: "menu.training",
+  //   href: "/training",
+  //   children: [
+  //     { title: "Qualification Course for Arbitrators", translationKey: "menu.qualification", href: "/training/qualification" },
+  //   ],
+  // },
   {
     title: "Membership",
     translationKey: "menu.membership",

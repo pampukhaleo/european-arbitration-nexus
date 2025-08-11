@@ -1,16 +1,15 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 
 export default function LanguageSwitcher({ mode = "full" }: { mode?: "full" | "compact" }) {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   
   const languages: { code: Language; name: string }[] = [
-    { code: 'en', name: 'English' },
-    { code: 'fr', name: 'Français' },
-    { code: 'ru', name: 'Русский' }
+    { code: 'en', name: t('language.english') },
+    { code: 'fr', name: t('language.french') },
+    { code: 'ru', name: t('language.russian') }
   ];
   
   return (

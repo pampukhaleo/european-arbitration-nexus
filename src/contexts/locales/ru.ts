@@ -1,3 +1,5 @@
+
+
 const ru = {
   seo: {
     home: {
@@ -110,8 +112,7 @@ const ru = {
     benefits: "Преимущества членства",
     join: "Как вступить",
     conductCode: "Кодекс поведения",
-    contacts: "Контакты",
-    galleryManagement: "Управление галереей"
+    contacts: "Контакты"
   },
   hero: {
     title: "Евразийская торговая палата",

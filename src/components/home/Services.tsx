@@ -1,84 +1,85 @@
+
+import { ArrowRight, Gavel, FileSearch, Palette, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Gavel, Lightbulb, Palette, BookOpen } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
-export default function Services() {
+const Services = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const services = [
     {
-      icon: <Gavel className="h-6 w-6 text-white" />,
-      titleKey: "home.services.arbitrationTitle",
-      descriptionKey: "home.services.arbitrationDesc",
-      link: "/arbitration/icac",
-      button: t("menu.icac")
+      icon: <Gavel className="h-8 w-8 text-blue-600" />,
+      title: t("services.arbitration.title"),
+      description: t("services.arbitration.description"),
+      link: "/arbitration",
+      buttonText: t("services.arbitration.button"),
     },
     {
-      icon: <Lightbulb className="h-6 w-6 text-white" />,
-      titleKey: "home.services.expertiseTitle",
-      descriptionKey: "home.services.expertiseDesc",
-      link: "/expertise/icje",
-      button: t("menu.icje")
+      icon: <FileSearch className="h-8 w-8 text-green-600" />,
+      title: t("services.expertise.title"),
+      description: t("services.expertise.description"),
+      link: "/expertise",
+      buttonText: t("services.expertise.button"),
     },
     {
-      icon: <Palette className="h-6 w-6 text-white" />,
-      titleKey: "home.services.artTitle",
-      descriptionKey: "home.services.artDesc",
-      link: "/art-expertise/authentication",
-      button: t("menu.authentication")
+      icon: <Palette className="h-8 w-8 text-purple-600" />,
+      title: t("services.artExpertise.title"),
+      description: t("services.artExpertise.description"),
+      link: "/art-expertise",
+      buttonText: t("services.artExpertise.button"),
     },
     {
-      icon: <BookOpen className="h-6 w-6 text-white" />,
-      titleKey: "home.services.membershipTitle",
-      descriptionKey: "home.services.membershipDesc",
-      link: "/membership/benefits",
-      button: t("menu.membership")
+      icon: <Users className="h-8 w-8 text-orange-600" />,
+      title: "Art Gallery",
+      description: "Discover authenticated artworks with professional analysis and expert reports from our community.",
+      link: "/gallery",
+      buttonText: "Explore Gallery",
     },
   ];
 
   return (
-    <div className="py-16 bg-white">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-eac-dark mb-2">
-            {t("home.services.sectionTitle")}
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            {t("services.title")}
           </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            {t("services.subtitle")}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map(({ icon, titleKey, descriptionKey, link, button }) => (
-            <Link
-              key={titleKey}
-              to={link}
-              className="no-underline hover:no-underline"
-            >
-              <Card
-                className="h-full flex flex-col border border-gray-200 rounded-3xl overflow-hidden hover:shadow-md transition cursor-pointer"
-              >
-                <CardHeader className="bg-eac-light/50 pb-4">
-                  <div className="w-12 h-12 bg-eac-primary rounded-full flex items-center justify-center mb-4">
-                    {icon}
-                  </div>
-                  <CardTitle className="text-2xl text-eac-dark">{t(titleKey)}</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <CardDescription className="text-gray-600 text-base mb-6">
-                    {t(descriptionKey)}
-                  </CardDescription>
-                  <Button
-                    variant="outline"
-                    className="rounded-full border-eac-primary text-eac-primary hover:bg-eac-primary hover:text-white"
-                  >
-                    {button}
-                  </Button>
-                </CardContent>
-              </Card>
-            </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+              <CardHeader className="text-center">
+                <div className="mx-auto mb-4 p-3 bg-white rounded-full shadow-sm w-fit">
+                  {service.icon}
+                </div>
+                <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                <CardDescription className="text-gray-600">
+                  {service.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <Button
+                  variant="outline"
+                  className="w-full group"
+                  onClick={() => navigate(service.link)}
+                >
+                  {service.buttonText}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default Services;

@@ -1,5 +1,4 @@
-
-import { ArrowRight, Gavel, FileSearch, Palette, Users } from "lucide-react";
+import { ArrowRight, Gavel, FileSearch, Palette } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -31,13 +30,6 @@ const Services = () => {
       link: "/art-expertise",
       buttonText: t("services.artExpertise.button"),
     },
-    {
-      icon: <Users className="h-8 w-8 text-orange-600" />,
-      title: "Art Gallery",
-      description: "Discover authenticated artworks with professional analysis and expert reports from our community.",
-      link: "/gallery",
-      buttonText: "Explore Gallery",
-    },
   ];
 
   return (
@@ -52,7 +44,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="text-center">

@@ -1,3 +1,4 @@
+
 export default {
   common: {
     loading: "Loading...",
@@ -68,6 +69,19 @@ export default {
     collaboration: "Collaboration",
     collaborationDescription:
       "We foster collaboration among our members, partners, and stakeholders to achieve common goals.",
+  },
+  aboutEAC: {
+    title: "About the Eurasian Arbitration Center",
+    intro: "The Eurasian Arbitration Center was founded on the initiative of the European Union with the main goal of unifying and developing international arbitration in Eastern and Western Europe.",
+    missionText: "Our mission is to provide a reliable, efficient, and transparent platform for dispute resolution and expertise services, fostering trust and promoting justice across Eurasia.",
+    historyText: "Professionals with long-term experience in the field of Alternative Dispute Resolution (ADR) and international arbitration from Belgium, France, and Ukraine have teamed up to establish the Eurasian Arbitration Center.",
+    representativesText: "The international nonprofit association Eurasian Arbitration Center has been registered by the Belgian Ministry of Justice (Direction Générale de la législation, Royaume de Belgique Service Public Fédéral Justice # 6/SN/15.677/S).",
+    keyAreasTitle: "Key Areas of Activity",
+    keyAreas: {
+      commercial: "Commercial Arbitration – Efficient resolution of international commercial disputes",
+      judicial: "Judicial Expertise – Expert analysis and opinions for judicial proceedings",
+      education: "Training and Education – Development of skills in arbitration and expertise"
+    }
   },
   contacts: {
     title: "Contact Us",
@@ -221,9 +235,27 @@ export default {
         "Stay informed about the latest news, events, and developments at the Eurasian Arbitration Center.",
     },
     learnMore: "Learn More",
-    gallery: {
+    gallerySection: {
       title: "Art Gallery",
       description: "Explore our collection of authenticated artworks with expert analysis and certificates."
     },
   },
+  seo: {
+    eac: {
+      title: "About EAC - Eurasian Arbitration Center",
+      description: "Learn about the history, mission, and values of the Eurasian Arbitration Center (EAC), a leader in arbitration and expertise."
+    },
+    benefits: {
+      title: "Membership Benefits - EAC",
+      description: "Discover the many benefits of becoming a member of the Eurasian Arbitration Center."
+    },
+    join: {
+      title: "How to Join - EAC",
+      description: "Learn how to become a member of the Eurasian Arbitration Center and join our community."
+    },
+    conductCode: {
+      title: "Code of Conduct - EAC",
+      description: "Review the code of conduct for members of the Eurasian Arbitration Center."
+    }
+  }
 };

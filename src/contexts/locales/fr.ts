@@ -1,5 +1,4 @@
 
-
 export default {
   common: {
     loading: "Chargement...",
@@ -61,6 +60,19 @@ export default {
     title: "À propos de nous",
     description: "Informations sur notre organisation.",
   },
+  aboutEAC: {
+    title: "À propos du Conseil Économique Euro-Asiatique",
+    intro: "Le Conseil Économique Euro-Asiatique a été fondé sur l'initiative de l'Union Européenne avec pour objectif principal l'unification et le développement de l'arbitrage international en Europe de l'Est et de l'Ouest.",
+    missionText: "Notre mission est de fournir une plateforme fiable, efficace et transparente pour la résolution des litiges et les services d'expertise, en favorisant la confiance et en promouvant la justice à travers l'Eurasie.",
+    historyText: "Des professionnels avec une expérience à long terme dans le domaine de la résolution alternative des litiges (ADR) et de l'arbitrage international de Belgique, France et Ukraine se sont associés pour fonder le Conseil Économique Euro-Asiatique.",
+    representativesText: "L'association internationale à but non lucratif Conseil Économique Euro-Asiatique a été enregistrée par le Ministère belge de la Justice (Direction Générale de la législation, Royaume de Belgique Service Public Fédéral Justice # 6/SN/15.677/S).",
+    keyAreasTitle: "Domaines d'activité principaux",
+    keyAreas: {
+      commercial: "Arbitrage Commercial – Résolution efficace des litiges commerciaux internationaux",
+      judicial: "Expertise Judiciaire – Analyse experte et opinions pour les procédures judiciaires",
+      education: "Formation et Éducation – Développement des compétences en arbitrage et expertise"
+    }
+  },
   contacts: {
     title: "Contacts",
     description: "Nos coordonnées.",
@@ -95,7 +107,6 @@ export default {
     expertAccess: "Accès Expert",
     expertAccessDescription: "Obtenez un accès exclusif et des informations détaillées sur cette œuvre d'art.",
     qrCodeInfo: "Scannez le code QR pour un accès instantané.",
-    description: "Description",
     technical: "Technique",
     expertiseReport: "Expertise",
     certificates: "Certificats",
@@ -167,5 +178,22 @@ export default {
       description: "Explorez notre collection d'œuvres d'art authentifiées avec analyses d'experts et certificats."
     },
   },
+  seo: {
+    eac: {
+      title: "À propos du CAE - Conseil Économique Euro-Asiatique",
+      description: "Découvrez l'histoire, la mission et les valeurs du Conseil Économique Euro-Asiatique (CAE), leader en arbitrage et expertise."
+    },
+    benefits: {
+      title: "Avantages de l'Adhésion - CAE",
+      description: "Découvrez les nombreux avantages de devenir membre du Conseil Économique Euro-Asiatique."
+    },
+    join: {
+      title: "Comment Adhérer - CAE",
+      description: "Apprenez comment devenir membre du Conseil Économique Euro-Asiatique et rejoindre notre communauté."
+    },
+    conductCode: {
+      title: "Code de Conduite - CAE",
+      description: "Consultez le code de conduite pour les membres du Conseil Économique Euro-Asiatique."
+    }
+  }
 };
-

@@ -161,7 +161,7 @@ export default {
       title: "Actualités",
       description: "Restez informé des dernières actualités et développements.",
     },
-    gallery: {
+    gallerySection: {
       title: "Galerie d'Art",
       description: "Explorez notre collection d'œuvres d'art authentifiées avec analyses d'experts et certificats."
     },

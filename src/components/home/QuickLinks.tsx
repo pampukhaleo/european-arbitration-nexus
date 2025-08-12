@@ -1,94 +1,71 @@
-
 import { Link } from "react-router-dom";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Scale, Users, Award, FileText, Palette } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Calculator, FileText, Scale } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const QuickLinks = () => {
+const quickLinksData = [
+  {
+    icon: <Scale className="h-10 w-10 text-white mr-4" />,
+    titleKey: "home.quickLinks.rulesTitle",
+    descriptionKey: "home.quickLinks.rulesDescription",
+    buttonKey: "home.quickLinks.rulesBtn",
+    link: "/arbitration/rules",
+  },
+  {
+    icon: <FileText className="h-10 w-10 text-white mr-4" />,
+    titleKey: "home.quickLinks.clauseTitle",
+    descriptionKey: "home.quickLinks.clauseDescription",
+    buttonKey: "home.quickLinks.clauseBtn",
+    link: "/arbitration/clause",
+  },
+  {
+    icon: <Calculator className="h-10 w-10 text-white mr-4" />,
+    titleKey: "home.quickLinks.calculatorTitle",
+    descriptionKey: "home.quickLinks.calculatorDescription",
+    buttonKey: "home.quickLinks.calculatorBtn",
+    link: "/arbitration/calculator",
+  },
+];
+
+export default function QuickLinks() {
   const { t } = useLanguage();
-
-  const links = [
-    {
-      icon: Scale,
-      title: t("quickLinks.arbitration.title"),
-      description: t("quickLinks.arbitration.description"),
-      href: "/arbitration/icac",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
-    },
-    {
-      icon: Award,
-      title: t("quickLinks.expertise.title"),
-      description: t("quickLinks.expertise.description"),
-      href: "/expertise/icje",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
-    },
-    {
-      icon: Palette,
-      title: t("quickLinks.gallery.title"),
-      description: t("quickLinks.gallery.description"),
-      href: "/gallery",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
-    },
-    {
-      icon: Users,
-      title: t("quickLinks.membership.title"),
-      description: t("quickLinks.membership.description"),
-      href: "/membership/benefits",
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
-    },
-    {
-      icon: FileText,
-      title: t("quickLinks.news.title"),
-      description: t("quickLinks.news.description"),
-      href: "/eac/news",
-      color: "text-gray-600",
-      bgColor: "bg-gray-50",
-    },
-  ];
-
+  
   return (
-    <section className="py-16 bg-gray-50">
+    <div className="py-12 bg-quickLinks-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {t("quickLinks.title")}
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {t("quickLinks.subtitle")}
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {links.map((link, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-md">
-              <CardHeader className="pb-4">
-                <div className={`w-12 h-12 rounded-lg ${link.bgColor} flex items-center justify-center mb-4`}>
-                  <link.icon className={`h-6 w-6 ${link.color}`} />
-                </div>
-                <CardTitle className="text-xl font-semibold text-gray-900">
-                  {link.title}
-                </CardTitle>
-                <CardDescription className="text-gray-600">
-                  {link.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <Link to={link.href}>
-                  <Button variant="outline" className="w-full">
-                    {t("quickLinks.learnMore")}
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          { quickLinksData.map(({ icon, titleKey, descriptionKey, buttonKey, link }) => (
+            <Link
+              key={ titleKey }
+              to={ link }
+              className="no-underline hover:no-underline"
+            >
+              <Card className="bg-white/10 border-none rounded-3xl overflow-hidden hover:bg-white/15 transition cursor-pointer h-full">
+                <CardContent className="p-6 flex items-center h-full">
+                  {/* Icon on the left, centered vertically */}
+                  <div className="w-15 h-15 flex items-center justify-center mr-4">
+                    { icon }
+                  </div>
+
+                  {/* Text + Button on the right */ }
+                  <div className="flex flex-col justify-between items-start h-full">
+                    <div>
+                      <h3 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h3>
+                      <p className="text-white/80 text-sm mb-3">{t(descriptionKey)}</p>
+                    </div>
+                    <Button variant="link" className="p-0 text-white hover:text-white/80">
+                      {t(buttonKey)}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+            </Link>
+          )) }
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
 
-export default QuickLinks;
+  );
+}

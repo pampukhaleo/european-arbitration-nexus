@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Seo } from "@/components/Seo.tsx";
@@ -7,21 +6,7 @@ const About = () => {
   const { language, t } = useLanguage();
 
   const renderKeyArea = (key: string) => {
-    const value = t(key);
-    if (!value || typeof value !== 'string') {
-      return null;
-    }
-    
-    const parts = value.split("–");
-    if (parts.length < 2) {
-      return (
-        <li className="mt-2">
-          {value}
-        </li>
-      );
-    }
-    
-    const [title, description] = parts;
+    const [title, description] = t(key).split("–");
     return (
       <li className="mt-2">
         <strong>{title.trim()}</strong> – {description.trim()}

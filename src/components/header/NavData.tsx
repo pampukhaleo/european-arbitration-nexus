@@ -1,92 +1,83 @@
 
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useAuth } from "@/contexts/AuthContext";
-
-export interface NavItem {
+export type NavItem = {
   title: string;
-  href: string;
   translationKey: string;
+  href: string;
   children?: NavItem[];
-}
+};
 
 export const navItems: NavItem[] = [
   {
     title: "EAC",
-    href: "/eac",
     translationKey: "menu.eac",
+    href: "/eac",
     children: [
-      { title: "About EAC", href: "/eac/about", translationKey: "menu.about" },
-      { title: "Council", href: "/eac/council", translationKey: "menu.council" },
-      { title: "News", href: "/eac/news", translationKey: "menu.news" },
+      { title: "About Us", translationKey: "menu.about", href: "/eac/about" },
+      { title: "EAC Council", translationKey: "menu.council", href: "/eac/council" },
+      { title: "News", translationKey: "menu.news", href: "/eac/news" },
+      // { title: "Event Calendar", translationKey: "menu.events", href: "/eac/events" },
     ],
   },
   {
     title: "Arbitration",
-    href: "/arbitration",
     translationKey: "menu.arbitration",
+    href: "/arbitration",
     children: [
-      { title: "ICAC", href: "/arbitration/icac", translationKey: "menu.icac" },
-      { title: "Rules", href: "/arbitration/rules", translationKey: "menu.rules" },
-      { title: "Arbitration Clause", href: "/arbitration/clause", translationKey: "menu.clause" },
-      { title: "Fee Regulations", href: "/arbitration/fees", translationKey: "menu.fees" },
-      { title: "Cost Calculator", href: "/arbitration/calculator", translationKey: "menu.calculator" },
+      { title: "About the ICAC under the EAC", translationKey: "menu.icac", href: "/arbitration/icac" },
+      { title: "ICAC Rules ", translationKey: "menu.rules", href: "/arbitration/rules" },
+      { title: "ICAC Provisions on Arbitration Costs", translationKey: "menu.fees", href: "/arbitration/fees" },
+      { title: "Cost Calculator", translationKey: "menu.calculator", href: "/arbitration/calculator" },
+      { title: "Arbitration Clause", translationKey: "menu.clause", href: "/arbitration/clause" },
+      // { title: "List of Arbitrators", translationKey: "menu.arbitrators", href: "/arbitration/arbitrators" },
+      // { title: "Legal Resources", translationKey: "menu.resources", href: "/arbitration/resources" },
     ],
   },
   {
-    title: "Expertise",
-    href: "/expertise",
+    title: "expertise",
     translationKey: "menu.expertise",
+    href: "/expertise",
     children: [
-      { title: "ICJE", href: "/expertise/icje", translationKey: "menu.icje" },
-      { title: "Expertise Fields", href: "/expertise/expertiseFields", translationKey: "menu.expertiseFields" },
+      { title: "About ICJE at EAC", translationKey: "menu.icje", href: "/expertise/icje" },
+      { title: "expertiseFields", translationKey: "menu.expertiseFields", href: "/expertise/expertiseFields" },
     ],
   },
   {
-    title: "Art Expertise",
+    title: "Art expertise",
+    translationKey: "menu.art-expertise",
     href: "/art-expertise",
-    translationKey: "menu.artExpertise",
     children: [
-      { title: "Authentication", href: "/art-expertise/authentication", translationKey: "menu.authentication" },
-      { title: "Appraisal", href: "/art-expertise/appraisal", translationKey: "menu.appraisal" },
-      { title: "Art Passport", href: "/art-expertise/passport", translationKey: "menu.passport" },
+      { title: "Art Authentication", translationKey: "menu.authentication", href: "/art-expertise/authentication" },
+      { title: "Art Appraisal", translationKey: "menu.appraisal", href: "/art-expertise/appraisal" },
+      { title: "Art Passport", translationKey: "menu.passport", href: "/art-expertise/passport" },
+      // { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],
   },
   {
     title: "Gallery",
-    href: "/gallery",
     translationKey: "menu.gallery",
+    href: "/gallery",
+  },
+  // {
+  //   title: "Training",
+  //   translationKey: "menu.training",
+  //   href: "/training",
+  //   children: [
+  //     { title: "Qualification Course for Arbitrators", translationKey: "menu.qualification", href: "/training/qualification" },
+  //   ],
+  // },
+  {
+    title: "Membership",
+    translationKey: "menu.membership",
+    href: "/membership",
     children: [
-      { title: "View Gallery", href: "/gallery", translationKey: "menu.viewGallery" },
+      { title: "Membership Benefits", translationKey: "menu.benefits", href: "/membership/benefits" },
+      { title: "How To Join", translationKey: "menu.join", href: "/membership/join" },
+      { title: "Code of Conduct", translationKey: "menu.conductCode", href: "/membership/conductCode" },
     ],
   },
   {
-    title: "Membership",
-    href: "/membership",
-    translationKey: "menu.membership",
-    children: [
-      { title: "Benefits", href: "/membership/benefits", translationKey: "menu.benefits" },
-      { title: "How to Join", href: "/membership/join", translationKey: "menu.join" },
-      { title: "Code of Conduct", href: "/membership/conductCode", translationKey: "menu.conductCode" },
-    ],
+    title: "Contacts",
+    translationKey: "menu.contacts",
+    href: "/contacts",
   },
 ];
-
-// Dynamic function to get nav items including auth-specific items
-export const useNavItems = () => {
-  const { user } = useAuth();
-  const { t } = useLanguage();
-
-  const authNavItems = user ? [
-    {
-      title: "Gallery Management",
-      href: "/gallery/manage",
-      translationKey: "menu.galleryManage",
-      children: [
-        { title: "Manage Gallery", href: "/gallery/manage", translationKey: "menu.manageGallery" },
-        { title: "Add Painting", href: "/gallery/manage/add", translationKey: "menu.addPainting" },
-      ],
-    }
-  ] : [];
-
-  return [...navItems, ...authNavItems];
-};

@@ -87,19 +87,19 @@ function App() {
                 <Route path="/arbitration/fees" element={<FeeRegulations />} />
                 <Route path="/arbitration/calculator" element={<CostCalculator />} />
                 
-                {/* Expertise Routes */}
+                {/* Expertise Routes - Fixed URLs to match NavData */}
                 <Route path="/expertise/icje" element={<ICJE />} />
-                <Route path="/expertise/fields" element={<ExpertiseFields />} />
+                <Route path="/expertise/expertiseFields" element={<ExpertiseFields />} />
                 
                 {/* Art Expertise Routes */}
                 <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
                 <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
                 <Route path="/art-expertise/passport" element={<ArtPassport />} />
                 
-                {/* Membership Routes */}
+                {/* Membership Routes - Fixed URL to match NavData */}
                 <Route path="/membership/benefits" element={<MembershipBenefits />} />
                 <Route path="/membership/join" element={<HowToJoin />} />
-                <Route path="/membership/conduct" element={<CodeOfConduct />} />
+                <Route path="/membership/conductCode" element={<CodeOfConduct />} />
                 
                 {/* Policy Routes */}
                 <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -8,11 +8,17 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavItems, NavItem } from "./NavData";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
-const MobileNav = () => {
+interface MobileNavProps {
+  activeDropdown: string | null;
+  toggleDropdown: (title: string) => void;
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+}
+
+const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: MobileNavProps) => {
   const { t } = useLanguage();
   const navItems = useNavItems();
   const [openSections, setOpenSections] = useState<string[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSection = (href: string) => {
     setOpenSections(prev => 
@@ -43,7 +49,7 @@ const MobileNav = () => {
               <Link
                 key={child.href}
                 to={child.href}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setMobileMenuOpen(false)}
                 className="block px-3 py-2 text-sm text-gray-600 hover:text-eac-primary hover:bg-gray-50 rounded"
               >
                 {t(child.translationKey) || child.title}
@@ -58,7 +64,7 @@ const MobileNav = () => {
       <Link
         key={item.href}
         to={item.href}
-        onClick={() => setIsOpen(false)}
+        onClick={() => setMobileMenuOpen(false)}
         className="block px-3 py-2 text-gray-700 hover:text-eac-primary hover:bg-gray-50 rounded"
       >
         {t(item.translationKey) || item.title}
@@ -67,7 +73,7 @@ const MobileNav = () => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+    <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="lg:hidden">
           <Menu className="h-6 w-6" />

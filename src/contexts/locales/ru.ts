@@ -1,3 +1,4 @@
+
 export default {
   common: {
     loading: "Загрузка...",
@@ -137,11 +138,11 @@ export default {
     qrCodeInfo:
       "Отсканируйте QR-код, чтобы получить доступ к эксклюзивной информации.",
     technical: "Техническое",
-    expertise: "Экспертиза",
+    expertiseReport: "Экспертиза",
     certificates: "Сертификаты",
     documents: "Документы",
     technicalAnalysis: "Техническая Экспертиза",
-    expertiseReport: "Экспертное Заключение",
+    expertiseReportTitle: "Экспертное Заключение",
     issuer: "Выдавший",
   },
   quickLinks: {

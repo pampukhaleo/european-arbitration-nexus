@@ -1,3 +1,4 @@
+
 export default {
   common: {
     loading: "Chargement...",
@@ -95,11 +96,11 @@ export default {
     qrCodeInfo: "Scannez le code QR pour un accès instantané.",
     description: "Description",
     technical: "Technique",
-    expertise: "Expertise",
+    expertiseReport: "Expertise",
     certificates: "Certificats",
     documents: "Documents",
     technicalAnalysis: "Analyse Technique",
-    expertiseReport: "Rapport d'Expertise",
+    expertiseReportTitle: "Rapport d'Expertise",
     issuer: "Émetteur",
   },
   policies: {

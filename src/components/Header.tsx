@@ -1,9 +1,9 @@
+
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { navItems } from "./header/NavData";
 import DesktopNav from "./header/DesktopNav";
 import MobileNav from "./header/MobileNav";
 import Logo from "./header/Logo";
@@ -29,7 +29,6 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <DesktopNav
-            navItems={navItems}
             activeDropdown={activeDropdown}
             toggleDropdown={toggleDropdown}
           />
@@ -50,7 +49,6 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       <MobileNav
-        navItems={navItems}
         activeDropdown={activeDropdown}
         toggleDropdown={toggleDropdown}
         mobileMenuOpen={mobileMenuOpen}

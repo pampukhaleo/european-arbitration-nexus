@@ -4,7 +4,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useNavItems } from "./NavData";
 import NavDropdown from "./NavDropdown";
 
-const DesktopNav = () => {
+interface DesktopNavProps {
+  activeDropdown: string | null;
+  toggleDropdown: (title: string) => void;
+}
+
+const DesktopNav = ({ activeDropdown, toggleDropdown }: DesktopNavProps) => {
   const { t } = useLanguage();
   const navItems = useNavItems();
 
@@ -12,7 +17,12 @@ const DesktopNav = () => {
     <nav className="hidden lg:flex items-center space-x-8">
       {navItems.map((item) => (
         item.children && item.children.length > 0 ? (
-          <NavDropdown key={item.href} item={item} />
+          <NavDropdown 
+            key={item.href} 
+            item={item} 
+            isActive={activeDropdown === item.title}
+            onToggle={toggleDropdown}
+          />
         ) : (
           <Link
             key={item.href}

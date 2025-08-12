@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -76,6 +75,7 @@ function App() {
                 
                 {/* EAC Routes */}
                 <Route path="/eac" element={<EACAbout />} />
+                <Route path="/eac/about" element={<EACAbout />} />
                 <Route path="/eac/council" element={<EACCouncil />} />
                 <Route path="/eac/news" element={<EACNews />} />
                 <Route path="/eac/news/:id" element={<EACNewsDetail />} />

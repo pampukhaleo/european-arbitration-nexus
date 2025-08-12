@@ -1,4 +1,5 @@
 
+
 export default {
   common: {
     loading: "Загрузка...",
@@ -176,3 +177,4 @@ export default {
     },
   },
 };
+

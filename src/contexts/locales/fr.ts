@@ -1,4 +1,5 @@
 
+
 export default {
   common: {
     loading: "Chargement...",
@@ -167,3 +168,4 @@ export default {
     },
   },
 };
+

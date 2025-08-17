@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -175,8 +174,9 @@ const PaintingForm = () => {
           </h1>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <Card className="mb-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Basic Information */}
+          <Card>
             <CardHeader>
               <CardTitle>Basic Information</CardTitle>
             </CardHeader>
@@ -313,6 +313,116 @@ const PaintingForm = () => {
                 />
                 <Label htmlFor="is_published">Published</Label>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Technical Analysis */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Technical Analysis</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="en" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="en">English</TabsTrigger>
+                  <TabsTrigger value="fr">Français</TabsTrigger>
+                  <TabsTrigger value="ru">Русский</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="en" className="space-y-4">
+                  <div>
+                    <Label htmlFor="technical_analysis_en">Technical Analysis (English)</Label>
+                    <Textarea
+                      id="technical_analysis_en"
+                      value={formData.technical_analysis_en}
+                      onChange={(e) => updateFormData('technical_analysis_en', e.target.value)}
+                      rows={6}
+                      placeholder="Enter detailed technical analysis..."
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="fr" className="space-y-4">
+                  <div>
+                    <Label htmlFor="technical_analysis_fr">Technical Analysis (Français)</Label>
+                    <Textarea
+                      id="technical_analysis_fr"
+                      value={formData.technical_analysis_fr}
+                      onChange={(e) => updateFormData('technical_analysis_fr', e.target.value)}
+                      rows={6}
+                      placeholder="Entrez l'analyse technique détaillée..."
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="ru" className="space-y-4">
+                  <div>
+                    <Label htmlFor="technical_analysis_ru">Technical Analysis (Русский)</Label>
+                    <Textarea
+                      id="technical_analysis_ru"
+                      value={formData.technical_analysis_ru}
+                      onChange={(e) => updateFormData('technical_analysis_ru', e.target.value)}
+                      rows={6}
+                      placeholder="Введите подробный технический анализ..."
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+
+          {/* Expertise Report */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Expertise Report</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="en" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="en">English</TabsTrigger>
+                  <TabsTrigger value="fr">Français</TabsTrigger>
+                  <TabsTrigger value="ru">Русский</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="en" className="space-y-4">
+                  <div>
+                    <Label htmlFor="expertise_report_en">Expertise Report (English)</Label>
+                    <Textarea
+                      id="expertise_report_en"
+                      value={formData.expertise_report_en}
+                      onChange={(e) => updateFormData('expertise_report_en', e.target.value)}
+                      rows={6}
+                      placeholder="Enter expert opinion and evaluation..."
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="fr" className="space-y-4">
+                  <div>
+                    <Label htmlFor="expertise_report_fr">Expertise Report (Français)</Label>
+                    <Textarea
+                      id="expertise_report_fr"
+                      value={formData.expertise_report_fr}
+                      onChange={(e) => updateFormData('expertise_report_fr', e.target.value)}
+                      rows={6}
+                      placeholder="Entrez l'avis d'expert et l'évaluation..."
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="ru" className="space-y-4">
+                  <div>
+                    <Label htmlFor="expertise_report_ru">Expertise Report (Русский)</Label>
+                    <Textarea
+                      id="expertise_report_ru"
+                      value={formData.expertise_report_ru}
+                      onChange={(e) => updateFormData('expertise_report_ru', e.target.value)}
+                      rows={6}
+                      placeholder="Введите экспертное заключение и оценку..."
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </Card>
 

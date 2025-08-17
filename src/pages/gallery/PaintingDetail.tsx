@@ -6,7 +6,8 @@ import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, QrCode } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ArrowLeft, QrCode, FileText, Certificate } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -19,10 +20,18 @@ interface Painting {
   description_en: string;
   description_fr: string;
   description_ru: string;
+  technical_analysis_en: string;
+  technical_analysis_fr: string;
+  technical_analysis_ru: string;
+  expertise_report_en: string;
+  expertise_report_fr: string;
+  expertise_report_ru: string;
   year: number;
   public_image_url: string;
   is_published: boolean;
   owner_id: string;
+  certificates: any[];
+  documents: any[];
 }
 
 const PaintingDetail = () => {
@@ -57,7 +66,7 @@ const PaintingDetail = () => {
     }
   };
 
-  const getLocalizedText = (field: 'title' | 'artist' | 'description') => {
+  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'technical_analysis' | 'expertise_report') => {
     if (!painting) return '';
     return painting[`${field}_${language}` as keyof Painting] as string || 
            painting[`${field}_en` as keyof Painting] as string || '';
@@ -130,13 +139,121 @@ const PaintingDetail = () => {
               )}
             </div>
 
-            {getLocalizedText('description') && (
+            {/* Content Tabs */}
+            <Tabs defaultValue="description" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="description">{t('gallery.description')}</TabsTrigger>
+                <TabsTrigger value="technical">{t('gallery.technicalAnalysis')}</TabsTrigger>
+                <TabsTrigger value="expertise">{t('gallery.expertiseReport')}</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="description" className="mt-4">
+                {getLocalizedText('description') ? (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="text-muted-foreground text-center py-8">
+                        {t('gallery.noDescription')}
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+              
+              <TabsContent value="technical" className="mt-4">
+                {getLocalizedText('technical_analysis') ? (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <FileText className="h-5 w-5" />
+                        {t('gallery.technicalAnalysis')}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="whitespace-pre-wrap">{getLocalizedText('technical_analysis')}</p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="text-muted-foreground text-center py-8">
+                        {t('gallery.noTechnicalAnalysis')}
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+              
+              <TabsContent value="expertise" className="mt-4">
+                {getLocalizedText('expertise_report') ? (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Certificate className="h-5 w-5" />
+                        {t('gallery.expertiseReport')}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="whitespace-pre-wrap">{getLocalizedText('expertise_report')}</p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <Card>
+                    <CardContent className="pt-6">
+                      <p className="text-muted-foreground text-center py-8">
+                        {t('gallery.noExpertiseReport')}
+                      </p>
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+            </Tabs>
+
+            {/* Documents and Certificates */}
+            {(painting.certificates?.length > 0 || painting.documents?.length > 0) && (
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('gallery.description')}</CardTitle>
+                  <CardTitle>{t('gallery.attachments')}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
+                <CardContent className="space-y-4">
+                  {painting.certificates?.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <Certificate className="h-4 w-4" />
+                        {t('gallery.certificates')}
+                      </h4>
+                      <div className="space-y-2">
+                        {painting.certificates.map((cert: any, index: number) => (
+                          <div key={index} className="flex items-center gap-2 p-2 border rounded">
+                            <FileText className="h-4 w-4" />
+                            <span className="text-sm">{cert.name || `Certificate ${index + 1}`}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {painting.documents?.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <FileText className="h-4 w-4" />
+                        {t('gallery.documents')}
+                      </h4>
+                      <div className="space-y-2">
+                        {painting.documents.map((doc: any, index: number) => (
+                          <div key={index} className="flex items-center gap-2 p-2 border rounded">
+                            <FileText className="h-4 w-4" />
+                            <span className="text-sm">{doc.name || `Document ${index + 1}`}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             )}

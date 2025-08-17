@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, QrCode, FileText, Certificate } from 'lucide-react';
+import { ArrowLeft, QrCode, FileText, Award } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -194,7 +194,7 @@ const PaintingDetail = () => {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <Certificate className="h-5 w-5" />
+                        <Award className="h-5 w-5" />
                         {t('gallery.expertiseReport')}
                       </CardTitle>
                     </CardHeader>
@@ -224,7 +224,7 @@ const PaintingDetail = () => {
                   {painting.certificates?.length > 0 && (
                     <div>
                       <h4 className="font-semibold mb-2 flex items-center gap-2">
-                        <Certificate className="h-4 w-4" />
+                        <Award className="h-4 w-4" />
                         {t('gallery.certificates')}
                       </h4>
                       <div className="space-y-2">

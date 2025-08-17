@@ -37,7 +37,7 @@ const TokenManagement = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { language, t } = useLanguage();
-  const { toast } = useToast();
+  const { toast, dismiss } = useToast();
 
   const [painting, setPainting] = useState<Painting | null>(null);
   const [tokens, setTokens] = useState<AccessToken[]>([]);
@@ -94,27 +94,59 @@ const TokenManagement = () => {
 
     setGenerating(true);
     try {
+      console.log('Generating token with params:', {
+        painting_id_param: id,
+        template_type_param: selectedTemplate,
+        owner_id_param: user.id
+      });
+
       const { data, error } = await supabase.rpc('generate_access_token', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
         owner_id_param: user.id
       });
 
-      if (error) throw error;
+      console.log('Token generation response:', { data, error });
 
-      toast({
+      if (error) {
+        console.error('Token generation error:', error);
+        const toastId = toast({
+          title: "Error",
+          description: `Failed to generate access token: ${error.message}`,
+          variant: "destructive",
+        });
+        
+        // Auto-dismiss after 4 seconds
+        setTimeout(() => {
+          dismiss(toastId.id);
+        }, 4000);
+        
+        return;
+      }
+
+      const successToastId = toast({
         title: "Success",
         description: "Access token generated successfully",
       });
+      
+      // Auto-dismiss success toast after 4 seconds
+      setTimeout(() => {
+        dismiss(successToastId.id);
+      }, 4000);
 
       fetchData(); // Refresh tokens list
     } catch (error) {
-      console.error('Error generating token:', error);
-      toast({
+      console.error('Unexpected error generating token:', error);
+      const toastId = toast({
         title: "Error",
-        description: "Failed to generate access token",
+        description: "An unexpected error occurred while generating the token",
         variant: "destructive",
       });
+      
+      // Auto-dismiss after 4 seconds
+      setTimeout(() => {
+        dismiss(toastId.id);
+      }, 4000);
     } finally {
       setGenerating(false);
     }
@@ -130,28 +162,43 @@ const TokenManagement = () => {
 
       if (error) throw error;
 
-      toast({
+      const successToastId = toast({
         title: "Success",
         description: "Token deactivated successfully",
       });
+      
+      // Auto-dismiss after 4 seconds
+      setTimeout(() => {
+        dismiss(successToastId.id);
+      }, 4000);
 
       fetchData();
     } catch (error) {
       console.error('Error deactivating token:', error);
-      toast({
+      const toastId = toast({
         title: "Error",
         description: "Failed to deactivate token",
         variant: "destructive",
       });
+      
+      // Auto-dismiss after 4 seconds
+      setTimeout(() => {
+        dismiss(toastId.id);
+      }, 4000);
     }
   };
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast({
+    const toastId = toast({
       title: "Copied",
       description: "Link copied to clipboard",
     });
+    
+    // Auto-dismiss after 2 seconds
+    setTimeout(() => {
+      dismiss(toastId.id);
+    }, 2000);
   };
 
   const getLocalizedTitle = () => {

@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
 import { ArrowLeft, Save } from 'lucide-react';
+import ImageUpload from '@/components/gallery/ImageUpload';
 
 interface PaintingFormData {
   title_en: string;
@@ -175,6 +176,20 @@ const PaintingForm = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Image Upload */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Image</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ImageUpload
+                currentImageUrl={formData.public_image_url}
+                onImageUploaded={(url) => updateFormData('public_image_url', url)}
+                onImageRemoved={() => updateFormData('public_image_url', '')}
+              />
+            </CardContent>
+          </Card>
+
           {/* Basic Information */}
           <Card>
             <CardHeader>
@@ -293,14 +308,6 @@ const PaintingForm = () => {
                     type="number"
                     value={formData.year || ''}
                     onChange={(e) => updateFormData('year', e.target.value ? parseInt(e.target.value) : null)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="public_image_url">Public Image URL</Label>
-                  <Input
-                    id="public_image_url"
-                    value={formData.public_image_url}
-                    onChange={(e) => updateFormData('public_image_url', e.target.value)}
                   />
                 </div>
               </div>

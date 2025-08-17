@@ -7,7 +7,7 @@ import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Edit, Eye, QrCode, BarChart3 } from 'lucide-react';
+import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -87,7 +87,13 @@ const GalleryManage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Gallery Management</h1>
+            <div className="flex items-center gap-4 mb-2">
+              <Button variant="outline" onClick={() => navigate('/gallery')}>
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Go to Gallery
+              </Button>
+              <h1 className="text-3xl font-bold">Gallery Management</h1>
+            </div>
             <p className="text-muted-foreground">
               Welcome back, {user?.user_metadata?.full_name || user?.email}
             </p>

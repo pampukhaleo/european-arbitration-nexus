@@ -1,13 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, QrCode, FileText, Award } from 'lucide-react';
+import { ArrowLeft, QrCode, FileText, Award, Settings } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -37,6 +37,7 @@ interface Painting {
 const PaintingDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { language, t } = useLanguage();
+  const { user } = useAuth();
   const [painting, setPainting] = useState<Painting | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -101,16 +102,28 @@ const PaintingDetail = () => {
     );
   }
 
+  const isOwner = user && painting.owner_id === user.id;
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-6">
+        <div className="mb-6 flex justify-between items-center">
           <Link to="/gallery">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
               {t('gallery.backToGallery')}
             </Button>
           </Link>
+          
+          {/* Owner Management Button */}
+          {isOwner && (
+            <Link to={`/gallery/manage/tokens/${painting.id}`}>
+              <Button>
+                <Settings className="mr-2 h-4 w-4" />
+                Manage QR & Access
+              </Button>
+            </Link>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

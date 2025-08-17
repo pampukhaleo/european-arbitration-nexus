@@ -1,13 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, Settings, Plus, LogIn } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -24,6 +24,7 @@ interface Painting {
 
 const Gallery = () => {
   const { language, t } = useLanguage();
+  const { user } = useAuth();
   const [paintings, setPaintings] = useState<Painting[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -80,10 +81,41 @@ const Gallery = () => {
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">{t('gallery.title')}</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('gallery.description')}
-          </p>
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold mb-4">{t('gallery.title')}</h1>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('gallery.description')}
+              </p>
+            </div>
+            
+            {/* Owner Management Buttons */}
+            <div className="flex gap-2 ml-4">
+              {user ? (
+                <>
+                  <Link to="/gallery/manage">
+                    <Button variant="outline" size="sm">
+                      <Settings className="h-4 w-4 mr-2" />
+                      Manage Gallery
+                    </Button>
+                  </Link>
+                  <Link to="/gallery/manage/add">
+                    <Button size="sm">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Painting
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <Link to="/auth">
+                  <Button variant="outline" size="sm">
+                    <LogIn className="h-4 w-4 mr-2" />
+                    Owner Login
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}

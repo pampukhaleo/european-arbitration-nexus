@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { QRCodeGenerator } from '@/components/gallery/QRCodeGenerator';
+import QRCodeGenerator from '@/components/gallery/QRCodeGenerator';
 
 const QrCodeGenerator = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,7 +30,7 @@ const QrCodeGenerator = () => {
             <CardTitle>QR Code Generator</CardTitle>
           </CardHeader>
           <CardContent>
-            <QRCodeGenerator paintingId={id} />
+            <QRCodeGenerator url={`${window.location.origin}/gallery/${id}`} />
           </CardContent>
         </Card>
       </div>

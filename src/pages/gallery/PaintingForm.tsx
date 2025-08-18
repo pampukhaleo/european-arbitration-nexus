@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -181,9 +180,10 @@ const PaintingForm = () => {
     }
 
     if (result.error) {
+      console.error('Database error:', result.error);
       toast({
         title: "Error",
-        description: `Failed to ${isEditing ? 'update' : 'create'} painting`,
+        description: result.error.message || `Failed to ${isEditing ? 'update' : 'create'} painting`,
         variant: "destructive",
       });
     } else {

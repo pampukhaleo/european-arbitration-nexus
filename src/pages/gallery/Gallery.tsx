@@ -8,7 +8,7 @@ import { useUserRole } from '@/hooks/useUserRole';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter, Settings, Plus, LogIn, QrCode } from 'lucide-react';
+import { Search, Filter, Settings, Plus, LogIn, QrCode, LogOut } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -25,7 +25,7 @@ interface Painting {
 
 const Gallery = () => {
   const { language, t } = useLanguage();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { role, isAdmin, isOwner } = useUserRole();
   const [paintings, setPaintings] = useState<Painting[]>([]);
   const [loading, setLoading] = useState(true);
@@ -119,6 +119,14 @@ const Gallery = () => {
                       </Button>
                     </Link>
                   )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={signOut}
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
                 </>
               ) : (
                 <Link to="/auth">

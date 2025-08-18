@@ -1,24 +1,27 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Gallery from '@/pages/gallery/Gallery';
 import PaintingDetail from '@/pages/gallery/PaintingDetail';
 import PaintingForm from '@/pages/gallery/PaintingForm';
 import GalleryManage from '@/pages/gallery/GalleryManage';
-import Auth from '@/pages/auth/Auth';
+import Auth from '@/pages/Auth';
 import ProtectedRoute from '@/components/ProtectedRoute';
-import ScrollToTop from '@/components/ScrollToTop';
+import { ScrollToTop } from '@/components/ui/ScrollToTop';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
 import QrCodeGenerator from '@/pages/gallery/QrCodeGenerator';
 import CookieConsent from '@/components/CookieConsent';
-import { QueryClient } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminRoute from '@/components/AdminRoute';
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <QueryClient>
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <LanguageProvider>
           <Router>
@@ -62,7 +65,7 @@ function App() {
           </Router>
         </LanguageProvider>
       </AuthProvider>
-    </QueryClient>
+    </QueryClientProvider>
   );
 }
 

@@ -2,12 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUserRole } from '@/hooks/useUserRole';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft } from 'lucide-react';
+import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -23,11 +24,13 @@ interface Painting {
   public_image_url: string | null;
   is_published: boolean;
   created_at: string;
+  owner_id: string;
 }
 
 const GalleryManage = () => {
   const { user, signOut } = useAuth();
   const { t, language } = useLanguage();
+  const { role, isAdmin, isOwner, loading: roleLoading } = useUserRole();
   const navigate = useNavigate();
   const { toast } = useToast();
   
@@ -35,30 +38,36 @@ const GalleryManage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchPaintings();
-  }, []);
+    if (!roleLoading && role) {
+      fetchPaintings();
+    }
+  }, [role, roleLoading]);
 
   const fetchPaintings = async () => {
     if (!user) return;
     
     setLoading(true);
-    const { data, error } = await supabase
-      .from('paintings')
-      .select('*')
-      .eq('owner_id', user.id)
-      .order('created_at', { ascending: false });
+    try {
+      let query = supabase.from('paintings').select('*');
+      
+      // Admins see all paintings, owners see only their own
+      if (!isAdmin) {
+        query = query.eq('owner_id', user.id);
+      }
+      
+      const { data, error } = await query.order('created_at', { ascending: false });
 
-    if (error) {
+      if (error) throw error;
+      setPaintings(data || []);
+    } catch (error) {
       toast({
         title: "Error",
         description: "Failed to fetch paintings",
         variant: "destructive",
       });
-    } else {
-      setPaintings(data || []);
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   const handleSignOut = async () => {
@@ -82,6 +91,34 @@ const GalleryManage = () => {
     }
   };
 
+  if (roleLoading || loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">Loading...</div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!isAdmin && !isOwner) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+            <p className="text-muted-foreground mb-4">
+              You don't have permission to access this page.
+            </p>
+            <Button onClick={() => navigate('/gallery')}>
+              Back to Gallery
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -92,20 +129,26 @@ const GalleryManage = () => {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Go to Gallery
               </Button>
-              <h1 className="text-3xl font-bold">Gallery Management</h1>
+              <h1 className="text-3xl font-bold">
+                {isAdmin ? 'Gallery Administration' : 'QR Code Management'}
+              </h1>
             </div>
             <p className="text-muted-foreground">
               Welcome back, {user?.user_metadata?.full_name || user?.email}
+              {isAdmin && <Badge className="ml-2">Admin</Badge>}
+              {isOwner && !isAdmin && <Badge variant="secondary" className="ml-2">Owner</Badge>}
             </p>
           </div>
           <div className="flex gap-2">
-            <Button 
-              onClick={() => navigate('/gallery/manage/add')}
-              className="flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Add Painting
-            </Button>
+            {isAdmin && (
+              <Button 
+                onClick={() => navigate('/gallery/manage/add')}
+                className="flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Add Painting
+              </Button>
+            )}
             <Button variant="outline" onClick={handleSignOut}>
               Sign Out
             </Button>
@@ -131,14 +174,21 @@ const GalleryManage = () => {
         ) : paintings.length === 0 ? (
           <Card className="text-center py-12">
             <CardContent>
-              <h3 className="text-lg font-semibold mb-2">No paintings yet</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                {isAdmin ? 'No paintings yet' : 'No paintings assigned'}
+              </h3>
               <p className="text-muted-foreground mb-4">
-                Start building your gallery by adding your first painting.
+                {isAdmin 
+                  ? 'Start building the gallery by adding the first painting.' 
+                  : 'You don\'t have any paintings assigned to you yet.'
+                }
               </p>
-              <Button onClick={() => navigate('/gallery/manage/add')}>
-                <Plus className="h-4 w-4 mr-2" />
-                Add Your First Painting
-              </Button>
+              {isAdmin && (
+                <Button onClick={() => navigate('/gallery/manage/add')}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Your First Painting
+                </Button>
+              )}
             </CardContent>
           </Card>
         ) : (
@@ -181,15 +231,17 @@ const GalleryManage = () => {
                       <Eye className="h-4 w-4 mr-1" />
                       View
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1"
-                      onClick={() => navigate(`/gallery/manage/edit/${painting.id}`)}
-                    >
-                      <Edit className="h-4 w-4 mr-1" />
-                      Edit
-                    </Button>
+                    {isAdmin && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                        onClick={() => navigate(`/gallery/manage/edit/${painting.id}`)}
+                      >
+                        <Edit className="h-4 w-4 mr-1" />
+                        Edit
+                      </Button>
+                    )}
                     <Button
                       variant="outline"
                       size="sm"

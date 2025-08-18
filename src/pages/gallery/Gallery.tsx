@@ -1,13 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUserRole } from '@/hooks/useUserRole';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter, Settings, Plus, LogIn } from 'lucide-react';
+import { Search, Filter, Settings, Plus, LogIn, QrCode } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -25,6 +27,7 @@ interface Painting {
 const Gallery = () => {
   const { language, t } = useLanguage();
   const { user } = useAuth();
+  const { role, isAdmin, isOwner } = useUserRole();
   const [paintings, setPaintings] = useState<Painting[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -89,22 +92,34 @@ const Gallery = () => {
               </p>
             </div>
             
-            {/* Owner Management Buttons */}
+            {/* Role-based Management Buttons */}
             <div className="flex gap-2 ml-4">
               {user ? (
                 <>
-                  <Link to="/gallery/manage">
-                    <Button variant="outline" size="sm">
-                      <Settings className="h-4 w-4 mr-2" />
-                      Manage Gallery
-                    </Button>
-                  </Link>
-                  <Link to="/gallery/manage/add">
-                    <Button size="sm">
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Painting
-                    </Button>
-                  </Link>
+                  {isAdmin && (
+                    <>
+                      <Link to="/gallery/manage">
+                        <Button variant="outline" size="sm">
+                          <Settings className="h-4 w-4 mr-2" />
+                          Admin Panel
+                        </Button>
+                      </Link>
+                      <Link to="/gallery/manage/add">
+                        <Button size="sm">
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add Painting
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                  {isOwner && !isAdmin && (
+                    <Link to="/gallery/manage">
+                      <Button variant="outline" size="sm">
+                        <QrCode className="h-4 w-4 mr-2" />
+                        Manage QR Codes
+                      </Button>
+                    </Link>
+                  )}
                 </>
               ) : (
                 <Link to="/auth">

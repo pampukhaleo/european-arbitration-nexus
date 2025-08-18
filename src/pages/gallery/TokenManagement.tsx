@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUserRole } from '@/hooks/useUserRole';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -20,6 +22,7 @@ interface Painting {
   title_en: string;
   title_fr: string;
   title_ru: string;
+  owner_id: string;
 }
 
 interface AccessToken {
@@ -37,6 +40,7 @@ const TokenManagement = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { language, t } = useLanguage();
+  const { isAdmin, isOwner } = useUserRole();
   const { toast } = useToast();
 
   const [painting, setPainting] = useState<Painting | null>(null);
@@ -44,7 +48,6 @@ const TokenManagement = () => {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('24hours');
-  const [showStats, setShowStats] = useState(false);
 
   useEffect(() => {
     if (id && user) {
@@ -56,23 +59,39 @@ const TokenManagement = () => {
     if (!id || !user) return;
 
     try {
-      // Fetch painting info
-      const { data: paintingData, error: paintingError } = await supabase
+      // Check if user has access to this painting
+      let paintingQuery = supabase
         .from('paintings')
-        .select('id, title_en, title_fr, title_ru')
-        .eq('id', id)
-        .eq('owner_id', user.id)
-        .single();
+        .select('id, title_en, title_fr, title_ru, owner_id')
+        .eq('id', id);
 
-      if (paintingError) throw paintingError;
+      // If not admin, only allow access to own paintings
+      if (!isAdmin) {
+        paintingQuery = paintingQuery.eq('owner_id', user.id);
+      }
+
+      const { data: paintingData, error: paintingError } = await paintingQuery.single();
+
+      if (paintingError) {
+        if (paintingError.code === 'PGRST116') {
+          toast({
+            title: "Access Denied",
+            description: "You don't have permission to manage tokens for this painting",
+            variant: "destructive",
+          });
+          navigate('/gallery/manage');
+          return;
+        }
+        throw paintingError;
+      }
+      
       setPainting(paintingData);
 
-      // Fetch tokens
+      // Fetch tokens for this painting
       const { data: tokensData, error: tokensError } = await supabase
         .from('access_tokens')
         .select('*')
         .eq('painting_id', id)
-        .eq('owner_id', user.id)
         .order('created_at', { ascending: false });
 
       if (tokensError) throw tokensError;
@@ -84,6 +103,7 @@ const TokenManagement = () => {
         description: "Failed to fetch painting data",
         variant: "destructive",
       });
+      navigate('/gallery/manage');
     } finally {
       setLoading(false);
     }
@@ -97,13 +117,13 @@ const TokenManagement = () => {
       console.log('Generating token with params:', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
-        owner_id_param: user.id
+        owner_id_param: null // This will be derived from the painting
       });
 
       const { data, error } = await supabase.rpc('generate_access_token', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
-        owner_id_param: user.id
+        owner_id_param: null // Not used anymore, derived from painting
       });
 
       console.log('Token generation response:', { data, error });
@@ -141,8 +161,7 @@ const TokenManagement = () => {
       const { error } = await supabase
         .from('access_tokens')
         .update({ is_active: false })
-        .eq('id', tokenId)
-        .eq('owner_id', user?.id);
+        .eq('id', tokenId);
 
       if (error) throw error;
 

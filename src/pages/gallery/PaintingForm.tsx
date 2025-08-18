@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUserRole } from '@/hooks/useUserRole';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -11,6 +13,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
 import { ArrowLeft, Save } from 'lucide-react';
 import ImageUpload from '@/components/gallery/ImageUpload';
@@ -34,6 +37,7 @@ interface PaintingFormData {
   year: number | null;
   public_image_url: string;
   is_published: boolean;
+  owner_id: string;
 }
 
 const PaintingForm = () => {
@@ -41,10 +45,12 @@ const PaintingForm = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { t } = useLanguage();
+  const { isAdmin, loading: roleLoading } = useUserRole();
   const { toast } = useToast();
   
   const isEditing = Boolean(id);
   const [loading, setLoading] = useState(false);
+  const [owners, setOwners] = useState<Array<{id: string, email: string, full_name: string}>>([]);
   const [formData, setFormData] = useState<PaintingFormData>({
     title_en: '',
     title_fr: '',
@@ -64,67 +70,101 @@ const PaintingForm = () => {
     year: null,
     public_image_url: '',
     is_published: true,
+    owner_id: '',
   });
 
   useEffect(() => {
-    if (isEditing && id) {
-      fetchPainting();
+    if (!roleLoading) {
+      if (!isAdmin) {
+        navigate('/gallery/manage');
+        return;
+      }
+      fetchOwners();
+      if (isEditing && id) {
+        fetchPainting();
+      }
     }
-  }, [id, isEditing]);
+  }, [id, isEditing, isAdmin, roleLoading]);
+
+  const fetchOwners = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, email, full_name')
+        .order('email');
+
+      if (error) throw error;
+      setOwners(data || []);
+    } catch (error) {
+      console.error('Error fetching owners:', error);
+    }
+  };
 
   const fetchPainting = async () => {
     if (!id || !user) return;
     
     setLoading(true);
-    const { data, error } = await supabase
-      .from('paintings')
-      .select('*')
-      .eq('id', id)
-      .eq('owner_id', user.id)
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('paintings')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-    if (error) {
+      if (error) throw error;
+      
+      if (data) {
+        setFormData({
+          title_en: data.title_en || '',
+          title_fr: data.title_fr || '',
+          title_ru: data.title_ru || '',
+          artist_en: data.artist_en || '',
+          artist_fr: data.artist_fr || '',
+          artist_ru: data.artist_ru || '',
+          description_en: data.description_en || '',
+          description_fr: data.description_fr || '',
+          description_ru: data.description_ru || '',
+          technical_analysis_en: data.technical_analysis_en || '',
+          technical_analysis_fr: data.technical_analysis_fr || '',
+          technical_analysis_ru: data.technical_analysis_ru || '',
+          expertise_report_en: data.expertise_report_en || '',
+          expertise_report_fr: data.expertise_report_fr || '',
+          expertise_report_ru: data.expertise_report_ru || '',
+          year: data.year,
+          public_image_url: data.public_image_url || '',
+          is_published: data.is_published ?? true,
+          owner_id: data.owner_id || '',
+        });
+      }
+    } catch (error) {
       toast({
         title: "Error",
         description: "Failed to fetch painting",
         variant: "destructive",
       });
       navigate('/gallery/manage');
-    } else if (data) {
-      setFormData({
-        title_en: data.title_en || '',
-        title_fr: data.title_fr || '',
-        title_ru: data.title_ru || '',
-        artist_en: data.artist_en || '',
-        artist_fr: data.artist_fr || '',
-        artist_ru: data.artist_ru || '',
-        description_en: data.description_en || '',
-        description_fr: data.description_fr || '',
-        description_ru: data.description_ru || '',
-        technical_analysis_en: data.technical_analysis_en || '',
-        technical_analysis_fr: data.technical_analysis_fr || '',
-        technical_analysis_ru: data.technical_analysis_ru || '',
-        expertise_report_en: data.expertise_report_en || '',
-        expertise_report_fr: data.expertise_report_fr || '',
-        expertise_report_ru: data.expertise_report_ru || '',
-        year: data.year,
-        public_image_url: data.public_image_url || '',
-        is_published: data.is_published ?? true,
-      });
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
+    if (!user || !isAdmin) return;
+
+    if (!formData.owner_id) {
+      toast({
+        title: "Error",
+        description: "Please select an owner for the painting",
+        variant: "destructive",
+      });
+      return;
+    }
 
     setLoading(true);
 
     const paintingData = {
       ...formData,
-      owner_id: user.id,
       updated_at: new Date().toISOString(),
     };
 
@@ -133,8 +173,7 @@ const PaintingForm = () => {
       result = await supabase
         .from('paintings')
         .update(paintingData)
-        .eq('id', id)
-        .eq('owner_id', user.id);
+        .eq('id', id);
     } else {
       result = await supabase
         .from('paintings')
@@ -162,6 +201,34 @@ const PaintingForm = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
+  if (roleLoading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">Loading...</div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+            <p className="text-muted-foreground mb-4">
+              Only administrators can add or edit paintings.
+            </p>
+            <Button onClick={() => navigate('/gallery/manage')}>
+              Back to Gallery Management
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -187,6 +254,30 @@ const PaintingForm = () => {
                 onImageUploaded={(url) => updateFormData('public_image_url', url)}
                 onImageRemoved={() => updateFormData('public_image_url', '')}
               />
+            </CardContent>
+          </Card>
+
+          {/* Owner Selection */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Owner</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div>
+                <Label htmlFor="owner_id">Select Owner</Label>
+                <Select value={formData.owner_id} onValueChange={(value) => updateFormData('owner_id', value)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select an owner..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {owners.map((owner) => (
+                      <SelectItem key={owner.id} value={owner.id}>
+                        {owner.full_name || owner.email} ({owner.email})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </CardContent>
           </Card>
 

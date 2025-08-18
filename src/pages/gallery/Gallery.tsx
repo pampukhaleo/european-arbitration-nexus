@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -93,30 +92,30 @@ const Gallery = () => {
             </div>
             
             {/* Role-based Management Buttons */}
-            <div className="flex gap-2 ml-4">
+            <div className="flex flex-col gap-2 ml-4">
               {user ? (
                 <>
                   {isAdmin && (
-                    <>
-                      <Link to="/gallery/manage">
-                        <Button variant="outline" size="sm">
+                    <div className="flex gap-2">
+                      <Link to="/admin/dashboard">
+                        <Button variant="default" size="sm">
                           <Settings className="h-4 w-4 mr-2" />
-                          Admin Panel
+                          Admin Dashboard
                         </Button>
                       </Link>
                       <Link to="/gallery/manage/add">
-                        <Button size="sm">
+                        <Button variant="outline" size="sm">
                           <Plus className="h-4 w-4 mr-2" />
                           Add Painting
                         </Button>
                       </Link>
-                    </>
+                    </div>
                   )}
-                  {isOwner && !isAdmin && (
+                  {(isOwner || isAdmin) && (
                     <Link to="/gallery/manage">
                       <Button variant="outline" size="sm">
                         <QrCode className="h-4 w-4 mr-2" />
-                        Manage QR Codes
+                        {isAdmin ? 'Gallery Management' : 'Manage QR Codes'}
                       </Button>
                     </Link>
                   )}

@@ -186,22 +186,77 @@ export type Database = {
           },
         ]
       }
+      painting_private: {
+        Row: {
+          created_at: string
+          eac_inventory_no: string | null
+          eac_issue_date: string | null
+          eac_passport_no: string | null
+          painting_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          eac_inventory_no?: string | null
+          eac_issue_date?: string | null
+          eac_passport_no?: string | null
+          painting_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          eac_inventory_no?: string | null
+          eac_issue_date?: string | null
+          eac_passport_no?: string | null
+          painting_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "painting_private_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: true
+            referencedRelation: "paintings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       paintings: {
         Row: {
+          acquisition_credit_en: string | null
+          acquisition_credit_fr: string | null
+          acquisition_credit_ru: string | null
+          artist_dates: string | null
           artist_en: string
           artist_fr: string
           artist_ru: string
           certificates: Json | null
           created_at: string
+          date_place_made_en: string | null
+          date_place_made_fr: string | null
+          date_place_made_ru: string | null
           description_en: string | null
           description_fr: string | null
           description_ru: string | null
+          dimensions: string | null
           documents: Json | null
           expertise_report_en: string | null
           expertise_report_fr: string | null
           expertise_report_ru: string | null
+          frame_en: string | null
+          frame_fr: string | null
+          frame_ru: string | null
+          full_title_en: string | null
+          full_title_fr: string | null
+          full_title_ru: string | null
+          genre_en: string | null
+          genre_fr: string | null
+          genre_ru: string | null
           id: string
           is_published: boolean | null
+          materials_en: string | null
+          materials_fr: string | null
+          materials_ru: string | null
           owner_id: string
           public_image_url: string | null
           technical_analysis_en: string | null
@@ -214,20 +269,40 @@ export type Database = {
           year: number | null
         }
         Insert: {
+          acquisition_credit_en?: string | null
+          acquisition_credit_fr?: string | null
+          acquisition_credit_ru?: string | null
+          artist_dates?: string | null
           artist_en: string
           artist_fr: string
           artist_ru: string
           certificates?: Json | null
           created_at?: string
+          date_place_made_en?: string | null
+          date_place_made_fr?: string | null
+          date_place_made_ru?: string | null
           description_en?: string | null
           description_fr?: string | null
           description_ru?: string | null
+          dimensions?: string | null
           documents?: Json | null
           expertise_report_en?: string | null
           expertise_report_fr?: string | null
           expertise_report_ru?: string | null
+          frame_en?: string | null
+          frame_fr?: string | null
+          frame_ru?: string | null
+          full_title_en?: string | null
+          full_title_fr?: string | null
+          full_title_ru?: string | null
+          genre_en?: string | null
+          genre_fr?: string | null
+          genre_ru?: string | null
           id?: string
           is_published?: boolean | null
+          materials_en?: string | null
+          materials_fr?: string | null
+          materials_ru?: string | null
           owner_id: string
           public_image_url?: string | null
           technical_analysis_en?: string | null
@@ -240,20 +315,40 @@ export type Database = {
           year?: number | null
         }
         Update: {
+          acquisition_credit_en?: string | null
+          acquisition_credit_fr?: string | null
+          acquisition_credit_ru?: string | null
+          artist_dates?: string | null
           artist_en?: string
           artist_fr?: string
           artist_ru?: string
           certificates?: Json | null
           created_at?: string
+          date_place_made_en?: string | null
+          date_place_made_fr?: string | null
+          date_place_made_ru?: string | null
           description_en?: string | null
           description_fr?: string | null
           description_ru?: string | null
+          dimensions?: string | null
           documents?: Json | null
           expertise_report_en?: string | null
           expertise_report_fr?: string | null
           expertise_report_ru?: string | null
+          frame_en?: string | null
+          frame_fr?: string | null
+          frame_ru?: string | null
+          full_title_en?: string | null
+          full_title_fr?: string | null
+          full_title_ru?: string | null
+          genre_en?: string | null
+          genre_fr?: string | null
+          genre_ru?: string | null
           id?: string
           is_published?: boolean | null
+          materials_en?: string | null
+          materials_fr?: string | null
+          materials_ru?: string | null
           owner_id?: string
           public_image_url?: string | null
           technical_analysis_en?: string | null
@@ -411,6 +506,14 @@ export type Database = {
         Returns: {
           expires_at: string
           token: string
+        }[]
+      }
+      get_private_painting_info: {
+        Args: { painting_id_param: string; token_text: string }
+        Returns: {
+          eac_inventory_no: string
+          eac_issue_date: string
+          eac_passport_no: string
         }[]
       }
       has_role: {

@@ -1,13 +1,16 @@
+
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useUserRole } from '@/hooks/useUserRole';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowLeft, QrCode, FileText, Award, Settings } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, QrCode, FileText, Award, Settings, Lock, Info } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -26,6 +29,27 @@ interface Painting {
   expertise_report_en: string;
   expertise_report_fr: string;
   expertise_report_ru: string;
+  // Key Facts
+  full_title_en: string;
+  full_title_fr: string;
+  full_title_ru: string;
+  artist_dates: string;
+  date_place_made_en: string;
+  date_place_made_fr: string;
+  date_place_made_ru: string;
+  materials_en: string;
+  materials_fr: string;
+  materials_ru: string;
+  dimensions: string;
+  acquisition_credit_en: string;
+  acquisition_credit_fr: string;
+  acquisition_credit_ru: string;
+  frame_en: string;
+  frame_fr: string;
+  frame_ru: string;
+  genre_en: string;
+  genre_fr: string;
+  genre_ru: string;
   year: number;
   public_image_url: string;
   is_published: boolean;
@@ -34,12 +58,23 @@ interface Painting {
   documents: any[];
 }
 
+interface PrivateInfo {
+  eac_inventory_no: string;
+  eac_passport_no: string;
+  eac_issue_date: string;
+}
+
 const PaintingDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
   const { language, t } = useLanguage();
   const { user } = useAuth();
+  const { isAdmin, isOwner } = useUserRole();
   const [painting, setPainting] = useState<Painting | null>(null);
+  const [privateInfo, setPrivateInfo] = useState<PrivateInfo | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingPrivate, setLoadingPrivate] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -47,6 +82,16 @@ const PaintingDetail = () => {
       fetchPainting();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (painting && (isOwnerOfPainting || isAdmin)) {
+      fetchPrivateInfoDirect();
+    } else if (painting && token) {
+      fetchPrivateInfoWithToken();
+    }
+  }, [painting, token, isAdmin]);
+
+  const isOwnerOfPainting = user && painting && painting.owner_id === user.id;
 
   const fetchPainting = async () => {
     try {
@@ -67,7 +112,57 @@ const PaintingDetail = () => {
     }
   };
 
-  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'technical_analysis' | 'expertise_report') => {
+  const fetchPrivateInfoDirect = async () => {
+    if (!painting) return;
+    
+    setLoadingPrivate(true);
+    try {
+      const { data, error } = await supabase
+        .from('painting_private')
+        .select('*')
+        .eq('painting_id', painting.id)
+        .maybeSingle();
+
+      if (!error && data) {
+        setPrivateInfo({
+          eac_inventory_no: data.eac_inventory_no || '',
+          eac_passport_no: data.eac_passport_no || '',
+          eac_issue_date: data.eac_issue_date || '',
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching private info:', error);
+    } finally {
+      setLoadingPrivate(false);
+    }
+  };
+
+  const fetchPrivateInfoWithToken = async () => {
+    if (!painting || !token) return;
+    
+    setLoadingPrivate(true);
+    try {
+      const { data, error } = await supabase.rpc('get_private_painting_info', {
+        token_text: token,
+        painting_id_param: painting.id
+      });
+
+      if (!error && data && data.length > 0) {
+        const privateData = data[0];
+        setPrivateInfo({
+          eac_inventory_no: privateData.eac_inventory_no || '',
+          eac_passport_no: privateData.eac_passport_no || '',
+          eac_issue_date: privateData.eac_issue_date || '',
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching private info with token:', error);
+    } finally {
+      setLoadingPrivate(false);
+    }
+  };
+
+  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'technical_analysis' | 'expertise_report' | 'full_title' | 'date_place_made' | 'materials' | 'acquisition_credit' | 'frame' | 'genre') => {
     if (!painting) return '';
     return painting[`${field}_${language}` as keyof Painting] as string || 
            painting[`${field}_en` as keyof Painting] as string || '';
@@ -102,8 +197,6 @@ const PaintingDetail = () => {
     );
   }
 
-  const isOwner = user && painting.owner_id === user.id;
-
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -116,7 +209,7 @@ const PaintingDetail = () => {
           </Link>
           
           {/* Owner Management Button */}
-          {isOwner && (
+          {isOwnerOfPainting && (
             <Link to={`/gallery/manage/tokens/${painting.id}`}>
               <Button>
                 <Settings className="mr-2 h-4 w-4" />
@@ -144,6 +237,7 @@ const PaintingDetail = () => {
 
           {/* Details */}
           <div className="space-y-6">
+            {/* Basic Title and Artist */}
             <div>
               <h1 className="text-3xl font-bold mb-2">{getLocalizedText('title')}</h1>
               <p className="text-xl text-muted-foreground mb-1">{getLocalizedText('artist')}</p>
@@ -151,6 +245,149 @@ const PaintingDetail = () => {
                 <p className="text-lg text-muted-foreground">{painting.year}</p>
               )}
             </div>
+
+            {/* Key Facts Card */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Info className="h-5 w-5" />
+                  KEY FACTS
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {getLocalizedText('full_title') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Full title:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('full_title')}</span>
+                  </div>
+                )}
+                
+                <div className="grid grid-cols-3 gap-2">
+                  <span className="font-medium text-sm">Artist:</span>
+                  <span className="col-span-2 text-sm">{getLocalizedText('artist')}</span>
+                </div>
+                
+                {painting.artist_dates && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Artist dates:</span>
+                    <span className="col-span-2 text-sm">{painting.artist_dates}</span>
+                  </div>
+                )}
+                
+                {getLocalizedText('date_place_made') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Date and place made:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('date_place_made')}</span>
+                  </div>
+                )}
+                
+                {getLocalizedText('materials') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Materials:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('materials')}</span>
+                  </div>
+                )}
+                
+                {painting.dimensions && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Dimensions:</span>
+                    <span className="col-span-2 text-sm">{painting.dimensions}</span>
+                  </div>
+                )}
+                
+                {getLocalizedText('acquisition_credit') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Acquisition credit:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('acquisition_credit')}</span>
+                  </div>
+                )}
+                
+                {getLocalizedText('frame') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Frame:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('frame')}</span>
+                  </div>
+                )}
+                
+                {getLocalizedText('genre') && (
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-medium text-sm">Genre:</span>
+                    <span className="col-span-2 text-sm">{getLocalizedText('genre')}</span>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Private Information Card */}
+            {(isOwnerOfPainting || isAdmin || token) && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Lock className="h-5 w-5" />
+                    Private Information (EAC Data)
+                    {(isOwnerOfPainting || isAdmin) && (
+                      <Badge variant="outline">Owner Access</Badge>
+                    )}
+                    {token && !isOwnerOfPainting && !isAdmin && (
+                      <Badge variant="secondary">Token Access</Badge>
+                    )}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {loadingPrivate ? (
+                    <div className="text-center py-4">Loading private information...</div>
+                  ) : privateInfo ? (
+                    <div className="space-y-3">
+                      {privateInfo.eac_inventory_no && (
+                        <div className="grid grid-cols-3 gap-2">
+                          <span className="font-medium text-sm">EAC Inventory No.:</span>
+                          <span className="col-span-2 text-sm">{privateInfo.eac_inventory_no}</span>
+                        </div>
+                      )}
+                      {privateInfo.eac_passport_no && (
+                        <div className="grid grid-cols-3 gap-2">
+                          <span className="font-medium text-sm">EAC Passport No.:</span>
+                          <span className="col-span-2 text-sm">{privateInfo.eac_passport_no}</span>
+                        </div>
+                      )}
+                      {privateInfo.eac_issue_date && (
+                        <div className="grid grid-cols-3 gap-2">
+                          <span className="font-medium text-sm">Date of issue:</span>
+                          <span className="col-span-2 text-sm">{privateInfo.eac_issue_date}</span>
+                        </div>
+                      )}
+                      {!privateInfo.eac_inventory_no && !privateInfo.eac_passport_no && !privateInfo.eac_issue_date && (
+                        <p className="text-muted-foreground text-sm">No private information available</p>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm">
+                      {token ? 'Invalid or expired token' : 'No private information available'}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* QR Access Info for non-owners */}
+            {!isOwnerOfPainting && !isAdmin && !token && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <QrCode className="h-5 w-5" />
+                    Expert Access Required
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4">
+                    Additional technical information and EAC certification data is available for art experts and professionals.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    To access this information, please scan the QR code provided with this artwork or request access from the owner.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Content Tabs */}
             <Tabs defaultValue="description" className="w-full">
@@ -270,23 +507,6 @@ const PaintingDetail = () => {
                 </CardContent>
               </Card>
             )}
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <QrCode className="h-5 w-5" />
-                  {t('gallery.expertAccess')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">
-                  {t('gallery.expertAccessDescription')}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {t('gallery.qrCodeInfo')}
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

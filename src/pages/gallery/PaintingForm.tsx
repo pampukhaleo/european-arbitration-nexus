@@ -33,10 +33,37 @@ interface PaintingFormData {
   expertise_report_en: string;
   expertise_report_fr: string;
   expertise_report_ru: string;
+  // Key Facts fields
+  full_title_en: string;
+  full_title_fr: string;
+  full_title_ru: string;
+  artist_dates: string;
+  date_place_made_en: string;
+  date_place_made_fr: string;
+  date_place_made_ru: string;
+  materials_en: string;
+  materials_fr: string;
+  materials_ru: string;
+  dimensions: string;
+  acquisition_credit_en: string;
+  acquisition_credit_fr: string;
+  acquisition_credit_ru: string;
+  frame_en: string;
+  frame_fr: string;
+  frame_ru: string;
+  genre_en: string;
+  genre_fr: string;
+  genre_ru: string;
   year: number | null;
   public_image_url: string;
   is_published: boolean;
   owner_id: string;
+}
+
+interface PrivateFormData {
+  eac_inventory_no: string;
+  eac_passport_no: string;
+  eac_issue_date: string;
 }
 
 const PaintingForm = () => {
@@ -66,10 +93,36 @@ const PaintingForm = () => {
     expertise_report_en: '',
     expertise_report_fr: '',
     expertise_report_ru: '',
+    full_title_en: '',
+    full_title_fr: '',
+    full_title_ru: '',
+    artist_dates: '',
+    date_place_made_en: '',
+    date_place_made_fr: '',
+    date_place_made_ru: '',
+    materials_en: '',
+    materials_fr: '',
+    materials_ru: '',
+    dimensions: '',
+    acquisition_credit_en: '',
+    acquisition_credit_fr: '',
+    acquisition_credit_ru: '',
+    frame_en: '',
+    frame_fr: '',
+    frame_ru: '',
+    genre_en: '',
+    genre_fr: '',
+    genre_ru: '',
     year: null,
     public_image_url: '',
     is_published: true,
     owner_id: '',
+  });
+
+  const [privateData, setPrivateData] = useState<PrivateFormData>({
+    eac_inventory_no: '',
+    eac_passport_no: '',
+    eac_issue_date: '',
   });
 
   useEffect(() => {
@@ -129,11 +182,46 @@ const PaintingForm = () => {
           expertise_report_en: data.expertise_report_en || '',
           expertise_report_fr: data.expertise_report_fr || '',
           expertise_report_ru: data.expertise_report_ru || '',
+          full_title_en: data.full_title_en || '',
+          full_title_fr: data.full_title_fr || '',
+          full_title_ru: data.full_title_ru || '',
+          artist_dates: data.artist_dates || '',
+          date_place_made_en: data.date_place_made_en || '',
+          date_place_made_fr: data.date_place_made_fr || '',
+          date_place_made_ru: data.date_place_made_ru || '',
+          materials_en: data.materials_en || '',
+          materials_fr: data.materials_fr || '',
+          materials_ru: data.materials_ru || '',
+          dimensions: data.dimensions || '',
+          acquisition_credit_en: data.acquisition_credit_en || '',
+          acquisition_credit_fr: data.acquisition_credit_fr || '',
+          acquisition_credit_ru: data.acquisition_credit_ru || '',
+          frame_en: data.frame_en || '',
+          frame_fr: data.frame_fr || '',
+          frame_ru: data.frame_ru || '',
+          genre_en: data.genre_en || '',
+          genre_fr: data.genre_fr || '',
+          genre_ru: data.genre_ru || '',
           year: data.year,
           public_image_url: data.public_image_url || '',
           is_published: data.is_published ?? true,
           owner_id: data.owner_id || '',
         });
+
+        // Fetch private data
+        const { data: privateDataResult, error: privateError } = await supabase
+          .from('painting_private')
+          .select('*')
+          .eq('painting_id', id)
+          .maybeSingle();
+
+        if (!privateError && privateDataResult) {
+          setPrivateData({
+            eac_inventory_no: privateDataResult.eac_inventory_no || '',
+            eac_passport_no: privateDataResult.eac_passport_no || '',
+            eac_issue_date: privateDataResult.eac_issue_date || '',
+          });
+        }
       }
     } catch (error) {
       toast({
@@ -167,38 +255,64 @@ const PaintingForm = () => {
       updated_at: new Date().toISOString(),
     };
 
-    let result;
-    if (isEditing && id) {
-      result = await supabase
-        .from('paintings')
-        .update(paintingData)
-        .eq('id', id);
-    } else {
-      result = await supabase
-        .from('paintings')
-        .insert([paintingData]);
-    }
+    let paintingId = id;
+    
+    try {
+      // Save painting data
+      if (isEditing && id) {
+        const { error } = await supabase
+          .from('paintings')
+          .update(paintingData)
+          .eq('id', id);
+        
+        if (error) throw error;
+      } else {
+        const { data, error } = await supabase
+          .from('paintings')
+          .insert([paintingData])
+          .select('id')
+          .single();
+        
+        if (error) throw error;
+        paintingId = data.id;
+      }
 
-    if (result.error) {
-      console.error('Database error:', result.error);
-      toast({
-        title: "Error",
-        description: result.error.message || `Failed to ${isEditing ? 'update' : 'create'} painting`,
-        variant: "destructive",
-      });
-    } else {
+      // Save private data
+      if (paintingId && (privateData.eac_inventory_no || privateData.eac_passport_no || privateData.eac_issue_date)) {
+        const { error: privateError } = await supabase
+          .from('painting_private')
+          .upsert({
+            painting_id: paintingId,
+            ...privateData,
+            eac_issue_date: privateData.eac_issue_date || null,
+          });
+
+        if (privateError) throw privateError;
+      }
+
       toast({
         title: "Success",
         description: `Painting ${isEditing ? 'updated' : 'created'} successfully`,
       });
       navigate('/gallery/manage');
+    } catch (error) {
+      console.error('Database error:', error);
+      toast({
+        title: "Error",
+        description: `Failed to ${isEditing ? 'update' : 'create'} painting`,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const updateFormData = (field: keyof PaintingFormData, value: string | number | boolean | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const updatePrivateData = (field: keyof PrivateFormData, value: string) => {
+    setPrivateData(prev => ({ ...prev, [field]: value }));
   };
 
   if (roleLoading) {
@@ -410,6 +524,249 @@ const PaintingForm = () => {
                   onCheckedChange={(checked) => updateFormData('is_published', checked)}
                 />
                 <Label htmlFor="is_published">Published</Label>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Key Facts */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Key Facts (Public Information)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="en" className="w-full">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="en">English</TabsTrigger>
+                  <TabsTrigger value="fr">Français</TabsTrigger>
+                  <TabsTrigger value="ru">Русский</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="en" className="space-y-4">
+                  <div>
+                    <Label htmlFor="full_title_en">Full Title</Label>
+                    <Input
+                      id="full_title_en"
+                      value={formData.full_title_en}
+                      onChange={(e) => updateFormData('full_title_en', e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="date_place_made_en">Date and Place Made</Label>
+                      <Input
+                        id="date_place_made_en"
+                        value={formData.date_place_made_en}
+                        onChange={(e) => updateFormData('date_place_made_en', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="materials_en">Materials</Label>
+                      <Input
+                        id="materials_en"
+                        value={formData.materials_en}
+                        onChange={(e) => updateFormData('materials_en', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="acquisition_credit_en">Acquisition Credit</Label>
+                      <Input
+                        id="acquisition_credit_en"
+                        value={formData.acquisition_credit_en}
+                        onChange={(e) => updateFormData('acquisition_credit_en', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="frame_en">Frame</Label>
+                      <Input
+                        id="frame_en"
+                        value={formData.frame_en}
+                        onChange={(e) => updateFormData('frame_en', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="genre_en">Genre</Label>
+                    <Input
+                      id="genre_en"
+                      value={formData.genre_en}
+                      onChange={(e) => updateFormData('genre_en', e.target.value)}
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="fr" className="space-y-4">
+                  <div>
+                    <Label htmlFor="full_title_fr">Titre Complet</Label>
+                    <Input
+                      id="full_title_fr"
+                      value={formData.full_title_fr}
+                      onChange={(e) => updateFormData('full_title_fr', e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="date_place_made_fr">Date et Lieu de Création</Label>
+                      <Input
+                        id="date_place_made_fr"
+                        value={formData.date_place_made_fr}
+                        onChange={(e) => updateFormData('date_place_made_fr', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="materials_fr">Matériaux</Label>
+                      <Input
+                        id="materials_fr"
+                        value={formData.materials_fr}
+                        onChange={(e) => updateFormData('materials_fr', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="acquisition_credit_fr">Crédit d'Acquisition</Label>
+                      <Input
+                        id="acquisition_credit_fr"
+                        value={formData.acquisition_credit_fr}
+                        onChange={(e) => updateFormData('acquisition_credit_fr', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="frame_fr">Cadre</Label>
+                      <Input
+                        id="frame_fr"
+                        value={formData.frame_fr}
+                        onChange={(e) => updateFormData('frame_fr', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="genre_fr">Genre</Label>
+                    <Input
+                      id="genre_fr"
+                      value={formData.genre_fr}
+                      onChange={(e) => updateFormData('genre_fr', e.target.value)}
+                    />
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="ru" className="space-y-4">
+                  <div>
+                    <Label htmlFor="full_title_ru">Полное Название</Label>
+                    <Input
+                      id="full_title_ru"
+                      value={formData.full_title_ru}
+                      onChange={(e) => updateFormData('full_title_ru', e.target.value)}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="date_place_made_ru">Дата и Место Создания</Label>
+                      <Input
+                        id="date_place_made_ru"
+                        value={formData.date_place_made_ru}
+                        onChange={(e) => updateFormData('date_place_made_ru', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="materials_ru">Материалы</Label>
+                      <Input
+                        id="materials_ru"
+                        value={formData.materials_ru}
+                        onChange={(e) => updateFormData('materials_ru', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="acquisition_credit_ru">Кредит Приобретения</Label>
+                      <Input
+                        id="acquisition_credit_ru"
+                        value={formData.acquisition_credit_ru}
+                        onChange={(e) => updateFormData('acquisition_credit_ru', e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="frame_ru">Рама</Label>
+                      <Input
+                        id="frame_ru"
+                        value={formData.frame_ru}
+                        onChange={(e) => updateFormData('frame_ru', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="genre_ru">Жанр</Label>
+                    <Input
+                      id="genre_ru"
+                      value={formData.genre_ru}
+                      onChange={(e) => updateFormData('genre_ru', e.target.value)}
+                    />
+                  </div>
+                </TabsContent>
+              </Tabs>
+
+              <div className="space-y-4 pt-4 border-t">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="artist_dates">Artist Dates</Label>
+                    <Input
+                      id="artist_dates"
+                      value={formData.artist_dates}
+                      onChange={(e) => updateFormData('artist_dates', e.target.value)}
+                      placeholder="e.g., 1881-1973"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="dimensions">Dimensions</Label>
+                    <Input
+                      id="dimensions"
+                      value={formData.dimensions}
+                      onChange={(e) => updateFormData('dimensions', e.target.value)}
+                      placeholder="e.g., 100 × 80 cm"
+                    />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Private Information (EAC Data) */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Private Information (EAC Data)</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                This information is only accessible via QR code tokens or by owners/admins
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="eac_inventory_no">EAC Inventory No.</Label>
+                  <Input
+                    id="eac_inventory_no"
+                    value={privateData.eac_inventory_no}
+                    onChange={(e) => updatePrivateData('eac_inventory_no', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="eac_passport_no">EAC Passport No.</Label>
+                  <Input
+                    id="eac_passport_no"
+                    value={privateData.eac_passport_no}
+                    onChange={(e) => updatePrivateData('eac_passport_no', e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="eac_issue_date">Date of Issue</Label>
+                <Input
+                  id="eac_issue_date"
+                  type="date"
+                  value={privateData.eac_issue_date}
+                  onChange={(e) => updatePrivateData('eac_issue_date', e.target.value)}
+                />
               </div>
             </CardContent>
           </Card>

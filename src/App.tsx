@@ -95,6 +95,7 @@ function App() {
               {/* Gallery section */}
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/gallery/:id" element={<PaintingDetail />} />
+              <Route path="/gallery/:id/access/:token" element={<PaintingDetail />} />
 
               {/* Membership section */}
               <Route path="/membership" element={<Navigate to="/membership/benefits" replace />} />

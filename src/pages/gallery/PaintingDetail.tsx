@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { ArrowLeft, QrCode, Settings, Lock, Info, Award, FileText, Edit, Trash2 } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 interface Painting {
   id: string;
@@ -59,8 +60,7 @@ interface PaintingPrivate {
 }
 
 const PaintingDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const { token } = useParams<{ token?: string }>();
+  const { id, token } = useParams<{ id: string; token?: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
   const { language } = useLanguage();
@@ -76,11 +76,8 @@ const PaintingDetail = () => {
   useEffect(() => {
     if (id) {
       fetchPainting();
-      if (token) {
-        fetchPrivateData();
-      }
     }
-  }, [id, token]);
+  }, [id, token, user]);
 
   const fetchPainting = async () => {
     if (!id) return;
@@ -95,6 +92,9 @@ const PaintingDetail = () => {
 
       if (error) throw error;
       setPainting(data);
+
+      // After getting painting data, try to fetch private data
+      await fetchPrivateData(data);
     } catch (error) {
       toast({
         title: "Error",
@@ -107,20 +107,38 @@ const PaintingDetail = () => {
     }
   };
 
-  const fetchPrivateData = async () => {
-    if (!id || !token) return;
+  const fetchPrivateData = async (paintingData: Painting) => {
+    if (!id) return;
     
     try {
-      const { data, error } = await supabase.rpc('get_private_painting_info', {
-        token_text: token,
-        painting_id_param: id
-      });
+      // If user is the owner or admin, fetch directly from painting_private table
+      if (user && (isAdmin || (paintingData && paintingData.owner_id === user.id))) {
+        const { data, error } = await supabase
+          .from('painting_private')
+          .select('*')
+          .eq('painting_id', id)
+          .maybeSingle();
 
-      if (error) throw error;
-      
-      if (data && data.length > 0) {
-        setPrivateData(data[0]);
-        setShowPrivateInfo(true);
+        if (error) throw error;
+        
+        if (data) {
+          setPrivateData(data);
+          setShowPrivateInfo(true);
+        }
+      } 
+      // If accessing via token, use the RPC function
+      else if (token) {
+        const { data, error } = await supabase.rpc('get_private_painting_info', {
+          token_text: token,
+          painting_id_param: id
+        });
+
+        if (error) throw error;
+        
+        if (data && data.length > 0) {
+          setPrivateData(data[0]);
+          setShowPrivateInfo(true);
+        }
       }
     } catch (error) {
       console.error('Error fetching private data:', error);
@@ -302,49 +320,49 @@ const PaintingDetail = () => {
               )}
             </div>
 
-            {/* Basic Information */}
+            {/* Key Facts */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-5 w-5" />
-                  Basic Information
+                  Key Facts
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {painting.year && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Year:</span>
-                    <span>{painting.year}</span>
+                    <span className="col-span-2">{painting.year}</span>
                   </div>
                 )}
                 {getLocalizedText('date_place_made') && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Date & Place:</span>
-                    <span>{getLocalizedText('date_place_made')}</span>
+                    <span className="col-span-2">{getLocalizedText('date_place_made')}</span>
                   </div>
                 )}
                 {getLocalizedText('materials') && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Materials:</span>
-                    <span>{getLocalizedText('materials')}</span>
+                    <span className="col-span-2">{getLocalizedText('materials')}</span>
                   </div>
                 )}
                 {painting.dimensions && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Dimensions:</span>
-                    <span>{painting.dimensions}</span>
+                    <span className="col-span-2">{painting.dimensions}</span>
                   </div>
                 )}
                 {getLocalizedText('genre') && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Genre:</span>
-                    <span>{getLocalizedText('genre')}</span>
+                    <span className="col-span-2">{getLocalizedText('genre')}</span>
                   </div>
                 )}
                 {getLocalizedText('frame') && (
-                  <div className="flex justify-between">
+                  <div className="grid grid-cols-3 gap-4">
                     <span className="font-medium">Frame:</span>
-                    <span>{getLocalizedText('frame')}</span>
+                    <span className="col-span-2">{getLocalizedText('frame')}</span>
                   </div>
                 )}
               </CardContent>
@@ -374,32 +392,32 @@ const PaintingDetail = () => {
               </Card>
             )}
 
-            {/* Private Information (only visible with valid token) */}
+            {/* Private Information (only visible with valid token or for owners/admins) */}
             {showPrivateInfo && privateData && (
               <Card className="border-blue-200 bg-blue-50">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-blue-700">
                     <Lock className="h-5 w-5" />
-                    Private Information
+                    EAC Authentication Information
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {privateData.eac_inventory_no && (
-                    <div className="flex justify-between">
+                    <div className="grid grid-cols-3 gap-4">
                       <span className="font-medium">EAC Inventory No:</span>
-                      <span>{privateData.eac_inventory_no}</span>
+                      <span className="col-span-2">{privateData.eac_inventory_no}</span>
                     </div>
                   )}
                   {privateData.eac_passport_no && (
-                    <div className="flex justify-between">
+                    <div className="grid grid-cols-3 gap-4">
                       <span className="font-medium">EAC Passport No:</span>
-                      <span>{privateData.eac_passport_no}</span>
+                      <span className="col-span-2">{privateData.eac_passport_no}</span>
                     </div>
                   )}
                   {privateData.eac_issue_date && (
-                    <div className="flex justify-between">
+                    <div className="grid grid-cols-3 gap-4">
                       <span className="font-medium">EAC Issue Date:</span>
-                      <span>{new Date(privateData.eac_issue_date).toLocaleDateString()}</span>
+                      <span className="col-span-2">{new Date(privateData.eac_issue_date).toLocaleDateString()}</span>
                     </div>
                   )}
                 </CardContent>

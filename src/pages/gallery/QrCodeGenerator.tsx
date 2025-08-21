@@ -30,7 +30,7 @@ const QrCodeGenerator = () => {
             <CardTitle>QR Code Generator</CardTitle>
           </CardHeader>
           <CardContent>
-            <QRCodeGenerator url={`https://fwwpidktaanowpaihgzy.supabase.co/gallery/${id}`} />
+            <QRCodeGenerator url={`${window.location.origin}/gallery/${id}`} />
           </CardContent>
         </Card>
       </div>

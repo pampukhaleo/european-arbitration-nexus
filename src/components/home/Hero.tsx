@@ -1,64 +1,53 @@
-
-import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Scale, Users, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
 
 export default function Hero() {
   const { t } = useLanguage();
-  
-  return (
-    <section className="relative bg-gradient-to-br from-eac-primary to-eac-secondary text-white overflow-hidden">
-      <div className="absolute inset-0 bg-black/20"></div>
-      <div className="relative container mx-auto px-4 py-24 md:py-32">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            {t('home.hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl mb-12 text-white/90 leading-relaxed">
-            {t('home.hero.subtitle')}
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Button asChild size="lg" className="bg-white text-eac-primary hover:bg-gray-100 text-lg px-8 py-4">
-              <Link to="/arbitration/icac">
-                {t('home.hero.cta.arbitration')}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-eac-primary text-lg px-8 py-4">
-              <Link to="/expertise/icje">
-                {t('home.hero.cta.expertise')}
-              </Link>
-            </Button>
-          </div>
+  const [loaded, setLoaded] = useState(false);
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-full p-4 mb-4">
-                <Scale className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('home.hero.features.arbitration.title')}</h3>
-              <p className="text-white/80">{t('home.hero.features.arbitration.description')}</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-full p-4 mb-4">
-                <Shield className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('home.hero.features.expertise.title')}</h3>
-              <p className="text-white/80">{t('home.hero.features.expertise.description')}</p>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <div className="bg-white/10 backdrop-blur-sm rounded-full p-4 mb-4">
-                <Users className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{t('home.hero.features.community.title')}</h3>
-              <p className="text-white/80">{t('home.hero.features.community.description')}</p>
-            </div>
+  return (
+    <div className="relative">
+      {/* Image background with overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <picture>
+          <source srcSet="/images/IMG_3070.webp" type="image/webp" />
+          <img
+            src="/images/IMG_3070.JPG"
+            alt="Background"
+            loading="lazy"
+            fetchPriority="high"
+            decoding="async"
+            onLoad={() => setLoaded(true)}
+            className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ${
+              loaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </picture>
+        <div className="absolute inset-0 bg-black/60 z-10" />
+      </div>
+
+      {/* Content */}
+      <div className="relative container mx-auto px-4 py-32 sm:px-6 lg:px-8 lg:py-48 z-20">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
+            {t("home.heroTitle")}
+          </h1>
+          <p className="mt-6 text-xl text-white">
+            {t("home.heroDescription")}
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Button
+              asChild
+              variant="outline"
+              className="border-white text-eac-primary rounded-full hover:bg-eac-primary hover:text-white"
+            >
+              <Link to="/eac/about">{t("home.heroBtn")}</Link>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

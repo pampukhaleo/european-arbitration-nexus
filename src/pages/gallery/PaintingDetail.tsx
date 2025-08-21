@@ -7,9 +7,8 @@ import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, QrCode, FileText, Award, Settings, Lock, Info } from 'lucide-react';
+import { ArrowLeft, QrCode, Settings, Lock, Info } from 'lucide-react';
 
 interface Painting {
   id: string;
@@ -161,7 +160,7 @@ const PaintingDetail = () => {
     }
   };
 
-  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'technical_analysis' | 'expertise_report' | 'full_title' | 'date_place_made' | 'materials' | 'acquisition_credit' | 'frame' | 'genre') => {
+  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'full_title' | 'date_place_made' | 'materials' | 'acquisition_credit' | 'frame' | 'genre') => {
     if (!painting) return '';
     
     // For title, use full_title with fallback to title
@@ -326,6 +325,18 @@ const PaintingDetail = () => {
               </CardContent>
             </Card>
 
+            {/* Description */}
+            {getLocalizedText('description') && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('gallery.description')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Private Information Card */}
             {(isOwnerOfPainting || isAdmin || token) && (
               <Card>
@@ -396,81 +407,6 @@ const PaintingDetail = () => {
                 </CardContent>
               </Card>
             )}
-
-            {/* Content Tabs */}
-            <Tabs defaultValue="description" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="description">{t('gallery.description')}</TabsTrigger>
-                <TabsTrigger value="technical">{t('gallery.technicalAnalysis')}</TabsTrigger>
-                <TabsTrigger value="expertise">{t('gallery.expertiseReport')}</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="description" className="mt-4">
-                {getLocalizedText('description') ? (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-muted-foreground text-center py-8">
-                        {t('gallery.noDescription')}
-                      </p>
-                    </CardContent>
-                  </Card>
-                )}
-              </TabsContent>
-              
-              <TabsContent value="technical" className="mt-4">
-                {getLocalizedText('technical_analysis') ? (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <FileText className="h-5 w-5" />
-                        {t('gallery.technicalAnalysis')}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="whitespace-pre-wrap">{getLocalizedText('technical_analysis')}</p>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-muted-foreground text-center py-8">
-                        {t('gallery.noTechnicalAnalysis')}
-                      </p>
-                    </CardContent>
-                  </Card>
-                )}
-              </TabsContent>
-              
-              <TabsContent value="expertise" className="mt-4">
-                {getLocalizedText('expertise_report') ? (
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-2">
-                        <Award className="h-5 w-5" />
-                        {t('gallery.expertiseReport')}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="whitespace-pre-wrap">{getLocalizedText('expertise_report')}</p>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <p className="text-muted-foreground text-center py-8">
-                        {t('gallery.noExpertiseReport')}
-                      </p>
-                    </CardContent>
-                  </Card>
-                )}
-              </TabsContent>
-            </Tabs>
 
             {/* Documents and Certificates */}
             {(painting.certificates?.length > 0 || painting.documents?.length > 0) && (

@@ -251,12 +251,12 @@ const GalleryManage = () => {
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex gap-2 flex-wrap">
+                <CardContent className="pt-0 space-y-2">
+                  <div className="flex gap-2">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 min-w-0"
+                      className="flex-1"
                       onClick={() => navigate(`/gallery/${painting.id}`)}
                     >
                       <Eye className="h-4 w-4 mr-1" />
@@ -266,7 +266,7 @@ const GalleryManage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1 min-w-0"
+                        className="flex-1"
                         onClick={() => navigate(`/gallery/manage/edit/${painting.id}`)}
                       >
                         <Edit className="h-4 w-4 mr-1" />
@@ -276,47 +276,47 @@ const GalleryManage = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1 min-w-0"
+                      className="flex-1"
                       onClick={() => navigate(`/gallery/manage/tokens/${painting.id}`)}
                     >
                       <QrCode className="h-4 w-4 mr-1" />
                       QR
                     </Button>
-                    {isAdmin && (
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 min-w-0"
-                            disabled={deletingId === painting.id}
-                          >
-                            <Trash2 className="h-4 w-4 mr-1" />
-                            Delete
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Delete Painting</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Are you sure you want to delete "{getLocalizedTitle(painting)}"? 
-                              This will permanently delete the painting and all associated data including access tokens and logs.
-                              This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction
-                              onClick={() => handleDelete(painting.id)}
-                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                            >
-                              Delete Painting
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    )}
                   </div>
+                  {isAdmin && (
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          className="w-full"
+                          disabled={deletingId === painting.id}
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Delete Painting
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete Painting</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            Are you sure you want to delete "{getLocalizedTitle(painting)}"? 
+                            This will permanently delete the painting and all associated data including access tokens and logs.
+                            This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => handleDelete(painting.id)}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          >
+                            Delete Painting
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  )}
                 </CardContent>
               </Card>
             ))}

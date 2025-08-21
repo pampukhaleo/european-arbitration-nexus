@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
-import { supabase } from '@/integrations/supabase/client';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { useUserRole } from '@/hooks/useUserRole';
-import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useUserRole } from '@/hooks/useUserRole';
+import { supabase } from '@/integrations/supabase/client';
+import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, QrCode, Settings, Lock, Info, Award, FileText } from 'lucide-react';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { ArrowLeft, QrCode, Settings, Lock, Info, Award, FileText, Edit, Trash2 } from 'lucide-react';
+import { useToast } from '@/components/ui/use-toast';
 
 interface Painting {
   id: string;
@@ -18,186 +20,176 @@ interface Painting {
   artist_en: string;
   artist_fr: string;
   artist_ru: string;
-  description_en: string;
-  description_fr: string;
-  description_ru: string;
-  technical_analysis_en: string;
-  technical_analysis_fr: string;
-  technical_analysis_ru: string;
-  expertise_report_en: string;
-  expertise_report_fr: string;
-  expertise_report_ru: string;
-  // Key Facts
-  full_title_en: string;
-  full_title_fr: string;
-  full_title_ru: string;
-  artist_dates: string;
-  date_place_made_en: string;
-  date_place_made_fr: string;
-  date_place_made_ru: string;
-  materials_en: string;
-  materials_fr: string;
-  materials_ru: string;
-  dimensions: string;
-  acquisition_credit_en: string;
-  acquisition_credit_fr: string;
-  acquisition_credit_ru: string;
-  frame_en: string;
-  frame_fr: string;
-  frame_ru: string;
-  genre_en: string;
-  genre_fr: string;
-  genre_ru: string;
-  year: number;
-  public_image_url: string;
+  artist_dates: string | null;
+  year: number | null;
+  full_title_en: string | null;
+  full_title_fr: string | null;
+  full_title_ru: string | null;
+  date_place_made_en: string | null;
+  date_place_made_fr: string | null;
+  date_place_made_ru: string | null;
+  materials_en: string | null;
+  materials_fr: string | null;
+  materials_ru: string | null;
+  dimensions: string | null;
+  genre_en: string | null;
+  genre_fr: string | null;
+  genre_ru: string | null;
+  description_en: string | null;
+  description_fr: string | null;
+  description_ru: string | null;
+  frame_en: string | null;
+  frame_fr: string | null;
+  frame_ru: string | null;
+  acquisition_credit_en: string | null;
+  acquisition_credit_fr: string | null;
+  acquisition_credit_ru: string | null;
+  public_image_url: string | null;
+  certificates: any[] | null;
+  documents: any[] | null;
   is_published: boolean;
+  created_at: string;
   owner_id: string;
-  certificates: any[];
-  documents: any[];
 }
 
-interface PrivateInfo {
-  eac_inventory_no: string;
-  eac_passport_no: string;
-  eac_issue_date: string;
+interface PaintingPrivate {
+  eac_inventory_no: string | null;
+  eac_passport_no: string | null;
+  eac_issue_date: string | null;
 }
 
 const PaintingDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get('token');
-  const { language, t } = useLanguage();
+  const { token } = useParams<{ token?: string }>();
+  const navigate = useNavigate();
   const { user } = useAuth();
+  const { language } = useLanguage();
   const { isAdmin, isOwner } = useUserRole();
+  const { toast } = useToast();
+  
   const [painting, setPainting] = useState<Painting | null>(null);
-  const [privateInfo, setPrivateInfo] = useState<PrivateInfo | null>(null);
+  const [privateData, setPrivateData] = useState<PaintingPrivate | null>(null);
   const [loading, setLoading] = useState(true);
-  const [loadingPrivate, setLoadingPrivate] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [showPrivateInfo, setShowPrivateInfo] = useState(false);
 
   useEffect(() => {
     if (id) {
       fetchPainting();
+      if (token) {
+        fetchPrivateData();
+      }
     }
-  }, [id]);
-
-  useEffect(() => {
-    if (painting && (isOwnerOfPainting || isAdmin)) {
-      fetchPrivateInfoDirect();
-    } else if (painting && token) {
-      fetchPrivateInfoWithToken();
-    }
-  }, [painting, token, isAdmin]);
-
-  const isOwnerOfPainting = user && painting && painting.owner_id === user.id;
+  }, [id, token]);
 
   const fetchPainting = async () => {
+    if (!id) return;
+    
+    setLoading(true);
     try {
       const { data, error } = await supabase
         .from('paintings')
         .select('*')
         .eq('id', id)
-        .eq('is_published', true)
         .single();
 
       if (error) throw error;
       setPainting(data);
     } catch (error) {
-      console.error('Error fetching painting:', error);
-      setError(t('gallery.paintingNotFound'));
+      toast({
+        title: "Error",
+        description: "Failed to fetch painting details",
+        variant: "destructive",
+      });
+      navigate('/gallery');
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchPrivateInfoDirect = async () => {
-    if (!painting) return;
+  const fetchPrivateData = async () => {
+    if (!id || !token) return;
     
-    setLoadingPrivate(true);
-    try {
-      const { data, error } = await supabase
-        .from('painting_private')
-        .select('*')
-        .eq('painting_id', painting.id)
-        .maybeSingle();
-
-      if (!error && data) {
-        setPrivateInfo({
-          eac_inventory_no: data.eac_inventory_no || '',
-          eac_passport_no: data.eac_passport_no || '',
-          eac_issue_date: data.eac_issue_date || '',
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching private info:', error);
-    } finally {
-      setLoadingPrivate(false);
-    }
-  };
-
-  const fetchPrivateInfoWithToken = async () => {
-    if (!painting || !token) return;
-    
-    setLoadingPrivate(true);
     try {
       const { data, error } = await supabase.rpc('get_private_painting_info', {
         token_text: token,
-        painting_id_param: painting.id
+        painting_id_param: id
       });
 
-      if (!error && data && data.length > 0) {
-        const privateData = data[0];
-        setPrivateInfo({
-          eac_inventory_no: privateData.eac_inventory_no || '',
-          eac_passport_no: privateData.eac_passport_no || '',
-          eac_issue_date: privateData.eac_issue_date || '',
-        });
+      if (error) throw error;
+      
+      if (data && data.length > 0) {
+        setPrivateData(data[0]);
+        setShowPrivateInfo(true);
       }
     } catch (error) {
-      console.error('Error fetching private info with token:', error);
-    } finally {
-      setLoadingPrivate(false);
+      console.error('Error fetching private data:', error);
     }
   };
 
-  const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'full_title' | 'date_place_made' | 'materials' | 'acquisition_credit' | 'frame' | 'genre') => {
+  const handleDelete = async () => {
+    if (!painting || !isAdmin) return;
+    
+    setDeleting(true);
+    try {
+      const { error } = await supabase
+        .from('paintings')
+        .delete()
+        .eq('id', painting.id);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Painting deleted successfully",
+      });
+      
+      navigate('/gallery/manage');
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete painting",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const getLocalizedText = (key: string) => {
     if (!painting) return '';
     
-    // For title, use full_title with fallback to title
-    if (field === 'title') {
-      return painting[`full_title_${language}` as keyof Painting] as string || 
-             painting[`title_${language}` as keyof Painting] as string ||
-             painting.full_title_en || 
-             painting.title_en || '';
+    switch (language) {
+      case 'fr': return painting[`${key}_fr` as keyof Painting] as string || '';
+      case 'ru': return painting[`${key}_ru` as keyof Painting] as string || '';
+      default: return painting[`${key}_en` as keyof Painting] as string || '';
     }
-    
-    return painting[`${field}_${language}` as keyof Painting] as string || 
-           painting[`${field}_en` as keyof Painting] as string || '';
+  };
+
+  const canManage = () => {
+    if (!user || !painting) return false;
+    return isAdmin || painting.owner_id === user.id;
   };
 
   if (loading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">
-          <div className="text-center">{t('common.loading')}</div>
+          <div className="text-center">Loading...</div>
         </div>
       </Layout>
     );
   }
 
-  if (error || !painting) {
+  if (!painting) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">{t('gallery.error')}</h1>
-            <p className="text-muted-foreground mb-4">{error}</p>
-            <Link to="/gallery">
-              <Button variant="outline">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t('gallery.backToGallery')}
-              </Button>
-            </Link>
+            <h1 className="text-2xl font-bold mb-4">Painting Not Found</h1>
+            <Button onClick={() => navigate('/gallery')}>
+              Back to Gallery
+            </Button>
           </div>
         </div>
       </Layout>
@@ -207,119 +199,152 @@ const PaintingDetail = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-6 flex justify-between items-center">
-          <Link to="/gallery">
-            <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              {t('gallery.backToGallery')}
-            </Button>
-          </Link>
+        {/* Header with navigation and actions */}
+        <div className="flex justify-between items-center mb-8">
+          <Button variant="outline" onClick={() => navigate('/gallery')}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Gallery
+          </Button>
           
-          {/* Owner Management Button */}
-          {isOwnerOfPainting && (
-            <Link to={`/gallery/manage/tokens/${painting.id}`}>
-              <Button>
-                <Settings className="mr-2 h-4 w-4" />
-                Manage QR & Access
-              </Button>
-            </Link>
-          )}
+          <div className="flex gap-2">
+            {canManage() && (
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate(`/gallery/manage/tokens/${painting.id}`)}
+                >
+                  <QrCode className="h-4 w-4 mr-2" />
+                  QR Codes
+                </Button>
+                {isAdmin && (
+                  <Button
+                    variant="outline"
+                    onClick={() => navigate(`/gallery/manage/edit/${painting.id}`)}
+                  >
+                    <Edit className="h-4 w-4 mr-2" />
+                    Edit
+                  </Button>
+                )}
+                {isAdmin && (
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        disabled={deleting}
+                        className="text-destructive hover:text-destructive"
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Delete
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Delete Painting</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          Are you sure you want to delete "{getLocalizedText('title')}"? 
+                          This will permanently delete the painting and all associated data including access tokens and logs.
+                          This action cannot be undone.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={handleDelete}
+                          className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                          Delete Painting
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Image */}
-          <div className="aspect-square overflow-hidden rounded-lg">
+          {/* Image Section */}
+          <div className="space-y-4">
             {painting.public_image_url ? (
-              <img
-                src={painting.public_image_url}
-                alt={getLocalizedText('title')}
-                className="w-full h-full object-cover"
-              />
+              <div className="aspect-square overflow-hidden rounded-lg border">
+                <img
+                  src={painting.public_image_url}
+                  alt={getLocalizedText('title')}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             ) : (
-              <div className="w-full h-full bg-muted flex items-center justify-center">
-                <span className="text-muted-foreground">{t('gallery.noImage')}</span>
+              <div className="aspect-square bg-gray-100 rounded-lg border flex items-center justify-center">
+                <p className="text-gray-500">No image available</p>
               </div>
             )}
           </div>
 
-          {/* Details */}
+          {/* Details Section */}
           <div className="space-y-6">
-            {/* Basic Title and Artist */}
+            {/* Title and Status */}
             <div>
-              <h1 className="text-3xl font-bold mb-2">{getLocalizedText('title')}</h1>
-              <p className="text-xl text-muted-foreground mb-1">{getLocalizedText('artist')}</p>
-              {painting.year && (
-                <p className="text-lg text-muted-foreground">{painting.year}</p>
+              <div className="flex items-center gap-2 mb-2">
+                <h1 className="text-3xl font-bold">{getLocalizedText('title')}</h1>
+                <Badge variant={painting.is_published ? "default" : "secondary"}>
+                  {painting.is_published ? "Published" : "Draft"}
+                </Badge>
+              </div>
+              <p className="text-xl text-muted-foreground">
+                {getLocalizedText('artist')}
+                {painting.artist_dates && ` (${painting.artist_dates})`}
+              </p>
+              {getLocalizedText('full_title') && (
+                <p className="text-lg text-muted-foreground italic mt-2">
+                  {getLocalizedText('full_title')}
+                </p>
               )}
             </div>
 
-            {/* Key Facts Card */}
+            {/* Basic Information */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-5 w-5" />
-                  KEY FACTS
+                  Basic Information
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                {getLocalizedText('full_title') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Full title:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('full_title')}</span>
+                {painting.year && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Year:</span>
+                    <span>{painting.year}</span>
                   </div>
                 )}
-                
-                <div className="grid grid-cols-3 gap-2">
-                  <span className="font-medium text-sm">Artist:</span>
-                  <span className="col-span-2 text-sm">{getLocalizedText('artist')}</span>
-                </div>
-                
-                {painting.artist_dates && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Artist dates:</span>
-                    <span className="col-span-2 text-sm">{painting.artist_dates}</span>
-                  </div>
-                )}
-                
                 {getLocalizedText('date_place_made') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Date and place made:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('date_place_made')}</span>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Date & Place:</span>
+                    <span>{getLocalizedText('date_place_made')}</span>
                   </div>
                 )}
-                
                 {getLocalizedText('materials') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Materials:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('materials')}</span>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Materials:</span>
+                    <span>{getLocalizedText('materials')}</span>
                   </div>
                 )}
-                
                 {painting.dimensions && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Dimensions:</span>
-                    <span className="col-span-2 text-sm">{painting.dimensions}</span>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Dimensions:</span>
+                    <span>{painting.dimensions}</span>
                   </div>
                 )}
-                
-                {getLocalizedText('acquisition_credit') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Acquisition credit:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('acquisition_credit')}</span>
-                  </div>
-                )}
-                
-                {getLocalizedText('frame') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Frame:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('frame')}</span>
-                  </div>
-                )}
-                
                 {getLocalizedText('genre') && (
-                  <div className="grid grid-cols-3 gap-2">
-                    <span className="font-medium text-sm">Genre:</span>
-                    <span className="col-span-2 text-sm">{getLocalizedText('genre')}</span>
+                  <div className="flex justify-between">
+                    <span className="font-medium">Genre:</span>
+                    <span>{getLocalizedText('genre')}</span>
+                  </div>
+                )}
+                {getLocalizedText('frame') && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Frame:</span>
+                    <span>{getLocalizedText('frame')}</span>
                   </div>
                 )}
               </CardContent>
@@ -329,7 +354,7 @@ const PaintingDetail = () => {
             {getLocalizedText('description') && (
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('gallery.description')}</CardTitle>
+                  <CardTitle>Description</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
@@ -337,117 +362,110 @@ const PaintingDetail = () => {
               </Card>
             )}
 
-            {/* Private Information Card */}
-            {(isOwnerOfPainting || isAdmin || token) && (
+            {/* Acquisition Credit */}
+            {getLocalizedText('acquisition_credit') && (
               <Card>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle>Acquisition Credit</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="whitespace-pre-wrap">{getLocalizedText('acquisition_credit')}</p>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Private Information (only visible with valid token) */}
+            {showPrivateInfo && privateData && (
+              <Card className="border-blue-200 bg-blue-50">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-blue-700">
                     <Lock className="h-5 w-5" />
-                    Private Information (EAC Data)
-                    {(isOwnerOfPainting || isAdmin) && (
-                      <Badge variant="outline">Owner Access</Badge>
-                    )}
-                    {token && !isOwnerOfPainting && !isAdmin && (
-                      <Badge variant="secondary">Token Access</Badge>
-                    )}
+                    Private Information
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  {loadingPrivate ? (
-                    <div className="text-center py-4">Loading private information...</div>
-                  ) : privateInfo ? (
-                    <div className="space-y-3">
-                      {privateInfo.eac_inventory_no && (
-                        <div className="grid grid-cols-3 gap-2">
-                          <span className="font-medium text-sm">EAC Inventory No.:</span>
-                          <span className="col-span-2 text-sm">{privateInfo.eac_inventory_no}</span>
-                        </div>
-                      )}
-                      {privateInfo.eac_passport_no && (
-                        <div className="grid grid-cols-3 gap-2">
-                          <span className="font-medium text-sm">EAC Passport No.:</span>
-                          <span className="col-span-2 text-sm">{privateInfo.eac_passport_no}</span>
-                        </div>
-                      )}
-                      {privateInfo.eac_issue_date && (
-                        <div className="grid grid-cols-3 gap-2">
-                          <span className="font-medium text-sm">Date of issue:</span>
-                          <span className="col-span-2 text-sm">{privateInfo.eac_issue_date}</span>
-                        </div>
-                      )}
-                      {!privateInfo.eac_inventory_no && !privateInfo.eac_passport_no && !privateInfo.eac_issue_date && (
-                        <p className="text-muted-foreground text-sm">No private information available</p>
-                      )}
+                <CardContent className="space-y-3">
+                  {privateData.eac_inventory_no && (
+                    <div className="flex justify-between">
+                      <span className="font-medium">EAC Inventory No:</span>
+                      <span>{privateData.eac_inventory_no}</span>
                     </div>
-                  ) : (
-                    <p className="text-muted-foreground text-sm">
-                      {token ? 'Invalid or expired token' : 'No private information available'}
-                    </p>
+                  )}
+                  {privateData.eac_passport_no && (
+                    <div className="flex justify-between">
+                      <span className="font-medium">EAC Passport No:</span>
+                      <span>{privateData.eac_passport_no}</span>
+                    </div>
+                  )}
+                  {privateData.eac_issue_date && (
+                    <div className="flex justify-between">
+                      <span className="font-medium">EAC Issue Date:</span>
+                      <span>{new Date(privateData.eac_issue_date).toLocaleDateString()}</span>
+                    </div>
                   )}
                 </CardContent>
               </Card>
             )}
 
-            {/* QR Access Info for non-owners */}
-            {!isOwnerOfPainting && !isAdmin && !token && (
+            {/* Certificates */}
+            {painting.certificates && painting.certificates.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <QrCode className="h-5 w-5" />
-                    Expert Access Required
+                    <Award className="h-5 w-5" />
+                    Certificates ({painting.certificates.length})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Additional technical information and EAC certification data is available for art experts and professionals.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    To access this information, please scan the QR code provided with this artwork or request access from the owner.
-                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {painting.certificates.map((cert: any, index: number) => (
+                      <div key={index} className="border rounded-lg p-4">
+                        <h4 className="font-semibold mb-2">{cert.name}</h4>
+                        {cert.url && (
+                          <a
+                            href={cert.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"
+                          >
+                            <FileText className="h-4 w-4 inline mr-1" />
+                            View Certificate
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             )}
 
-            {/* Documents and Certificates */}
-            {(painting.certificates?.length > 0 || painting.documents?.length > 0) && (
+            {/* Documents */}
+            {painting.documents && painting.documents.length > 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle>{t('gallery.attachments')}</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5" />
+                    Documents ({painting.documents.length})
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  {painting.certificates?.length > 0 && (
-                    <div>
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">
-                        <Award className="h-4 w-4" />
-                        {t('gallery.certificates')}
-                      </h4>
-                      <div className="space-y-2">
-                        {painting.certificates.map((cert: any, index: number) => (
-                          <div key={index} className="flex items-center gap-2 p-2 border rounded">
-                            <FileText className="h-4 w-4" />
-                            <span className="text-sm">{cert.name || `Certificate ${index + 1}`}</span>
-                          </div>
-                        ))}
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {painting.documents.map((doc: any, index: number) => (
+                      <div key={index} className="border rounded-lg p-4">
+                        <h4 className="font-semibold mb-2">{doc.name}</h4>
+                        {doc.url && (
+                          <a
+                            href={doc.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"
+                          >
+                            <FileText className="h-4 w-4 inline mr-1" />
+                            View Document
+                          </a>
+                        )}
                       </div>
-                    </div>
-                  )}
-                  
-                  {painting.documents?.length > 0 && (
-                    <div>
-                      <h4 className="font-semibold mb-2 flex items-center gap-2">
-                        <FileText className="h-4 w-4" />
-                        {t('gallery.documents')}
-                      </h4>
-                      <div className="space-y-2">
-                        {painting.documents.map((doc: any, index: number) => (
-                          <div key={index} className="flex items-center gap-2 p-2 border rounded">
-                            <FileText className="h-4 w-4" />
-                            <span className="text-sm">{doc.name || `Document ${index + 1}`}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             )}

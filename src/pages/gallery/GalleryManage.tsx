@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -8,7 +7,8 @@ import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft, Settings } from 'lucide-react';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft, Settings, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -36,6 +36,7 @@ const GalleryManage = () => {
   
   const [paintings, setPaintings] = useState<Painting[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!roleLoading && role) {
@@ -67,6 +68,36 @@ const GalleryManage = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (paintingId: string) => {
+    if (!isAdmin) return;
+    
+    setDeletingId(paintingId);
+    try {
+      const { error } = await supabase
+        .from('paintings')
+        .delete()
+        .eq('id', paintingId);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Painting deleted successfully",
+      });
+      
+      // Remove from local state
+      setPaintings(prev => prev.filter(p => p.id !== paintingId));
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete painting",
+        variant: "destructive",
+      });
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -221,11 +252,11 @@ const GalleryManage = () => {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 min-w-0"
                       onClick={() => navigate(`/gallery/${painting.id}`)}
                     >
                       <Eye className="h-4 w-4 mr-1" />
@@ -235,7 +266,7 @@ const GalleryManage = () => {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1"
+                        className="flex-1 min-w-0"
                         onClick={() => navigate(`/gallery/manage/edit/${painting.id}`)}
                       >
                         <Edit className="h-4 w-4 mr-1" />
@@ -245,12 +276,46 @@ const GalleryManage = () => {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 min-w-0"
                       onClick={() => navigate(`/gallery/manage/tokens/${painting.id}`)}
                     >
                       <QrCode className="h-4 w-4 mr-1" />
                       QR
                     </Button>
+                    {isAdmin && (
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 min-w-0"
+                            disabled={deletingId === painting.id}
+                          >
+                            <Trash2 className="h-4 w-4 mr-1" />
+                            Delete
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete Painting</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to delete "{getLocalizedTitle(painting)}"? 
+                              This will permanently delete the painting and all associated data including access tokens and logs.
+                              This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleDelete(painting.id)}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              Delete Painting
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    )}
                   </div>
                 </CardContent>
               </Card>

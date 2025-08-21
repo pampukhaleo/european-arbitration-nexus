@@ -7,6 +7,7 @@ import PaintingDetail from '@/pages/gallery/PaintingDetail';
 import PaintingForm from '@/pages/gallery/PaintingForm';
 import GalleryManage from '@/pages/gallery/GalleryManage';
 import QrCodeGenerator from '@/pages/gallery/QrCodeGenerator';
+import TokenManagement from '@/pages/gallery/TokenManagement';
 import Auth from '@/pages/Auth';
 import About from '@/pages/About';
 import Contacts from '@/pages/Contacts';
@@ -124,6 +125,11 @@ function App() {
                 </AdminRoute>
               } />
               <Route path="/gallery/manage/tokens/:id" element={
+                <ProtectedRoute>
+                  <TokenManagement />
+                </ProtectedRoute>
+              } />
+              <Route path="/gallery/manage/qr/:id" element={
                 <ProtectedRoute>
                   <QrCodeGenerator />
                 </ProtectedRoute>

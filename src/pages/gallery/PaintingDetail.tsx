@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -164,6 +163,15 @@ const PaintingDetail = () => {
 
   const getLocalizedText = (field: 'title' | 'artist' | 'description' | 'technical_analysis' | 'expertise_report' | 'full_title' | 'date_place_made' | 'materials' | 'acquisition_credit' | 'frame' | 'genre') => {
     if (!painting) return '';
+    
+    // For title, use full_title with fallback to title
+    if (field === 'title') {
+      return painting[`full_title_${language}` as keyof Painting] as string || 
+             painting[`title_${language}` as keyof Painting] as string ||
+             painting.full_title_en || 
+             painting.title_en || '';
+    }
+    
     return painting[`${field}_${language}` as keyof Painting] as string || 
            painting[`${field}_en` as keyof Painting] as string || '';
   };

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -18,9 +19,10 @@ import { ArrowLeft, Save } from 'lucide-react';
 import ImageUpload from '@/components/gallery/ImageUpload';
 
 interface PaintingFormData {
-  title_en: string;
-  title_fr: string;
-  title_ru: string;
+  // Key Facts fields (main fields)
+  full_title_en: string;
+  full_title_fr: string;
+  full_title_ru: string;
   artist_en: string;
   artist_fr: string;
   artist_ru: string;
@@ -33,10 +35,6 @@ interface PaintingFormData {
   expertise_report_en: string;
   expertise_report_fr: string;
   expertise_report_ru: string;
-  // Key Facts fields
-  full_title_en: string;
-  full_title_fr: string;
-  full_title_ru: string;
   artist_dates: string;
   date_place_made_en: string;
   date_place_made_fr: string;
@@ -78,9 +76,9 @@ const PaintingForm = () => {
   const [loading, setLoading] = useState(false);
   const [owners, setOwners] = useState<Array<{id: string, email: string, full_name: string}>>([]);
   const [formData, setFormData] = useState<PaintingFormData>({
-    title_en: '',
-    title_fr: '',
-    title_ru: '',
+    full_title_en: '',
+    full_title_fr: '',
+    full_title_ru: '',
     artist_en: '',
     artist_fr: '',
     artist_ru: '',
@@ -93,9 +91,6 @@ const PaintingForm = () => {
     expertise_report_en: '',
     expertise_report_fr: '',
     expertise_report_ru: '',
-    full_title_en: '',
-    full_title_fr: '',
-    full_title_ru: '',
     artist_dates: '',
     date_place_made_en: '',
     date_place_made_fr: '',
@@ -167,9 +162,9 @@ const PaintingForm = () => {
       
       if (data) {
         setFormData({
-          title_en: data.title_en || '',
-          title_fr: data.title_fr || '',
-          title_ru: data.title_ru || '',
+          full_title_en: data.full_title_en || data.title_en || '',
+          full_title_fr: data.full_title_fr || data.title_fr || '',
+          full_title_ru: data.full_title_ru || data.title_ru || '',
           artist_en: data.artist_en || '',
           artist_fr: data.artist_fr || '',
           artist_ru: data.artist_ru || '',
@@ -182,9 +177,6 @@ const PaintingForm = () => {
           expertise_report_en: data.expertise_report_en || '',
           expertise_report_fr: data.expertise_report_fr || '',
           expertise_report_ru: data.expertise_report_ru || '',
-          full_title_en: data.full_title_en || '',
-          full_title_fr: data.full_title_fr || '',
-          full_title_ru: data.full_title_ru || '',
           artist_dates: data.artist_dates || '',
           date_place_made_en: data.date_place_made_en || '',
           date_place_made_fr: data.date_place_made_fr || '',
@@ -250,8 +242,13 @@ const PaintingForm = () => {
 
     setLoading(true);
 
+    // Prepare painting data with backwards compatibility
     const paintingData = {
       ...formData,
+      // Sync title_* fields with full_title_* for backwards compatibility
+      title_en: formData.full_title_en || formData.artist_en,
+      title_fr: formData.full_title_fr || formData.artist_fr,
+      title_ru: formData.full_title_ru || formData.artist_ru,
       updated_at: new Date().toISOString(),
     };
 
@@ -395,10 +392,10 @@ const PaintingForm = () => {
             </CardContent>
           </Card>
 
-          {/* Basic Information */}
+          {/* Key Facts (Main Information) */}
           <Card>
             <CardHeader>
-              <CardTitle>Basic Information</CardTitle>
+              <CardTitle>Key Facts</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <Tabs defaultValue="en" className="w-full">
@@ -411,11 +408,11 @@ const PaintingForm = () => {
                 <TabsContent value="en" className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="title_en">Title (English)</Label>
+                      <Label htmlFor="full_title_en">Title (English)</Label>
                       <Input
-                        id="title_en"
-                        value={formData.title_en}
-                        onChange={(e) => updateFormData('title_en', e.target.value)}
+                        id="full_title_en"
+                        value={formData.full_title_en}
+                        onChange={(e) => updateFormData('full_title_en', e.target.value)}
                         required
                       />
                     </div>
@@ -436,118 +433,6 @@ const PaintingForm = () => {
                       value={formData.description_en}
                       onChange={(e) => updateFormData('description_en', e.target.value)}
                       rows={3}
-                    />
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="fr" className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="title_fr">Title (Français)</Label>
-                      <Input
-                        id="title_fr"
-                        value={formData.title_fr}
-                        onChange={(e) => updateFormData('title_fr', e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="artist_fr">Artist (Français)</Label>
-                      <Input
-                        id="artist_fr"
-                        value={formData.artist_fr}
-                        onChange={(e) => updateFormData('artist_fr', e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="description_fr">Description (Français)</Label>
-                    <Textarea
-                      id="description_fr"
-                      value={formData.description_fr}
-                      onChange={(e) => updateFormData('description_fr', e.target.value)}
-                      rows={3}
-                    />
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="ru" className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="title_ru">Title (Русский)</Label>
-                      <Input
-                        id="title_ru"
-                        value={formData.title_ru}
-                        onChange={(e) => updateFormData('title_ru', e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="artist_ru">Artist (Русский)</Label>
-                      <Input
-                        id="artist_ru"
-                        value={formData.artist_ru}
-                        onChange={(e) => updateFormData('artist_ru', e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="description_ru">Description (Русский)</Label>
-                    <Textarea
-                      id="description_ru"
-                      value={formData.description_ru}
-                      onChange={(e) => updateFormData('description_ru', e.target.value)}
-                      rows={3}
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="year">Year</Label>
-                  <Input
-                    id="year"
-                    type="number"
-                    value={formData.year || ''}
-                    onChange={(e) => updateFormData('year', e.target.value ? parseInt(e.target.value) : null)}
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="is_published"
-                  checked={formData.is_published}
-                  onCheckedChange={(checked) => updateFormData('is_published', checked)}
-                />
-                <Label htmlFor="is_published">Published</Label>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Key Facts */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Key Facts (Public Information)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Tabs defaultValue="en" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="en">English</TabsTrigger>
-                  <TabsTrigger value="fr">Français</TabsTrigger>
-                  <TabsTrigger value="ru">Русский</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="en" className="space-y-4">
-                  <div>
-                    <Label htmlFor="full_title_en">Full Title</Label>
-                    <Input
-                      id="full_title_en"
-                      value={formData.full_title_en}
-                      onChange={(e) => updateFormData('full_title_en', e.target.value)}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -597,12 +482,33 @@ const PaintingForm = () => {
                 </TabsContent>
                 
                 <TabsContent value="fr" className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="full_title_fr">Titre (Français)</Label>
+                      <Input
+                        id="full_title_fr"
+                        value={formData.full_title_fr}
+                        onChange={(e) => updateFormData('full_title_fr', e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="artist_fr">Artiste (Français)</Label>
+                      <Input
+                        id="artist_fr"
+                        value={formData.artist_fr}
+                        onChange={(e) => updateFormData('artist_fr', e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
                   <div>
-                    <Label htmlFor="full_title_fr">Titre Complet</Label>
-                    <Input
-                      id="full_title_fr"
-                      value={formData.full_title_fr}
-                      onChange={(e) => updateFormData('full_title_fr', e.target.value)}
+                    <Label htmlFor="description_fr">Description (Français)</Label>
+                    <Textarea
+                      id="description_fr"
+                      value={formData.description_fr}
+                      onChange={(e) => updateFormData('description_fr', e.target.value)}
+                      rows={3}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -652,12 +558,33 @@ const PaintingForm = () => {
                 </TabsContent>
                 
                 <TabsContent value="ru" className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="full_title_ru">Название (Русский)</Label>
+                      <Input
+                        id="full_title_ru"
+                        value={formData.full_title_ru}
+                        onChange={(e) => updateFormData('full_title_ru', e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="artist_ru">Художник (Русский)</Label>
+                      <Input
+                        id="artist_ru"
+                        value={formData.artist_ru}
+                        onChange={(e) => updateFormData('artist_ru', e.target.value)}
+                        required
+                      />
+                    </div>
+                  </div>
                   <div>
-                    <Label htmlFor="full_title_ru">Полное Название</Label>
-                    <Input
-                      id="full_title_ru"
-                      value={formData.full_title_ru}
-                      onChange={(e) => updateFormData('full_title_ru', e.target.value)}
+                    <Label htmlFor="description_ru">Описание (Русский)</Label>
+                    <Textarea
+                      id="description_ru"
+                      value={formData.description_ru}
+                      onChange={(e) => updateFormData('description_ru', e.target.value)}
+                      rows={3}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -726,6 +653,25 @@ const PaintingForm = () => {
                       onChange={(e) => updateFormData('dimensions', e.target.value)}
                       placeholder="e.g., 100 × 80 cm"
                     />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="year">Year</Label>
+                    <Input
+                      id="year"
+                      type="number"
+                      value={formData.year || ''}
+                      onChange={(e) => updateFormData('year', e.target.value ? parseInt(e.target.value) : null)}
+                    />
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Switch
+                      id="is_published"
+                      checked={formData.is_published}
+                      onCheckedChange={(checked) => updateFormData('is_published', checked)}
+                    />
+                    <Label htmlFor="is_published">Published</Label>
                   </div>
                 </div>
               </div>
@@ -799,7 +745,7 @@ const PaintingForm = () => {
                 
                 <TabsContent value="fr" className="space-y-4">
                   <div>
-                    <Label htmlFor="technical_analysis_fr">Technical Analysis (Français)</Label>
+                    <Label htmlFor="technical_analysis_fr">Analyse Technique (Français)</Label>
                     <Textarea
                       id="technical_analysis_fr"
                       value={formData.technical_analysis_fr}
@@ -812,7 +758,7 @@ const PaintingForm = () => {
                 
                 <TabsContent value="ru" className="space-y-4">
                   <div>
-                    <Label htmlFor="technical_analysis_ru">Technical Analysis (Русский)</Label>
+                    <Label htmlFor="technical_analysis_ru">Технический Анализ (Русский)</Label>
                     <Textarea
                       id="technical_analysis_ru"
                       value={formData.technical_analysis_ru}
@@ -854,7 +800,7 @@ const PaintingForm = () => {
                 
                 <TabsContent value="fr" className="space-y-4">
                   <div>
-                    <Label htmlFor="expertise_report_fr">Expertise Report (Français)</Label>
+                    <Label htmlFor="expertise_report_fr">Rapport d'Expertise (Français)</Label>
                     <Textarea
                       id="expertise_report_fr"
                       value={formData.expertise_report_fr}
@@ -867,7 +813,7 @@ const PaintingForm = () => {
                 
                 <TabsContent value="ru" className="space-y-4">
                   <div>
-                    <Label htmlFor="expertise_report_ru">Expertise Report (Русский)</Label>
+                    <Label htmlFor="expertise_report_ru">Экспертное Заключение (Русский)</Label>
                     <Textarea
                       id="expertise_report_ru"
                       value={formData.expertise_report_ru}

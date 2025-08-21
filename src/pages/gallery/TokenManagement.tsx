@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -40,7 +39,7 @@ const TokenManagement = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { language, t } = useLanguage();
-  const { isAdmin, isOwner } = useUserRole();
+  const { isAdmin, isOwner, loading: roleLoading } = useUserRole();
   const { toast } = useToast();
 
   const [painting, setPainting] = useState<Painting | null>(null);
@@ -50,10 +49,11 @@ const TokenManagement = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('24hours');
 
   useEffect(() => {
-    if (id && user) {
+    // Only fetch data when user is available and role loading is complete
+    if (id && user && !roleLoading) {
       fetchData();
     }
-  }, [id, user]);
+  }, [id, user, roleLoading, isAdmin]);
 
   const fetchData = async () => {
     if (!id || !user) return;
@@ -110,20 +110,20 @@ const TokenManagement = () => {
   };
 
   const generateToken = async () => {
-    if (!id || !user) return;
+    if (!id || !user || !painting) return;
 
     setGenerating(true);
     try {
       console.log('Generating token with params:', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
-        owner_id_param: null // This will be derived from the painting
+        owner_id_param: painting.owner_id // Use the painting's owner_id
       });
 
       const { data, error } = await supabase.rpc('generate_access_token', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
-        owner_id_param: null // Not used anymore, derived from painting
+        owner_id_param: painting.owner_id // Pass the actual owner_id from the painting
       });
 
       console.log('Token generation response:', { data, error });
@@ -218,7 +218,8 @@ const TokenManagement = () => {
     };
   };
 
-  if (loading) {
+  // Show loading while role is being determined
+  if (loading || roleLoading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">

@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, QrCode, Settings, Lock, Info } from 'lucide-react';
+import { ArrowLeft, QrCode, Settings, Lock, Info, Award, FileText } from 'lucide-react';
 
 interface Painting {
   id: string;

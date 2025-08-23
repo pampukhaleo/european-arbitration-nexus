@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -72,6 +71,7 @@ const PaintingDetail = () => {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
   const [showPrivateInfo, setShowPrivateInfo] = useState(false);
+  const [tokenError, setTokenError] = useState<string | null>(null);
 
   // Effect 1: Fetch painting data (only depends on id)
   useEffect(() => {
@@ -128,14 +128,36 @@ const PaintingDetail = () => {
         painting_id_param: id
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Error fetching private data:', error);
+        setTokenError('Invalid or expired access token');
+        toast({
+          title: "Access Denied",
+          description: "The access token is invalid or expired",
+          variant: "destructive",
+        });
+        return;
+      }
       
       if (data && data.length > 0) {
         setPrivateData(data[0]);
         setShowPrivateInfo(true);
+      } else {
+        setTokenError('No private data available');
+        toast({
+          title: "No Data",
+          description: "No private information available for this token",
+          variant: "destructive",
+        });
       }
     } catch (error) {
       console.error('Error fetching private data:', error);
+      setTokenError('Failed to access private information');
+      toast({
+        title: "Error",
+        description: "Failed to access private information",
+        variant: "destructive",
+      });
     }
   };
 
@@ -442,6 +464,15 @@ const PaintingDetail = () => {
                       <span>{new Date(privateData.eac_issue_date).toLocaleDateString()}</span>
                     </div>
                   )}
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Show error message if token is invalid */}
+            {token && tokenError && (
+              <Card className="border-red-200 bg-red-50">
+                <CardContent className="p-4 text-center">
+                  <p className="text-red-700">{tokenError}</p>
                 </CardContent>
               </Card>
             )}

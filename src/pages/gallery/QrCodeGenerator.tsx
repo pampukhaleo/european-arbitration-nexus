@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import QRCodeGenerator from '@/components/gallery/QRCodeGenerator';
+import { getPublicBaseUrl } from '@/lib/publicBaseUrl';
 
 const QrCodeGenerator = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,6 +23,9 @@ const QrCodeGenerator = () => {
     );
   }
 
+  const baseUrl = getPublicBaseUrl();
+  const paintingUrl = `${baseUrl}/gallery/${id}`;
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -30,7 +34,7 @@ const QrCodeGenerator = () => {
             <CardTitle>QR Code Generator</CardTitle>
           </CardHeader>
           <CardContent>
-            <QRCodeGenerator url={`${window.location.origin}/gallery/${id}`} />
+            <QRCodeGenerator url={paintingUrl} />
           </CardContent>
         </Card>
       </div>

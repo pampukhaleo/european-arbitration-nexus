@@ -12,9 +12,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { ArrowLeft, QrCode, Copy, ExternalLink, BarChart3, Plus, Trash2 } from 'lucide-react';
+import { ArrowLeft, QrCode, Copy, ExternalLink, BarChart3, Plus, Trash2, Globe, AlertTriangle, Save } from 'lucide-react';
 import QRCodeGenerator from '@/components/gallery/QRCodeGenerator';
 import AccessStats from '@/components/gallery/AccessStats';
+import { getPublicBaseUrl, setPublicBaseUrl, isLovableOrLocalhost } from '@/lib/publicBaseUrl';
 
 interface Painting {
   id: string;
@@ -47,6 +48,13 @@ const TokenManagement = () => {
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('24hours');
+  const [publicBaseUrl, setPublicBaseUrlState] = useState('');
+  const [savingUrl, setSavingUrl] = useState(false);
+
+  useEffect(() => {
+    // Initialize public base URL
+    setPublicBaseUrlState(getPublicBaseUrl());
+  }, []);
 
   useEffect(() => {
     // Only fetch data when user is available and role loading is complete
@@ -181,6 +189,25 @@ const TokenManagement = () => {
     }
   };
 
+  const handleSavePublicBaseUrl = () => {
+    setSavingUrl(true);
+    try {
+      setPublicBaseUrl(publicBaseUrl);
+      toast({
+        title: "Success",
+        description: "Public base URL saved successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save public base URL",
+        variant: "destructive",
+      });
+    } finally {
+      setSavingUrl(false);
+    }
+  };
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
@@ -262,6 +289,47 @@ const TokenManagement = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Generate New Token */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Public Base URL Configuration */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Globe className="h-5 w-5" />
+                  Public Base URL Configuration
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="publicBaseUrl">Public Domain for QR Codes</Label>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Set your public domain where clients will access the paintings
+                  </p>
+                  <div className="flex gap-2">
+                    <Input
+                      id="publicBaseUrl"
+                      value={publicBaseUrl}
+                      onChange={(e) => setPublicBaseUrlState(e.target.value)}
+                      placeholder="https://your-domain.com"
+                      className="flex-1"
+                    />
+                    <Button 
+                      onClick={handleSavePublicBaseUrl} 
+                      disabled={savingUrl}
+                      size="sm"
+                    >
+                      <Save className="h-4 w-4 mr-2" />
+                      {savingUrl ? 'Saving...' : 'Save'}
+                    </Button>
+                  </div>
+                  {isLovableOrLocalhost(publicBaseUrl) && (
+                    <div className="flex items-center gap-2 text-amber-600 text-sm mt-2">
+                      <AlertTriangle className="h-4 w-4" />
+                      Warning: This domain contains "lovable" or "localhost" and may not work for external clients
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -304,8 +372,8 @@ const TokenManagement = () => {
                   <div className="space-y-4">
                     {tokens.map((token) => {
                       const expiry = formatExpiry(token.expires_at);
-                      // Use environment variable for base URL or fallback to current origin
-                      const baseUrl = import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin;
+                      // Use the stored public base URL
+                      const baseUrl = getPublicBaseUrl();
                       const accessUrl = `${baseUrl}/gallery/${id}/access/${token.token}`;
                       
                       return (

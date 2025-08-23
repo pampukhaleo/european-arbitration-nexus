@@ -73,17 +73,26 @@ const PaintingDetail = () => {
   const [deleting, setDeleting] = useState(false);
   const [showPrivateInfo, setShowPrivateInfo] = useState(false);
 
+  // Effect 1: Fetch painting data (only depends on id)
   useEffect(() => {
     if (id) {
       fetchPainting();
-      if (token) {
-        fetchPrivateData();
-      } else if (user && painting) {
-        // If user is logged in and is owner/admin, fetch private data directly
-        checkOwnershipAndFetchPrivate();
-      }
     }
-  }, [id, token, user, painting]);
+  }, [id]);
+
+  // Effect 2: Fetch private data via token (only when token exists)
+  useEffect(() => {
+    if (id && token) {
+      fetchPrivateData();
+    }
+  }, [id, token]);
+
+  // Effect 3: Check ownership and fetch private data (only for logged in users with painting data)
+  useEffect(() => {
+    if (id && user && painting && !token) {
+      checkOwnershipAndFetchPrivate();
+    }
+  }, [id, user, painting, isAdmin]);
 
   const fetchPainting = async () => {
     if (!id) return;

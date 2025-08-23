@@ -304,7 +304,9 @@ const TokenManagement = () => {
                   <div className="space-y-4">
                     {tokens.map((token) => {
                       const expiry = formatExpiry(token.expires_at);
-                      const accessUrl = `${window.location.origin}/gallery/${id}/access/${token.token}`;
+                      // Use environment variable for base URL or fallback to current origin
+                      const baseUrl = import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin;
+                      const accessUrl = `${baseUrl}/gallery/${id}/access/${token.token}`;
                       
                       return (
                         <div key={token.id} className="border rounded-lg p-4">

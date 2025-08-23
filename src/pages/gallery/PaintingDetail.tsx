@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -59,8 +60,7 @@ interface PaintingPrivate {
 }
 
 const PaintingDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const { token } = useParams<{ token?: string }>();
+  const { id, token } = useParams<{ id: string; token?: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
   const { language } = useLanguage();
@@ -78,9 +78,12 @@ const PaintingDetail = () => {
       fetchPainting();
       if (token) {
         fetchPrivateData();
+      } else if (user && painting) {
+        // If user is logged in and is owner/admin, fetch private data directly
+        checkOwnershipAndFetchPrivate();
       }
     }
-  }, [id, token]);
+  }, [id, token, user, painting]);
 
   const fetchPainting = async () => {
     if (!id) return;
@@ -124,6 +127,34 @@ const PaintingDetail = () => {
       }
     } catch (error) {
       console.error('Error fetching private data:', error);
+    }
+  };
+
+  const checkOwnershipAndFetchPrivate = async () => {
+    if (!id || !user || !painting) return;
+    
+    // Check if user is owner or admin
+    const isOwnerOrAdmin = isAdmin || painting.owner_id === user.id;
+    
+    if (isOwnerOrAdmin) {
+      try {
+        const { data, error } = await supabase
+          .from('painting_private')
+          .select('*')
+          .eq('painting_id', id)
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          throw error;
+        }
+        
+        if (data) {
+          setPrivateData(data);
+          setShowPrivateInfo(true);
+        }
+      } catch (error) {
+        console.error('Error fetching private data for owner:', error);
+      }
     }
   };
 
@@ -374,7 +405,7 @@ const PaintingDetail = () => {
               </Card>
             )}
 
-            {/* Private Information (only visible with valid token) */}
+            {/* Private Information (only visible with valid token or for owners/admins) */}
             {showPrivateInfo && privateData && (
               <Card className="border-blue-200 bg-blue-50">
                 <CardHeader>

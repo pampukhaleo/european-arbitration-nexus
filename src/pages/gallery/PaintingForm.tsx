@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -224,13 +223,30 @@ const PaintingForm = () => {
 
     setLoading(true);
 
-    // Prepare painting data with backwards compatibility
+    // For new paintings, auto-populate French and Russian fields from English
     const paintingData = {
       ...formData,
+      // Auto-populate missing language fields for new paintings
+      full_title_fr: formData.full_title_fr || formData.full_title_en,
+      full_title_ru: formData.full_title_ru || formData.full_title_en,
+      artist_fr: formData.artist_fr || formData.artist_en,
+      artist_ru: formData.artist_ru || formData.artist_en,
+      description_fr: formData.description_fr || formData.description_en,
+      description_ru: formData.description_ru || formData.description_en,
+      date_place_made_fr: formData.date_place_made_fr || formData.date_place_made_en,
+      date_place_made_ru: formData.date_place_made_ru || formData.date_place_made_en,
+      materials_fr: formData.materials_fr || formData.materials_en,
+      materials_ru: formData.materials_ru || formData.materials_en,
+      acquisition_credit_fr: formData.acquisition_credit_fr || formData.acquisition_credit_en,
+      acquisition_credit_ru: formData.acquisition_credit_ru || formData.acquisition_credit_en,
+      frame_fr: formData.frame_fr || formData.frame_en,
+      frame_ru: formData.frame_ru || formData.frame_en,
+      genre_fr: formData.genre_fr || formData.genre_en,
+      genre_ru: formData.genre_ru || formData.genre_en,
       // Sync title_* fields with full_title_* for backwards compatibility
       title_en: formData.full_title_en || formData.artist_en,
-      title_fr: formData.full_title_fr || formData.artist_fr,
-      title_ru: formData.full_title_ru || formData.artist_ru,
+      title_fr: formData.full_title_fr || formData.full_title_en || formData.artist_fr || formData.artist_en,
+      title_ru: formData.full_title_ru || formData.full_title_en || formData.artist_ru || formData.artist_en,
       updated_at: new Date().toISOString(),
     };
 
@@ -380,17 +396,248 @@ const PaintingForm = () => {
               <CardTitle>Key Facts</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <Tabs defaultValue="en" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="en">English</TabsTrigger>
-                  <TabsTrigger value="fr">Français</TabsTrigger>
-                  <TabsTrigger value="ru">Русский</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="en" className="space-y-4">
+              {isEditing ? (
+                <Tabs defaultValue="en" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="en">English</TabsTrigger>
+                    <TabsTrigger value="fr">Français</TabsTrigger>
+                    <TabsTrigger value="ru">Русский</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="en" className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="full_title_en">Title (English)</Label>
+                        <Input
+                          id="full_title_en"
+                          value={formData.full_title_en}
+                          onChange={(e) => updateFormData('full_title_en', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="artist_en">Artist (English)</Label>
+                        <Input
+                          id="artist_en"
+                          value={formData.artist_en}
+                          onChange={(e) => updateFormData('artist_en', e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="description_en">Description (English)</Label>
+                      <Textarea
+                        id="description_en"
+                        value={formData.description_en}
+                        onChange={(e) => updateFormData('description_en', e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="date_place_made_en">Date and Place Made</Label>
+                        <Input
+                          id="date_place_made_en"
+                          value={formData.date_place_made_en}
+                          onChange={(e) => updateFormData('date_place_made_en', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="materials_en">Materials</Label>
+                        <Input
+                          id="materials_en"
+                          value={formData.materials_en}
+                          onChange={(e) => updateFormData('materials_en', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="acquisition_credit_en">Acquisition Credit</Label>
+                        <Input
+                          id="acquisition_credit_en"
+                          value={formData.acquisition_credit_en}
+                          onChange={(e) => updateFormData('acquisition_credit_en', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="frame_en">Frame</Label>
+                        <Input
+                          id="frame_en"
+                          value={formData.frame_en}
+                          onChange={(e) => updateFormData('frame_en', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="genre_en">Genre</Label>
+                      <Input
+                        id="genre_en"
+                        value={formData.genre_en}
+                        onChange={(e) => updateFormData('genre_en', e.target.value)}
+                      />
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="fr" className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="full_title_fr">Titre (Français)</Label>
+                        <Input
+                          id="full_title_fr"
+                          value={formData.full_title_fr}
+                          onChange={(e) => updateFormData('full_title_fr', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="artist_fr">Artiste (Français)</Label>
+                        <Input
+                          id="artist_fr"
+                          value={formData.artist_fr}
+                          onChange={(e) => updateFormData('artist_fr', e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="description_fr">Description (Français)</Label>
+                      <Textarea
+                        id="description_fr"
+                        value={formData.description_fr}
+                        onChange={(e) => updateFormData('description_fr', e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="date_place_made_fr">Date et Lieu de Création</Label>
+                        <Input
+                          id="date_place_made_fr"
+                          value={formData.date_place_made_fr}
+                          onChange={(e) => updateFormData('date_place_made_fr', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="materials_fr">Matériaux</Label>
+                        <Input
+                          id="materials_fr"
+                          value={formData.materials_fr}
+                          onChange={(e) => updateFormData('materials_fr', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="acquisition_credit_fr">Crédit d'Acquisition</Label>
+                        <Input
+                          id="acquisition_credit_fr"
+                          value={formData.acquisition_credit_fr}
+                          onChange={(e) => updateFormData('acquisition_credit_fr', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="frame_fr">Cadre</Label>
+                        <Input
+                          id="frame_fr"
+                          value={formData.frame_fr}
+                          onChange={(e) => updateFormData('frame_fr', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="genre_fr">Genre</Label>
+                      <Input
+                        id="genre_fr"
+                        value={formData.genre_fr}
+                        onChange={(e) => updateFormData('genre_fr', e.target.value)}
+                      />
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="ru" className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="full_title_ru">Название (Русский)</Label>
+                        <Input
+                          id="full_title_ru"
+                          value={formData.full_title_ru}
+                          onChange={(e) => updateFormData('full_title_ru', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="artist_ru">Художник (Русский)</Label>
+                        <Input
+                          id="artist_ru"
+                          value={formData.artist_ru}
+                          onChange={(e) => updateFormData('artist_ru', e.target.value)}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="description_ru">Описание (Русский)</Label>
+                      <Textarea
+                        id="description_ru"
+                        value={formData.description_ru}
+                        onChange={(e) => updateFormData('description_ru', e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="date_place_made_ru">Дата и Место Создания</Label>
+                        <Input
+                          id="date_place_made_ru"
+                          value={formData.date_place_made_ru}
+                          onChange={(e) => updateFormData('date_place_made_ru', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="materials_ru">Материалы</Label>
+                        <Input
+                          id="materials_ru"
+                          value={formData.materials_ru}
+                          onChange={(e) => updateFormData('materials_ru', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="acquisition_credit_ru">Кредит Приобретения</Label>
+                        <Input
+                          id="acquisition_credit_ru"
+                          value={formData.acquisition_credit_ru}
+                          onChange={(e) => updateFormData('acquisition_credit_ru', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="frame_ru">Рама</Label>
+                        <Input
+                          id="frame_ru"
+                          value={formData.frame_ru}
+                          onChange={(e) => updateFormData('frame_ru', e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="genre_ru">Жанр</Label>
+                      <Input
+                        id="genre_ru"
+                        value={formData.genre_ru}
+                        onChange={(e) => updateFormData('genre_ru', e.target.value)}
+                      />
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              ) : (
+                /* English-only form for adding new paintings */
+                <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="full_title_en">Title (English)</Label>
+                      <Label htmlFor="full_title_en">Title</Label>
                       <Input
                         id="full_title_en"
                         value={formData.full_title_en}
@@ -399,7 +646,7 @@ const PaintingForm = () => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="artist_en">Artist (English)</Label>
+                      <Label htmlFor="artist_en">Artist</Label>
                       <Input
                         id="artist_en"
                         value={formData.artist_en}
@@ -409,7 +656,7 @@ const PaintingForm = () => {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="description_en">Description (English)</Label>
+                    <Label htmlFor="description_en">Description</Label>
                     <Textarea
                       id="description_en"
                       value={formData.description_en}
@@ -461,160 +708,8 @@ const PaintingForm = () => {
                       onChange={(e) => updateFormData('genre_en', e.target.value)}
                     />
                   </div>
-                </TabsContent>
-                
-                <TabsContent value="fr" className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="full_title_fr">Titre (Français)</Label>
-                      <Input
-                        id="full_title_fr"
-                        value={formData.full_title_fr}
-                        onChange={(e) => updateFormData('full_title_fr', e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="artist_fr">Artiste (Français)</Label>
-                      <Input
-                        id="artist_fr"
-                        value={formData.artist_fr}
-                        onChange={(e) => updateFormData('artist_fr', e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="description_fr">Description (Français)</Label>
-                    <Textarea
-                      id="description_fr"
-                      value={formData.description_fr}
-                      onChange={(e) => updateFormData('description_fr', e.target.value)}
-                      rows={3}
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="date_place_made_fr">Date et Lieu de Création</Label>
-                      <Input
-                        id="date_place_made_fr"
-                        value={formData.date_place_made_fr}
-                        onChange={(e) => updateFormData('date_place_made_fr', e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="materials_fr">Matériaux</Label>
-                      <Input
-                        id="materials_fr"
-                        value={formData.materials_fr}
-                        onChange={(e) => updateFormData('materials_fr', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="acquisition_credit_fr">Crédit d'Acquisition</Label>
-                      <Input
-                        id="acquisition_credit_fr"
-                        value={formData.acquisition_credit_fr}
-                        onChange={(e) => updateFormData('acquisition_credit_fr', e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="frame_fr">Cadre</Label>
-                      <Input
-                        id="frame_fr"
-                        value={formData.frame_fr}
-                        onChange={(e) => updateFormData('frame_fr', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="genre_fr">Genre</Label>
-                    <Input
-                      id="genre_fr"
-                      value={formData.genre_fr}
-                      onChange={(e) => updateFormData('genre_fr', e.target.value)}
-                    />
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="ru" className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="full_title_ru">Название (Русский)</Label>
-                      <Input
-                        id="full_title_ru"
-                        value={formData.full_title_ru}
-                        onChange={(e) => updateFormData('full_title_ru', e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="artist_ru">Художник (Русский)</Label>
-                      <Input
-                        id="artist_ru"
-                        value={formData.artist_ru}
-                        onChange={(e) => updateFormData('artist_ru', e.target.value)}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="description_ru">Описание (Русский)</Label>
-                    <Textarea
-                      id="description_ru"
-                      value={formData.description_ru}
-                      onChange={(e) => updateFormData('description_ru', e.target.value)}
-                      rows={3}
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="date_place_made_ru">Дата и Место Создания</Label>
-                      <Input
-                        id="date_place_made_ru"
-                        value={formData.date_place_made_ru}
-                        onChange={(e) => updateFormData('date_place_made_ru', e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="materials_ru">Материалы</Label>
-                      <Input
-                        id="materials_ru"
-                        value={formData.materials_ru}
-                        onChange={(e) => updateFormData('materials_ru', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="acquisition_credit_ru">Кредит Приобретения</Label>
-                      <Input
-                        id="acquisition_credit_ru"
-                        value={formData.acquisition_credit_ru}
-                        onChange={(e) => updateFormData('acquisition_credit_ru', e.target.value)}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="frame_ru">Рама</Label>
-                      <Input
-                        id="frame_ru"
-                        value={formData.frame_ru}
-                        onChange={(e) => updateFormData('frame_ru', e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="genre_ru">Жанр</Label>
-                    <Input
-                      id="genre_ru"
-                      value={formData.genre_ru}
-                      onChange={(e) => updateFormData('genre_ru', e.target.value)}
-                    />
-                  </div>
-                </TabsContent>
-              </Tabs>
+                </div>
+              )}
 
               <div className="space-y-4 pt-4 border-t">
                 <div className="grid grid-cols-2 gap-4">

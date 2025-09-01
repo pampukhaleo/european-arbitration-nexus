@@ -8,9 +8,9 @@ export default function LanguageSwitcher({ mode = "full" }: { mode?: "full" | "c
   const { language, setLanguage } = useLanguage();
   
   const languages: { code: Language; name: string }[] = [
-    { code: 'en', name: 'English' },
-    { code: 'fr', name: 'Français' },
-    { code: 'ru', name: 'Русский' }
+    { code: 'en', name: 'EN' },
+    { code: 'fr', name: 'FR' },
+    { code: 'ru', name: 'RU' }
   ];
   
   return (

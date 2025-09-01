@@ -52,11 +52,11 @@ export const navItems: NavItem[] = [
       // { title: "International Register of Artworks", translationKey: "menu.register", href: "/art-expertise/register" },
     ],
   },
-  {
-    title: "Gallery",
-    translationKey: "menu.gallery",
-    href: "/gallery",
-  },
+  // {
+  //   title: "Gallery",
+  //   translationKey: "menu.gallery",
+  //   href: "/gallery",
+  // },
   // {
   //   title: "Training",
   //   translationKey: "menu.training",

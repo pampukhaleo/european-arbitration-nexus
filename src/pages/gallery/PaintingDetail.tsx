@@ -409,32 +409,14 @@ const PaintingDetail = () => {
                     <span>{getLocalizedText('frame')}</span>
                   </div>
                 )}
+                {getLocalizedText('acquisition_credit') && (
+                  <div className="flex justify-between">
+                    <span className="font-medium">Acquisition Credit:</span>
+                    <span>{getLocalizedText('acquisition_credit')}</span>
+                  </div>
+                )}
               </CardContent>
             </Card>
-
-            {/* Description */}
-            {getLocalizedText('description') && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Description</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="whitespace-pre-wrap">{getLocalizedText('description')}</p>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Acquisition Credit */}
-            {getLocalizedText('acquisition_credit') && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Acquisition Credit</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="whitespace-pre-wrap">{getLocalizedText('acquisition_credit')}</p>
-                </CardContent>
-              </Card>
-            )}
 
             {/* Private Information (only visible with valid token or for owners/admins) */}
             {showPrivateInfo && privateData && (

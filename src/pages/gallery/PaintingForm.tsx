@@ -19,12 +19,13 @@ import ImageUpload from '@/components/gallery/ImageUpload';
 
 interface PaintingFormData {
   // Key Facts fields (main fields)
-  full_title_en: string;
-  full_title_fr: string;
-  full_title_ru: string;
+  title_en: string;
+  title_fr: string;
+  title_ru: string;
   artist_en: string;
   artist_fr: string;
   artist_ru: string;
+  original_title: string;
   description_en: string;
   description_fr: string;
   description_ru: string;
@@ -36,9 +37,6 @@ interface PaintingFormData {
   materials_fr: string;
   materials_ru: string;
   dimensions: string;
-  acquisition_credit_en: string;
-  acquisition_credit_fr: string;
-  acquisition_credit_ru: string;
   frame_en: string;
   frame_fr: string;
   frame_ru: string;
@@ -69,12 +67,13 @@ const PaintingForm = () => {
   const [loading, setLoading] = useState(false);
   const [owners, setOwners] = useState<Array<{id: string, email: string, full_name: string}>>([]);
   const [formData, setFormData] = useState<PaintingFormData>({
-    full_title_en: '',
-    full_title_fr: '',
-    full_title_ru: '',
+    title_en: '',
+    title_fr: '',
+    title_ru: '',
     artist_en: '',
     artist_fr: '',
     artist_ru: '',
+    original_title: '',
     description_en: '',
     description_fr: '',
     description_ru: '',
@@ -86,9 +85,6 @@ const PaintingForm = () => {
     materials_fr: '',
     materials_ru: '',
     dimensions: '',
-    acquisition_credit_en: '',
-    acquisition_credit_fr: '',
-    acquisition_credit_ru: '',
     frame_en: '',
     frame_fr: '',
     frame_ru: '',
@@ -149,12 +145,13 @@ const PaintingForm = () => {
       
       if (data) {
         setFormData({
-          full_title_en: data.full_title_en || data.title_en || '',
-          full_title_fr: data.full_title_fr || data.title_fr || '',
-          full_title_ru: data.full_title_ru || data.title_ru || '',
+          title_en: data.title_en || '',
+          title_fr: data.title_fr || '',
+          title_ru: data.title_ru || '',
           artist_en: data.artist_en || '',
           artist_fr: data.artist_fr || '',
           artist_ru: data.artist_ru || '',
+          original_title: data.original_title || '',
           description_en: data.description_en || '',
           description_fr: data.description_fr || '',
           description_ru: data.description_ru || '',
@@ -166,9 +163,6 @@ const PaintingForm = () => {
           materials_fr: data.materials_fr || '',
           materials_ru: data.materials_ru || '',
           dimensions: data.dimensions || '',
-          acquisition_credit_en: data.acquisition_credit_en || '',
-          acquisition_credit_fr: data.acquisition_credit_fr || '',
-          acquisition_credit_ru: data.acquisition_credit_ru || '',
           frame_en: data.frame_en || '',
           frame_fr: data.frame_fr || '',
           frame_ru: data.frame_ru || '',
@@ -227,8 +221,8 @@ const PaintingForm = () => {
     const paintingData = {
       ...formData,
       // Auto-populate missing language fields for new paintings
-      full_title_fr: formData.full_title_fr || formData.full_title_en,
-      full_title_ru: formData.full_title_ru || formData.full_title_en,
+      title_fr: formData.title_fr || formData.title_en,
+      title_ru: formData.title_ru || formData.title_en,
       artist_fr: formData.artist_fr || formData.artist_en,
       artist_ru: formData.artist_ru || formData.artist_en,
       description_fr: formData.description_fr || formData.description_en,
@@ -237,16 +231,10 @@ const PaintingForm = () => {
       date_place_made_ru: formData.date_place_made_ru || formData.date_place_made_en,
       materials_fr: formData.materials_fr || formData.materials_en,
       materials_ru: formData.materials_ru || formData.materials_en,
-      acquisition_credit_fr: formData.acquisition_credit_fr || formData.acquisition_credit_en,
-      acquisition_credit_ru: formData.acquisition_credit_ru || formData.acquisition_credit_en,
       frame_fr: formData.frame_fr || formData.frame_en,
       frame_ru: formData.frame_ru || formData.frame_en,
       genre_fr: formData.genre_fr || formData.genre_en,
       genre_ru: formData.genre_ru || formData.genre_en,
-      // Sync title_* fields with full_title_* for backwards compatibility
-      title_en: formData.full_title_en || formData.artist_en,
-      title_fr: formData.full_title_fr || formData.full_title_en || formData.artist_fr || formData.artist_en,
-      title_ru: formData.full_title_ru || formData.full_title_en || formData.artist_ru || formData.artist_en,
       updated_at: new Date().toISOString(),
     };
 
@@ -407,11 +395,11 @@ const PaintingForm = () => {
                   <TabsContent value="en" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="full_title_en">Title (English)</Label>
+                        <Label htmlFor="title_en">Title (English)</Label>
                         <Input
-                          id="full_title_en"
-                          value={formData.full_title_en}
-                          onChange={(e) => updateFormData('full_title_en', e.target.value)}
+                          id="title_en"
+                          value={formData.title_en}
+                          onChange={(e) => updateFormData('title_en', e.target.value)}
                           required
                         />
                       </div>
@@ -424,6 +412,15 @@ const PaintingForm = () => {
                           required
                         />
                       </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="original_title">Original Title</Label>
+                      <Input
+                        id="original_title"
+                        value={formData.original_title}
+                        onChange={(e) => updateFormData('original_title', e.target.value)}
+                        placeholder="Original title of the artwork"
+                      />
                     </div>
                     <div>
                       <Label htmlFor="description_en">Description (English)</Label>
@@ -454,14 +451,6 @@ const PaintingForm = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="acquisition_credit_en">Acquisition Credit</Label>
-                        <Input
-                          id="acquisition_credit_en"
-                          value={formData.acquisition_credit_en}
-                          onChange={(e) => updateFormData('acquisition_credit_en', e.target.value)}
-                        />
-                      </div>
-                      <div>
                         <Label htmlFor="frame_en">Frame</Label>
                         <Input
                           id="frame_en"
@@ -483,11 +472,11 @@ const PaintingForm = () => {
                   <TabsContent value="fr" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="full_title_fr">Titre (Français)</Label>
+                        <Label htmlFor="title_fr">Titre (Français)</Label>
                         <Input
-                          id="full_title_fr"
-                          value={formData.full_title_fr}
-                          onChange={(e) => updateFormData('full_title_fr', e.target.value)}
+                          id="title_fr"
+                          value={formData.title_fr}
+                          onChange={(e) => updateFormData('title_fr', e.target.value)}
                           required
                         />
                       </div>
@@ -530,14 +519,6 @@ const PaintingForm = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="acquisition_credit_fr">Crédit d'Acquisition</Label>
-                        <Input
-                          id="acquisition_credit_fr"
-                          value={formData.acquisition_credit_fr}
-                          onChange={(e) => updateFormData('acquisition_credit_fr', e.target.value)}
-                        />
-                      </div>
-                      <div>
                         <Label htmlFor="frame_fr">Cadre</Label>
                         <Input
                           id="frame_fr"
@@ -559,11 +540,11 @@ const PaintingForm = () => {
                   <TabsContent value="ru" className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="full_title_ru">Название (Русский)</Label>
+                        <Label htmlFor="title_ru">Название (Русский)</Label>
                         <Input
-                          id="full_title_ru"
-                          value={formData.full_title_ru}
-                          onChange={(e) => updateFormData('full_title_ru', e.target.value)}
+                          id="title_ru"
+                          value={formData.title_ru}
+                          onChange={(e) => updateFormData('title_ru', e.target.value)}
                           required
                         />
                       </div>
@@ -606,14 +587,6 @@ const PaintingForm = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <Label htmlFor="acquisition_credit_ru">Кредит Приобретения</Label>
-                        <Input
-                          id="acquisition_credit_ru"
-                          value={formData.acquisition_credit_ru}
-                          onChange={(e) => updateFormData('acquisition_credit_ru', e.target.value)}
-                        />
-                      </div>
-                      <div>
                         <Label htmlFor="frame_ru">Рама</Label>
                         <Input
                           id="frame_ru"
@@ -637,11 +610,11 @@ const PaintingForm = () => {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="full_title_en">Title</Label>
+                      <Label htmlFor="title_en">Title</Label>
                       <Input
-                        id="full_title_en"
-                        value={formData.full_title_en}
-                        onChange={(e) => updateFormData('full_title_en', e.target.value)}
+                        id="title_en"
+                        value={formData.title_en}
+                        onChange={(e) => updateFormData('title_en', e.target.value)}
                         required
                       />
                     </div>
@@ -654,6 +627,15 @@ const PaintingForm = () => {
                         required
                       />
                     </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="original_title">Original Title</Label>
+                    <Input
+                      id="original_title"
+                      value={formData.original_title}
+                      onChange={(e) => updateFormData('original_title', e.target.value)}
+                      placeholder="Original title of the artwork"
+                    />
                   </div>
                   <div>
                     <Label htmlFor="description_en">Description</Label>
@@ -683,14 +665,6 @@ const PaintingForm = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="acquisition_credit_en">Acquisition Credit</Label>
-                      <Input
-                        id="acquisition_credit_en"
-                        value={formData.acquisition_credit_en}
-                        onChange={(e) => updateFormData('acquisition_credit_en', e.target.value)}
-                      />
-                    </div>
                     <div>
                       <Label htmlFor="frame_en">Frame</Label>
                       <Input

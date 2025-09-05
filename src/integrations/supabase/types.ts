@@ -257,6 +257,7 @@ export type Database = {
           materials_en: string | null
           materials_fr: string | null
           materials_ru: string | null
+          original_title: string | null
           owner_id: string
           public_image_url: string | null
           technical_analysis_en: string | null
@@ -303,6 +304,7 @@ export type Database = {
           materials_en?: string | null
           materials_fr?: string | null
           materials_ru?: string | null
+          original_title?: string | null
           owner_id: string
           public_image_url?: string | null
           technical_analysis_en?: string | null
@@ -349,6 +351,7 @@ export type Database = {
           materials_en?: string | null
           materials_fr?: string | null
           materials_ru?: string | null
+          original_title?: string | null
           owner_id?: string
           public_image_url?: string | null
           technical_analysis_en?: string | null

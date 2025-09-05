@@ -22,9 +22,7 @@ interface Painting {
   artist_ru: string;
   artist_dates: string | null;
   year: number | null;
-  full_title_en: string | null;
-  full_title_fr: string | null;
-  full_title_ru: string | null;
+  original_title: string | null;
   date_place_made_en: string | null;
   date_place_made_fr: string | null;
   date_place_made_ru: string | null;
@@ -41,9 +39,6 @@ interface Painting {
   frame_en: string | null;
   frame_fr: string | null;
   frame_ru: string | null;
-  acquisition_credit_en: string | null;
-  acquisition_credit_fr: string | null;
-  acquisition_credit_ru: string | null;
   public_image_url: string | null;
   certificates: any[] | null;
   documents: any[] | null;
@@ -333,7 +328,7 @@ const PaintingDetail = () => {
                 <img
                   src={painting.public_image_url}
                   alt={getLocalizedText('title')}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-gray-50"
                 />
               </div>
             ) : (
@@ -357,9 +352,9 @@ const PaintingDetail = () => {
                 {getLocalizedText('artist')}
                 {painting.artist_dates && ` (${painting.artist_dates})`}
               </p>
-              {getLocalizedText('full_title') && (
+              {painting.original_title && (
                 <p className="text-lg text-muted-foreground italic mt-2">
-                  {getLocalizedText('full_title')}
+                  "{painting.original_title}"
                 </p>
               )}
             </div>
@@ -372,49 +367,51 @@ const PaintingDetail = () => {
                   Basic Information
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                {painting.year && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Year:</span>
-                    <span>{painting.year}</span>
-                  </div>
-                )}
-                {getLocalizedText('date_place_made') && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Date & Place:</span>
-                    <span>{getLocalizedText('date_place_made')}</span>
-                  </div>
-                )}
-                {getLocalizedText('materials') && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Materials:</span>
-                    <span>{getLocalizedText('materials')}</span>
-                  </div>
-                )}
-                {painting.dimensions && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Dimensions:</span>
-                    <span>{painting.dimensions}</span>
-                  </div>
-                )}
-                {getLocalizedText('genre') && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Genre:</span>
-                    <span>{getLocalizedText('genre')}</span>
-                  </div>
-                )}
-                {getLocalizedText('frame') && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Frame:</span>
-                    <span>{getLocalizedText('frame')}</span>
-                  </div>
-                )}
-                {getLocalizedText('acquisition_credit') && (
-                  <div className="flex justify-between">
-                    <span className="font-medium">Acquisition Credit:</span>
-                    <span>{getLocalizedText('acquisition_credit')}</span>
-                  </div>
-                )}
+              <CardContent>
+                <dl className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
+                  {painting.year && (
+                    <>
+                      <dt className="font-medium">Year:</dt>
+                      <dd className="md:text-right">{painting.year}</dd>
+                    </>
+                  )}
+                  {painting.artist_dates && (
+                    <>
+                      <dt className="font-medium">Artist Dates:</dt>
+                      <dd className="md:text-right">{painting.artist_dates}</dd>
+                    </>
+                  )}
+                  {getLocalizedText('date_place_made') && (
+                    <>
+                      <dt className="font-medium">Date & Place:</dt>
+                      <dd className="md:text-right">{getLocalizedText('date_place_made')}</dd>
+                    </>
+                  )}
+                  {getLocalizedText('materials') && (
+                    <>
+                      <dt className="font-medium">Materials:</dt>
+                      <dd className="md:text-right">{getLocalizedText('materials')}</dd>
+                    </>
+                  )}
+                  {painting.dimensions && (
+                    <>
+                      <dt className="font-medium">Dimensions:</dt>
+                      <dd className="md:text-right">{painting.dimensions}</dd>
+                    </>
+                  )}
+                  {getLocalizedText('genre') && (
+                    <>
+                      <dt className="font-medium">Genre:</dt>
+                      <dd className="md:text-right">{getLocalizedText('genre')}</dd>
+                    </>
+                  )}
+                  {getLocalizedText('frame') && (
+                    <>
+                      <dt className="font-medium">Frame:</dt>
+                      <dd className="md:text-right">{getLocalizedText('frame')}</dd>
+                    </>
+                  )}
+                </dl>
               </CardContent>
             </Card>
 

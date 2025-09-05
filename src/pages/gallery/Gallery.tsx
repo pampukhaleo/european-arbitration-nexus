@@ -184,7 +184,7 @@ const Gallery = () => {
                     <img
                       src={painting.public_image_url}
                       alt={getLocalizedText(painting, 'title')}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain bg-gray-50 hover:scale-105 transition-transform duration-300"
                     />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>European Arbitration Chamber - News</title>
+    <description>Latest news and updates from the European Arbitration Chamber (EAC)</description>
+    <link>https://chea-taic.be/</link>
+    <atom:link href="https://chea-taic.be/rss.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Fri, 10 Jan 2025 12:00:00 GMT</lastBuildDate>
+    <managingEditor>info@chea-taic.be (European Arbitration Chamber)</managingEditor>
+    <webMaster>info@chea-taic.be (European Arbitration Chamber)</webMaster>
+    
+    <item>
+      <title>EAC General Meeting 2024</title>
+      <description>The European Arbitration Chamber held its annual general meeting with important updates on arbitration procedures and new member initiatives.</description>
+      <link>https://chea-taic.be/eac/news/20240401</link>
+      <guid>https://chea-taic.be/eac/news/20240401</guid>
+      <pubDate>Mon, 01 Apr 2024 10:00:00 GMT</pubDate>
+    </item>
+    
+    <item>
+      <title>New Arbitration Rules Update</title>
+      <description>Important updates to the EAC arbitration rules have been implemented to improve efficiency and transparency in dispute resolution.</description>
+      <link>https://chea-taic.be/eac/news/20231101</link>
+      <guid>https://chea-taic.be/eac/news/20231101</guid>
+      <pubDate>Wed, 01 Nov 2023 10:00:00 GMT</pubDate>
+    </item>
+    
+    <item>
+      <title>Art Expertise Services Launch</title>
+      <description>The EAC announces the launch of comprehensive art expertise services including authentication, appraisal, and passport documentation.</description>
+      <link>https://chea-taic.be/eac/news/20230501</link>
+      <guid>https://chea-taic.be/eac/news/20230501</guid>
+      <pubDate>Mon, 01 May 2023 10:00:00 GMT</pubDate>
+    </item>
+    
+    <item>
+      <title>EAC Council Expansion</title>
+      <description>The European Arbitration Chamber welcomes new council members to enhance international arbitration services across Europe.</description>
+      <link>https://chea-taic.be/eac/news/20211115</link>
+      <guid>https://chea-taic.be/eac/news/20211115</guid>
+      <pubDate>Mon, 15 Nov 2021 10:00:00 GMT</pubDate>
+    </item>
+    
+    <item>
+      <title>Digital Transformation Initiative</title>
+      <description>EAC introduces new digital platforms to streamline arbitration processes and improve accessibility for international clients.</description>
+      <link>https://chea-taic.be/eac/news/20210315</link>
+      <guid>https://chea-taic.be/eac/news/20210315</guid>
+      <pubDate>Mon, 15 Mar 2021 10:00:00 GMT</pubDate>
+    </item>
+    
+    <item>
+      <title>COVID-19 Response Measures</title>
+      <description>The European Arbitration Chamber adapts its services to continue providing essential arbitration support during the global pandemic.</description>
+      <link>https://chea-taic.be/eac/news/20200815</link>
+      <guid>https://chea-taic.be/eac/news/20200815</guid>
+      <pubDate>Sat, 15 Aug 2020 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

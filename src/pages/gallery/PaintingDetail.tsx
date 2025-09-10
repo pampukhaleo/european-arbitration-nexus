@@ -381,12 +381,6 @@ const PaintingDetail = () => {
                       <dd className="text-sm break-words">{painting.year}</dd>
                     </>
                   )}
-                  {painting.artist_dates && (
-                    <>
-                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Artist Dates:</dt>
-                      <dd className="text-sm break-words">{painting.artist_dates}</dd>
-                    </>
-                  )}
                   {getLocalizedText('date_place_made') && (
                     <>
                       <dt className="font-medium text-sm text-muted-foreground md:text-right">Place of creation:</dt>

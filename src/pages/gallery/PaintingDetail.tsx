@@ -342,28 +342,30 @@ const PaintingDetail = () => {
           <div className="space-y-6">
             {/* Title and Status */}
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-3xl font-bold">{getLocalizedText('title')}</h1>
-                <Badge variant={painting.is_published ? "default" : "secondary"}>
-                  {painting.is_published ? "Published" : "Draft"}
+              <div className="flex justify-end w-full mb-2">
+                <Badge variant={ painting.is_published ? "default" : "secondary" }>
+                  { painting.is_published ? "Published" : "Draft" }
                 </Badge>
               </div>
+
+              <h1 className="text-3xl font-bold">{ getLocalizedText('title') }</h1>
+
               <p className="text-xl text-muted-foreground">
-                {getLocalizedText('artist')}
-                {painting.artist_dates && ` (${painting.artist_dates})`}
+                { getLocalizedText('artist') }
+                { painting.artist_dates && ` (${ painting.artist_dates })` }
               </p>
-              {painting.original_title && (
+              { painting.original_title && (
                 <p className="text-lg text-muted-foreground italic mt-2">
-                  "{painting.original_title}"
+                  "{ painting.original_title }"
                 </p>
-              )}
+              ) }
             </div>
 
-            {/* Basic Information */}
+            {/* Basic Information */ }
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Info className="h-5 w-5" />
+                  <Info className="h-5 w-5"/>
                   Basic Information
                 </CardTitle>
               </CardHeader>
@@ -371,44 +373,37 @@ const PaintingDetail = () => {
                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
                   {painting.year && (
                     <>
-                      <dt className="font-medium">Year:</dt>
-                      <dd className="md:text-right">{painting.year}</dd>
+                      <dt className="font-medium">Year of creation: {painting.year}</dt>
                     </>
                   )}
                   {painting.artist_dates && (
                     <>
-                      <dt className="font-medium">Artist Dates:</dt>
-                      <dd className="md:text-right">{painting.artist_dates}</dd>
+                      <dt className="font-medium">Artist Dates: {painting.artist_dates}</dt>
                     </>
                   )}
                   {getLocalizedText('date_place_made') && (
                     <>
-                      <dt className="font-medium">Date & Place:</dt>
-                      <dd className="md:text-right">{getLocalizedText('date_place_made')}</dd>
+                      <dt className="font-medium">Place of creation: {getLocalizedText('date_place_made')}</dt>
                     </>
                   )}
                   {getLocalizedText('materials') && (
                     <>
-                      <dt className="font-medium">Materials:</dt>
-                      <dd className="md:text-right">{getLocalizedText('materials')}</dd>
+                      <dt className="font-medium">Materials: {getLocalizedText('materials')}</dt>
                     </>
                   )}
                   {painting.dimensions && (
                     <>
-                      <dt className="font-medium">Dimensions:</dt>
-                      <dd className="md:text-right">{painting.dimensions}</dd>
+                      <dt className="font-medium">Dimensions: {painting.dimensions}</dt>
                     </>
                   )}
                   {getLocalizedText('genre') && (
                     <>
-                      <dt className="font-medium">Genre:</dt>
-                      <dd className="md:text-right">{getLocalizedText('genre')}</dd>
+                      <dt className="font-medium">Genre: {getLocalizedText('genre')}</dt>
                     </>
                   )}
                   {getLocalizedText('frame') && (
                     <>
-                      <dt className="font-medium">Frame:</dt>
-                      <dd className="md:text-right">{getLocalizedText('frame')}</dd>
+                      <dt className="font-medium">Frame: {getLocalizedText('frame')}</dt>
                     </>
                   )}
                 </dl>

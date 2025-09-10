@@ -81,6 +81,52 @@ const Gallery = () => {
 
   return (
     <Layout>
+      {/* Role-based Management Buttons */}
+      <div className="flex flex-col gap-2 ml-4">
+        {user ? (
+          <>
+            {isAdmin && (
+              <div className="flex gap-2">
+                <Link to="/admin/dashboard">
+                  <Button variant="default" size="sm">
+                    <Settings className="h-4 w-4 mr-2" />
+                    Admin Dashboard
+                  </Button>
+                </Link>
+                <Link to="/gallery/manage/add">
+                  <Button variant="outline" size="sm">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Painting
+                  </Button>
+                </Link>
+              </div>
+            )}
+            {(isOwner || isAdmin) && (
+              <Link to="/gallery/manage">
+                <Button variant="outline" size="sm">
+                  <QrCode className="h-4 w-4 mr-2" />
+                  {isAdmin ? 'Gallery Management' : 'Manage QR Codes'}
+                </Button>
+              </Link>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={signOut}
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+          </>
+        ) : (
+          <Link to="/auth">
+            <Button variant="outline" size="sm">
+              <LogIn className="h-4 w-4 mr-2" />
+              Owner Login
+            </Button>
+          </Link>
+        )}
+      </div>
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <div className="flex justify-between items-start mb-4">
@@ -89,53 +135,6 @@ const Gallery = () => {
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 {t('gallery.description')}
               </p>
-            </div>
-            
-            {/* Role-based Management Buttons */}
-            <div className="flex flex-col gap-2 ml-4">
-              {user ? (
-                <>
-                  {isAdmin && (
-                    <div className="flex gap-2">
-                      <Link to="/admin/dashboard">
-                        <Button variant="default" size="sm">
-                          <Settings className="h-4 w-4 mr-2" />
-                          Admin Dashboard
-                        </Button>
-                      </Link>
-                      <Link to="/gallery/manage/add">
-                        <Button variant="outline" size="sm">
-                          <Plus className="h-4 w-4 mr-2" />
-                          Add Painting
-                        </Button>
-                      </Link>
-                    </div>
-                  )}
-                  {(isOwner || isAdmin) && (
-                    <Link to="/gallery/manage">
-                      <Button variant="outline" size="sm">
-                        <QrCode className="h-4 w-4 mr-2" />
-                        {isAdmin ? 'Gallery Management' : 'Manage QR Codes'}
-                      </Button>
-                    </Link>
-                  )}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={signOut}
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
-                  </Button>
-                </>
-              ) : (
-                <Link to="/auth">
-                  <Button variant="outline" size="sm">
-                    <LogIn className="h-4 w-4 mr-2" />
-                    Owner Login
-                  </Button>
-                </Link>
-              )}
             </div>
           </div>
         </div>

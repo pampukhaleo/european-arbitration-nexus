@@ -38,6 +38,7 @@ const NewsDetail = () => {
     "@type": "NewsArticle",
     "headline": newsItem.title,
     "datePublished": newsItem.date,
+    "dateModified": newsItem.date,
     "description": seoDescription,
     "image": newsItem.mainImageJpg || newsItem.mainImageWebp,
     "author": {
@@ -47,7 +48,15 @@ const NewsDetail = () => {
     "publisher": {
       "@type": "Organization",
       "name": "European Arbitration Chamber",
-      "url": "https://chea-taic.be"
+      "url": "https://chea-taic.be",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://chea-taic.be/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": typeof window !== 'undefined' ? window.location.href : ''
     }
   };
 
@@ -69,6 +78,7 @@ const NewsDetail = () => {
         description={seoDescription}
         image={newsItem.mainImageJpg || newsItem.mainImageWebp}
         lang={language}
+        ogType="article"
         structuredData={structuredData}
       />
       <Layout>

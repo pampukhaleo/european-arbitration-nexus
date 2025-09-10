@@ -1,42 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage -->
-  <url><loc>https://chea-taic.be/</loc><lastmod>2025-01-10</lastmod><priority>1.0</priority></url>
+  <url>
+    <loc>https://chea-taic.be/</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>1.0</priority>
+  </url>
   
-  <!-- Main Pages -->
-  <url><loc>https://chea-taic.be/contacts</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
+  <!-- Contact -->
+  <url>
+    <loc>https://chea-taic.be/contacts</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
   
   <!-- EAC Section -->
-  <url><loc>https://chea-taic.be/eac/about</loc><lastmod>2025-01-10</lastmod><priority>0.9</priority></url>
-  <url><loc>https://chea-taic.be/eac/council</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/eac/news</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
+  <url>
+    <loc>https://chea-taic.be/eac/about</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/council</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
   
   <!-- Arbitration Section -->
-  <url><loc>https://chea-taic.be/arbitration/icac</loc><lastmod>2025-01-10</lastmod><priority>0.9</priority></url>
-  <url><loc>https://chea-taic.be/arbitration/rules</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/arbitration/fees</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/arbitration/calculator</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://chea-taic.be/arbitration/clause</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://chea-taic.be/arbitration/icac</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/arbitration/rules</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/arbitration/fee-regulations</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/arbitration/cost-calculator</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/arbitration/arbitration-clause</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
   
   <!-- Expertise Section -->
-  <url><loc>https://chea-taic.be/expertise/icje</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/expertise/expertiseFields</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://chea-taic.be/expertise/icje</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/expertise/fields</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
   
-  <!-- Art Expertise Section (fixed URLs) -->
-  <url><loc>https://chea-taic.be/art-expertise/authentication</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/art-expertise/appraisal</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
-  <url><loc>https://chea-taic.be/art-expertise/passport</loc><lastmod>2025-01-10</lastmod><priority>0.8</priority></url>
+  <!-- Art Expertise Section -->
+  <url>
+    <loc>https://chea-taic.be/art-expertise/art-authentication</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/art-expertise/art-appraisal</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/art-expertise/art-passport</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.8</priority>
+  </url>
   
   <!-- Gallery -->
-  <url><loc>https://chea-taic.be/gallery</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
+  <url>
+    <loc>https://chea-taic.be/gallery</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
   
-  <!-- Membership Section (fixed URLs) -->
-  <url><loc>https://chea-taic.be/membership/benefits</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://chea-taic.be/membership/join</loc><lastmod>2025-01-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://chea-taic.be/membership/conductCode</loc><lastmod>2025-01-10</lastmod><priority>0.6</priority></url>
+  <!-- Membership Section -->
+  <url>
+    <loc>https://chea-taic.be/membership/benefits</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/membership/how-to-join</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/membership/code-of-conduct</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.6</priority>
+  </url>
   
   <!-- Policy Pages -->
-  <url><loc>https://chea-taic.be/privacy-policy</loc><lastmod>2025-01-10</lastmod><priority>0.4</priority></url>
-  <url><loc>https://chea-taic.be/terms-of-service</loc><lastmod>2025-01-10</lastmod><priority>0.4</priority></url>
-  <url><loc>https://chea-taic.be/cookies-policy</loc><lastmod>2025-01-10</lastmod><priority>0.4</priority></url>
+  <url>
+    <loc>https://chea-taic.be/privacy-policy</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/terms-of-service</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/cookies-policy</loc>
+    <lastmod>2025-01-10</lastmod>
+    <priority>0.4</priority>
+  </url>
+  
+  <!-- News Articles -->
+  <url>
+    <loc>https://chea-taic.be/eac/news/20240401</loc>
+    <lastmod>2024-04-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news/20231101</loc>
+    <lastmod>2023-11-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news/20230501</loc>
+    <lastmod>2023-05-01</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news/20211115</loc>
+    <lastmod>2021-11-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news/20210315</loc>
+    <lastmod>2021-03-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://chea-taic.be/eac/news/20200815</loc>
+    <lastmod>2020-08-15</lastmod>
+    <priority>0.4</priority>
+  </url>
 </urlset>

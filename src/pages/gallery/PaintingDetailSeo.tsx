@@ -61,7 +61,7 @@ export const PaintingDetailSeo = ({ painting, language, hasToken }: PaintingDeta
   // Structured data for artwork
   const structuredData = shouldIndex ? {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
+    "@type": "VisualArtwork",
     "name": title,
     "creator": {
       "@type": "Person",
@@ -69,7 +69,10 @@ export const PaintingDetailSeo = ({ painting, language, hasToken }: PaintingDeta
     },
     "dateCreated": painting.year ? painting.year.toString() : undefined,
     "description": description || `Artwork by ${artist}`,
-    "image": painting.public_image_url,
+    "image": {
+      "@type": "ImageObject",
+      "url": painting.public_image_url
+    },
     "url": typeof window !== 'undefined' ? window.location.href : '',
     "publisher": {
       "@type": "Organization",

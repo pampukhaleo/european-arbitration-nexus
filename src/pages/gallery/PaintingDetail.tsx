@@ -6,6 +6,7 @@ import { useUserRole } from '@/hooks/useUserRole';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { PaintingDetailSeo } from './PaintingDetailSeo';
+import { BreadcrumbSeo } from '@/components/BreadcrumbSeo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -224,6 +225,12 @@ const PaintingDetail = () => {
     }
   };
 
+  const breadcrumbItems = painting ? [
+    { name: 'Home', url: '/' },
+    { name: 'Gallery', url: '/gallery' },
+    { name: getLocalizedText('title'), url: window.location.pathname }
+  ] : [];
+
   const canManage = () => {
     if (!user || !painting) return false;
     return isAdmin || painting.owner_id === user.id;
@@ -261,6 +268,7 @@ const PaintingDetail = () => {
         language={language} 
         hasToken={!!token}
       />
+      <BreadcrumbSeo items={breadcrumbItems} />
       <Layout>
       <div className="container mx-auto px-4 py-8">
         {/* Header with navigation and actions */}

@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search, Filter, Settings, Plus, LogIn, QrCode, LogOut } from 'lucide-react';
+import { BreadcrumbSeo } from '@/components/BreadcrumbSeo';
 
 interface Painting {
   id: string;
@@ -76,7 +77,7 @@ const Gallery = () => {
       <Seo 
         title="Art Gallery | European Arbitration Chamber"
         description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
-        lang="en"
+        lang={language}
       />
       <Layout>
         <div className="container mx-auto px-4 py-8">
@@ -87,13 +88,19 @@ const Gallery = () => {
     );
   }
 
+  const breadcrumbItems = [
+    { name: t('home.title'), url: '/' },
+    { name: t('gallery.title'), url: '/gallery' }
+  ];
+
   return (
     <>
       <Seo 
         title="Art Gallery | European Arbitration Chamber"
         description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
-        lang="en"
+        lang={language}
       />
+      <BreadcrumbSeo items={breadcrumbItems} />
       <Layout>
       {/* Role-based Management Buttons */}
       <div className="flex flex-col gap-2 ml-4">

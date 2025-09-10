@@ -11,6 +11,7 @@ interface SeoProps {
   imageHeight?: number;
   robots?: string;
   structuredData?: object;
+  ogType?: string;
 }
 
 const getBaseUrl = (): string => {
@@ -29,7 +30,8 @@ export const Seo = ({
                       imageWidth = 1200,
                       imageHeight = 630,
                       robots = "index, follow",
-                      structuredData
+                      structuredData,
+                      ogType = "website"
                     }: SeoProps) => {
   const location = useLocation();
   const baseUrl = getBaseUrl();
@@ -57,7 +59,7 @@ export const Seo = ({
       <meta property="og:image:width" content={imageWidth.toString()} />
       <meta property="og:image:height" content={imageHeight.toString()} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="European Arbitration Chamber (EAC)" />
       <meta
         property="og:locale"

@@ -99,6 +99,24 @@ const Gallery = () => {
         title="Art Gallery | European Arbitration Chamber"
         description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
         lang={language}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Art Gallery",
+          "description": "Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection.",
+          "url": `${window.location.origin}/gallery`,
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": filteredPaintings.length,
+            "itemListElement": filteredPaintings.slice(0, 10).map((painting, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "name": getLocalizedText(painting, 'title'),
+              "url": `${window.location.origin}/gallery/${painting.id}`,
+              "image": painting.public_image_url
+            }))
+          }
+        }}
       />
       <BreadcrumbSeo items={breadcrumbItems} />
       <Layout>
@@ -205,6 +223,8 @@ const Gallery = () => {
                       src={painting.public_image_url}
                       alt={getLocalizedText(painting, 'title')}
                       className="w-full h-full object-contain bg-gray-50 hover:scale-105 transition-transform duration-300 select-none pointer-events-none"
+                      loading="lazy"
+                      decoding="async"
                       draggable="false"
                       onContextMenu={(e) => e.preventDefault()}
                       onDragStart={(e) => e.preventDefault()}

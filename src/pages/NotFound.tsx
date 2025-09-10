@@ -4,9 +4,11 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/Seo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NotFound = () => {
   const location = useLocation();
+  const { language } = useLanguage();
 
   useEffect(() => {
     console.error(
@@ -20,7 +22,7 @@ const NotFound = () => {
       <Seo 
         title="Page Not Found | European Arbitration Chamber"
         description="The page you are looking for could not be found. Return to the European Arbitration Chamber homepage."
-        lang="en"
+        lang={language}
         robots="noindex, nofollow"
       />
       <Layout>

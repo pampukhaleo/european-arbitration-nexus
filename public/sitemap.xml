@@ -44,17 +44,17 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/arbitration/fee-regulations</loc>
+    <loc>https://chea-taic.be/arbitration/fees</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/arbitration/cost-calculator</loc>
+    <loc>https://chea-taic.be/arbitration/calculator</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/arbitration/arbitration-clause</loc>
+    <loc>https://chea-taic.be/arbitration/clause</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.7</priority>
   </url>
@@ -66,24 +66,24 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/expertise/fields</loc>
+    <loc>https://chea-taic.be/expertise/expertiseFields</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.7</priority>
   </url>
   
   <!-- Art Expertise Section -->
   <url>
-    <loc>https://chea-taic.be/art-expertise/art-authentication</loc>
+    <loc>https://chea-taic.be/art-expertise/authentication</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/art-expertise/art-appraisal</loc>
+    <loc>https://chea-taic.be/art-expertise/appraisal</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/art-expertise/art-passport</loc>
+    <loc>https://chea-taic.be/art-expertise/passport</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.8</priority>
   </url>
@@ -102,12 +102,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/membership/how-to-join</loc>
+    <loc>https://chea-taic.be/membership/join</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://chea-taic.be/membership/code-of-conduct</loc>
+    <loc>https://chea-taic.be/membership/conductCode</loc>
     <lastmod>2025-01-10</lastmod>
     <priority>0.6</priority>
   </url>

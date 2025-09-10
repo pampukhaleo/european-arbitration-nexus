@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
+import { Seo } from '@/components/Seo';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserRole } from '@/hooks/useUserRole';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -70,17 +71,30 @@ const Gallery = () => {
   const availableYears = [...new Set(paintings.map(p => p.year).filter(Boolean))].sort((a, b) => b - a);
 
   if (loading) {
-    return (
+  return (
+    <>
+      <Seo 
+        title="Art Gallery | European Arbitration Chamber"
+        description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
+        lang="en"
+      />
       <Layout>
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">{t('common.loading')}</div>
         </div>
       </Layout>
+    </>
     );
   }
 
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Art Gallery | European Arbitration Chamber"
+        description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
+        lang="en"
+      />
+      <Layout>
       {/* Role-based Management Buttons */}
       <div className="flex flex-col gap-2 ml-4">
         {user ? (
@@ -223,6 +237,7 @@ const Gallery = () => {
         )}
       </div>
     </Layout>
+    </>
   );
 };
 

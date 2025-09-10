@@ -1,8 +1,15 @@
 import Layout from "@/components/Layout";
+import { Seo } from "@/components/Seo";
 
 const TermsOfService = () => {
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Terms of Service | European Arbitration Chamber"
+        description="Read the terms and conditions for using the European Arbitration Chamber's services and website."
+        lang="en"
+      />
+      <Layout>
       <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Terms of Service</h1>
         <div className="prose max-w-none">
@@ -68,6 +75,7 @@ const TermsOfService = () => {
         </div>
       </div>
     </Layout>
+    </>
   );
 };
 

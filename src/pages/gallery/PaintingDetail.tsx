@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useUserRole } from '@/hooks/useUserRole';
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
+import { PaintingDetailSeo } from './PaintingDetailSeo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -254,7 +255,13 @@ const PaintingDetail = () => {
   }
 
   return (
-    <Layout>
+    <>
+      <PaintingDetailSeo 
+        painting={painting} 
+        language={language} 
+        hasToken={!!token}
+      />
+      <Layout>
       <div className="container mx-auto px-4 py-8">
         {/* Header with navigation and actions */}
         <div className="flex justify-between items-center mb-8">
@@ -523,6 +530,7 @@ const PaintingDetail = () => {
         </div>
       </div>
     </Layout>
+    </>
   );
 };
 

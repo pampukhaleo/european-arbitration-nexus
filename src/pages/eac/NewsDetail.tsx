@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { newsItems } from "@/data/newsData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Seo } from "@/components/Seo";
 
 const NewsDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const newsItem = newsItems.find((item) => item.id === id);
@@ -21,6 +22,34 @@ const NewsDetail = () => {
   }, [newsItem, navigate]);
 
   if (!newsItem) return null;
+
+  // SEO data
+  const seoTitle = `${newsItem.title} | News - European Arbitration Chamber`;
+  const plainDescription = newsItem.description
+    .replace(/<[^>]*>/g, '')
+    .replace(/\n+/g, ' ')
+    .trim();
+  const seoDescription = plainDescription.length > 160 
+    ? `${plainDescription.substring(0, 157)}...`
+    : plainDescription;
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": newsItem.title,
+    "datePublished": newsItem.date,
+    "description": seoDescription,
+    "image": newsItem.mainImageJpg || newsItem.mainImageWebp,
+    "author": {
+      "@type": "Organization",
+      "name": "European Arbitration Chamber"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "European Arbitration Chamber",
+      "url": "https://chea-taic.be"
+    }
+  };
 
   const formatDescription = (html: string) => ({
     __html: html
@@ -34,7 +63,15 @@ const NewsDetail = () => {
   const closeImagePopup = () => setSelectedImage(null);
 
   return (
-    <Layout>
+    <>
+      <Seo 
+        title={seoTitle}
+        description={seoDescription}
+        image={newsItem.mainImageJpg || newsItem.mainImageWebp}
+        lang={language}
+        structuredData={structuredData}
+      />
+      <Layout>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
 
@@ -125,6 +162,7 @@ const NewsDetail = () => {
         </div>
       )}
     </Layout>
+    </>
   );
 };
 

@@ -1,8 +1,15 @@
 import Layout from "@/components/Layout";
+import { Seo } from "@/components/Seo";
 
 const CookiesPolicy = () => {
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Cookies Policy | European Arbitration Chamber"
+        description="Understand how the European Arbitration Chamber uses cookies and similar technologies on our website."
+        lang="en"
+      />
+      <Layout>
       <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Cookies Policy</h1>
         <div className="prose max-w-none">
@@ -104,6 +111,7 @@ const CookiesPolicy = () => {
         </div>
       </div>
     </Layout>
+    </>
   );
 };
 

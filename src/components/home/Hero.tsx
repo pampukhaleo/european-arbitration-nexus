@@ -15,8 +15,8 @@ export default function Hero() {
           <source srcSet="/images/IMG_3070.webp" type="image/webp" />
           <img
             src="/images/IMG_3070.JPG"
-            alt="Background"
-            loading="lazy"
+            alt="European Arbitration Chamber headquarters building"
+            loading="eager"
             fetchPriority="high"
             decoding="async"
             onLoad={() => setLoaded(true)}

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Layout from '@/components/Layout';
+import { Seo } from "@/components/Seo";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -72,17 +73,32 @@ const Auth = () => {
   };
 
   if (authLoading) {
-    return (
+  return (
+    <>
+      <Seo 
+        title="Authentication | European Arbitration Chamber"
+        description="Sign in to access your European Arbitration Chamber account and manage your gallery content."
+        lang="en"
+        robots="noindex, nofollow"
+      />
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       </Layout>
+    </>
     );
   }
 
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Authentication | European Arbitration Chamber"
+        description="Sign in to access your European Arbitration Chamber account and manage your gallery content."
+        lang="en"
+        robots="noindex, nofollow"
+      />
+      <Layout>
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
@@ -214,6 +230,7 @@ const Auth = () => {
         </Card>
       </div>
     </Layout>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Seo } from "@/components/Seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -15,7 +16,14 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Page Not Found | European Arbitration Chamber"
+        description="The page you are looking for could not be found. Return to the European Arbitration Chamber homepage."
+        lang="en"
+        robots="noindex, nofollow"
+      />
+      <Layout>
       <div className="min-h-[60vh] flex items-center justify-center bg-gray-50 py-20">
         <div className="text-center">
           <h1 className="text-6xl font-bold text-eac-primary mb-4">404</h1>
@@ -26,6 +34,7 @@ const NotFound = () => {
         </div>
       </div>
     </Layout>
+    </>
   );
 };
 

@@ -1,8 +1,15 @@
 import Layout from "@/components/Layout";
+import { Seo } from "@/components/Seo";
 
 const PrivacyPolicy = () => {
   return (
-    <Layout>
+    <>
+      <Seo 
+        title="Privacy Policy | European Arbitration Chamber"
+        description="Learn about how the European Arbitration Chamber handles and protects your personal information."
+        lang="en"
+      />
+      <Layout>
       <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Privacy Policy</h1>
         <div className="prose max-w-none">
@@ -152,6 +159,7 @@ const PrivacyPolicy = () => {
         </div>
       </div>
     </Layout>
+    </>
   );
 };
 

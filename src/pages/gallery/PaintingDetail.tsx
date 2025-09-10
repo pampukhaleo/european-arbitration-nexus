@@ -401,7 +401,7 @@ const PaintingDetail = () => {
                   )}
                   {painting.dimensions && (
                     <>
-                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Dimensions:</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Dimensions, cm:</dt>
                       <dd className="text-sm break-words">{painting.dimensions}</dd>
                     </>
                   )}

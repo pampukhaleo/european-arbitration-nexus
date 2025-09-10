@@ -370,40 +370,47 @@ const PaintingDetail = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <dl className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
+                <dl className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-x-4 gap-y-2">
                   {painting.year && (
                     <>
-                      <dt className="font-medium">Year of creation: {painting.year}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Year of creation:</dt>
+                      <dd className="text-sm break-words">{painting.year}</dd>
                     </>
                   )}
                   {painting.artist_dates && (
                     <>
-                      <dt className="font-medium">Artist Dates: {painting.artist_dates}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Artist Dates:</dt>
+                      <dd className="text-sm break-words">{painting.artist_dates}</dd>
                     </>
                   )}
                   {getLocalizedText('date_place_made') && (
                     <>
-                      <dt className="font-medium">Place of creation: {getLocalizedText('date_place_made')}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Place of creation:</dt>
+                      <dd className="text-sm break-words">{getLocalizedText('date_place_made')}</dd>
                     </>
                   )}
                   {getLocalizedText('materials') && (
                     <>
-                      <dt className="font-medium">Materials: {getLocalizedText('materials')}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Materials:</dt>
+                      <dd className="text-sm break-words">{getLocalizedText('materials')}</dd>
                     </>
                   )}
                   {painting.dimensions && (
                     <>
-                      <dt className="font-medium">Dimensions: {painting.dimensions}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Dimensions:</dt>
+                      <dd className="text-sm break-words">{painting.dimensions}</dd>
                     </>
                   )}
                   {getLocalizedText('genre') && (
                     <>
-                      <dt className="font-medium">Genre: {getLocalizedText('genre')}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Genre:</dt>
+                      <dd className="text-sm break-words">{getLocalizedText('genre')}</dd>
                     </>
                   )}
                   {getLocalizedText('frame') && (
                     <>
-                      <dt className="font-medium">Frame: {getLocalizedText('frame')}</dt>
+                      <dt className="font-medium text-sm text-muted-foreground md:text-right">Frame:</dt>
+                      <dd className="text-sm break-words">{getLocalizedText('frame')}</dd>
                     </>
                   )}
                 </dl>

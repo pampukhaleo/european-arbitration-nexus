@@ -178,12 +178,15 @@ const Gallery = () => {
           {filteredPaintings.map((painting) => (
             <Link key={painting.id} to={`/gallery/${painting.id}`}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
-                <div className="aspect-square overflow-hidden rounded-t-lg">
+                <div className="aspect-square overflow-hidden rounded-t-lg select-none">
                   {painting.public_image_url ? (
                     <img
                       src={painting.public_image_url}
                       alt={getLocalizedText(painting, 'title')}
-                      className="w-full h-full object-contain bg-gray-50 hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain bg-gray-50 hover:scale-105 transition-transform duration-300 select-none pointer-events-none"
+                      draggable="false"
+                      onContextMenu={(e) => e.preventDefault()}
+                      onDragStart={(e) => e.preventDefault()}
                     />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">

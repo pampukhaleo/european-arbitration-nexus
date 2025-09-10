@@ -324,12 +324,16 @@ const PaintingDetail = () => {
           {/* Image Section */}
           <div className="space-y-4">
             {painting.public_image_url ? (
-              <div className="aspect-square overflow-hidden rounded-lg border">
+              <div className="aspect-square overflow-hidden rounded-lg border relative select-none">
                 <img
                   src={painting.public_image_url}
                   alt={getLocalizedText('title')}
-                  className="w-full h-full object-contain bg-gray-50"
+                  className="w-full h-full object-contain bg-gray-50 pointer-events-none select-none"
+                  draggable="false"
+                  onContextMenu={(e) => e.preventDefault()}
+                  onDragStart={(e) => e.preventDefault()}
                 />
+                <div className="absolute inset-0 bg-transparent pointer-events-none" />
               </div>
             ) : (
               <div className="aspect-square bg-gray-100 rounded-lg border flex items-center justify-center">

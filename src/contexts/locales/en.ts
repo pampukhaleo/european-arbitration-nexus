@@ -38,16 +38,16 @@ const en = {
       description: "Official model arbitration clause for inclusion in your international contracts."
     },
     icje: {
-      title: "ICJE: EXPERT EXAMINATION | European Arbitration Chamber",
-      description: "The International Centre of Judicial and ADR Expertise (ICJE) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber."
+      title: "ICE: EXPERT EXAMINATION | European Arbitration Chamber",
+      description: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber."
     },
     areas: {
-      title: "ICJE – Main Areas of Expert Research | European Arbitration Chamber",
-      description: "The International Center of Judicial and ADR Expertise (ICJE) provides a wide range of expert research and examination services across various industries."
+      title: "ICE – Main Areas of Expert Research | European Arbitration Chamber",
+      description: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provides a wide range of expert research and examination services across various industries."
     },
     authentication: {
       title: "Art Authentication | European Arbitration Chamber",
-      description: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. The International Center of Judicial and ADR Expertise (ICJE) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks."
+      description: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks."
     },
     appraisal: {
       title: "ART APPRAISAL | European Arbitration Chamber",
@@ -55,7 +55,7 @@ const en = {
     },
     artPassport: {
       title: "AUTHORIZATION OF WORKS OF ART | European Arbitration Chamber",
-      description: "Experts at the International Center of Judicial and ADR Expertise under the European Arbitration Chamber provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features."
+      description: "Experts at the International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features."
     },
     gallery: {
       title: "Art Gallery | European Arbitration Chamber",
@@ -102,7 +102,7 @@ const en = {
     arbitrators: 'List of Arbitrators',
     resources: 'Legal Resources',
     expertise: 'Expertise',
-    icje: 'About the ICJE at the EAC',
+    icje: 'About the ICE at the EAC',
     expertiseFields: 'Fields of Expertise',
     'art-expertise': 'Art expertise',
     authentication: 'Art Authentication',
@@ -322,10 +322,10 @@ const en = {
   },
   expertise: {
     icje: {
-      title: "ICJE: EXPERT EXAMINATION",
-      description1: "The International Centre of Judicial and ADR Expertise (ICJE) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber.",
+      title: "ICE: EXPERT EXAMINATION",
+      description1: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber.",
       description2: {
-        text: "The ICJE conducts expert examinations:",
+        text: "The ICE conducts expert examinations:",
         examinations: [
           "upon the request of international arbitration courts (without jurisdictional limitations).",
           "Upon the request of state courts for legal proceedings.",
@@ -335,8 +335,8 @@ const en = {
       }
     },
     fields: {
-      title: "ICJE – Main Areas of Expert Research",
-      description1: "The International Center of Judicial and ADR Expertise (ICJE) provides a wide range of expert research and examination services across various industries, including:",
+      title: "ICE – Main Areas of Expert Research",
+      description1: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provides a wide range of expert research and examination services across various industries, including:",
       areas: [
         "Construction and Technical Expertise",
         "Land and Cadastral Expertise",
@@ -352,8 +352,8 @@ const en = {
         "Document Technical Examination",
         "Psychological Expertise"
       ],
-      subtitle: "Expert Examinations Conducted by ICJE",
-      description2: "ICJE provides expert examinations:",
+      subtitle: "Expert Examinations Conducted by ICE",
+      description2: "ICE provides expert examinations:",
       providedFor: [
         "At the request of international arbitration courts (without jurisdictional limitations).",
         "At the request of state courts for legal proceedings.",
@@ -366,7 +366,7 @@ const en = {
   artExpertise: {
     authentication: {
       title: "Art Authentication",
-      p1: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. The International Center of Judicial and ADR Expertise (ICJE) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks.",
+      p1: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks.",
       p2: "Art authentication is a detailed examination conducted by experts to determine whether a piece of art is genuine.",
       processTitle: "This process involves:",
       processList: [
@@ -383,7 +383,7 @@ const en = {
         "Ensures compliance with international regulations for exhibitions and sales."
       ],
       certificateTitle: "Certification of Authenticity",
-      certificateText: "Upon successful verification, the ICJE issues a Certificate of Authenticity, which serves as official documentation of the artwork's legitimacy. This certificate can be used for sales, exhibitions, insurance, and legal purposes.",
+      certificateText: "Upon successful verification, the ICE issues a Certificate of Authenticity, which serves as official documentation of the artwork's legitimacy. This certificate can be used for sales, exhibitions, insurance, and legal purposes.",
       closingText: "For more information or to request an art authentication service, contact us today."
     },
     appraisal: {
@@ -409,7 +409,7 @@ const en = {
     },
     passport: {
       title: "AUTHORIZATION OF WORKS OF ART",
-      intro: "Experts at the International Center of Judicial and ADR Expertise under the European Arbitration Chamber provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features.",
+      intro: "Experts at the International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features.",
       eligibleObjectsTitle: "Objects eligible for authorization and certification include:",
       eligibleObjects: [
         "Paintings",
@@ -442,7 +442,7 @@ const en = {
         "Simplify the insurance process and minimize insurance risks",
         "Facilitate the purchase and sale of the artwork without requiring additional authentication"
       ],
-      finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICJE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request.",
+      finalNote: "An exclusive authorization method ensures that confidential identification data about the artwork is securely stored in the ICE data center. If necessary, specialists can authenticate the piece and issue a corresponding certificate upon the owner's request.",
       consultation: "For more detailed information on the authorization of works of art, please contact the Secretariat of the EAС."
     }
   },

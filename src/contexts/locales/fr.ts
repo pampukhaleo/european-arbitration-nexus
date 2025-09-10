@@ -38,16 +38,16 @@ export default {
       description: "Utilisez la clause type d’arbitrage à inclure dans vos contrats internationaux."
     },
     icje: {
-      title: "Expertise au ICJE | Chambre Européenne d'Arbitrage",
-      description: "Au sein de la Chambre Européenne d'Arbitrage, le Centre International d'Expertise Judiciaire et ADR (ICJE) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage."
+      title: "Expertise au CEI | Chambre Européenne d'Arbitrage",
+      description: "Au sein de la Chambre Européenne d'Arbitrage, le Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage."
     },
     areas: {
-      title: "ICJE – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE | Chambre Européenne d'Arbitrage",
-      description: "Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) offre une large gamme de services d'expertise et d'examen dans divers secteurs."
+      title: "CEI – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE | Chambre Européenne d'Arbitrage",
+      description: "Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (CEI) offre une large gamme de services d'expertise et d'examen dans divers secteurs."
     },
     authentication: {
       title: "Authentification d'Art | Chambre Européenne d'Arbitrage",
-      description: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres."
+      description: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres."
     },
     appraisal: {
       title: "ÉVALUATION D’ŒUVRES D’ART | Chambre Européenne d'Arbitrage",
@@ -55,7 +55,7 @@ export default {
     },
     artPassport: {
       title: "AUTORISATION DES ŒUVRES D'ART | Chambre Européenne d'Arbitrage",
-      description: "Les experts du Centre International d’Expertise Judiciaire et ADR de la Chambre Européenne d’Arbitrage fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques."
+      description: "Les experts du Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques."
     },
     benefits: {
       title: "5 RAISONS DE DEVENIR MEMBRE DE LA CEA | Chambre Européenne d'Arbitrage",
@@ -100,7 +100,7 @@ export default {
     arbitrators: 'Liste des arbitres',
     resources: 'Ressources juridiques',
     expertise: 'Expertise',
-    icje: 'À propos de l\'ICJE de la CEA',
+    icje: 'À propos de CEI de la CEA',
     expertiseFields: 'Domaines d\'expertise',
     'art-expertise': 'Expertise en art',
     authentication: 'Authentification d\'art',
@@ -212,7 +212,7 @@ export default {
       },
       laycock: {
         name: "Patrick LAYCOCK",
-        position: "Président du Centre International d'Expertise Judiciaire et ADR sous la CEA",
+        position: "Président du Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA)",
         description: "M. Laycock est historien de l’art et conseiller scientifique au laboratoire d’art de Bruxelles. Il est reconnu et soutenu par plusieurs institutions de renom, dont la Chambre Européenne d’Arbitrage, la Chambre Belge des Experts Judiciaires, la Chambre d’Arbitrage et de Médiation des Experts Techniques et Juridiques, et le tribunal de première instance de Bruxelles. Il est membre à vie de la Siam Society sous patronage royal (Bangkok) et président de l’Institut Belge des Hautes Études Chinoises au Musée Royal d’Art et d’Histoire."
       }
     }
@@ -317,10 +317,10 @@ export default {
   },
   expertise: {
     icje: {
-      title: "Expertise au ICJE",
-      description1: "Au sein de la Chambre Européenne d'Arbitrage, le Centre International d'Expertise Judiciaire et ADR (ICJE) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage.",
+      title: "Expertise au CEI",
+      description1: "Au sein de la Chambre Européenne d'Arbitrage, le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage.",
       description2: {
-        text: "Le ICJE réalise des expertises judiciaires:",
+        text: "Le CEI réalise des expertises judiciaires:",
         examinations: [
           "par ordonnance  des tribunaux d'arbitrage internationaux (sans limitations de juridiction);",
           "par ordonnance des juridictions étatiques dans le cadre de la procédure judiciaire;",
@@ -330,8 +330,8 @@ export default {
       }
     },
     fields: {
-      title: "ICJE – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE",
-      description1: "Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) offre une large gamme de services d'expertise et d'examen dans divers secteurs, notamment:",
+      title: "CEI – PRINCIPALES ZONES DE RECHERCHE D'EXPERTISE",
+      description1: "Le Centre Expertise International et de Résolution des Conflits (CEI) offre une large gamme de services d'expertise et d'examen dans divers secteurs, notamment:",
       areas: [
         "Expertise technique en construction;",
         "Expertise foncière et cadastrale;",
@@ -361,7 +361,7 @@ export default {
   artExpertise: {
     authentication: {
       title: "Authentification d'Art",
-      p1: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre International d'Expertise Judiciaire et de Résolution des Conflits (ICJE) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres.",
+      p1: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre Expertise International et de Résolution des Conflits (CEI) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres.",
       p2: "L'authentification d'art est un examen détaillé réalisé par des experts afin de déterminer si une œuvre est authentique.",
       processTitle: "Ce processus inclut:",
       processList: [
@@ -378,7 +378,7 @@ export default {
         "Assure la conformité avec les réglementations internationales pour les expositions et les ventes."
       ],
       certificateTitle: "Certification d'Authenticité",
-      certificateText: "Après vérification réussie, l'ICJE délivre un Certificat d'Authenticité, qui sert de document officiel attestant de la légitimité de l'œuvre. Ce certificat peut être utilisé pour les ventes, les expositions, les assurances et les démarches juridiques.",
+      certificateText: "Après vérification réussie, CEI délivre un Certificat d'Authenticité, qui sert de document officiel attestant de la légitimité de l'œuvre. Ce certificat peut être utilisé pour les ventes, les expositions, les assurances et les démarches juridiques.",
       closingText: "Pour plus d'informations ou pour demander un service d'authentification d'art, contactez-nous dès aujourd'hui."
     },
     appraisal: {
@@ -404,7 +404,7 @@ export default {
     },
     passport: {
       title: "AUTORISATION DES ŒUVRES D'ART",
-      intro: "Les experts du Centre International d’Expertise Judiciaire et ADR de la Chambre Européenne d’Arbitrage fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques.",
+      intro: "Les experts du Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques.",
       eligibleObjectsTitle: "Objets pouvant être autorisés et certifiés :",
       eligibleObjects: [
         "Peintures",
@@ -437,7 +437,7 @@ export default {
         "Simplifier les démarches d’assurance et réduire les risques",
         "Faciliter l’achat et la vente de l’œuvre sans nécessiter de nouvelle authentification"
       ],
-      finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de l’ICJE. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire.",
+      finalNote: "Une méthode d’autorisation exclusive garantit que les données d’identification confidentielles de l’œuvre sont stockées en toute sécurité dans le centre de données de CEI. Si nécessaire, les spécialistes peuvent authentifier l’œuvre et délivrer un certificat à la demande du propriétaire.",
       consultation: "Pour des informations plus détaillées sur l'autorisation des œuvres d'art, veuillez contacter le Secrétariat de la CEA."
     }
   },

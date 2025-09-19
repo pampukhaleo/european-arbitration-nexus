@@ -3,8 +3,17 @@ Allow: /
 
 # Disallow private areas
 Disallow: /auth
-Disallow: /admin
-Disallow: /gallery/manage
+Disallow: /admin/
+Disallow: /gallery/manage/
 Disallow: /gallery/*/access/
+
+# Disallow legacy URLs
+Disallow: /court/
+Disallow: /members/
+Disallow: /node/
+Disallow: /*.html
+
+# Block crawler access to avoid indexing errors
+Disallow: /*?*
 
 Sitemap: https://chea-taic.be/sitemap.xml

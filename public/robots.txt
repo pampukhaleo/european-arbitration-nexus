@@ -7,13 +7,8 @@ Disallow: /admin/
 Disallow: /gallery/manage/
 Disallow: /gallery/*/access/
 
-# Disallow legacy URLs
-Disallow: /court/
-Disallow: /members/
-Disallow: /node/
-Disallow: /*.html
-
-# Block crawler access to avoid indexing errors
+# Allow all pages for crawling
+# Only disallow query parameters that might cause indexing issues
 Disallow: /*?*
 
 Sitemap: https://chea-taic.be/sitemap.xml

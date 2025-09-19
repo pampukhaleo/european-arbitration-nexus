@@ -11,8 +11,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "build": "vite build",
-    "copy404": "cp dist/index.html dist/404.html",
-    "predeploy": "npm run clean && npm run build && npm run copy404",
+    "predeploy": "npm run clean && npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

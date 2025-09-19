@@ -35,7 +35,8 @@ export const Seo = ({
                     }: SeoProps) => {
   const location = useLocation();
   const baseUrl = getBaseUrl();
-  const canonicalUrl = `${baseUrl}${location.pathname}`;
+  // Generate canonical URL (remove trailing slash)
+  const canonicalUrl = `${baseUrl}${location.pathname.replace(/\/$/, '') || '/'}`;
   const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
 

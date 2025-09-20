@@ -7,8 +7,6 @@ Disallow: /admin/
 Disallow: /gallery/manage/
 Disallow: /gallery/*/access/
 
-# Allow all pages for crawling
-# Only disallow query parameters that might cause indexing issues
-Disallow: /*?*
+# Allow all pages for crawling including spa-github-pages URLs
 
 Sitemap: https://chea-taic.be/sitemap.xml

@@ -35,33 +35,10 @@ export const Seo = ({
                     }: SeoProps) => {
   const location = useLocation();
   const baseUrl = getBaseUrl();
-  // Generate canonical URL (remove trailing slash)
-  const canonicalUrl = `${baseUrl}${location.pathname.replace(/\/$/, '') || '/'}`;
+  // Generate canonical URL using spa-github-pages format
+  const canonicalUrl = `${baseUrl}/?${location.pathname.replace(/\/$/, '') || '/'}`;
   const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
-
-  // Generate hreflang links for multilingual content
-  const generateHreflangLinks = () => {
-    const languages = ['en', 'fr', 'ru'];
-    const currentPath = location.pathname;
-    
-    return languages.map(langCode => {
-      const href = `${baseUrl}/${langCode}${currentPath}`;
-      return {
-        rel: "alternate",
-        hreflang: langCode,
-        href
-      };
-    }).concat([
-      {
-        rel: "alternate", 
-        hreflang: "x-default",
-        href: `${baseUrl}/en${currentPath}`
-      }
-    ]);
-  };
-
-  const hreflangLinks = generateHreflangLinks();
 
   return (
     <Helmet htmlAttributes={{ lang }}>
@@ -75,10 +52,6 @@ export const Seo = ({
       {/* Canonical */}
       <link rel="canonical" href={canonicalUrl} />
       
-      {/* Hreflang for multilingual content */}
-      {hreflangLinks.map((link, index) => (
-        <link key={index} rel={link.rel} hrefLang={link.hreflang} href={link.href} />
-      ))}
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />

@@ -66,6 +66,8 @@ const PaintingForm = () => {
   const isEditing = Boolean(id);
   const [loading, setLoading] = useState(false);
   const [owners, setOwners] = useState<Array<{id: string, email: string, full_name: string}>>([]);
+  const [selectedOwnerIds, setSelectedOwnerIds] = useState<string[]>([]);
+  const [selectedOwnerId, setSelectedOwnerId] = useState('');
   const [formData, setFormData] = useState<PaintingFormData>({
     title_en: '',
     title_fr: '',
@@ -175,6 +177,19 @@ const PaintingForm = () => {
           owner_id: data.owner_id || '',
         });
 
+        // Fetch existing owners from painting_owners table
+        const { data: paintingOwners, error: ownersError } = await supabase
+          .from('painting_owners')
+          .select('owner_id')
+          .eq('painting_id', id);
+
+        if (!ownersError && paintingOwners && paintingOwners.length > 0) {
+          setSelectedOwnerIds(paintingOwners.map(po => po.owner_id));
+        } else if (data.owner_id) {
+          // Fallback to paintings.owner_id if no entries in painting_owners
+          setSelectedOwnerIds([data.owner_id]);
+        }
+
         // Fetch private data
         const { data: privateDataResult, error: privateError } = await supabase
           .from('painting_private')
@@ -206,10 +221,10 @@ const PaintingForm = () => {
     e.preventDefault();
     if (!user || !isAdmin) return;
 
-    if (!formData.owner_id) {
+    if (selectedOwnerIds.length === 0) {
       toast({
         title: "Error",
-        description: "Please select an owner for the painting",
+        description: "Please select at least one owner for the painting",
         variant: "destructive",
       });
       return;
@@ -220,6 +235,8 @@ const PaintingForm = () => {
     // For new paintings, auto-populate French and Russian fields from English
     const paintingData = {
       ...formData,
+      // Set owner_id to the first selected owner for backward compatibility
+      owner_id: selectedOwnerIds[0],
       // Auto-populate missing language fields for new paintings
       title_fr: formData.title_fr || formData.title_en,
       title_ru: formData.title_ru || formData.title_en,
@@ -258,6 +275,48 @@ const PaintingForm = () => {
         
         if (error) throw error;
         paintingId = data.id;
+      }
+
+      // Update painting_owners table
+      if (paintingId) {
+        if (isEditing && id) {
+          // For existing paintings: fetch current owners and compute diff
+          const { data: currentOwners } = await supabase
+            .from('painting_owners')
+            .select('owner_id')
+            .eq('painting_id', id);
+
+          const currentOwnerIds = currentOwners?.map(o => o.owner_id) || [];
+          const toDelete = currentOwnerIds.filter(oid => !selectedOwnerIds.includes(oid));
+          const toInsert = selectedOwnerIds.filter(oid => !currentOwnerIds.includes(oid));
+
+          // Delete removed owners
+          if (toDelete.length > 0) {
+            await supabase
+              .from('painting_owners')
+              .delete()
+              .eq('painting_id', id)
+              .in('owner_id', toDelete);
+          }
+
+          // Insert new owners
+          if (toInsert.length > 0) {
+            await supabase
+              .from('painting_owners')
+              .insert(toInsert.map(ownerId => ({
+                painting_id: id,
+                owner_id: ownerId
+              })));
+          }
+        } else {
+          // For new paintings: insert all selected owners
+          await supabase
+            .from('painting_owners')
+            .insert(selectedOwnerIds.map(ownerId => ({
+              painting_id: paintingId,
+              owner_id: ownerId
+            })));
+        }
       }
 
       // Save private data
@@ -357,24 +416,74 @@ const PaintingForm = () => {
           {/* Owner Selection */}
           <Card>
             <CardHeader>
-              <CardTitle>Owner</CardTitle>
+              <CardTitle>Owners</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div>
-                <Label htmlFor="owner_id">Select Owner</Label>
-                <Select value={formData.owner_id} onValueChange={(value) => updateFormData('owner_id', value)}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select an owner..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {owners.map((owner) => (
-                      <SelectItem key={owner.id} value={owner.id}>
-                        {owner.full_name || owner.email} ({owner.email})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <CardContent className="space-y-4">
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <Label htmlFor="owner_select">Add Owner</Label>
+                  <Select value={selectedOwnerId} onValueChange={setSelectedOwnerId}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select an owner..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {owners
+                        .filter(owner => !selectedOwnerIds.includes(owner.id))
+                        .map((owner) => (
+                          <SelectItem key={owner.id} value={owner.id}>
+                            {owner.full_name || owner.email} ({owner.email})
+                          </SelectItem>
+                        ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex items-end">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      if (selectedOwnerId && !selectedOwnerIds.includes(selectedOwnerId)) {
+                        setSelectedOwnerIds([...selectedOwnerIds, selectedOwnerId]);
+                        setSelectedOwnerId('');
+                      }
+                    }}
+                    disabled={!selectedOwnerId}
+                  >
+                    Add
+                  </Button>
+                </div>
               </div>
+
+              {selectedOwnerIds.length > 0 && (
+                <div className="space-y-2">
+                  <Label>Selected Owners</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedOwnerIds.map((ownerId) => {
+                      const owner = owners.find(o => o.id === ownerId);
+                      return (
+                        <div
+                          key={ownerId}
+                          className="flex items-center gap-2 px-3 py-1 bg-secondary rounded-full text-sm"
+                        >
+                          <span>{owner?.full_name || owner?.email || 'Unknown'}</span>
+                          <button
+                            type="button"
+                            onClick={() => setSelectedOwnerIds(selectedOwnerIds.filter(id => id !== ownerId))}
+                            className="hover:text-destructive"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {selectedOwnerIds.length === 0 && (
+                <p className="text-sm text-muted-foreground">
+                  At least one owner is required
+                </p>
+              )}
             </CardContent>
           </Card>
 

@@ -11,10 +11,10 @@ import { Loader2, UserPlus, UserMinus, Crown } from 'lucide-react';
 interface Owner {
   id: string;
   owner_id: string;
-  profile: {
+  profiles: {
     email: string;
     full_name: string | null;
-  };
+  } | null;
 }
 
 interface PaintingOwnersManagerProps {
@@ -39,7 +39,7 @@ export const PaintingOwnersManager = ({ paintingId }: PaintingOwnersManagerProps
         .select(`
           id,
           owner_id,
-          profiles!painting_owners_owner_id_fkey (
+          profiles (
             email,
             full_name
           )
@@ -48,7 +48,7 @@ export const PaintingOwnersManager = ({ paintingId }: PaintingOwnersManagerProps
 
       if (error) throw error;
 
-      setOwners(data as any || []);
+      setOwners((data as any) || []);
     } catch (error: any) {
       console.error('Error fetching owners:', error);
       toast.error('Failed to load owners');
@@ -165,10 +165,10 @@ export const PaintingOwnersManager = ({ paintingId }: PaintingOwnersManagerProps
                   className="flex items-center justify-between p-3 border rounded-lg"
                 >
                   <div>
-                    <p className="font-medium">{owner.profile?.email}</p>
-                    {owner.profile?.full_name && (
+                    <p className="font-medium">{owner.profiles?.email || 'Unknown'}</p>
+                    {owner.profiles?.full_name && (
                       <p className="text-sm text-muted-foreground">
-                        {owner.profile.full_name}
+                        {owner.profiles.full_name}
                       </p>
                     )}
                   </div>
@@ -219,7 +219,7 @@ export const PaintingOwnersManager = ({ paintingId }: PaintingOwnersManagerProps
             </Button>
           </div>
           <p className="text-xs text-muted-foreground">
-            Only registered users can be added as owners
+            Enter one email at a time. Only registered users can be added as owners. To add multiple owners, repeat this process for each user.
           </p>
         </div>
       </CardContent>

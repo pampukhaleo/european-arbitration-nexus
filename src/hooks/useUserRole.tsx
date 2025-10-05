@@ -28,16 +28,16 @@ export const useUserRole = () => {
         if (isAdmin) {
           setRole('admin');
         } else {
-          // Check if user owns any paintings
-          const { data: paintings, error: paintingsError } = await supabase
-            .from('paintings')
+          // Check if user is an owner of any paintings via painting_owners table
+          const { data: ownerships, error: ownershipsError } = await supabase
+            .from('painting_owners')
             .select('id')
             .eq('owner_id', user.id)
             .limit(1);
 
-          if (paintingsError) throw paintingsError;
+          if (ownershipsError) throw ownershipsError;
 
-          setRole(paintings && paintings.length > 0 ? 'owner' : 'user');
+          setRole(ownerships && ownerships.length > 0 ? 'owner' : 'user');
         }
       } catch (error) {
         console.error('Error checking user role:', error);

@@ -1,4 +1,3 @@
-
 const en = {
   seo: {
     home: {
@@ -557,7 +556,18 @@ const en = {
   },
   common: {
     backToNews: "Back to News",
-    loading: "Loading..."
+    loading: "Loading...",
+    login: "Login",
+    register: "Register",
+    email: "Email",
+    password: "Password",
+    fullName: "Full Name",
+    confirmPassword: "Confirm Password",
+    signingIn: "Signing in...",
+    creatingAccount: "Creating account...",
+    passwordsDoNotMatch: "Passwords do not match",
+    registrationSuccess: "Registration successful! Please check your email for verification.",
+    galleryManagementPanel: "Access your gallery management panel",
   }
 };
 

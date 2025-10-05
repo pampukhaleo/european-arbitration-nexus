@@ -56,7 +56,7 @@ const Auth = () => {
     setSuccess('');
     
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError(t('common.passwordsDoNotMatch'));
       setIsLoading(false);
       return;
     }
@@ -66,7 +66,7 @@ const Auth = () => {
     if (error) {
       setError(error.message);
     } else {
-      setSuccess('Registration successful! Please check your email for verification.');
+      setSuccess(t('common.registrationSuccess'));
     }
     
     setIsLoading(false);
@@ -106,7 +106,7 @@ const Auth = () => {
               {t('common.login')} / {t('common.register')}
             </CardTitle>
             <CardDescription>
-              Access your gallery management panel
+              {t('common.galleryManagementPanel')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -129,7 +129,7 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signin-password">Password</Label>
+                    <Label htmlFor="signin-password">{t('common.password')}</Label>
                     <Input
                       id="signin-password"
                       type="password"
@@ -146,7 +146,7 @@ const Auth = () => {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Signing in...
+                        {t('common.signingIn')}
                       </>
                     ) : (
                       t('common.login')
@@ -158,7 +158,7 @@ const Auth = () => {
               <TabsContent value="signup">
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="signup-name">Full Name</Label>
+                    <Label htmlFor="signup-name">{t('common.fullName')}</Label>
                     <Input
                       id="signup-name"
                       type="text"
@@ -178,7 +178,7 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
+                    <Label htmlFor="signup-password">{t('common.password')}</Label>
                     <Input
                       id="signup-password"
                       type="password"
@@ -188,7 +188,7 @@ const Auth = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="confirm-password">Confirm Password</Label>
+                    <Label htmlFor="confirm-password">{t('common.confirmPassword')}</Label>
                     <Input
                       id="confirm-password"
                       type="password"
@@ -205,7 +205,7 @@ const Auth = () => {
                     {isLoading ? (
                       <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Creating account...
+                        {t('common.creatingAccount')}
                       </>
                     ) : (
                       t('common.register')

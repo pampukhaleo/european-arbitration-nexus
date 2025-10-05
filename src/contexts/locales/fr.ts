@@ -552,6 +552,17 @@ export default {
   },
   common: {
     backToNews: "Retour aux Actualités",
-    loading: "Chargement..."
+    loading: "Chargement...",
+    login: "Connexion",
+    register: "S'inscrire",
+    email: "E-mail",
+    password: "Mot de passe",
+    fullName: "Nom complet",
+    confirmPassword: "Confirmer le mot de passe",
+    signingIn: "Connexion...",
+    creatingAccount: "Création du compte...",
+    passwordsDoNotMatch: "Les mots de passe ne correspondent pas",
+    registrationSuccess: "Inscription réussie ! Vérifiez votre e-mail.",
+    galleryManagementPanel: "Accédez à votre panneau de gestion",
   }
 };

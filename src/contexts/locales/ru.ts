@@ -557,6 +557,17 @@ export default {
   },
   common: {
     backToNews: "Назад к новостям",
-    loading: "Загрузка..."
+    loading: "Загрузка...",
+    login: "Вход",
+    register: "Регистрация",
+    email: "Электронная почта",
+    password: "Пароль",
+    fullName: "Полное имя",
+    confirmPassword: "Подтвердите пароль",
+    signingIn: "Вход...",
+    creatingAccount: "Создание аккаунта...",
+    passwordsDoNotMatch: "Пароли не совпадают",
+    registrationSuccess: "Регистрация успешна! Проверьте почту для верификации.",
+    galleryManagementPanel: "Доступ к панели управления галереей",
   }
 };

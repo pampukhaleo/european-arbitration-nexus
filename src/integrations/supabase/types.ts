@@ -186,6 +186,35 @@ export type Database = {
           },
         ]
       }
+      painting_owners: {
+        Row: {
+          created_at: string | null
+          id: string
+          owner_id: string
+          painting_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          owner_id: string
+          painting_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          owner_id?: string
+          painting_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "painting_owners_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: false
+            referencedRelation: "paintings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       painting_private: {
         Row: {
           created_at: string
@@ -512,7 +541,9 @@ export type Database = {
         }[]
       }
       get_private_painting_info: {
-        Args: { painting_id_param: string; token_text: string }
+        Args:
+          | { access_token_str: string; painting_uuid: string }
+          | { painting_id_param: string; token_text: string }
         Returns: {
           eac_inventory_no: string
           eac_issue_date: string

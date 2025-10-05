@@ -7,6 +7,7 @@ import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { PaintingDetailSeo } from './PaintingDetailSeo';
 import { BreadcrumbSeo } from '@/components/BreadcrumbSeo';
+import { PaintingOwnersManager } from '@/components/gallery/PaintingOwnersManager';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -69,6 +70,7 @@ const PaintingDetail = () => {
   const [deleting, setDeleting] = useState(false);
   const [showPrivateInfo, setShowPrivateInfo] = useState(false);
   const [tokenError, setTokenError] = useState<string | null>(null);
+  const [isOwnerOfPainting, setIsOwnerOfPainting] = useState(false);
 
   // Effect 1: Fetch painting data (only depends on id)
   useEffect(() => {
@@ -161,16 +163,28 @@ const PaintingDetail = () => {
   const checkOwnershipAndFetchPrivate = async () => {
     if (!id || !user || !painting) return;
     
-    // Check if user is owner or admin
-    const isOwnerOrAdmin = isAdmin || painting.owner_id === user.id;
+    try {
+      // Check if user is owner via painting_owners table
+      const { data: ownershipData, error: ownershipError } = await supabase
+        .from('painting_owners')
+        .select('id')
+        .eq('painting_id', id)
+        .eq('owner_id', user.id)
+        .maybeSingle();
+
+      if (ownershipError) {
+        console.error('Error checking ownership:', ownershipError);
+      }
+
+      const userIsOwner = !!ownershipData || isAdmin;
+      setIsOwnerOfPainting(userIsOwner);
     
-    if (isOwnerOrAdmin) {
-      try {
+      if (userIsOwner) {
         const { data, error } = await supabase
           .from('painting_private')
           .select('*')
           .eq('painting_id', id)
-          .single();
+          .maybeSingle();
 
         if (error && error.code !== 'PGRST116') {
           throw error;
@@ -180,9 +194,9 @@ const PaintingDetail = () => {
           setPrivateData(data);
           setShowPrivateInfo(true);
         }
-      } catch (error) {
-        console.error('Error fetching private data for owner:', error);
       }
+    } catch (error) {
+      console.error('Error fetching private data for owner:', error);
     }
   };
 
@@ -233,7 +247,7 @@ const PaintingDetail = () => {
 
   const canManage = () => {
     if (!user || !painting) return false;
-    return isAdmin || painting.owner_id === user.id;
+    return isAdmin || isOwnerOfPainting;
   };
 
   if (loading) {
@@ -534,6 +548,9 @@ const PaintingDetail = () => {
                 </CardContent>
               </Card>
             )}
+
+            {/* Painting Owners Management (Admin only) */}
+            {isAdmin && <PaintingOwnersManager paintingId={painting.id} />}
           </div>
         </div>
       </div>

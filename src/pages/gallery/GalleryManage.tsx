@@ -49,11 +49,32 @@ const GalleryManage = () => {
     
     setLoading(true);
     try {
-      let query = supabase.from('paintings').select('*');
+      let query;
       
-      // Admins see all paintings, owners see only their own
-      if (!isAdmin) {
-        query = query.eq('owner_id', user.id);
+      // Admins see all paintings
+      if (isAdmin) {
+        query = supabase.from('paintings').select('*');
+      } else {
+        // Owners see only paintings they own (via painting_owners table)
+        const { data: ownershipData, error: ownershipError } = await supabase
+          .from('painting_owners')
+          .select('painting_id')
+          .eq('owner_id', user.id);
+
+        if (ownershipError) throw ownershipError;
+
+        const paintingIds = ownershipData?.map(o => o.painting_id) || [];
+        
+        if (paintingIds.length === 0) {
+          setPaintings([]);
+          setLoading(false);
+          return;
+        }
+
+        query = supabase
+          .from('paintings')
+          .select('*')
+          .in('id', paintingIds);
       }
       
       const { data, error } = await query.order('created_at', { ascending: false });

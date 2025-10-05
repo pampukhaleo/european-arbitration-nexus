@@ -31,21 +31,36 @@ export const PaintingOwnersManager = ({ paintingId }: PaintingOwnersManagerProps
 
   const fetchOwners = async () => {
     try {
-      const { data, error } = await supabase
+      // 1) Get owner ids for this painting
+      const { data: poRows, error: poError } = await supabase
         .from('painting_owners')
-        .select(`
-          id,
-          owner_id,
-          profiles!painting_owners_owner_id_fkey (
-            email,
-            full_name
-          )
-        `)
+        .select('id, owner_id')
         .eq('painting_id', paintingId);
 
-      if (error) throw error;
+      if (poError) throw poError;
+      const ownerIds = (poRows || []).map((r) => r.owner_id);
 
-      setOwners((data as any) || []);
+      if (ownerIds.length === 0) {
+        setOwners([]);
+        return;
+      }
+
+      // 2) Fetch profiles for these owners
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('id, email, full_name')
+        .in('id', ownerIds);
+
+      if (profilesError) throw profilesError;
+
+      // 3) Merge rows with profile data
+      const ownersWithProfiles: Owner[] = (poRows || []).map((row) => ({
+        id: row.id,
+        owner_id: row.owner_id,
+        profiles: profiles?.find((p) => p.id === row.owner_id) || null,
+      }));
+
+      setOwners(ownersWithProfiles);
     } catch (error: any) {
       console.error('Error fetching owners:', error);
       toast.error('Failed to load owners');

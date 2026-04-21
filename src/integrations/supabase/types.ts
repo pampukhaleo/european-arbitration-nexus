@@ -144,62 +144,6 @@ export type Database = {
           },
         ]
       }
-      guilds: {
-        Row: {
-          created_at: string
-          id: string
-          name: string
-          slug: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          name: string
-          slug: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          name?: string
-          slug?: string
-        }
-        Relationships: []
-      }
-      invite_codes: {
-        Row: {
-          code: string
-          created_at: string
-          expires_at: string | null
-          guild_id: string
-          id: string
-          is_active: boolean | null
-        }
-        Insert: {
-          code: string
-          created_at?: string
-          expires_at?: string | null
-          guild_id: string
-          id?: string
-          is_active?: boolean | null
-        }
-        Update: {
-          code?: string
-          created_at?: string
-          expires_at?: string | null
-          guild_id?: string
-          id?: string
-          is_active?: boolean | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "invite_codes_guild_id_fkey"
-            columns: ["guild_id"]
-            isOneToOne: false
-            referencedRelation: "guilds"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       painting_owners: {
         Row: {
           created_at: string | null
@@ -422,33 +366,6 @@ export type Database = {
         }
         Relationships: []
       }
-      payments: {
-        Row: {
-          amount: number
-          created_at: string
-          id: string
-          payment_date: string
-          status: string
-          user_id: string
-        }
-        Insert: {
-          amount: number
-          created_at?: string
-          id?: string
-          payment_date?: string
-          status: string
-          user_id: string
-        }
-        Update: {
-          amount?: number
-          created_at?: string
-          id?: string
-          payment_date?: string
-          status?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       profiles: {
         Row: {
           created_at: string
@@ -499,50 +416,6 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
-      }
-      users: {
-        Row: {
-          created_at: string
-          dkp_balance: number
-          dkp_pending: number
-          guild_id: string | null
-          id: string
-          is_approved: boolean | null
-          name: string | null
-          roles: string[] | null
-          share_permission: boolean | null
-        }
-        Insert: {
-          created_at?: string
-          dkp_balance?: number
-          dkp_pending?: number
-          guild_id?: string | null
-          id: string
-          is_approved?: boolean | null
-          name?: string | null
-          roles?: string[] | null
-          share_permission?: boolean | null
-        }
-        Update: {
-          created_at?: string
-          dkp_balance?: number
-          dkp_pending?: number
-          guild_id?: string | null
-          id?: string
-          is_approved?: boolean | null
-          name?: string | null
-          roles?: string[] | null
-          share_permission?: boolean | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "users_guild_id_fkey"
-            columns: ["guild_id"]
-            isOneToOne: false
-            referencedRelation: "guilds"
-            referencedColumns: ["id"]
-          },
-        ]
       }
     }
     Views: {
@@ -737,23 +610,6 @@ export type Database = {
           _user_agent?: string
         }
         Returns: undefined
-      }
-      users_protected_fields_unchanged: {
-        Args: {
-          _new_dkp_balance: number
-          _new_dkp_pending: number
-          _new_guild_id: string
-          _new_is_approved: boolean
-          _new_roles: string[]
-          _new_share_permission: boolean
-          _old_dkp_balance: number
-          _old_dkp_pending: number
-          _old_guild_id: string
-          _old_is_approved: boolean
-          _old_roles: string[]
-          _old_share_permission: boolean
-        }
-        Returns: boolean
       }
       validate_access_token: {
         Args: { painting_id_param: string; token_text: string }

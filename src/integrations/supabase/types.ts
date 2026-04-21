@@ -521,14 +521,8 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      cleanup_expired_tokens: {
-        Args: Record<PropertyKey, never>
-        Returns: number
-      }
-      current_user_is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      cleanup_expired_tokens: { Args: never; Returns: number }
+      current_user_is_admin: { Args: never; Returns: boolean }
       generate_access_token: {
         Args: {
           owner_id_param: string
@@ -540,16 +534,23 @@ export type Database = {
           token: string
         }[]
       }
-      get_private_painting_info: {
-        Args:
-          | { access_token_str: string; painting_uuid: string }
-          | { painting_id_param: string; token_text: string }
-        Returns: {
-          eac_inventory_no: string
-          eac_issue_date: string
-          eac_passport_no: string
-        }[]
-      }
+      get_private_painting_info:
+        | {
+            Args: { access_token_str: string; painting_uuid: string }
+            Returns: {
+              eac_inventory_no: string
+              eac_issue_date: string
+              eac_passport_no: string
+            }[]
+          }
+        | {
+            Args: { painting_id_param: string; token_text: string }
+            Returns: {
+              eac_inventory_no: string
+              eac_issue_date: string
+              eac_passport_no: string
+            }[]
+          }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

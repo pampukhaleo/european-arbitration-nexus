@@ -371,28 +371,22 @@ export type Database = {
           created_at: string
           email: string | null
           full_name: string | null
-          has_paid: boolean | null
           id: string
           updated_at: string
-          website_url: string | null
         }
         Insert: {
           created_at?: string
           email?: string | null
           full_name?: string | null
-          has_paid?: boolean | null
           id: string
           updated_at?: string
-          website_url?: string | null
         }
         Update: {
           created_at?: string
           email?: string | null
           full_name?: string | null
-          has_paid?: boolean | null
           id?: string
           updated_at?: string
-          website_url?: string | null
         }
         Relationships: []
       }

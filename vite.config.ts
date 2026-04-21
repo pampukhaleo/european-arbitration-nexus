@@ -44,9 +44,6 @@ export default defineConfig(({ mode }) => ({
           ) {
             return "forms";
           }
-          if (id.includes("react-helmet-async")) {
-            return "helmet";
-          }
         },
       },
     },

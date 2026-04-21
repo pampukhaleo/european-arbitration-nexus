@@ -95,6 +95,9 @@ export default function NavDropdown({
                     current && "text-eac-primary font-medium"
                   )}
                   onClick={closeMobileMenu}
+                  onMouseEnter={() => prefetchRoute(child.href)}
+                  onFocus={() => prefetchRoute(child.href)}
+                  onTouchStart={() => prefetchRoute(child.href)}
                 >
                   {t(child.translationKey) || child.title}
                 </Link>

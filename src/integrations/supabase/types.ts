@@ -66,6 +66,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "access_logs_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: false
+            referencedRelation: "public_paintings"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "access_logs_token_id_fkey"
             columns: ["token_id"]
             isOneToOne: false
@@ -126,6 +133,13 @@ export type Database = {
             columns: ["painting_id"]
             isOneToOne: false
             referencedRelation: "paintings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "access_tokens_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: false
+            referencedRelation: "public_paintings"
             referencedColumns: ["id"]
           },
         ]
@@ -213,6 +227,13 @@ export type Database = {
             referencedRelation: "paintings"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "painting_owners_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: false
+            referencedRelation: "public_paintings"
+            referencedColumns: ["id"]
+          },
         ]
       }
       painting_private: {
@@ -246,6 +267,13 @@ export type Database = {
             columns: ["painting_id"]
             isOneToOne: true
             referencedRelation: "paintings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "painting_private_painting_id_fkey"
+            columns: ["painting_id"]
+            isOneToOne: true
+            referencedRelation: "public_paintings"
             referencedColumns: ["id"]
           },
         ]
@@ -518,7 +546,147 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_paintings: {
+        Row: {
+          acquisition_credit_en: string | null
+          acquisition_credit_fr: string | null
+          acquisition_credit_ru: string | null
+          artist_dates: string | null
+          artist_en: string | null
+          artist_fr: string | null
+          artist_ru: string | null
+          certificates: Json | null
+          created_at: string | null
+          date_place_made_en: string | null
+          date_place_made_fr: string | null
+          date_place_made_ru: string | null
+          description_en: string | null
+          description_fr: string | null
+          description_ru: string | null
+          dimensions: string | null
+          documents: Json | null
+          expertise_report_en: string | null
+          expertise_report_fr: string | null
+          expertise_report_ru: string | null
+          frame_en: string | null
+          frame_fr: string | null
+          frame_ru: string | null
+          full_title_en: string | null
+          full_title_fr: string | null
+          full_title_ru: string | null
+          genre_en: string | null
+          genre_fr: string | null
+          genre_ru: string | null
+          id: string | null
+          is_published: boolean | null
+          materials_en: string | null
+          materials_fr: string | null
+          materials_ru: string | null
+          original_title: string | null
+          public_image_url: string | null
+          technical_analysis_en: string | null
+          technical_analysis_fr: string | null
+          technical_analysis_ru: string | null
+          title_en: string | null
+          title_fr: string | null
+          title_ru: string | null
+          updated_at: string | null
+          year: number | null
+        }
+        Insert: {
+          acquisition_credit_en?: string | null
+          acquisition_credit_fr?: string | null
+          acquisition_credit_ru?: string | null
+          artist_dates?: string | null
+          artist_en?: string | null
+          artist_fr?: string | null
+          artist_ru?: string | null
+          certificates?: Json | null
+          created_at?: string | null
+          date_place_made_en?: string | null
+          date_place_made_fr?: string | null
+          date_place_made_ru?: string | null
+          description_en?: string | null
+          description_fr?: string | null
+          description_ru?: string | null
+          dimensions?: string | null
+          documents?: Json | null
+          expertise_report_en?: string | null
+          expertise_report_fr?: string | null
+          expertise_report_ru?: string | null
+          frame_en?: string | null
+          frame_fr?: string | null
+          frame_ru?: string | null
+          full_title_en?: string | null
+          full_title_fr?: string | null
+          full_title_ru?: string | null
+          genre_en?: string | null
+          genre_fr?: string | null
+          genre_ru?: string | null
+          id?: string | null
+          is_published?: boolean | null
+          materials_en?: string | null
+          materials_fr?: string | null
+          materials_ru?: string | null
+          original_title?: string | null
+          public_image_url?: string | null
+          technical_analysis_en?: string | null
+          technical_analysis_fr?: string | null
+          technical_analysis_ru?: string | null
+          title_en?: string | null
+          title_fr?: string | null
+          title_ru?: string | null
+          updated_at?: string | null
+          year?: number | null
+        }
+        Update: {
+          acquisition_credit_en?: string | null
+          acquisition_credit_fr?: string | null
+          acquisition_credit_ru?: string | null
+          artist_dates?: string | null
+          artist_en?: string | null
+          artist_fr?: string | null
+          artist_ru?: string | null
+          certificates?: Json | null
+          created_at?: string | null
+          date_place_made_en?: string | null
+          date_place_made_fr?: string | null
+          date_place_made_ru?: string | null
+          description_en?: string | null
+          description_fr?: string | null
+          description_ru?: string | null
+          dimensions?: string | null
+          documents?: Json | null
+          expertise_report_en?: string | null
+          expertise_report_fr?: string | null
+          expertise_report_ru?: string | null
+          frame_en?: string | null
+          frame_fr?: string | null
+          frame_ru?: string | null
+          full_title_en?: string | null
+          full_title_fr?: string | null
+          full_title_ru?: string | null
+          genre_en?: string | null
+          genre_fr?: string | null
+          genre_ru?: string | null
+          id?: string | null
+          is_published?: boolean | null
+          materials_en?: string | null
+          materials_fr?: string | null
+          materials_ru?: string | null
+          original_title?: string | null
+          public_image_url?: string | null
+          technical_analysis_en?: string | null
+          technical_analysis_fr?: string | null
+          technical_analysis_ru?: string | null
+          title_en?: string | null
+          title_fr?: string | null
+          title_ru?: string | null
+          updated_at?: string | null
+          year?: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       cleanup_expired_tokens: { Args: never; Returns: number }
@@ -555,6 +723,35 @@ export type Database = {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
+        }
+        Returns: boolean
+      }
+      log_access_attempt: {
+        Args: {
+          _error_message?: string
+          _error_type?: string
+          _ip_address?: string
+          _painting_id: string
+          _success: boolean
+          _token_id: string
+          _user_agent?: string
+        }
+        Returns: undefined
+      }
+      users_protected_fields_unchanged: {
+        Args: {
+          _new_dkp_balance: number
+          _new_dkp_pending: number
+          _new_guild_id: string
+          _new_is_approved: boolean
+          _new_roles: string[]
+          _new_share_permission: boolean
+          _old_dkp_balance: number
+          _old_dkp_pending: number
+          _old_guild_id: string
+          _old_is_approved: boolean
+          _old_roles: string[]
+          _old_share_permission: boolean
         }
         Returns: boolean
       }

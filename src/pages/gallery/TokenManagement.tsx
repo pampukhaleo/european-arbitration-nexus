@@ -122,19 +122,11 @@ const TokenManagement = () => {
 
     setGenerating(true);
     try {
-      console.log('Generating token with params:', {
-        painting_id_param: id,
-        template_type_param: selectedTemplate,
-        owner_id_param: painting.owner_id // Use the painting's owner_id
-      });
-
       const { data, error } = await supabase.rpc('generate_access_token', {
         painting_id_param: id,
         template_type_param: selectedTemplate,
         owner_id_param: painting.owner_id // Pass the actual owner_id from the painting
       });
-
-      console.log('Token generation response:', { data, error });
 
       if (error) {
         console.error('Token generation error:', error);

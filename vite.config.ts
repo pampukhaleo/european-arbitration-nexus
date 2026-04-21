@@ -22,10 +22,31 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ["react", "react-dom", "react-router-dom"],
-          ui: ["@/components/ui/button", "@/components/ui/card"],
-          lucide: ["lucide-react"],
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return;
+
+          if (id.includes("react-router") || id.includes("/react-dom/") || /node_modules\/react\//.test(id)) {
+            return "react";
+          }
+          if (id.includes("@radix-ui")) {
+            return "radix";
+          }
+          if (id.includes("@supabase")) {
+            return "supabase";
+          }
+          if (id.includes("lucide-react")) {
+            return "lucide";
+          }
+          if (
+            id.includes("react-hook-form") ||
+            id.includes("@hookform") ||
+            id.includes("/zod/")
+          ) {
+            return "forms";
+          }
+          if (id.includes("react-helmet-async")) {
+            return "helmet";
+          }
         },
       },
     },

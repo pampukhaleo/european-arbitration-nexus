@@ -1,48 +1,69 @@
 
 
-# Спринт 3 — SEO и конфигурация (после переезда с GitHub Pages)
+# Спринт 4 — Архитектура и качество кода
 
-Цель: убрать артефакты GitHub Pages, починить канонические URL, добавить `hreflang` для трёх языков.
+Цель: ускорить первую загрузку, защититься от падений, убрать устаревшие зависимости и отладочный мусор.
 
 ## Что меняем
 
-### 1. `src/components/Seo.tsx` — нормальные канонические URL + hreflang
-- Канонический URL вернуть к стандартному виду: `${baseUrl}${location.pathname}` (без `/?/...`).
-- Добавить `<link rel="alternate" hreflang="...">` для `en`, `fr`, `ru` и `x-default` (en). Все альтернативы указывают на текущий путь — переключатель языка не меняет URL, поэтому hreflang будут совпадать по path; это всё равно корректный сигнал для поисковиков о мультиязычности контента.
-- В дальнейшем (вне спринта) можно усилить, добавив языковой префикс в URL — это отдельная большая задача.
+### 1. Lazy loading маршрутов (`src/App.tsx`)
+Перевести все страничные импорты на `React.lazy()` + обернуть `<Routes>` в `<Suspense fallback={...}>`. Главную страницу `Index` оставить эагерной — она нужна сразу.
 
-### 2. `index.html` — убрать GitHub Pages артефакты
-- Удалить блок скрипта "Single Page Apps for GitHub Pages" (между комментариями `Start … / End …`).
-- Поправить favicon: `<link rel="icon" type="image/x-icon" href="/favicon.ico">` (тип уже корректен — это `.ico`, проверим, что нет png-варианта; если оставляем `.ico`, type правильный).
+Эффект: стартовый бандл уменьшится, каждая страница грузится по требованию. Особенно важно для админских страниц (AdminDashboard, GalleryManage, PaintingForm, TokenManagement, QrCodeGenerator) и редко используемых (Council, NewsDetail, политики).
 
-### 3. `public/404.html` — заменить редирект
-- Заменить содержимое на простой 404 (или редирект на `/`), без spa-github-pages логики. На Lovable хостинге fallback на `index.html` идёт автоматически, поэтому файл по сути не нужен, но оставим минимальный.
+Fallback: лёгкий компонент-плейсхолдер (центрированный спиннер на весь экран), чтобы не было белого мерцания.
 
-### 4. `package.json` — убрать gh-pages
-- Удалить поле `"homepage": "https://chea-taic.be"`.
-- Удалить скрипты `predeploy`, `deploy`, `clean`.
-- Удалить devDependency `gh-pages`.
+### 2. Глобальный ErrorBoundary
+Создать `src/components/ErrorBoundary.tsx` — классовый компонент с `componentDidCatch`. Показывает дружелюбное сообщение "Что-то пошло не так" + кнопку "Перезагрузить". Обернуть им `<Routes>` в `App.tsx`, чтобы ошибка рендера одной страницы не убивала всё приложение.
 
-### 5. `public/robots.txt` и `public/sitemap.xml`
-- Убедиться, что `Sitemap:` указывает на текущий публичный домен (сейчас `https://chea-taic.be/sitemap.xml` — оставим, если домен будет подключаться; иначе временно поменяем на published URL).
-- Sitemap проверим, что URL без `/?/` префиксов.
+### 3. Миграция `react-helmet` → `react-helmet-async`
+- Установить `react-helmet-async`, удалить `react-helmet` и `@types/react-helmet`.
+- В `App.tsx` обернуть приложение в `<HelmetProvider>`.
+- В `src/components/Seo.tsx` заменить импорт `Helmet` на `react-helmet-async`.
+- API идентичен — другие правки не требуются.
 
-### 6. `src/lib/publicBaseUrl.ts` — оставляем как есть
-Используется только для генерации QR/токен-ссылок галереи (изолированная фича). Не трогаем.
+### 4. Починка `manualChunks` в `vite.config.ts`
+Текущая запись `ui: ["@/components/ui/button", "@/components/ui/card"]` не работает — `manualChunks` ждёт имена npm-пакетов. Заменить на функциональную форму, разделяющую vendor-чанки по группам:
+- `react` (react, react-dom, react-router-dom)
+- `radix` (все `@radix-ui/*`)
+- `supabase` (`@supabase/*`)
+- `lucide` (lucide-react)
+- `forms` (react-hook-form, zod, @hookform/resolvers)
 
-## Файлы, которые будут изменены
-- `src/components/Seo.tsx`
-- `index.html`
-- `public/404.html`
-- `package.json`
-- `public/sitemap.xml` (если найдём `?/` URL)
-- `public/robots.txt` (только если домен сменится)
+Эффект: лучше кеширование, обновление одной зависимости не инвалидирует весь vendor-бандл.
 
-## Что НЕ делаем в этом спринте
-- Не трогаем мультиязычные URL-префиксы (`/en/...`, `/fr/...`) — это большая отдельная работа.
-- Не трогаем `react-helmet → react-helmet-async` (это Спринт 4).
-- Не трогаем lazy loading и ErrorBoundary (это Спринт 4).
+### 5. Убрать отладочные `console.log`
+- `src/pages/gallery/TokenManagement.tsx` — найти и удалить (или обернуть в `if (import.meta.env.DEV)`).
+- Параллельно пробежаться поиском `console.log` по `src/` и почистить явный отладочный мусор (оставить только `console.error` для реальных ошибок).
 
-## После применения
-Проверим на превью: открыть DevTools → Elements → `<head>` → убедиться, что `<link rel="canonical">` теперь показывает чистый URL без `?/`, и что есть три `<link rel="alternate" hreflang="...">`.
+### 6. Очистка артефактов
+- `convert-to-webp.js` в корне — одноразовый скрипт оптимизации, в build pipeline не используется. Удалить (если нужен — можно перенести в `scripts/`).
+- Проверить `.lovable/plan.md` — оставшийся артефакт; не трогаем, это служебный файл.
+
+## Файлы, которые будут изменены / созданы
+
+Изменены:
+- `src/App.tsx` — lazy + Suspense + ErrorBoundary + HelmetProvider
+- `src/components/Seo.tsx` — импорт из `react-helmet-async`
+- `vite.config.ts` — корректные `manualChunks`
+- `src/pages/gallery/TokenManagement.tsx` — убрать `console.log`
+- `package.json` — зависимости helmet
+
+Созданы:
+- `src/components/ErrorBoundary.tsx`
+- `src/components/ui/PageLoader.tsx` (fallback для Suspense)
+
+Удалены:
+- `convert-to-webp.js`
+
+## Что НЕ делаем
+- Не трогаем мультиязычные URL-префиксы (отдельная большая работа).
+- Не трогаем `react-helmet-async` SSR-обвязку — приложение чисто клиентское.
+- Не рефакторим бизнес-компоненты — только инфраструктура.
+
+## Проверка после применения
+1. Сеть DevTools → видно подгрузку отдельных JS-чанков при переходе на страницы.
+2. Любая ошибка в компоненте показывает наш ErrorBoundary, а не белый экран.
+3. `<head>` по-прежнему содержит canonical + hreflang (helmet-async работает).
+4. Сборка `bun run build` проходит без ошибок и предупреждений про manualChunks.
 

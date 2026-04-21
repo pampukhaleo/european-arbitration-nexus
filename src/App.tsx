@@ -24,6 +24,7 @@ const Auth = lazy(() => import('@/pages/Auth'));
 const Contacts = lazy(() => import('@/pages/Contacts'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
+const Landing = lazy(() => import('@/pages/Landing'));
 
 // EAC pages
 const EACAbout = lazy(() => import('@/pages/eac/About'));
@@ -71,6 +72,9 @@ function App() {
                   <Routes>
                     {/* Home page */}
                     <Route path="/" element={<Index />} />
+
+                    {/* Advertising landing page (UA) */}
+                    <Route path="/landing" element={<Landing />} />
 
                     {/* EAC section */}
                     <Route path="/eac" element={<Navigate to="/eac/about" replace />} />

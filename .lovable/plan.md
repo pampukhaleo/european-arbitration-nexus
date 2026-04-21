@@ -1,148 +1,85 @@
 
 
-# Три варианта дизайна лендинга — институциональный стиль
+# Шаг 0: Чистка legacy DKP/Guild — без риска для chea-taic.be
 
-Делаем 3 разных институциональных дизайна, каждый по своему URL. Текущий `/landing` остаётся нетронутым как baseline. После выбора — победитель станет основным `/landing`, остальные удалим.
+Главное условие: сайт chea-taic.be (галерея + арбитраж) продолжает работать как сейчас. Ниже — что именно я делаю и почему это не сломает ни одну страницу.
 
-## Общее для всех трёх
+## Гарантии безопасности изменений
 
-- Контент строго тот же (украинский, из ТЗ).
-- Те же контакты, те же CTA-кнопки, та же `/arbitration/clause` ссылка.
-- Та же мобильная sticky-панель.
-- `<Seo robots="noindex,nofollow" lang="uk">` на всех.
-- Тот же `LandingHeader` / `LandingFooter` (минималистичные).
-- Все три — институциональные. Различия — в типографике, композиции, цветовой строгости.
+**Грепнул `src/` на использование легаси:**
+- `from('users')` — **0 совпадений** в коде
+- `from('guilds')` — **0 совпадений**
+- `from('invite_codes')` — **0 совпадений**
+- `from('payments')` — **0 совпадений**
+- `users.roles` / `dkp_balance` / `guild_id` / `is_approved` — **0 совпадений**
 
-## Вариант A — `/landing/v1` · «Court Gazette»
+Реальные таблицы, которые использует сайт: `paintings`, `painting_owners`, `painting_private`, `access_tokens`, `access_logs`, `profiles`, `user_roles`. Их **не трогаю**.
 
-**Ассоциация:** ICC, WIPO, академический журнал по праву.
+**Edge-функции:** проверю перед миграцией, не ссылается ли какая-нибудь edge-функция на `users`/`guilds`/`payments`. Если ссылается — стоп, спрошу.
 
-```text
-┌──────────────────────────────────────────────┐
-│  [узкая верхняя плашка с датой и местом]    │
-│  BRUSSELS · ESTABLISHED 2008                 │
-├──────────────────────────────────────────────┤
-│  HERO — ассиметричный                        │
-│  ┌─────────────┬──────────────────────────┐ │
-│  │ Огромная    │ Мелкий лид-абзац         │ │
-│  │ серифная    │                          │ │
-│  │ H1 в 3      │ ─────────────            │ │
-│  │ строки      │ [CTA вертикально]        │ │
-│  └─────────────┴──────────────────────────┘ │
-├──────────────────────────────────────────────┤
-│  Тонкая горизонтальная линия-разделитель    │
-│  § I. ПЕРЕВАГИ                               │
-│  Нумерованный список I-VI римскими           │
-│  в две колонки, без иконок                   │
-├──────────────────────────────────────────────┤
-│  § II. ПРО МКАС                              │
-│  Большой dropcap-абзац, узкая колонка        │
-├──────────────────────────────────────────────┤
-│  § III. ЗАСТЕРЕЖЕННЯ                         │
-│  Чек-лист как пронумерованные параграфы      │
-├──────────────────────────────────────────────┤
-│  CTA-блок: рамка, как печать документа      │
-└──────────────────────────────────────────────┘
+## Что делает миграция
+
+```sql
+-- 1. Снять политики, которые читают users.roles
+DROP POLICY IF EXISTS "Allow admins to manage all guilds" ON public.guilds;
+DROP POLICY IF EXISTS "Allow users to view their guild" ON public.guilds;
+DROP POLICY IF EXISTS "Allow admins to manage all invite codes" ON public.invite_codes;
+DROP POLICY IF EXISTS "Allow guild admins to manage invite codes" ON public.invite_codes;
+DROP POLICY IF EXISTS "Allow admins to update any user" ON public.users;
+DROP POLICY IF EXISTS "Allow admins to view all users" ON public.users;
+DROP POLICY IF EXISTS "Allow guild leaders to view users in their guild" ON public.users;
+DROP POLICY IF EXISTS "Allow users to view their own data" ON public.users;
+DROP POLICY IF EXISTS "Guild leaders can update users in their guild (fields restricte" ON public.users;
+DROP POLICY IF EXISTS "Users can update their own row (fields restricted by trigger)" ON public.users;
+
+-- 2. Дропнуть legacy-таблицы
+DROP TABLE IF EXISTS public.invite_codes CASCADE;
+DROP TABLE IF EXISTS public.guilds CASCADE;
+DROP TABLE IF EXISTS public.payments CASCADE;
+DROP TABLE IF EXISTS public.users CASCADE;
+
+-- 3. Дропнуть legacy-функции
+DROP FUNCTION IF EXISTS public.protect_users_privileged_columns() CASCADE;
+DROP FUNCTION IF EXISTS public.users_protected_fields_unchanged(
+  text[], text[], boolean, boolean, boolean, boolean,
+  numeric, numeric, numeric, numeric, uuid, uuid
+) CASCADE;
 ```
 
-- **Палитра:** глубокий navy `#0A1F3A`, кремовый `#F5F1E8`, золото-охра `#B8893E` как акцент.
-- **Типографика:** серифный display (Playfair Display / Cormorant) для H1 и `§`, узкий sans (Inter) для тела.
-- **Без иконок-кружочков.** Вместо них — римские цифры, тонкие линии, заглавные буквы, dropcaps.
-- **Вау-эффект:** огромная серифная типографика-герой + ощущение «официального вестника суда».
+## Что НЕ трогаю
 
-## Вариант B — `/landing/v2` · «Brussels Charter»
+- `auth.users` (управляется Supabase, не путать с `public.users`)
+- `profiles`, `user_roles`, `paintings`, `painting_owners`, `painting_private`, `access_tokens`, `access_logs`
+- Триггер `on_auth_user_created` → `handle_new_user()` (создаёт `profiles`, не `users`)
+- Функцию `has_role()` и enum `app_role`
+- Storage-бакет `paintings`
+- Любой код в `src/`
+- Edge-функции
 
-**Ассоциация:** Council of Europe, EU institutional, благородный документ.
+## Pre-flight check (перед миграцией)
 
-```text
-┌──────────────────────────────────────────────┐
-│  HERO — центрированный, симметричный        │
-│  Тонкая монограмма / эмблема сверху          │
-│  H1 заглавными, разрядка букв (tracked)      │
-│  Тонкая золотая линия под H1                 │
-│  Подзаголовок курсивом                       │
-│  [3 кнопки в ряд, outline-стиль]            │
-├──────────────────────────────────────────────┤
-│  Цитата-эпиграф во всю ширину                │
-│  "..." курсив, большой кегль                 │
-├──────────────────────────────────────────────┤
-│  4 КЛЮЧЕВЫХ ФАКТА                            │
-│  Огромные цифры: 30, 170, 200, 2008         │
-│  под ними мелкий sans-подпись                │
-├──────────────────────────────────────────────┤
-│  ПЕРЕВАГИ — 3×2 grid                         │
-│  Каждая ячейка: римская цифра + заголовок   │
-│  + текст. Без иконок, без рамок,             │
-│  только тонкие линии-разделители             │
-├──────────────────────────────────────────────┤
-│  ОПИСАНИЕ — два столбца газетной вёрстки     │
-├──────────────────────────────────────────────┤
-│  CTA внизу — тёмный фон, центр, парадно     │
-└──────────────────────────────────────────────┘
-```
+Запущу 4 read-only запроса в имплементации:
+1. `SELECT count(*) FROM public.users;` — ожидаем ≤ 1
+2. `SELECT count(*) FROM public.guilds;` — ожидаем 0
+3. `SELECT count(*) FROM public.invite_codes;` — ожидаем 0
+4. `SELECT count(*) FROM public.payments;` — ожидаем 0
+5. Грепну `supabase/functions/` на упоминания легаси-таблиц
 
-- **Палитра:** благородный бордо `#7A1F2C` + кремовый `#FAF7F2` + графит `#1F2024`.
-- **Типографика:** Cormorant Garamond для H1/H2, Inter для body, tabular-числа для статистики.
-- **Вау-эффект:** монументальные цифры-факты (30 / 170+ / 200) во весь экран — мгновенно передают масштаб.
+Если что-то из этого не пусто или edge-функция ссылается — **остановлюсь и спрошу**, прежде чем дропать.
 
-## Вариант C — `/landing/v3` · «Editorial Brutalism»
+## Post-migration check
 
-**Ассоциация:** The Economist, FT, монохромная редакционная вёрстка с одним резким акцентом.
+- `src/integrations/supabase/types.ts` перегенерируется автоматически — типов `users`/`guilds`/`payments`/`invite_codes` там не станет, но т.к. их нет и в коде — TypeScript-сборка не упадёт.
+- Открыть chea-taic.be: главная, `/gallery`, любая картина, `/contacts`, админ-логин — всё работает.
+- В Supabase Linter: находки про `users.roles` privilege escalation и `invite_codes readable` исчезают.
 
-```text
-┌──────────────────────────────────────────────┐
-│ ▓▓▓▓▓ Цветная плашка-кикер слева ▓▓▓▓▓     │
-│ ARBITRATION · BRUSSELS                       │
-│                                              │
-│ HUGE H1 в 4 строки, прижат к левому краю   │
-│ занимает 80% экрана                          │
-│                                              │
-│ ─────────────────                            │
-│ Лид мелким кеглем                            │
-│ [CTA, чёрные кнопки, прямоугольные]         │
-├──────────────────────────────────────────────┤
-│ Жирная горизонтальная полоса акцентного цв. │
-├──────────────────────────────────────────────┤
-│ 01 / ПЕРЕВАГИ — большие пронумерованные     │
-│ блоки с толстыми границами сверху            │
-│                                              │
-│ 01 → 02 → 03 → 04 → 05 → 06                 │
-│ Каждый: огромный номер + заголовок sans     │
-├──────────────────────────────────────────────┤
-│ Половинный bleed: текстовая колонка слева   │
-│ + полная заливка цветом справа с цитатой    │
-├──────────────────────────────────────────────┤
-│ Финальный CTA — full-bleed акцентный цвет   │
-│ Огромный H2, кнопки-инверсия                │
-└──────────────────────────────────────────────┘
-```
+## Что после этого
 
-- **Палитра:** чисто чёрный `#0A0A0A` + белый + один резкий акцент — **малиновый** `#C8102E` (как FT-розовый, но строже).
-- **Типографика:** очень крупный grotesque (Inter Tight / Space Grotesk) с тугим трекингом для H1, монопространственный для номеров `01/06`.
-- **Вау-эффект:** супер-крупная типографика-герой + один яркий акцентный цвет на чёрно-белом фоне.
+Останется 4 security-находки (вместо 6):
+- 🔴 Storage: чужие файлы можно трогать
+- 🟡 `paintings.owner_id` утечка анонам
+- 🟡 Leaked Password Protection (ручное)
+- 🟡 Storage bucket allows listing
 
-## Технически
-
-**Файлы:**
-- `src/pages/Landing.tsx` — НЕ трогаем (остаётся как было).
-- `src/pages/landing/LandingV1.tsx` — новый, вариант A.
-- `src/pages/landing/LandingV2.tsx` — новый, вариант B.
-- `src/pages/landing/LandingV3.tsx` — новый, вариант C.
-- `src/components/landing/landing-content.ts` — новый, общий контент-объект (чек-лист, преимущества, описание), чтобы три страницы не дублировали тексты.
-- `src/App.tsx` — три новых роута: `/landing/v1`, `/landing/v2`, `/landing/v3` (lazy).
-- `src/lib/routePrefetch.ts` — добавить три записи.
-- Шрифты: подключить через Google Fonts CDN в `index.html` (`Playfair Display`, `Cormorant Garamond`, `Space Grotesk`) — каждый вариант грузит только что нужно через `font-family` в локальных стилях.
-
-**Без новых зависимостей**, без правок Tailwind config (используем `font-['Playfair_Display']` arbitrary-values).
-
-## После выбора
-
-Когда ты скажешь «беру v2» — я перенесу содержимое выбранного в основной `Landing.tsx`, удалю папку `src/pages/landing/`, уберу три временных роута. Останется один `/landing` с финальным дизайном.
-
-## Проверка
-
-- `/landing/v1`, `/landing/v2`, `/landing/v3` — открываются, у каждого своя шапка/футер минимальные.
-- На каждом — мобильная sticky-панель работает.
-- На каждом — те же CTA-кнопки ведут на `tel:`, `mailto:`, `wa.me`.
-- Старый `/landing` продолжает работать без изменений.
+Подготовлю по ним отдельный план следующим шагом.
 

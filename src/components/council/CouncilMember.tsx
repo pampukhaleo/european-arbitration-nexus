@@ -47,7 +47,7 @@ export default function CouncilMember({ name, position, description, imageJpg, i
   return (
     <>
       <div
-        className="border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer bg-white"
+        className="border border-border rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer bg-card"
         onClick={() => setOpen(true)}
       >
         <div className="flex flex-col md:flex-row">
@@ -58,7 +58,7 @@ export default function CouncilMember({ name, position, description, imageJpg, i
           <div className="flex-1 p-6">
             <h3 className="text-xl font-semibold text-eac-dark">{name}</h3>
             <p className="text-sm text-eac-gray mt-1">{position}</p>
-            <p className="text-gray-600 mt-3 line-clamp-3">{description}</p>
+            <p className="text-muted-foreground mt-3 line-clamp-3">{description}</p>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function CouncilMember({ name, position, description, imageJpg, i
               <h3 className="text-xl font-semibold text-eac-dark mb-2">
                 {position}
               </h3>
-              <p className="text-gray-600 whitespace-pre-wrap">
+              <p className="text-muted-foreground whitespace-pre-wrap">
                 {description}
               </p>
             </div>

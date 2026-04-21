@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 export default function AboutPreview() {
   return (
-    <div className="py-16 bg-white">
+    <div className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           <div className="lg:w-1/2">
             <h2 className="text-3xl font-bold text-eac-dark mb-6">About European Arbitration Chamber</h2>
-            <div className="prose text-gray-600 max-w-none">
+            <div className="prose text-muted-foreground max-w-none">
               <p className="mb-4">
                 The European Arbitration Chamber was founded on the initiative of the European Union with the main goal of unifying and developing international arbitration in Eastern and Western Europe.
               </p>
@@ -19,7 +19,7 @@ export default function AboutPreview() {
                 The international nonprofit association European Arbitration Chamber has been registered by the Belgian Ministry of Justice (Direction Générale de la législation, Royaume de Belgique Service Public Fédéral Justice # 6/SN/15.677/S).
               </p>
             </div>
-            <Button asChild className="bg-eac-primary hover:bg-eac-primary/90 text-white rounded-full">
+            <Button asChild className="bg-eac-primary hover:bg-eac-primary/90 text-primary-foreground rounded-full">
               <Link to="/eac/about">More About EAC</Link>
             </Button>
           </div>

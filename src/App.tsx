@@ -21,7 +21,6 @@ const GalleryManage = lazy(() => import('@/pages/gallery/GalleryManage'));
 const QrCodeGenerator = lazy(() => import('@/pages/gallery/QrCodeGenerator'));
 const TokenManagement = lazy(() => import('@/pages/gallery/TokenManagement'));
 const Auth = lazy(() => import('@/pages/Auth'));
-const About = lazy(() => import('@/pages/About'));
 const Contacts = lazy(() => import('@/pages/Contacts'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));

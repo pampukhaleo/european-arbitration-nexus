@@ -9,7 +9,8 @@ import { useUserRole } from '@/hooks/useUserRole';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter, Settings, Plus, LogIn, QrCode, LogOut } from 'lucide-react';
+import { Search, Filter, Settings, Plus, LogIn, QrCode, LogOut, Loader2 } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 import { BreadcrumbSeo } from '@/components/BreadcrumbSeo';
 
 interface Painting {
@@ -71,19 +72,36 @@ const Gallery = () => {
   const availableYears = [...new Set(paintings.map(p => p.year).filter(Boolean))].sort((a, b) => b - a);
 
   if (loading) {
-  return (
-    <>
-      <Seo 
-        title="Art Gallery | European Arbitration Chamber"
-        description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
-        lang={language}
-      />
-      <Layout>
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">{t('common.loading')}</div>
-        </div>
-      </Layout>
-    </>
+    return (
+      <>
+        <Seo
+          title="Art Gallery | European Arbitration Chamber"
+          description="Explore authenticated artworks with expert analysis and detailed documentation from the European Arbitration Chamber's collection."
+          lang={language}
+        />
+        <Layout>
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold mb-4">{t('gallery.title')}</h1>
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Loader2 className="h-5 w-5 animate-spin" aria-label={t('common.loading')} />
+                <span>{t('common.loading')}</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="rounded-lg border border-border overflow-hidden">
+                  <Skeleton className="aspect-square w-full" />
+                  <div className="p-4 space-y-2">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Layout>
+      </>
     );
   }
 
@@ -221,7 +239,7 @@ const Gallery = () => {
                     <img
                       src={painting.public_image_url}
                       alt={getLocalizedText(painting, 'title')}
-                      className="w-full h-full object-contain bg-gray-50 hover:scale-105 transition-transform duration-300 select-none pointer-events-none"
+                      className="w-full h-full object-contain bg-muted hover:scale-105 transition-transform duration-300 select-none pointer-events-none"
                       loading="lazy"
                       decoding="async"
                       draggable="false"

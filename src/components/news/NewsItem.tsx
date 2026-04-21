@@ -36,7 +36,7 @@ const NewsItem = ({
   const linkTo = `/eac/news/${id}`;
 
   const RenderDate = () => (
-    <div className="flex items-center text-sm text-gray-500">
+    <div className="flex items-center text-sm text-muted-foreground">
       <CalendarIcon className="mr-2 h-4 w-4" />
       {date}
     </div>
@@ -68,7 +68,7 @@ const NewsItem = ({
                 {title}
               </CardTitle>
               <RenderDate />
-              <CardDescription className="text-gray-600 mt-3 line-clamp-3">
+              <CardDescription className="text-muted-foreground mt-3 line-clamp-3">
                 {firstParagraph}
               </CardDescription>
               <div className="mt-4 text-eac-primary font-medium group-hover:text-eac-primary/80">
@@ -85,7 +85,7 @@ const NewsItem = ({
   const Wrapper = useCardWrapper ? Card : "div";
   const cardClass = useCardWrapper
     ? "flex flex-col cursor-pointer hover:shadow-md transition-shadow h-full"
-    : "flex flex-col h-full cursor-pointer rounded-lg border border-gray-200 hover:shadow-md transition-shadow bg-white";
+    : "flex flex-col h-full cursor-pointer rounded-lg border border-border hover:shadow-md transition-shadow bg-card";
 
   return (
     <Link to={linkTo} className="block no-underline text-inherit group h-full">
@@ -112,7 +112,7 @@ const NewsItem = ({
         </CardHeader>
 
         <CardContent className="flex flex-col flex-1">
-          <CardDescription className="text-gray-600 mb-4">
+          <CardDescription className="text-muted-foreground mb-4">
             {firstParagraph}
           </CardDescription>
           <div className="mt-auto text-eac-primary font-medium group-hover:text-eac-primary/80">

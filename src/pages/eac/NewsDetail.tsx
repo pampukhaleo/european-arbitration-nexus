@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, CalendarIcon, X } from "lucide-react";
+import DOMPurify from "dompurify";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { newsItems } from "@/data/newsData";
@@ -60,13 +61,19 @@ const NewsDetail = () => {
     }
   };
 
-  const formatDescription = (html: string) => ({
-    __html: html
+  const formatDescription = (html: string) => {
+    const transformed = html
       .replace(/\n\n/g, "</p><p>")
       .replace(/\n/g, "<br/>")
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\*(.*?)\*/g, "<em>$1</em>"),
-  });
+      .replace(/\*(.*?)\*/g, "<em>$1</em>");
+    return {
+      __html: DOMPurify.sanitize(transformed, {
+        ALLOWED_TAGS: ["p", "br", "strong", "em", "b", "i", "ul", "ol", "li", "h1", "h2", "h3", "h4", "a"],
+        ALLOWED_ATTR: ["href", "target", "rel"],
+      }),
+    };
+  };
 
   const handleImageClick = (src: string) => setSelectedImage(src);
   const closeImagePopup = () => setSelectedImage(null);
@@ -95,7 +102,7 @@ const NewsDetail = () => {
 
           {/* Title & Date */}
           <h1 className="text-3xl font-bold mb-4">{newsItem.title}</h1>
-          <div className="flex items-center text-sm text-gray-500 mb-6">
+          <div className="flex items-center text-sm text-muted-foreground mb-6">
             <CalendarIcon className="mr-2 h-4 w-4" />
             {newsItem.date}
           </div>

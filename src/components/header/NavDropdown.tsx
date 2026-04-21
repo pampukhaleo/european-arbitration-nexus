@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { prefetchRoute } from "@/lib/routePrefetch";
 import { NavItem } from "./NavData";
 
 interface NavDropdownProps {
@@ -40,6 +41,9 @@ export default function NavDropdown({
             isMobile && "w-full block"
           )}
           onClick={closeMobileMenu}
+          onMouseEnter={() => prefetchRoute(item.href)}
+          onFocus={() => prefetchRoute(item.href)}
+          onTouchStart={() => prefetchRoute(item.href)}
         >
           {t(item.translationKey) || item.title}
         </Link>
@@ -61,6 +65,8 @@ export default function NavDropdown({
           isMobile && "w-full justify-between"
         )}
         onClick={() => onToggle(item.title)}
+        onMouseEnter={() => item.children?.forEach((c) => prefetchRoute(c.href))}
+        onFocus={() => item.children?.forEach((c) => prefetchRoute(c.href))}
       >
         {t(item.translationKey) || item.title}
         {item.children && <ChevronDown size={16} aria-hidden="true" />}
@@ -89,6 +95,9 @@ export default function NavDropdown({
                     current && "text-eac-primary font-medium"
                   )}
                   onClick={closeMobileMenu}
+                  onMouseEnter={() => prefetchRoute(child.href)}
+                  onFocus={() => prefetchRoute(child.href)}
+                  onTouchStart={() => prefetchRoute(child.href)}
                 >
                   {t(child.translationKey) || child.title}
                 </Link>

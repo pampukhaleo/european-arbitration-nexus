@@ -30,6 +30,8 @@ export default function CouncilMember({ name, position, description, imageJpg, i
           <img
             src={imageJpg}
             alt={name}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain object-top"
           />
         </picture>

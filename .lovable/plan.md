@@ -1,48 +1,48 @@
 
 
-# Фикс — Белый экран при клике на логотип
+# Хотфикс — Белый экран: ReferenceError в `react-helmet-async`
 
 ## Симптом
-При клике на логотип в шапке ненадолго появляется белый экран с одинокой ссылкой "Skip to main content", потом загружается главная.
+Сайт целиком в белый экран. В консоли:
+```
+Uncaught ReferenceError: Cannot access 'f' before initialization
+    at helmet-D126U-9x.js:1:10001
+```
+Имя файла `helmet-*.js` — это наш ручной чанк из `vite.config.ts`.
 
 ## Причина
-В `src/components/header/Logo.tsx` используется обычный HTML-тег `<a href="/">` вместо React Router `<Link to="/">`:
-
-```tsx
-<a href={'/'} className="...">
+В `vite.config.ts` есть правило, которое выносит `react-helmet-async` в отдельный бандл:
+```ts
+if (id.includes("react-helmet-async")) {
+  return "helmet";
+}
 ```
+`react-helmet-async@3` имеет внутренние циклические зависимости и общие модули с React. Когда Rollup кладёт её в свой чанк отдельно от React-чанка, переменные оказываются в TDZ (temporal dead zone) — обращение до инициализации. Это известная проблема именно с этим пакетом при агрессивном code-splitting.
 
-Браузер обрабатывает это как полную навигацию: выгружает SPA, делает HTTP-запрос за `/`, заново парсит HTML, грузит JS-бандл и только потом React рендерит главную. В промежутке виден голый `index.html` — там есть только accessibility-ссылка "Skip to main content", отсюда и эта картинка.
-
-Все остальные ссылки в навигации используют `<Link>` из `react-router-dom` и работают мгновенно — без перезагрузки.
+Раньше билд срабатывал случайно (порядок модулей был «удачный»), сейчас Rollup перетасовал — и всё легло.
 
 ## Решение
-Заменить в `Logo.tsx` `<a href="/">` на `<Link to="/">` из `react-router-dom`. Клик станет клиентской навигацией, белого экрана больше не будет.
+Убрать ручной чанк для `react-helmet-async` из `vite.config.ts`. Пусть Vite сам решает, куда её положить (обычно — внутрь vendor/react чанка, где порядок инициализации корректен).
 
-```tsx
-import { Link } from "react-router-dom";
-
-export default function Logo() {
-  return (
-    <Link to="/" className="flex items-center flex-shrink-0">
-      <img
-        src={`${import.meta.env.BASE_URL}logo.png`}
-        alt="European Arbitration Chamber Logo"
-        className="h-12 w-auto"
-        style={{ maxWidth: '100%' }}
-      />
-    </Link>
-  );
+Изменение в `vite.config.ts`, удалить строки:
+```ts
+if (id.includes("react-helmet-async")) {
+  return "helmet";
 }
 ```
 
-## Бонус (по желанию)
-В консоли есть warning от React: `fetchPriority` на `<img>` в `Hero.tsx` написан camelCase'ом, но React 18 ожидает lowercase для нестандартных атрибутов. Это косметическое предупреждение, не ошибка. Если хочешь — заодно поправлю на `fetchpriority="high"` через атрибут или уберу совсем (у нас там `loading="eager"`, этого достаточно).
+Размер бандла практически не изменится (helmet ~6KB gzipped), а ошибка уйдёт.
+
+## Бонус — мелочи из консоли
+1. `<meta name="apple-mobile-web-app-capable">` deprecated — нужно добавить рядом `<meta name="mobile-web-app-capable" content="yes">` в `index.html`.
+2. `Failed to load resource: 421` — это не наше, это сетевой шум от хостинга/CDN, на белый экран не влияет.
+
+Оба пункта — опционально, отдельным пуском, если захочешь.
 
 ## Файлы
-- `src/components/header/Logo.tsx` — заменить `<a>` на `<Link>`.
-- (опционально) `src/components/home/Hero.tsx` — убрать/исправить `fetchPriority`.
+- `vite.config.ts` — удалить блок `helmet` из `manualChunks`.
+- (опционально) `index.html` — добавить `mobile-web-app-capable`.
 
 ## Проверка
-Клик по логотипу с любой страницы → мгновенный переход на `/` без мигания белым.
+После пересборки: главная грузится, в консоли нет `ReferenceError`, навигация работает.
 

@@ -1,69 +1,63 @@
 
 
-# Спринт 4 — Архитектура и качество кода
+# Спринт 6 — Безопасность, чистка кода и UX
 
-Цель: ускорить первую загрузку, защититься от падений, убрать устаревшие зависимости и отладочный мусор.
+Цель: убрать оставшийся технический долг, починить мелкие проблемы UX и безопасности, навести порядок в данных.
 
 ## Что меняем
 
-### 1. Lazy loading маршрутов (`src/App.tsx`)
-Перевести все страничные импорты на `React.lazy()` + обернуть `<Routes>` в `<Suspense fallback={...}>`. Главную страницу `Index` оставить эагерной — она нужна сразу.
+### 1. Убрать хардкод цветов (lint warnings из дизайн-системы)
+В проекте десятки мест с прямыми классами вроде `text-white`, `bg-white`, `text-gray-600`, `border-gray-200` — это ломает темизацию и нарушает дизайн-систему.
 
-Эффект: стартовый бандл уменьшится, каждая страница грузится по требованию. Особенно важно для админских страниц (AdminDashboard, GalleryManage, PaintingForm, TokenManagement, QrCodeGenerator) и редко используемых (Council, NewsDetail, политики).
+В этом спринте не делаем массовый рефакторинг (это отдельная большая работа), но:
+- Изучим `src/index.css` и `tailwind.config.ts` — какие семантические токены уже есть.
+- Если в палитре нет нужных нейтральных оттенков (`muted-foreground`, `border`, `card`, `card-foreground`) — добавим.
+- Заменим хардкод в **трёх ключевых компонентах**, которые сильнее всего влияют на восприятие: `CouncilMember.tsx`, `NewsItem.tsx`, `AboutPreview.tsx`.
 
-Fallback: лёгкий компонент-плейсхолдер (центрированный спиннер на весь экран), чтобы не было белого мерцания.
+Остальные файлы оставим на потом — иначе спринт раздуется.
 
-### 2. Глобальный ErrorBoundary
-Создать `src/components/ErrorBoundary.tsx` — классовый компонент с `componentDidCatch`. Показывает дружелюбное сообщение "Что-то пошло не так" + кнопку "Перезагрузить". Обернуть им `<Routes>` в `App.tsx`, чтобы ошибка рендера одной страницы не убивала всё приложение.
+### 2. Удалить неиспользуемую страницу `src/pages/About.tsx`
+В `App.tsx` маршрут `/about` редиректит на `/eac/about`, а файл `src/pages/About.tsx` импортируется, но никуда не подключён в роутах (использовался EACAbout). Удалим мёртвый импорт и сам файл.
 
-### 3. Миграция `react-helmet` → `react-helmet-async`
-- Установить `react-helmet-async`, удалить `react-helmet` и `@types/react-helmet`.
-- В `App.tsx` обернуть приложение в `<HelmetProvider>`.
-- В `src/components/Seo.tsx` заменить импорт `Helmet` на `react-helmet-async`.
-- API идентичен — другие правки не требуются.
+Аналогично проверим: `src/components/home/QuickLinks.tsx`, `src/components/home/Services.tsx`, `src/components/home/EventCalendar.tsx` — используются ли в `Index.tsx`. Если нет — удалим.
 
-### 4. Починка `manualChunks` в `vite.config.ts`
-Текущая запись `ui: ["@/components/ui/button", "@/components/ui/card"]` не работает — `manualChunks` ждёт имена npm-пакетов. Заменить на функциональную форму, разделяющую vendor-чанки по группам:
-- `react` (react, react-dom, react-router-dom)
-- `radix` (все `@radix-ui/*`)
-- `supabase` (`@supabase/*`)
-- `lucide` (lucide-react)
-- `forms` (react-hook-form, zod, @hookform/resolvers)
+### 3. Очистка `users` и `guilds` таблиц
+В `src/integrations/supabase/types.ts` видно, что в схеме есть таблицы `users`, `guilds`, `invite_codes` — это артефакты от какого-то другого проекта (DKP, гильдии). Они не используются текущим приложением.
 
-Эффект: лучше кеширование, обновление одной зависимости не инвалидирует весь vendor-бандл.
+**Не трогаем БД** в этом спринте (миграции — отдельная осторожная работа), но зафиксируем находку и предупредим пользователя, чтобы он сам решил, удалять ли.
 
-### 5. Убрать отладочные `console.log`
-- `src/pages/gallery/TokenManagement.tsx` — найти и удалить (или обернуть в `if (import.meta.env.DEV)`).
-- Параллельно пробежаться поиском `console.log` по `src/` и почистить явный отладочный мусор (оставить только `console.error` для реальных ошибок).
+### 4. Унификация `console.error`
+Пробежимся `console.log/console.warn` по `src/` — всё, что осталось, либо удалим, либо обернём в `if (import.meta.env.DEV)`. `console.error` оставляем для реальных ошибок.
 
-### 6. Очистка артефактов
-- `convert-to-webp.js` в корне — одноразовый скрипт оптимизации, в build pipeline не используется. Удалить (если нужен — можно перенести в `scripts/`).
-- Проверить `.lovable/plan.md` — оставшийся артефакт; не трогаем, это служебный файл.
+### 5. Защита от XSS в данных новостей
+Проверим `NewsItem` — `description` рендерится как текст, а не через `dangerouslySetInnerHTML` (хорошо). Но если где-то найдётся `dangerouslySetInnerHTML` с пользовательскими данными — добавим `DOMPurify` или удалим.
 
-## Файлы, которые будут изменены / созданы
+### 6. Loading state в Gallery вместо текста
+Сейчас `Gallery.tsx` при загрузке показывает простой текст "loading". Заменим на нормальный скелетон или используем уже готовый `PageLoader` из Спринта 4.
+
+### 7. Удалить дубликат `src/hooks/use-toast.ts`
+Есть и `src/hooks/use-toast.ts`, и `src/components/ui/use-toast.ts` — это дубликат шаблона shadcn. Один из них пере-экспортирует другой. Оставим только канонический и поправим импорты, если придётся.
+
+## Файлы, которые будут изменены / удалены
 
 Изменены:
-- `src/App.tsx` — lazy + Suspense + ErrorBoundary + HelmetProvider
-- `src/components/Seo.tsx` — импорт из `react-helmet-async`
-- `vite.config.ts` — корректные `manualChunks`
-- `src/pages/gallery/TokenManagement.tsx` — убрать `console.log`
-- `package.json` — зависимости helmet
+- `src/components/council/CouncilMember.tsx` — токены вместо хардкод-цветов
+- `src/components/news/NewsItem.tsx` — токены
+- `src/components/home/AboutPreview.tsx` — токены
+- `src/pages/gallery/Gallery.tsx` — нормальный loading
+- `src/index.css` или `tailwind.config.ts` — добавить недостающие токены, если нужно
 
-Созданы:
-- `src/components/ErrorBoundary.tsx`
-- `src/components/ui/PageLoader.tsx` (fallback для Suspense)
-
-Удалены:
-- `convert-to-webp.js`
+Удалены (если подтвердится, что не используются):
+- `src/pages/About.tsx`
+- Возможно: `src/components/home/QuickLinks.tsx`, `Services.tsx`, `EventCalendar.tsx`
 
 ## Что НЕ делаем
-- Не трогаем мультиязычные URL-префиксы (отдельная большая работа).
-- Не трогаем `react-helmet-async` SSR-обвязку — приложение чисто клиентское.
-- Не рефакторим бизнес-компоненты — только инфраструктура.
+- Не делаем массовую замену цветов по всему проекту — только 3 ключевых компонента.
+- Не трогаем БД (миграции — отдельный спринт).
+- Не меняем логику авторизации/RLS.
 
 ## Проверка после применения
-1. Сеть DevTools → видно подгрузку отдельных JS-чанков при переходе на страницы.
-2. Любая ошибка в компоненте показывает наш ErrorBoundary, а не белый экран.
-3. `<head>` по-прежнему содержит canonical + hreflang (helmet-async работает).
-4. Сборка `bun run build` проходит без ошибок и предупреждений про manualChunks.
+1. Build проходит.
+2. Внешний вид Council/News/About не сломан (визуальная проверка превью).
+3. Loading в Gallery — спиннер вместо голого текста.
 

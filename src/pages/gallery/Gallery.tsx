@@ -41,13 +41,12 @@ const Gallery = () => {
   const fetchPaintings = async () => {
     try {
       const { data, error } = await supabase
-        .from('paintings')
+        .from('public_paintings' as any)
         .select('*')
-        .eq('is_published', true)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setPaintings(data || []);
+      setPaintings((data as any) || []);
     } catch (error) {
       console.error('Error fetching paintings:', error);
     } finally {

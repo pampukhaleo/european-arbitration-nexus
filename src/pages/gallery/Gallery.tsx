@@ -46,7 +46,7 @@ const Gallery = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setPaintings(data || []);
+      setPaintings((data as any) || []);
     } catch (error) {
       console.error('Error fetching paintings:', error);
     } finally {

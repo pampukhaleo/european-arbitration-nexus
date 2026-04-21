@@ -14,7 +14,7 @@ export default function DesktopNav({
   toggleDropdown 
 }: DesktopNavProps) {
   return (
-    <nav className="hidden xl:flex space-x-1">
+    <nav aria-label="Main navigation" className="hidden xl:flex space-x-1">
       {navItems.map((item) => (
         <NavDropdown
           key={item.title}

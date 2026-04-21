@@ -21,8 +21,8 @@ export default function MobileNav({
   if (!mobileMenuOpen) return null;
   
   return (
-    <div className="xl:hidden bg-white shadow-lg">
-      <nav className="container mx-auto px-4 py-4 space-y-1">
+    <div id="mobile-navigation" className="xl:hidden bg-white shadow-lg">
+      <nav aria-label="Mobile navigation" className="container mx-auto px-4 py-4 space-y-1">
         {navItems.map((item) => (
           <NavDropdown
             key={item.title}

@@ -26,10 +26,14 @@ export default function AboutPreview() {
           <div className="lg:w-1/2">
             <div className="relative">
               <div className="absolute inset-0 -translate-x-4 -translate-y-4 bg-eac-primary/20 rounded-3xl"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&auto=format&fit=crop&q=80" 
-                alt="Business meeting" 
-                className="rounded-3xl relative z-10 w-full h-auto shadow-xl" 
+              <img
+                src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=800&auto=format&fit=crop&q=80"
+                alt="Business meeting"
+                width={800}
+                height={533}
+                loading="lazy"
+                decoding="async"
+                className="rounded-3xl relative z-10 w-full h-auto shadow-xl"
               />
             </div>
           </div>

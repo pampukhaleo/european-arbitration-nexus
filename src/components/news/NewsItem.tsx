@@ -55,6 +55,8 @@ const NewsItem = ({
                   <img
                     src={mainImageJpg}
                     alt={title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-auto object-cover"
                   />
                 </picture>
@@ -95,6 +97,7 @@ const NewsItem = ({
               src={mainImageJpg}
               alt={title}
               loading="lazy"
+              decoding="async"
               className="w-full object-cover group-hover:opacity-90 transition-opacity"
             />
           </picture>

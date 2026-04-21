@@ -15,30 +15,35 @@ interface SeoProps {
 }
 
 const getBaseUrl = (): string => {
-  // Use client-side URL if available, otherwise fall back to stored URL
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     return window.location.origin;
   }
   return getPublicBaseUrl();
 };
 
 export const Seo = ({
-                      title = "The European Arbitration Chamber (EAC)",
-                      description = "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008.",
-                      image = "eap-banner-1200x630.png",
-                      lang = "en",
-                      imageWidth = 1200,
-                      imageHeight = 630,
-                      robots = "index, follow",
-                      structuredData,
-                      ogType = "website"
-                    }: SeoProps) => {
+  title = "The European Arbitration Chamber (EAC)",
+  description = "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008.",
+  image = "eap-banner-1200x630.png",
+  lang = "en",
+  imageWidth = 1200,
+  imageHeight = 630,
+  robots = "index, follow",
+  structuredData,
+  ogType = "website",
+}: SeoProps) => {
   const location = useLocation();
   const baseUrl = getBaseUrl();
-  // Generate canonical URL using spa-github-pages format
-  const canonicalUrl = `${baseUrl}/?${location.pathname.replace(/\/$/, '') || '/'}`;
+
+  // Standard canonical URL (no spa-github-pages "?/..." prefix)
+  const cleanPath = location.pathname.replace(/\/+$/, "") || "/";
+  const canonicalUrl = `${baseUrl}${cleanPath === "/" ? "/" : cleanPath}`;
+
   const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
+
+  const ogLocale =
+    lang === "en" ? "en_US" : lang === "ru" ? "ru_RU" : "fr_FR";
 
   return (
     <Helmet htmlAttributes={{ lang }}>
@@ -51,7 +56,12 @@ export const Seo = ({
 
       {/* Canonical */}
       <link rel="canonical" href={canonicalUrl} />
-      
+
+      {/* hreflang alternates — same path, language signal for crawlers */}
+      <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="fr" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="ru" href={canonicalUrl} />
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
@@ -63,10 +73,7 @@ export const Seo = ({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="European Arbitration Chamber (EAC)" />
-      <meta
-        property="og:locale"
-        content={lang === "en" ? "en_US" : lang === "ru" ? "ru_RU" : "fr_FR"}
-      />
+      <meta property="og:locale" content={ogLocale} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

@@ -65,6 +65,8 @@ export default function NavDropdown({
           isMobile && "w-full justify-between"
         )}
         onClick={() => onToggle(item.title)}
+        onMouseEnter={() => item.children?.forEach((c) => prefetchRoute(c.href))}
+        onFocus={() => item.children?.forEach((c) => prefetchRoute(c.href))}
       >
         {t(item.translationKey) || item.title}
         {item.children && <ChevronDown size={16} aria-hidden="true" />}

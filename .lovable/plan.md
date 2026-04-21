@@ -1,36 +1,48 @@
 
 
-# Хотфикс — Галерея пустая для анонимных пользователей
+# Фикс — Белый экран при клике на логотип
 
 ## Симптом
-На `/gallery` нет ни одной картины, хотя в БД 121 опубликованная.
+При клике на логотип в шапке ненадолго появляется белый экран с одинокой ссылкой "Skip to main content", потом загружается главная.
 
 ## Причина
-View `public_paintings` создан с `security_invoker = true` — он работает от имени вызывающего. Для анонимов RLS-политики на базовой таблице `paintings` нет (старая `"Public can view published paintings"` была удалена в миграции `20260421095226`), поэтому view возвращает пустой массив.
+В `src/components/header/Logo.tsx` используется обычный HTML-тег `<a href="/">` вместо React Router `<Link to="/">`:
 
-REST-запрос `GET /rest/v1/public_paintings` с anon-ключом подтверждает: `[]`.
-
-## Решение
-Миграция: добавить SELECT-политику на `paintings` для роли `anon` (и `authenticated` тоже, на случай если пользователь залогинен), которая разрешает читать ТОЛЬКО строки с `is_published = true`.
-
-```sql
-CREATE POLICY "Anon can read published paintings"
-ON public.paintings
-FOR SELECT
-TO anon, authenticated
-USING (is_published = true);
+```tsx
+<a href={'/'} className="...">
 ```
 
-Это безопасно: 
-- Anon видит только `is_published = true`, через view `public_paintings` (view фильтрует приватные колонки, поэтому `owner_id` и прочее всё равно не утекает).
-- Прямой запрос к `paintings` от anon тоже отдаст только публичные строки. Если хочешь дополнительно запретить anon ходить мимо view к таблице — могу добавить отдельную политику, но смысла нет: данные в публичных колонках и так публичны, а приватные колонки скрыты на уровне view (`acquisition_credit`, `documents`, `certificates` и т.п. видны через view, который их сам отдаёт). 
+Браузер обрабатывает это как полную навигацию: выгружает SPA, делает HTTP-запрос за `/`, заново парсит HTML, грузит JS-бандл и только потом React рендерит главную. В промежутке виден голый `index.html` — там есть только accessibility-ссылка "Skip to main content", отсюда и эта картинка.
 
-Если приватные колонки `paintings` действительно надо прятать от прямого доступа — после миграции их можно убрать из `GRANT SELECT (...)` отдельно. Но это уже отдельная задача.
+Все остальные ссылки в навигации используют `<Link>` из `react-router-dom` и работают мгновенно — без перезагрузки.
+
+## Решение
+Заменить в `Logo.tsx` `<a href="/">` на `<Link to="/">` из `react-router-dom`. Клик станет клиентской навигацией, белого экрана больше не будет.
+
+```tsx
+import { Link } from "react-router-dom";
+
+export default function Logo() {
+  return (
+    <Link to="/" className="flex items-center flex-shrink-0">
+      <img
+        src={`${import.meta.env.BASE_URL}logo.png`}
+        alt="European Arbitration Chamber Logo"
+        className="h-12 w-auto"
+        style={{ maxWidth: '100%' }}
+      />
+    </Link>
+  );
+}
+```
+
+## Бонус (по желанию)
+В консоли есть warning от React: `fetchPriority` на `<img>` в `Hero.tsx` написан camelCase'ом, но React 18 ожидает lowercase для нестандартных атрибутов. Это косметическое предупреждение, не ошибка. Если хочешь — заодно поправлю на `fetchpriority="high"` через атрибут или уберу совсем (у нас там `loading="eager"`, этого достаточно).
 
 ## Файлы
-- Новая миграция (через Lovable Cloud migration tool).
-- Код приложения не трогаем.
+- `src/components/header/Logo.tsx` — заменить `<a>` на `<Link>`.
+- (опционально) `src/components/home/Hero.tsx` — убрать/исправить `fetchPriority`.
 
 ## Проверка
-После миграции `curl` на `public_paintings` должен вернуть 121 запись. Перезагрузить `/gallery` — картины появятся.
+Клик по логотипу с любой страницы → мгновенный переход на `/` без мигания белым.
 

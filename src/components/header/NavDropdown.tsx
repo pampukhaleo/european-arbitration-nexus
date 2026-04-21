@@ -41,6 +41,9 @@ export default function NavDropdown({
             isMobile && "w-full block"
           )}
           onClick={closeMobileMenu}
+          onMouseEnter={() => prefetchRoute(item.href)}
+          onFocus={() => prefetchRoute(item.href)}
+          onTouchStart={() => prefetchRoute(item.href)}
         >
           {t(item.translationKey) || item.title}
         </Link>

@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { prefetchRoute } from "@/lib/routePrefetch";
 import { NavItem } from "./NavData";
 
 interface NavDropdownProps {

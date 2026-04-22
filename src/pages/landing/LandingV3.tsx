@@ -173,15 +173,9 @@ const LandingV3 = () => {
                 style={{ backgroundColor: WHITE }}
               >
                 <div
-                  className="text-sm font-bold mb-6 pb-4 border-b-2"
-                  style={{
-                    fontFamily: "'JetBrains Mono', 'Courier New', monospace",
-                    color: ACCENT,
-                    borderColor: BLACK,
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")} / 06
-                </div>
+                  className="h-[3px] w-10 mb-6"
+                  style={{ backgroundColor: ACCENT }}
+                />
                 <h3
                   className="mb-4"
                   style={{

@@ -42,86 +42,87 @@ const LandingV3 = () => {
 
         {/* HERO */}
         <section className="container mx-auto px-4 pt-12 md:pt-20 pb-12 md:pb-16">
-          <div className="flex items-center gap-3 mb-10">
-            <span
-              className="px-3 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase"
-              style={{ backgroundColor: ACCENT, color: WHITE }}
-            >
-              Arbitration
-            </span>
-            <span
-              className="text-[11px] font-bold tracking-[0.2em] uppercase"
-              style={{ color: BLACK }}
-            >
-              Brussels · 2008
-            </span>
-          </div>
+          <div className="grid md:grid-cols-12 gap-10 md:gap-12">
+            {/* Left: kicker + H1 */}
+            <div className="md:col-span-8">
+              <div className="flex items-center gap-3 mb-8 md:mb-10">
+                <span
+                  className="px-3 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase"
+                  style={{ backgroundColor: ACCENT, color: WHITE }}
+                >
+                  Arbitration
+                </span>
+                <span
+                  className="text-[11px] font-bold tracking-[0.2em] uppercase"
+                  style={{ color: BLACK }}
+                >
+                  Brussels · 2008
+                </span>
+              </div>
 
-          <h1
-            className="max-w-6xl"
-            style={{
-              fontFamily: "'Space Grotesk', 'Inter Tight', sans-serif",
-              fontSize: "clamp(2.75rem, 9vw, 7.5rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              lineHeight: 0.92,
-            }}
-          >
-            Арбітражне
-            <br />
-            застереження.
-            <br />
-            <span style={{ color: ACCENT }}>Захист</span> вашого
-            <br />
-            бізнесу.
-          </h1>
+              <h1
+                style={{
+                  fontFamily: "'Space Grotesk', 'Inter Tight', sans-serif",
+                  fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)",
+                  fontWeight: 700,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.95,
+                }}
+              >
+                Арбітражне застереження.
+                <br />
+                <span style={{ color: ACCENT }}>Захист</span> вашого
+                <br />
+                бізнесу.
+              </h1>
+            </div>
 
-          <div className="mt-12 grid md:grid-cols-12 gap-8 items-end">
-            <div className="md:col-span-7">
+            {/* Right: lead + buttons */}
+            <div className="md:col-span-4 md:pt-12 flex flex-col gap-6">
               <div
-                className="h-[3px] w-20 mb-6"
+                className="h-[3px] w-20"
                 style={{ backgroundColor: BLACK }}
               />
-              <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: `${BLACK}CC` }}>
+              <p className="text-base md:text-lg leading-relaxed" style={{ color: `${BLACK}CC` }}>
                 {HERO.lead}
               </p>
-            </div>
-            <div className="md:col-span-5 flex flex-col gap-2">
-              <a
-                href={CONTACT.telHref}
-                className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider transition-colors hover:opacity-90"
-                style={{ backgroundColor: BLACK, color: WHITE }}
-              >
-                <span className="flex items-center gap-3">
-                  <Phone className="h-4 w-4" />
-                  Подзвонити
-                </span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={CONTACT.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider border-2 transition-colors hover:bg-black hover:text-white"
-                style={{ borderColor: BLACK, color: BLACK }}
-              >
-                <span className="flex items-center gap-3">
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp
-                </span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={CONTACT.emailHref}
-                className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider border-2 transition-colors hover:bg-black hover:text-white"
-                style={{ borderColor: BLACK, color: BLACK }}
-              >
-                <span className="flex items-center gap-3">
-                  <Mail className="h-4 w-4" />
-                  Email
-                </span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
+              <div className="flex flex-col gap-2 mt-2">
+                <a
+                  href={CONTACT.telHref}
+                  className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider transition-colors hover:opacity-90"
+                  style={{ backgroundColor: BLACK, color: WHITE }}
+                >
+                  <span className="flex items-center gap-3">
+                    <Phone className="h-4 w-4" />
+                    Подзвонити
+                  </span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={CONTACT.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider border-2 transition-colors hover:bg-black hover:text-white"
+                  style={{ borderColor: BLACK, color: BLACK }}
+                >
+                  <span className="flex items-center gap-3">
+                    <MessageCircle className="h-4 w-4" />
+                    WhatsApp
+                  </span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={CONTACT.emailHref}
+                  className="flex items-center justify-between gap-3 px-5 py-4 text-sm font-bold uppercase tracking-wider border-2 transition-colors hover:bg-black hover:text-white"
+                  style={{ borderColor: BLACK, color: BLACK }}
+                >
+                  <span className="flex items-center gap-3">
+                    <Mail className="h-4 w-4" />
+                    Email
+                  </span>
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
         </section>

@@ -237,8 +237,8 @@ const LandingV3 = () => {
           >
             <div className="max-w-md">
               <div
-                className="text-xs font-bold tracking-[0.3em] uppercase mb-8"
-                style={{ color: WHITE }}
+                className="font-bold tracking-tight mb-8 text-2xl md:text-4xl lg:text-5xl leading-[1.05]"
+                style={{ color: WHITE, fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 Що дає правильне застереження
               </div>

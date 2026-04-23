@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function LandingFooter() {
   return (
-    <footer className="w-full border-t bg-eac-dark text-white/80 mt-12">
+    <footer className="w-full border-t border-white/10 bg-eac-dark text-white/80">
       <div className="container mx-auto px-4 py-8 grid gap-6 md:grid-cols-3 text-sm">
         <div>
           <p className="font-semibold text-white mb-2">European Arbitration Chamber</p>

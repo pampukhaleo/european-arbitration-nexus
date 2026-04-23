@@ -22,9 +22,7 @@ const prefetchers: Record<string, () => Promise<unknown>> = {
   '/privacy-policy': () => import('@/pages/policies/PrivacyPolicy'),
   '/cookies-policy': () => import('@/pages/policies/CookiesPolicy'),
   '/terms-of-service': () => import('@/pages/policies/TermsOfService'),
-  '/landing/v1': () => import('@/pages/landing/LandingV1'),
-  '/landing/v2': () => import('@/pages/landing/LandingV2'),
-  '/landing/v3': () => import('@/pages/landing/LandingV3'),
+  '/landing': () => import('@/pages/Landing'),
 };
 
 const prefetched = new Set<string>();

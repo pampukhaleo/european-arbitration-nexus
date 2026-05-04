@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { newsItems } from "@/data/newsData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickText } from "@/lib/localizedNews";
 import { Seo } from "@/components/Seo";
 
 const NewsDetail = () => {
@@ -24,20 +25,23 @@ const NewsDetail = () => {
 
   if (!newsItem) return null;
 
+  const title = pickText(newsItem.title, language);
+  const description = pickText(newsItem.description, language);
+
   // SEO data
-  const seoTitle = `${newsItem.title} | News - European Arbitration Chamber`;
-  const plainDescription = newsItem.description
+  const seoTitle = `${title} | News - European Arbitration Chamber`;
+  const plainDescription = description
     .replace(/<[^>]*>/g, '')
     .replace(/\n+/g, ' ')
     .trim();
-  const seoDescription = plainDescription.length > 160 
+  const seoDescription = plainDescription.length > 160
     ? `${plainDescription.substring(0, 157)}...`
     : plainDescription;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": newsItem.title,
+    "headline": title,
     "datePublished": newsItem.date,
     "dateModified": newsItem.date,
     "description": seoDescription,

@@ -37,7 +37,7 @@ const announcement = {
 
 export const news2026: NewsItem[] = [
   {
-    id: "20262",
+    id: "20261",
     date: "Apr 07 2026",
     title: {
       en: "GENERAL MEETING OF THE EUROPEAN ARBITRATION CHAMBER HELD IN BRUSSELS",

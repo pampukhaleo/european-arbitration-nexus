@@ -101,4 +101,5 @@ export const news2026: NewsItem[] = [
       "/images/news/eac-2026-meeting-9.jpg",
     ],
   },
+  announcement,
 ];

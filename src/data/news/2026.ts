@@ -1,40 +1,41 @@
 import { NewsItem } from "@/types/news";
 
-export const news2026: NewsItem[] = [
-  {
-    id: "20261",
-    date: "Apr 07 2026",
-    title: {
-      en: "GENERAL MEETING OF THE EUROPEAN ARBITRATION CHAMBER IN BRUSSELS",
-      fr: "ASSEMBLÉE GÉNÉRALE DE LA CHAMBRE EUROPÉENNE D'ARBITRAGE À BRUXELLES",
-      ru: "ОБЩЕЕ СОБРАНИЕ ЕВРОПЕЙСКОЙ АРБИТРАЖНОЙ ПАЛАТЫ В БРЮССЕЛЕ",
-    },
-    excerpt: {
-      en: "European Arbitration Chamber announces that the General Meeting of the Members and the Council will take place on 7 April 2026 at 11:00–12:00 at Avenue Louise 146, Brussels.",
-      fr: "La Chambre européenne d'arbitrage annonce que l'Assemblée générale des membres et du Conseil se tiendra le 7 avril 2026 de 11h00 à 12h00 à l'Avenue Louise 146, Bruxelles.",
-      ru: "Европейская арбитражная палата сообщает, что Общее собрание членов и Совета ЕАП состоится 7 апреля 2026 года с 11:00 до 12:00 по адресу: Avenue Louise 146, Брюссель.",
-    },
-    description: {
-      en:
-        "European Arbitration Chamber announces that the General Meeting of the Members and the Council will take place on 7 April 2026 at 11:00–12:00.\n\n" +
-        "Venue: Avenue Louise 146, Brussels.\n\n" +
-        "The meeting will bring together members of the Chamber to discuss current activities and developments in the field of arbitration.\n\n" +
-        "Former members and interested professionals may express their interest in attending as guests.\n\n" +
-        "For inquiries and participation requests: secretary@chea-taic.be",
-      fr:
-        "La Chambre européenne d'arbitrage annonce que l'Assemblée générale des membres et du Conseil se tiendra le 7 avril 2026 de 11h00 à 12h00.\n\n" +
-        "Lieu : Avenue Louise 146, Bruxelles.\n\n" +
-        "La réunion rassemblera les membres de la Chambre afin de discuter des activités en cours et des développements dans le domaine de l'arbitrage.\n\n" +
-        "Les anciens membres et les professionnels intéressés peuvent manifester leur intérêt pour participer en tant qu'invités.\n\n" +
-        "Pour toute demande d'information et de participation : secretary@chea-taic.be",
-      ru:
-        "Европейская арбитражная палата сообщает, что Общее собрание членов и Совета ЕАП состоится 7 апреля 2026 года с 11:00 до 12:00.\n\n" +
-        "Место проведения: Avenue Louise 146, Брюссель.\n\n" +
-        "Собрание объединит членов Палаты для обсуждения текущей деятельности ЕАП и ее дальнейшего развития в сфере коммерческого арбитража.\n\n" +
-        "Для регистрации участия обращайтесь по электронной почте: secretary@chea-taic.be",
-    },
-    mainImageJpg: "/images/news/eac-2026-announcement.jpg",
+const announcement = {
+  id: "20260",
+  date: "Mar 17 2026",
+  title: {
+    en: "GENERAL MEETING OF THE EUROPEAN ARBITRATION CHAMBER IN BRUSSELS",
+    fr: "ASSEMBLÉE GÉNÉRALE DE LA CHAMBRE EUROPÉENNE D'ARBITRAGE À BRUXELLES",
+    ru: "ОБЩЕЕ СОБРАНИЕ ЕВРОПЕЙСКОЙ АРБИТРАЖНОЙ ПАЛАТЫ В БРЮССЕЛЕ",
   },
+  excerpt: {
+    en: "European Arbitration Chamber announces that the General Meeting of the Members and the Council will take place on 7 April 2026 at 11:00–12:00 at Avenue Louise 146, Brussels.",
+    fr: "La Chambre européenne d'arbitrage annonce que l'Assemblée générale des membres et du Conseil se tiendra le 7 avril 2026 de 11h00 à 12h00 à l'Avenue Louise 146, Bruxelles.",
+    ru: "Европейская арбитражная палата сообщает, что Общее собрание членов и Совета ЕАП состоится 7 апреля 2026 года с 11:00 до 12:00 по адресу: Avenue Louise 146, Брюссель.",
+  },
+  description: {
+    en:
+      "European Arbitration Chamber announces that the General Meeting of the Members and the Council will take place on 7 April 2026 at 11:00–12:00.\n\n" +
+      "Venue: Avenue Louise 146, Brussels.\n\n" +
+      "The meeting will bring together members of the Chamber to discuss current activities and developments in the field of arbitration.\n\n" +
+      "Former members and interested professionals may express their interest in attending as guests.\n\n" +
+      "For inquiries and participation requests: secretary@chea-taic.be",
+    fr:
+      "La Chambre européenne d'arbitrage annonce que l'Assemblée générale des membres et du Conseil se tiendra le 7 avril 2026 de 11h00 à 12h00.\n\n" +
+      "Lieu : Avenue Louise 146, Bruxelles.\n\n" +
+      "La réunion rassemblera les membres de la Chambre afin de discuter des activités en cours et des développements dans le domaine de l'arbitrage.\n\n" +
+      "Les anciens membres et les professionnels intéressés peuvent manifester leur intérêt pour participer en tant qu'invités.\n\n" +
+      "Pour toute demande d'information et de participation : secretary@chea-taic.be",
+    ru:
+      "Европейская арбитражная палата сообщает, что Общее собрание членов и Совета ЕАП состоится 7 апреля 2026 года с 11:00 до 12:00.\n\n" +
+      "Место проведения: Avenue Louise 146, Брюссель.\n\n" +
+      "Собрание объединит членов Палаты для обсуждения текущей деятельности ЕАП и ее дальнейшего развития в сфере коммерческого арбитража.\n\n" +
+      "Для регистрации участия обращайтесь по электронной почте: secretary@chea-taic.be",
+  },
+  mainImageJpg: "/images/news/eac-2026-announcement.jpg",
+};
+
+export const news2026: NewsItem[] = [
   {
     id: "20262",
     date: "Apr 07 2026",

@@ -1,44 +1,72 @@
+## План: добавление двух новостей с переводами на 3 языка
 
+### 1. Расширение типа `NewsItem`
 
-# Доработка LandingV3
+Файл: `src/types/news.ts`
 
-Базируемся на V3 (editorial brutalism, B/W + crimson). Меняем три вещи:
+Добавляем тип-помощник для локализованного текста и делаем поля `title`, `excerpt`, `description` способными принимать **либо строку (старый формат, EN), либо объект `{en, fr, ru}`** (новый формат). Это сохраняет совместимость со всеми существующими новостями без правок.
 
-## 1. Hero — уменьшить заголовок и сделать раскладку как в V1
+```ts
+export type LocalizedText = string | { en: string; fr: string; ru: string };
 
-**Сейчас (V3):**
-- H1 на всю ширину, `clamp(2.75rem, 9vw, 7.5rem)` — на десктопе ~120px, занимает почти весь экран в 4 строки.
-- Под ним идёт сетка 12 колонок: слева lead-текст, справа кнопки.
+export interface NewsItem {
+  id: string;
+  title: LocalizedText;
+  date: string;
+  excerpt: LocalizedText;
+  description: LocalizedText;
+  mainImageJpg?: string;
+  mainImageWebp?: string;
+  images?: string[];
+  link?: string;
+}
+```
 
-**Будет (V1-стиль, но в эстетике V3):**
-- Hero превращается в `grid md:grid-cols-12` с самого верха.
-- **Левая колонка (md:col-span-8):** kicker-бейдж + H1. Размер уменьшаем до `clamp(2.25rem, 5.5vw, 4.5rem)` — примерно как в V1 (~88px max). H1 переписывается в 3 строки вместо 4: «Арбітражне застереження.» / «<accent>Захист</accent> вашого» / «бізнесу.»
-- **Правая колонка (md:col-span-4, md:pt-12):** тонкая accent-линия сверху → lead-параграф → три кнопки (телефон/WhatsApp/email) — стек сверху вниз, как в V1.
-- На мобильном — естественно стекается в одну колонку (kicker → H1 → lead → кнопки).
-- Цвета и шрифты V3 (Space Grotesk для H1, чёрный/белый/crimson) сохраняются. Меняется только композиция и масштаб.
+### 2. Утилита получения текста по языку
 
-## 2. Преимущества — убрать «01 / 06»
+Новый файл: `src/lib/localizedNews.ts`
 
-**Сейчас (V3):**
-- В каждой карточке сверху mono-числитель `01 / 06`, `02 / 06` и т.д. с подчёркиванием.
+```ts
+import type { Language } from "@/contexts/LanguageContext";
+import type { LocalizedText } from "@/types/news";
 
-**Будет:**
-- Удаляем mono-числитель и нижнюю border-line полностью.
-- Вместо него над заголовком оставляем только короткую crimson-черту (`h-[3px] w-10`) для визуальной точки опоры. Заголовок карточки остаётся, текст остаётся, сетка `md:grid-cols-3 gap-px` с чёрным фоном-разделителем — без изменений.
+export const pickText = (value: LocalizedText, lang: Language): string => {
+  if (typeof value === "string") return value; // legacy EN-only
+  return value[lang] || value.en;              // fallback to EN
+};
+```
 
-Секционный счётчик `01 /` в шапке секции «Переваги» **остаётся** (он не на карточках, пользователь жаловался на нумерацию именно табличек). Если хочешь убрать и его — скажи, уберу одной правкой.
+### 3. Использование во всех точках вывода
 
-## 3. Что не трогаем
+В компонентах берём `language` из `useLanguage()` и оборачиваем поля через `pickText(...)`:
 
-- Шапка `LandingHeader`, футер `LandingFooter`, sticky bar.
-- Accent-полоса между hero и преимуществами.
-- Секция 02 (about + checklist на crimson-фоне).
-- Финальный CTA на чёрном фоне.
-- Файл `landing-content.ts`.
+- `src/components/news/NewsItem.tsx` — `title`, `description` (для `firstParagraph`).
+- `src/components/home/NewsPreview.tsx` — пропсы передаём как есть, локализация выполняется внутри `NewsItem`.
+- `src/pages/eac/News.tsx` — то же, `NewsItem` уже локализует.
+- `src/pages/eac/NewsDetail.tsx` — `title`, `description` (включая `seoTitle`, `plainDescription`, `structuredData.headline/description`, alt-атрибуты).
 
-## Файлы
+### 4. Создание новостей
 
-- `src/pages/landing/LandingV3.tsx` — две правки: hero (строки 44–127) и карточки преимуществ (строки 167–201).
+Новый файл: `src/data/news/2026.ts` — массив `news2026: NewsItem[]` с двумя записями, где `title/excerpt/description` оформлены как `{ en, fr, ru }`. Картинки кладём в `public/images/news/`.
 
-Других изменений нет.
+Обновляем `src/data/news/index.ts` — добавляем `import { news2026 }` и `...news2026` в начало массива (чтобы новые показывались первыми).
 
+### 5. Что вы пришлёте
+
+Для каждой из двух новостей:
+
+- `id` (или я сгенерирую `20261`, `20262`)
+- `date` (формат как в существующих: `Mon DD YYYY`, например `May 04 2026`)
+- `title` × 3 (EN / FR / RU)
+- `excerpt` × 3 (короткий — 1–2 предложения)
+- `description` × 3 (полный текст; пустая строка между абзацами = `\n\n`)
+- Главное изображение (.jpg/.webp) и опциональные доп. картинки
+
+Можете прислать одним сообщением в любом формате (markdown, просто блоками "EN:/FR:/RU:") — я разложу по структуре.
+
+### Что НЕ трогаем
+
+- Существующие новости 2014–2024 остаются строками (EN), компоненты обрабатывают оба формата прозрачно.
+- Логика SEO, маршруты, sitemap.
+
+После вашего OK переключусь в build mode, сделаю изменения типа/утилиты/компонентов, и буду готов вставить тексты как только пришлёте.

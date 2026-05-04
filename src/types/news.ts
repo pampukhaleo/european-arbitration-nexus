@@ -1,10 +1,11 @@
+export type LocalizedText = string | { en: string; fr: string; ru: string };
 
 export interface NewsItem {
   id: string;
-  title: string;
+  title: LocalizedText;
   date: string;
-  excerpt: string;
-  description: string;
+  excerpt: LocalizedText;
+  description: LocalizedText;
   mainImageJpg?: string;
   mainImageWebp?: string;
   images?: string[];

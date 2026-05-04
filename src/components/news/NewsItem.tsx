@@ -8,12 +8,14 @@ import {
 } from "@/components/ui/card";
 import { CalendarIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import type { LocalizedText } from "@/types/news";
+import { pickText } from "@/lib/localizedNews";
 
 interface NewsItemProps {
   id: string;
-  title: string;
+  title: LocalizedText;
   date: string;
-  description: string;
+  description: LocalizedText;
   mainImageJpg?: string;
   mainImageWebp?: string;
   images?: string[];
@@ -23,15 +25,17 @@ interface NewsItemProps {
 
 const NewsItem = ({
                     id,
-                    title,
+                    title: titleRaw,
                     date,
-                    description,
+                    description: descriptionRaw,
                     mainImageJpg,
                     mainImageWebp,
                     useCardWrapper = false,
                     useInlineLayout = false,
                   }: NewsItemProps) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const title = pickText(titleRaw, language);
+  const description = pickText(descriptionRaw, language);
   const firstParagraph = description.split("\n\n")[0];
   const linkTo = `/eac/news/${id}`;
 

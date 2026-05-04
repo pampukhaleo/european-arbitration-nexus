@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { newsItems } from "@/data/newsData";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pickText } from "@/lib/localizedNews";
 import { Seo } from "@/components/Seo";
 
 const NewsDetail = () => {
@@ -24,20 +25,23 @@ const NewsDetail = () => {
 
   if (!newsItem) return null;
 
+  const title = pickText(newsItem.title, language);
+  const description = pickText(newsItem.description, language);
+
   // SEO data
-  const seoTitle = `${newsItem.title} | News - European Arbitration Chamber`;
-  const plainDescription = newsItem.description
+  const seoTitle = `${title} | News - European Arbitration Chamber`;
+  const plainDescription = description
     .replace(/<[^>]*>/g, '')
     .replace(/\n+/g, ' ')
     .trim();
-  const seoDescription = plainDescription.length > 160 
+  const seoDescription = plainDescription.length > 160
     ? `${plainDescription.substring(0, 157)}...`
     : plainDescription;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
-    "headline": newsItem.title,
+    "headline": title,
     "datePublished": newsItem.date,
     "dateModified": newsItem.date,
     "description": seoDescription,
@@ -101,7 +105,7 @@ const NewsDetail = () => {
           </Button>
 
           {/* Title & Date */}
-          <h1 className="text-3xl font-bold mb-4">{newsItem.title}</h1>
+          <h1 className="text-3xl font-bold mb-4">{title}</h1>
           <div className="flex items-center text-sm text-muted-foreground mb-6">
             <CalendarIcon className="mr-2 h-4 w-4" />
             {newsItem.date}
@@ -115,7 +119,7 @@ const NewsDetail = () => {
                   {newsItem.mainImageWebp && <source srcSet={newsItem.mainImageWebp} type="image/webp" />}
                   <img
                     src={newsItem.mainImageJpg}
-                    alt={newsItem.title}
+                    alt={title}
                     className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
                     onClick={() => handleImageClick(newsItem.mainImageJpg || newsItem.mainImageWebp!)}
                   />
@@ -126,7 +130,7 @@ const NewsDetail = () => {
             <div className="flex-grow prose prose-lg max-w-none">
               <div
                 className="news-content"
-                dangerouslySetInnerHTML={formatDescription(newsItem.description)}
+                dangerouslySetInnerHTML={formatDescription(description)}
               />
             </div>
           </div>
@@ -140,7 +144,7 @@ const NewsDetail = () => {
                   <div key={index} className="w-full">
                     <img
                       src={image}
-                      alt={`${newsItem.title} - image ${index + 1}`}
+                      alt={`${title} - image ${index + 1}`}
                       className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
                       onClick={() => handleImageClick(image)}
                     />

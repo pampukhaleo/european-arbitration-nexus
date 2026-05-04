@@ -1,4 +1,5 @@
 import { NewsItem } from "@/types/news";
+import { news2026 } from "./2026";
 import { news2024 } from "./2024";
 import { news2023 } from "./2023";
 import { news2021 } from "./2021";
@@ -10,6 +11,7 @@ import { news2016 } from "./2016";
 import { news2014 } from "./2014";
 
 export const newsItems: NewsItem[] = [
+  ...news2026,
   ...news2024,
   ...news2023,
   ...news2021,

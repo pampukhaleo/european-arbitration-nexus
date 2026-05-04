@@ -33,7 +33,9 @@ const NewsItem = ({
                     useCardWrapper = false,
                     useInlineLayout = false,
                   }: NewsItemProps) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const title = pickText(titleRaw, language);
+  const description = pickText(descriptionRaw, language);
   const firstParagraph = description.split("\n\n")[0];
   const linkTo = `/eac/news/${id}`;
 

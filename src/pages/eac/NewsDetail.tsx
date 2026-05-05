@@ -38,12 +38,18 @@ const NewsDetail = () => {
     ? `${plainDescription.substring(0, 157)}...`
     : plainDescription;
 
+  // Convert "Apr 07 2026" -> "2026-04-07" for schema.org
+  const isoDate = (() => {
+    const d = new Date(newsItem.date);
+    return isNaN(d.getTime()) ? newsItem.date : d.toISOString().split("T")[0];
+  })();
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     "headline": title,
-    "datePublished": newsItem.date,
-    "dateModified": newsItem.date,
+    "datePublished": isoDate,
+    "dateModified": isoDate,
     "description": seoDescription,
     "image": newsItem.mainImageJpg || newsItem.mainImageWebp,
     "author": {

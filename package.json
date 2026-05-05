@@ -1,5 +1,4 @@
 {
-  "homepage": "https://chea-taic.be",
   "name": "vite_react_shadcn_ts",
   "private": true,
   "version": "0.0.0",
@@ -10,9 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "build": "vite build",
-    "predeploy": "npm run clean && npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "vite build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

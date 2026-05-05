@@ -17,7 +17,7 @@ export default function Hero() {
             src="/images/IMG_3070.JPG"
             alt="European Arbitration Chamber headquarters building"
             loading="eager"
-            fetchpriority="high"
+            {...({ fetchpriority: "high" } as any)}
             decoding="async"
             onLoad={() => setLoaded(true)}
             className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-1000 ${

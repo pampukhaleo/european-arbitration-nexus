@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 import { supabase } from '@/integrations/supabase/client';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';

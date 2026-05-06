@@ -1,5 +1,5 @@
 // Variant C — "Editorial Brutalism". B/W + crimson accent, huge grotesque, mono numerals.
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 import { Phone, Mail, MessageCircle, ArrowRight, FileText } from "lucide-react";
 import { Seo } from "@/components/Seo";
 import LandingHeader from "@/components/landing/LandingHeader";

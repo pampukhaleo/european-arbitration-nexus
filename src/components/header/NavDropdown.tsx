@@ -1,4 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
+import { stripLangPrefix } from "@/lib/i18nRouting";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,8 +26,10 @@ export default function NavDropdown({
   const { t } = useLanguage();
   const location = useLocation();
 
+  // Compare against the path without the /lang prefix.
+  const currentPath = stripLangPrefix(location.pathname) || "/";
   const isCurrentPath = (href: string) =>
-    href === "/" ? location.pathname === "/" : location.pathname.startsWith(href);
+    href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 
   // If the item doesn't have children, render a simple Link instead of a dropdown
   if (!item.children) {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useLocalizedNavigate as useNavigate, Link } from "@/lib/i18nRouting";
 import { ArrowLeft, CalendarIcon, X } from "lucide-react";
 import DOMPurify from "dompurify";
 import { Button } from "@/components/ui/button";

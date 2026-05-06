@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 import { Seo } from "@/components/Seo";
 import { useLanguage } from "@/contexts/LanguageContext";
 

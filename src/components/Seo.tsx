@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { getPublicBaseUrl } from "@/lib/publicBaseUrl";
+import { stripLangPrefix, SUPPORTED_LANGS } from "@/lib/i18nRouting";
 
 interface SeoProps {
   title: string;
@@ -35,10 +36,13 @@ export const Seo = ({
   const location = useLocation();
   const baseUrl = getBaseUrl();
 
-  // Standard canonical URL (no spa-github-pages "?/..." prefix)
-  const cleanPath = location.pathname.replace(/\/+$/, "") || "/";
-  const canonicalUrl = `${baseUrl}${cleanPath === "/" ? "/" : cleanPath}`;
+  // Path without /en|/fr|/ru prefix and without trailing slash.
+  const cleanRest = stripLangPrefix(location.pathname).replace(/\/+$/, "");
+  const currentLang = SUPPORTED_LANGS.includes(lang as any) ? lang : "en";
 
+  const buildUrl = (l: string) => `${baseUrl}/${l}${cleanRest}`;
+
+  const canonicalUrl = buildUrl(currentLang);
   const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
 
@@ -57,11 +61,11 @@ export const Seo = ({
       {/* Canonical */}
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* hreflang alternates — same path, language signal for crawlers */}
-      <link rel="alternate" hrefLang="en" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="fr" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="ru" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+      {/* hreflang alternates — distinct URL per language */}
+      <link rel="alternate" hrefLang="en" href={buildUrl("en")} />
+      <link rel="alternate" hrefLang="fr" href={buildUrl("fr")} />
+      <link rel="alternate" hrefLang="ru" href={buildUrl("ru")} />
+      <link rel="alternate" hrefLang="x-default" href={buildUrl("en")} />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />

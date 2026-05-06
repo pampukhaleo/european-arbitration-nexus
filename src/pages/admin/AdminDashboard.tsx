@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocalizedNavigate as useNavigate } from "@/lib/i18nRouting";
 import { useUserRole } from '@/hooks/useUserRole';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';

@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1 - About */}
           <div>
-            <a href={ '/' } className="mb-4">
+            <Link to="/" className="mb-4 inline-block">
               <picture>
                 <source srcSet={ `${ import.meta.env.BASE_URL }logo.webp` } type="image/webp"/>
                 <img
@@ -44,7 +44,7 @@ export default function Footer() {
                   className="h-12 mb-3"
                 />
               </picture>
-            </a>
+            </Link>
 
             <p className="text-sm text-gray-600 mb-4">{ t("footer.about") }</p>
 

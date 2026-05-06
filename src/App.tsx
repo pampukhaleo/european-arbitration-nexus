@@ -12,6 +12,8 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
 import CookieConsent from '@/components/CookieConsent';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { LangSync } from '@/components/i18n/LangSync';
+import { RootLanguageRedirect, LegacyPathRedirect } from '@/lib/i18nRouting';
 
 // Lazy-loaded pages
 const Gallery = lazy(() => import('@/pages/gallery/Gallery'));
@@ -70,59 +72,16 @@ function App() {
               <ErrorBoundary>
                 <Suspense fallback={<PageLoader />}>
                   <Routes>
-                    {/* Home page */}
-                    <Route path="/" element={<Index />} />
+                    {/* Root → redirect to detected/stored language */}
+                    <Route path="/" element={<RootLanguageRedirect />} />
 
-                    {/* Advertising landing page (UA) */}
-                    <Route path="/landing" element={<Landing />} />
-                    <Route path="/landing/v1" element={<Navigate to="/landing" replace />} />
-                    <Route path="/landing/v2" element={<Navigate to="/landing" replace />} />
-                    <Route path="/landing/v3" element={<Navigate to="/landing" replace />} />
-
-                    {/* EAC section */}
-                    <Route path="/eac" element={<Navigate to="/eac/about" replace />} />
-                    <Route path="/eac/about" element={<EACAbout />} />
-                    <Route path="/eac/council" element={<Council />} />
-                    <Route path="/eac/news" element={<News />} />
-                    <Route path="/eac/news/:id" element={<NewsDetail />} />
-
-                    {/* Arbitration section */}
-                    <Route path="/arbitration" element={<Navigate to="/arbitration/icac" replace />} />
-                    <Route path="/arbitration/icac" element={<ICAC />} />
-                    <Route path="/arbitration/rules" element={<Rules />} />
-                    <Route path="/arbitration/fees" element={<FeeRegulations />} />
-                    <Route path="/arbitration/calculator" element={<CostCalculator />} />
-                    <Route path="/arbitration/clause" element={<ArbitrationClause />} />
-
-                    {/* Expertise section */}
-                    <Route path="/expertise" element={<Navigate to="/expertise/icje" replace />} />
-                    <Route path="/expertise/icje" element={<ICJE />} />
-                    <Route path="/expertise/expertiseFields" element={<ExpertiseFields />} />
-
-                    {/* Art Expertise section */}
-                    <Route path="/art-expertise" element={<Navigate to="/art-expertise/authentication" replace />} />
-                    <Route path="/art-expertise/authentication" element={<ArtAuthentication />} />
-                    <Route path="/art-expertise/appraisal" element={<ArtAppraisal />} />
-                    <Route path="/art-expertise/passport" element={<ArtPassport />} />
-
-                    {/* Gallery section */}
-                    <Route path="/gallery" element={<Gallery />} />
-                    <Route path="/gallery/:id" element={<PaintingDetail />} />
-                    <Route path="/gallery/:id/access/:token" element={<PaintingDetail />} />
-
-                    {/* Membership section */}
-                    <Route path="/membership" element={<Navigate to="/membership/benefits" replace />} />
-                    <Route path="/membership/benefits" element={<MembershipBenefits />} />
-                    <Route path="/membership/join" element={<HowToJoin />} />
-                    <Route path="/membership/conductCode" element={<CodeOfConduct />} />
-
-                    {/* Contacts */}
-                    <Route path="/contacts" element={<Contacts />} />
-
-                    {/* Auth */}
+                    {/* Auth / Admin / Gallery management — NOT localized */}
                     <Route path="/auth" element={<Auth />} />
-
-                    {/* Protected Gallery Management Routes */}
+                    <Route path="/admin/dashboard" element={
+                      <AdminRoute>
+                        <AdminDashboard />
+                      </AdminRoute>
+                    } />
                     <Route path="/gallery/manage" element={
                       <ProtectedRoute>
                         <GalleryManage />
@@ -149,23 +108,70 @@ function App() {
                       </ProtectedRoute>
                     } />
 
-                    {/* Admin Routes */}
-                    <Route path="/admin/dashboard" element={
-                      <AdminRoute>
-                        <AdminDashboard />
-                      </AdminRoute>
-                    } />
+                    {/* Localized routes — wrapped in /:lang */}
+                    <Route path="/:lang" element={<LangSync />}>
+                      <Route index element={<Index />} />
 
-                    {/* Policy pages */}
-                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                    <Route path="/cookies-policy" element={<CookiesPolicy />} />
-                    <Route path="/terms-of-service" element={<TermsOfService />} />
+                      {/* Advertising landing page */}
+                      <Route path="landing" element={<Landing />} />
+                      <Route path="landing/v1" element={<Navigate to="../landing" replace />} />
+                      <Route path="landing/v2" element={<Navigate to="../landing" replace />} />
+                      <Route path="landing/v3" element={<Navigate to="../landing" replace />} />
 
-                    {/* Legacy redirects */}
-                    <Route path="/about" element={<Navigate to="/eac/about" replace />} />
+                      {/* EAC */}
+                      <Route path="eac" element={<Navigate to="about" replace />} />
+                      <Route path="eac/about" element={<EACAbout />} />
+                      <Route path="eac/council" element={<Council />} />
+                      <Route path="eac/news" element={<News />} />
+                      <Route path="eac/news/:id" element={<NewsDetail />} />
 
-                    {/* 404 fallback */}
-                    <Route path="*" element={<NotFound />} />
+                      {/* Arbitration */}
+                      <Route path="arbitration" element={<Navigate to="icac" replace />} />
+                      <Route path="arbitration/icac" element={<ICAC />} />
+                      <Route path="arbitration/rules" element={<Rules />} />
+                      <Route path="arbitration/fees" element={<FeeRegulations />} />
+                      <Route path="arbitration/calculator" element={<CostCalculator />} />
+                      <Route path="arbitration/clause" element={<ArbitrationClause />} />
+
+                      {/* Expertise */}
+                      <Route path="expertise" element={<Navigate to="icje" replace />} />
+                      <Route path="expertise/icje" element={<ICJE />} />
+                      <Route path="expertise/expertiseFields" element={<ExpertiseFields />} />
+
+                      {/* Art expertise */}
+                      <Route path="art-expertise" element={<Navigate to="authentication" replace />} />
+                      <Route path="art-expertise/authentication" element={<ArtAuthentication />} />
+                      <Route path="art-expertise/appraisal" element={<ArtAppraisal />} />
+                      <Route path="art-expertise/passport" element={<ArtPassport />} />
+
+                      {/* Gallery (public) */}
+                      <Route path="gallery" element={<Gallery />} />
+                      <Route path="gallery/:id" element={<PaintingDetail />} />
+                      <Route path="gallery/:id/access/:token" element={<PaintingDetail />} />
+
+                      {/* Membership */}
+                      <Route path="membership" element={<Navigate to="benefits" replace />} />
+                      <Route path="membership/benefits" element={<MembershipBenefits />} />
+                      <Route path="membership/join" element={<HowToJoin />} />
+                      <Route path="membership/conductCode" element={<CodeOfConduct />} />
+
+                      {/* Contacts */}
+                      <Route path="contacts" element={<Contacts />} />
+
+                      {/* Policy pages */}
+                      <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                      <Route path="cookies-policy" element={<CookiesPolicy />} />
+                      <Route path="terms-of-service" element={<TermsOfService />} />
+
+                      {/* Legacy redirect inside lang */}
+                      <Route path="about" element={<Navigate to="../eac/about" replace />} />
+
+                      {/* 404 fallback inside lang */}
+                      <Route path="*" element={<NotFound />} />
+                    </Route>
+
+                    {/* Legacy non-prefixed paths → redirect to /<lang>/<path> */}
+                    <Route path="*" element={<LegacyPathRedirect />} />
                   </Routes>
                 </Suspense>
               </ErrorBoundary>

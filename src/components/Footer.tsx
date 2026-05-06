@@ -24,9 +24,9 @@ export default function Footer() {
   ];
 
   const bottomLinks = [
-    { to: "/privacy", label: "Privacy Policy" },
-    { to: "/serviceTerms", label: "Terms of Service" },
-    { to: "/cookies", label: "Cookies Policy" },
+    { to: "/privacy-policy", label: "Privacy Policy" },
+    { to: "/terms-of-service", label: "Terms of Service" },
+    { to: "/cookies-policy", label: "Cookies Policy" },
   ];
 
   return (

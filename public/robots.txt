@@ -1,10 +1,11 @@
 User-agent: *
 Allow: /
 
-# Disallow private areas
+# Disallow private areas (any language prefix)
 Disallow: /auth
 Disallow: /admin/
 Disallow: /gallery/manage/
-Disallow: /gallery/*/access/
+Disallow: /*/gallery/manage/
+Disallow: /*/gallery/*/access/
 
 Sitemap: https://chea-taic.be/sitemap.xml

@@ -17,7 +17,7 @@ export const news2023: NewsItem[] = [
       "The EAC's scope of activities extends to educational initiatives. Notably, comprehensive qualification training programs have been designed for lawyers aspiring to become arbitrators, enhancing their professionalism and contributing to the growth of the alternative dispute resolution industry.\n" +
       "\n" +
       "These fifteen years have been marked by significant professional achievements and widespread recognition! On behalf of the EAC Board, we extend our sincere gratitude to all our members, colleagues, and partners for the engaging and productive cooperation, which has been and continues to be a pivotal factor in our success! We are confident that new projects, achievements, and ongoing growth await us in the future.",
-    mainImageJpg: "/images/news/15anniversary.png",
+    mainImageJpg: "/images/news/15anniversary.jpg",
     mainImageWebp: "/images/news/15anniversary.webp",
   },
   {

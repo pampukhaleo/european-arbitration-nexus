@@ -1,73 +1,59 @@
-## SEO & code audit (Lovable hosting only)
+# SEO Fixes Plan
 
-Поскольку сайт больше не на GitHub Pages, а только на Lovable, нужно убрать GitHub-специфичные артефакты и привести SEO в порядок с учётом нового хостинга и двух свежих новостей.
+## Issue 1 & 3 — Broken PDF links (404) on /arbitration/rules and /arbitration/fees
 
-### Что уже хорошо
-- Каждая страница рендерит `<Seo>` с title/description, canonical, hreflang (en/fr/ru), OG, Twitter, JSON-LD.
-- Приватные/admin маршруты помечены `noindex`.
-- `robots.txt` корректно блокирует `/auth`, `/admin/`, `/gallery/manage/` и указывает на `sitemap.xml`.
-- На Lovable hosting deep-link / refresh работают сами по себе — никаких redirect-файлов не нужно.
+**Root cause:** The 4 PDF files in `public/` have filenames with **spaces and Cyrillic characters**:
+- `ICAC Provisions on Arbitration Costs as of November 11, 2020.pdf`
+- `ICAC_Arbitral Rules_11.11.2020.pdf`
+- `Положение_о_сборах_МКАС_от_11_ноября_2020.pdf`
+- `Арбитражный_Регламент_МКАС_от_11_11_2020.pdf`
 
-### Найденные проблемы
+Even though the files exist, hosting/CDN serves them inconsistently (404 in crawlers) because of spaces, commas, and non-ASCII characters. Crawlers and external linkers cannot reliably resolve them.
 
-1. **GitHub Pages артефакты в `package.json`**
-   - `"homepage": "https://chea-taic.be"` — это поле для `gh-pages`, для Vite/Lovable не нужно.
-   - `"predeploy"` и `"deploy": "gh-pages -d dist"` — больше не используется.
-   - Зависимость `gh-pages` (devDep) больше не нужна.
+**Fix:**
+1. Rename the 4 PDFs in `public/` to URL-safe ASCII names:
+   - `icac-arbitration-rules-2020-11-11-en.pdf`
+   - `icac-arbitration-rules-2020-11-11-ru.pdf`
+   - `icac-arbitration-costs-2020-11-11-en.pdf`
+   - `icac-arbitration-costs-2020-11-11-ru.pdf`
+2. Update references in `src/pages/arbitration/Rules.tsx` and `src/pages/arbitration/FeeRegulations.tsx` to the new names.
+3. (Optional) Keep old filenames as duplicates for one release cycle so external backlinks don't break — or simply rely on the SEO crawler refresh.
 
-2. **`public/404.html` — `<meta http-equiv="refresh" content="0; url=/">`**
-   - Это был SPA-fallback для GitHub Pages. На Lovable hosting fallback встроен, и этот файл больше не нужен / даже вреден: при реальной 404 (опечатка в URL) пользователь молча редиректится на главную без сигнала.
-   - Удалить файл (Lovable сам отдаст `index.html` для SPA-маршрутов; для несуществующих маршрутов сработает наш `NotFound.tsx`, который должен ставить `noindex`).
+This single fix resolves screens 1, 2, 4, and 5 (Pages with broken links + Broken links tabs).
 
-3. **Memory устарела**
-   - В `mem://index.md` написано «Hosted on GitHub Pages using 'spa-github-pages' routing». Обновить core-правило на «Hosted on Lovable; SPA fallback встроен, redirect-файлы не нужны».
-   - Удалить файл `mem://hosting/github-pages-routing` (или заменить кратким напоминанием про Lovable).
+## Issue 2 — Orphan pages (no incoming internal links)
 
-4. **`public/sitemap.xml` устарел**
-   - Нет двух новых новостей 2026: `/eac/news/20260` (17 марта) и `/eac/news/20261` (7 апреля).
-   - Все `lastmod` стоят `2025-09-19` — обновить ключевые страницы (homepage, `/eac/news`, активные разделы) на текущую дату 2026-05-05. Исторические новости можно оставить.
+Screen 3 lists 4 orphan URLs:
 
-5. **`public/rss.xml` устарел**
-   - Последний item — апрель 2024. Добавить два новых 2026-item'а, обновить `<lastBuildDate>`.
+**a) `/privacy-policy`, `/terms-of-service`, `/cookies-policy`** — orphans because `src/components/Footer.tsx` links to wrong paths:
+```
+/privacy        → should be /privacy-policy
+/serviceTerms   → should be /terms-of-service
+/cookies        → should be /cookies-policy
+```
+Fix the three `to=` values in `Footer.tsx` (lines 27–29). The actual routes are already correctly registered in `App.tsx`.
 
-6. **`src/pages/eac/NewsDetail.tsx` — JSON-LD `datePublished`**
-   - Сейчас передаётся строка вида `"Apr 07 2026"`. Schema.org требует ISO-8601 (`2026-04-07`). Конвертировать `newsItem.date` в ISO для `datePublished`/`dateModified` (отображаемую строку оставить как есть).
+**b) `/eac/news/20240401`** — this URL is in `sitemap.xml` and `rss.xml` but the actual news ID in `src/data/news/2024.ts` is `20241`. The page currently renders `NotFound` (which is also why screen 6 shows "Page has no outgoing links" — `NotFound` has no nav).
 
-7. **`src/lib/publicBaseUrl.ts`** — дефолт уже `https://chea-taic.be`, ок.
+Fix: replace `20240401` with `20241` in:
+- `public/sitemap.xml`
+- `public/rss.xml`
 
-8. **`src/components/Seo.tsx`** — использует `window.location.origin`, что на Lovable работает корректно (preview/published/custom domain). Изменения не нужны.
+## Issue 4 — Page has no outgoing links: `/eac/news/20240401`
 
-9. **`src/pages/NotFound.tsx`** — стоит проверить, что он отдаёт `<Seo robots="noindex, nofollow">`. Если нет — добавить.
+Same root cause as 2b — the URL doesn't match any real news item, so `NewsDetail` redirects/renders the empty `NotFound`. Fixed by the sitemap/RSS correction above.
 
-10. **`index.html` `og:image`** указывает на превью-картинку с `pub-...r2.dev/...lovable.app...`. Заменить на стабильный `https://chea-taic.be/eap-banner-1200x630.png` (файл уже лежит в `public/`), чтобы соцсети не ломались при смене preview.
+## Files to change
 
-### План правок
+- `public/` — rename 4 PDFs (and optionally keep originals)
+- `src/pages/arbitration/Rules.tsx` — update 2 PDF paths
+- `src/pages/arbitration/FeeRegulations.tsx` — update 2 PDF paths
+- `src/components/Footer.tsx` — fix 3 policy links
+- `public/sitemap.xml` — replace `20240401` → `20241`, bump `lastmod`
+- `public/rss.xml` — replace `20240401` → `20241`
 
-**A. Очистить от GitHub Pages**
-- `package.json`: удалить `homepage`, `predeploy`, `deploy`; удалить `gh-pages` из devDependencies.
-- Удалить `public/404.html`.
+## After deploy
 
-**B. Обновить память проекта**
-- Перезаписать `mem://index.md`: заменить core-строку про GitHub Pages на «Hosted on Lovable; SPA deep-link fallback встроен, redirect-файлы (`_redirects`, `404.html`) не нужны». Убрать ссылку на `mem://hosting/github-pages-routing`.
-- При желании — удалить/переписать `mem://hosting/github-pages-routing`.
-
-**C. Обновить `public/sitemap.xml`**
-- Добавить `<url>` для `/eac/news/20260` (lastmod 2026-03-17) и `/eac/news/20261` (lastmod 2026-04-07).
-- Обновить `lastmod` главной, `/eac/news` и основных разделов на 2026-05-05.
-
-**D. Обновить `public/rss.xml`**
-- Добавить два новых `<item>` (EN title/excerpt + link/guid/pubDate).
-- Обновить `<lastBuildDate>`.
-
-**E. `src/pages/eac/NewsDetail.tsx`**
-- Конвертировать `newsItem.date` в ISO-формат (`new Date(newsItem.date).toISOString().split('T')[0]`) для полей JSON-LD.
-
-**F. `src/pages/NotFound.tsx`**
-- Убедиться/добавить `<Seo title="Page not found" description="..." lang={language} robots="noindex, nofollow" />`.
-
-**G. `index.html`**
-- Заменить `og:image` и `twitter:image` на `https://chea-taic.be/eap-banner-1200x630.png`.
-
-### Вне scope
-- Автогенерация sitemap/rss при сборке (Vite-плагин). При текущем темпе обновлений — ручные правки достаточны.
-- Серверный пререндеринг (SSR/SSG): Lovable отдаёт SPA, поисковики Google нормально индексируют клиентский рендер с правильными `<Seo>` тегами через React Helmet.
+Press **Publish → Update** in Lovable, then in the SEO tool / Google Search Console:
+- Re-crawl `/arbitration/rules`, `/arbitration/fees`, the 3 policy pages, and `/eac/news/20241`
+- Re-submit `sitemap.xml`

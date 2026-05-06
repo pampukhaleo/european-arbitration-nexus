@@ -22,7 +22,7 @@ export const news2021: NewsItem[] = [
     date: "Sep 08 2021",
     excerpt: "The European Arbitration Chamber is pleased to announce the signing of a cooperation and partnership memorandum with Energy Disputes Arbitration Centre (Turkey).",
     description: "The European Arbitration Chamber is pleased to announce the signing of a cooperation and partnership memorandum with Energy Disputes Arbitration Centre (Turkey). The parties agreed on joint activities aimed at developing commercial arbitration, mediation and expertise, as well as conducting of joint events in the field of alternative dispute resolution, in particular, in the energy sector.",
-    mainImageJpg: "/images/news/EAC EDAC.jpg",
-    mainImageWebp: "/images/news/EAC EDAC.webp"
+    mainImageJpg: "/images/news/eac-edac.jpg",
+    mainImageWebp: "/images/news/eac-edac.webp"
   },
 ];

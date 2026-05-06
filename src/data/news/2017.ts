@@ -12,8 +12,8 @@ export const news2017: NewsItem[] = [
       "\n" +
       "As a result of the meetings, the international chambers of commerce and business associations expressed their willingness to cooperate with the European Arbitration Chamber in matters of protecting the interests of Greek entrepreneurs and their international business partners, and promotion  of international commercial arbitration, mediation and expertise as effective alternative dispute resolution tools, as in the pre-trial stage, and in arbitration as well.\n" +
       "By the way, the EAC launched Communication Center, which facilitates the establishment of a dialogue between representatives of business and jurisprudence. This goal was achieved by Hennadii in the process of bilateral meetings.",
-    mainImageJpg: "/images/news/2017-07-03 15.20.16.jpg",
-    mainImageWebp: "/images/news/2017-07-03 15.20.16.webp"
+    mainImageJpg: "/images/news/2017-07-03-152016.jpg",
+    mainImageWebp: "/images/news/2017-07-03-152016.webp"
   },
   {
     id: "20172",

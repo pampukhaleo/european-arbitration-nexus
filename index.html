@@ -23,15 +23,11 @@
           media="print"
           onload="this.media='all'"
   />
-  <meta property="og:title" content="European Arbitration Chamber">
-  <meta name="twitter:title" content="European Arbitration Chamber">
-  <meta name="description" content="Resolving disputes, advancing arbitration.">
-  <meta property="og:description" content="Resolving disputes, advancing arbitration.">
-  <meta name="twitter:description" content="Resolving disputes, advancing arbitration.">
-  <meta property="og:image" content="https://chea-taic.be/eap-banner-1200x630.png">
-  <meta name="twitter:image" content="https://chea-taic.be/eap-banner-1200x630.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:type" content="website">
+  <!--
+    NOTE: Do NOT add <title>, <meta name="description">, OG, or Twitter tags here.
+    They are managed per-route by src/components/Seo.tsx (react-helmet-async).
+    Static tags here would duplicate the dynamic ones and trigger SEO warnings.
+  -->
 </head>
 
 <body>

@@ -7,8 +7,8 @@ import { Seo } from "@/components/Seo.tsx";
 import { Download } from "lucide-react";
 
 const FEES_PDFS = {
-  en: "/ICAC Provisions on Arbitration Costs as of November 11, 2020.pdf",
-  ru: "/Положение_о_сборах_МКАС_от_11_ноября_2020.pdf",
+  en: "/icac-arbitration-costs-2020-11-11-en.pdf",
+  ru: "/icac-arbitration-costs-2020-11-11-ru.pdf",
 };
 
 const FeeRegulations = () => {

@@ -6,8 +6,8 @@ import { Seo } from "@/components/Seo.tsx";
 import { Download } from "lucide-react";
 
 const RULES_PDFS = {
-  en: "/ICAC_Arbitral Rules_11.11.2020.pdf",
-  ru: "/Арбитражный_Регламент_МКАС_от_11_11_2020.pdf",
+  en: "/icac-arbitration-rules-2020-11-11-en.pdf",
+  ru: "/icac-arbitration-rules-2020-11-11-ru.pdf",
 };
 
 const Rules = () => {

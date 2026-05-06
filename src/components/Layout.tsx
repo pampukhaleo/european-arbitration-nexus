@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import SectionNav from "./navigation/SectionNav";
+import { stripLangPrefix } from "@/lib/i18nRouting";
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
-  const path = location.pathname;
+  const path = stripLangPrefix(location.pathname) || "/";
   
   // Check if we're on the home page or contacts page
   const isHomePage = path === "/";

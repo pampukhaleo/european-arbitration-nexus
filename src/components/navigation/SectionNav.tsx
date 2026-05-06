@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { navItems, NavItem } from "@/components/header/NavData";
 import { cn } from "@/lib/utils";

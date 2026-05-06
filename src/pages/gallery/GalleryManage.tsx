@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Plus, Edit, Eye, QrCode, BarChart3, ArrowLeft, Settings, Trash2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useLocalizedNavigate as useNavigate } from "@/lib/i18nRouting";
 import { useToast } from '@/components/ui/use-toast';
 
 interface Painting {

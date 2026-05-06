@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { newsItems } from "@/data/newsData";
 import NewsItem from "@/components/news/NewsItem";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 
 export default function NewsPreview() {
   const { t } = useLanguage();

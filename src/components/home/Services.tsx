@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link } from "@/lib/i18nRouting";
 import { Gavel, Lightbulb, Palette, BookOpen } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 

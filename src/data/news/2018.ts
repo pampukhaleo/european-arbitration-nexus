@@ -61,8 +61,8 @@ export const news2018: NewsItem[] = [
       "In the framework of the visit the European Arbitration Chamber held seminar for Turkish lawyers. The EAC President Hennadii Pampukha presented lecture, which was devoted to the main activities of the EAC and its division - International Commercial Arbitration Court. The participants of the seminar discussed the procedure of settlement of commercial disputes in accordance with the Belgian procedural law and the Rules of the ICAC under the EAC. The seminar was held with the support of Mr. Yusuf Kuleč and  Yildiz Law Office. The President of the EAC solemnly member’s certificates to the participants of the seminar, who have formalized membership in the EAC.\n" +
       "\n" +
       "The leadership of the European Arbitration Chamber expresses gratitude to the Turkish colleagues for an interesting program of the visit and hospitality.  ",
-    mainImageJpg: "/images/news/turkey istanbul.jpg",
-    mainImageWebp: "/images/news/turkey istanbul.webp"
+    mainImageJpg: "/images/news/turkey-istanbul.jpg",
+    mainImageWebp: "/images/news/turkey-istanbul.webp"
   },
   {
     id: "20184",

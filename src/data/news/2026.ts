@@ -33,6 +33,7 @@ const announcement = {
       "Для регистрации участия обращайтесь по электронной почте: secretary@chea-taic.be",
   },
   mainImageJpg: "/images/news/eac-2026-announcement.jpg",
+  mainImageWebp: "/images/news/eac-2026-announcement.webp",
 };
 
 export const news2026: NewsItem[] = [
@@ -90,6 +91,7 @@ export const news2026: NewsItem[] = [
         "От имени Европейской Арбитражной Палаты выражаем благодарность всем участникам за активное участие в работе Общего собрания, конструктивный диалог и вклад в обсуждение ключевых направлений развития Палаты.",
     },
     mainImageJpg: "/images/news/eac-2026-meeting-1.jpg",
+    mainImageWebp: "/images/news/eac-2026-meeting-1.webp",
     images: [
       "/images/news/eac-2026-meeting-2.jpg",
       "/images/news/eac-2026-meeting-3.jpg",

@@ -15,8 +15,8 @@ export const news2019: NewsItem[] = [
       "This Conference is held since 2003 annually in Prague, Czech Republic. Today this Conference is the only one international experts meeting in the world, devoted to expertise in construction and mostly judicial expertise in construction, which is held on regular basis. During past conference meetings the Conference welcomed the participants from more than 50 countries. \n" +
       "\n" +
       "The organizers are ASN Expert Group, Chamber of  Judicial Experts of the Czech Republic with the support of the European Arbitration Chamber and the European Federation of European Associations EuroExpert.",
-    mainImageJpg: "/images/news/prague 2019.jpg",
-    mainImageWebp: "/images/news/prague 2019.webp"
+    mainImageJpg: "/images/news/prague-2019.jpg",
+    mainImageWebp: "/images/news/prague-2019.webp"
   },
   {
     id: "201914",
@@ -66,7 +66,7 @@ export const news2019: NewsItem[] = [
       "10 % discount off the current rate is provided to the members of European Arbitration Chamber at the time of purchase.\n" +
       "\n" +
       "For more information and EAC preferential rate code please contact EAC by e-mail: secretary@chea-taic.be or the Organizer here: http://gar.live/zurich2019",
-    mainImageJpg: "/images/news/GAR Live Zurich - Facebook promo.png",
-    mainImageWebp: "/images/news/GAR Live Zurich - Facebook promo.webp"
+    mainImageJpg: "/images/news/gar-live-zurich.png",
+    mainImageWebp: "/images/news/gar-live-zurich.webp"
   },
 ];

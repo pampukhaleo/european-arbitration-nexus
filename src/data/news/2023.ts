@@ -17,7 +17,7 @@ export const news2023: NewsItem[] = [
       "The EAC's scope of activities extends to educational initiatives. Notably, comprehensive qualification training programs have been designed for lawyers aspiring to become arbitrators, enhancing their professionalism and contributing to the growth of the alternative dispute resolution industry.\n" +
       "\n" +
       "These fifteen years have been marked by significant professional achievements and widespread recognition! On behalf of the EAC Board, we extend our sincere gratitude to all our members, colleagues, and partners for the engaging and productive cooperation, which has been and continues to be a pivotal factor in our success! We are confident that new projects, achievements, and ongoing growth await us in the future.",
-    mainImageJpg: "/images/news/15anniversary.png",
+    mainImageJpg: "/images/news/15anniversary.jpg",
     mainImageWebp: "/images/news/15anniversary.webp",
   },
   {
@@ -103,8 +103,8 @@ export const news2023: NewsItem[] = [
       "- Promotion of alternative dispute resolution methods\n" +
       "\n" +
       "The partnership responds to increasing trade and investment flows between the regions and the growing need for efficient dispute resolution mechanisms that bridge different legal traditions.",
-    mainImageJpg: "/images/news/turkey istanbul.jpg",
-    mainImageWebp: "/images/news/turkey istanbul.webp"
+    mainImageJpg: "/images/news/turkey-istanbul.jpg",
+    mainImageWebp: "/images/news/turkey-istanbul.webp"
   },
   {
     id: "20237",
@@ -120,7 +120,7 @@ export const news2023: NewsItem[] = [
       "The participants also decided to make amendments to the ICAC Rules. It was unanimously decided to continue cooperation with arbitration and expert institutions of other countries.\n" +
       "\n" +
       "The European Arbitration Chamber is an international organization that works in the field of commercial arbitration, expertise, and mediation. The EAC hosts various events and conferences on alternative dispute resolution and establishes links between arbitration centers and arbitrators in different countries. The association's purpose is to promote effective alternative dispute resolution in the business community and encourage the use of the most advanced methods and procedures in this area.",
-    mainImageJpg: "/images/news/EAC meeting_1.jpeg",
-    mainImageWebp: "/images/news/EAC meeting_1.webp",
+    mainImageJpg: "/images/news/eac-meeting-1.jpeg",
+    mainImageWebp: "/images/news/eac-meeting-1.webp",
   },
 ];

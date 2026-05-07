@@ -161,6 +161,51 @@ const NewsDetail = () => {
               </div>
             </div>
           )}
+
+          {/* Prev / Next + Related news (internal linking for SEO) */}
+          {(() => {
+            const idx = newsItems.findIndex((n) => n.id === id);
+            const prev = idx > 0 ? newsItems[idx - 1] : null;
+            const next = idx >= 0 && idx < newsItems.length - 1 ? newsItems[idx + 1] : null;
+            const related = newsItems
+              .filter((n) => n.id !== id)
+              .slice(Math.max(0, idx - 3), Math.max(0, idx - 3) + 6)
+              .filter((n) => n.id !== id)
+              .slice(0, 6);
+            return (
+              <nav aria-label="More news" className="mt-12 border-t pt-8">
+                <div className="flex flex-col sm:flex-row justify-between gap-4 mb-8">
+                  {prev ? (
+                    <Link to={`/eac/news/${prev.id}`} className="group flex-1 text-left">
+                      <div className="text-xs uppercase text-muted-foreground">← {t("common.previous") || "Previous"}</div>
+                      <div className="font-medium group-hover:underline">{pickText(prev.title, language)}</div>
+                    </Link>
+                  ) : <div className="flex-1" />}
+                  {next ? (
+                    <Link to={`/eac/news/${next.id}`} className="group flex-1 text-right">
+                      <div className="text-xs uppercase text-muted-foreground">{t("common.next") || "Next"} →</div>
+                      <div className="font-medium group-hover:underline">{pickText(next.title, language)}</div>
+                    </Link>
+                  ) : <div className="flex-1" />}
+                </div>
+                {related.length > 0 && (
+                  <>
+                    <h2 className="text-2xl font-semibold mb-4">{t("common.relatedNews") || "Related news"}</h2>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {related.map((n) => (
+                        <li key={n.id}>
+                          <Link to={`/eac/news/${n.id}`} className="block p-3 rounded border hover:bg-muted transition-colors">
+                            <div className="text-xs text-muted-foreground">{n.date}</div>
+                            <div className="font-medium">{pickText(n.title, language)}</div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </nav>
+            );
+          })()}
         </div>
       </div>
 

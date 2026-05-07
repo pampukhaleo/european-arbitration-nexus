@@ -74,19 +74,18 @@ const CookiesPolicy = () => {
             display properly.
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
               <li className="ml-5 mt-2"><b>For the Chrome web browser, please visit this page from Google: <a
-                href={ 'https://support.google.com/accounts/answer/32050' }>https://support.google.com/accounts/answer/32050</a></b>
+                href={ 'https://support.google.com/chrome/answer/95647' }>https://support.google.com/chrome/answer/95647</a></b>
               </li>
-              <li className="ml-5 mt-2"><b>For the Internet Explorer web browser, please visit this page from
-                Microsoft: <a
-                  href={ 'https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d' }>https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d</a></b>
+              <li className="ml-5 mt-2"><b>For the Microsoft Edge web browser, please visit this page from Microsoft: <a
+                  href={ 'https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use-168dab11-0753-043d-7c16-ede5947fc64d' }>https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use-168dab11-0753-043d-7c16-ede5947fc64d</a></b>
               </li>
               <li className="ml-5 mt-2"><b>For the Firefox web browser, please visit this page from Mozilla: <a
                 href={ 'https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox' }>https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox</a></b>
               </li>
               <li className="ml-5 mt-2"><b>For the Safari web browser, please visit this page from Apple: <a
-                href={ 'https://support.apple.com/kb/PH21411?locale=en_US' }>https://support.apple.com/kb/PH21411?locale=en_US</a></b>
+                href={ 'https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac' }>https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac</a></b>
               </li>
-              <li className="ml-5 mt-2"><b>For any other web browser, please visit your web browser’s official web
+              <li className="ml-5 mt-2"><b>For any other web browser, please visit your web browser's official web
                 pages.</b></li>
             </ul>
           </p>

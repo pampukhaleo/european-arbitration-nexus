@@ -38,7 +38,10 @@ export const Seo = ({
 
   // Path without /en|/fr|/ru prefix and without trailing slash.
   const cleanRest = stripLangPrefix(location.pathname).replace(/\/+$/, "");
-  const currentLang = SUPPORTED_LANGS.includes(lang as any) ? lang : "en";
+  const pathLang = location.pathname.split("/")[1];
+  const currentLang = SUPPORTED_LANGS.includes(pathLang as any)
+    ? pathLang
+    : (SUPPORTED_LANGS.includes(lang as any) ? lang : "en");
 
   const buildUrl = (l: string) => `${baseUrl}/${l}${cleanRest}`;
 
@@ -47,10 +50,10 @@ export const Seo = ({
   const imageAlt = `${title} - European Arbitration Chamber`;
 
   const ogLocale =
-    lang === "en" ? "en_US" : lang === "ru" ? "ru_RU" : "fr_FR";
+    currentLang === "en" ? "en_US" : currentLang === "ru" ? "ru_RU" : "fr_FR";
 
   return (
-    <Helmet htmlAttributes={{ lang }}>
+    <Helmet htmlAttributes={{ lang: currentLang }}>
       {/* Base meta */}
       <title>{title}</title>
       <meta name="description" content={description} />

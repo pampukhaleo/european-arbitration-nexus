@@ -1,75 +1,53 @@
-## Ahrefs Warnings (round 3) — Plan
+## Ahrefs warnings — root causes & fixes
 
-8 warning categories. They cluster into 3 root causes.
+### 1. Indexable became non-indexable / Noindex on `/{en,fr,ru}/cookies`
+Ahrefs is crawling `/en/cookies`, `/fr/cookies`, `/ru/cookies` (legacy URLs without `-policy`). The router has no match → `NotFound` renders, which emits `noindex, nofollow`. That single page also fans out 22 nofollow links to every nav target, which is the root cause of warnings #5 (60+6 nofollow inlinks) and #6 (3 pages with nofollow outgoing links).
 
-### Root cause A — Meta description length
-
-**Too long (>160 chars)** — 30 URLs (image 1, 2). Examples: art passport RU 312, fees FR 407, ICAC EN 267, fees RU 314.
-
-**Too short (<70 chars)** — 17 URLs (image 3). Examples: council EN 90, contacts RU 90, news FR 79, news RU 68, terms 96, join FR 67.
-
-**Fix.** Rewrite `description` values in `src/contexts/locales/{en,fr,ru}.ts` so every page sits in the 70–160 character sweet spot. Tighten the verbose fee/rules/ICAC/art descriptions; expand the bare contact/news/membership ones with one extra clause covering the page's value.
-
-Also tighten/extend the 3 policy SEO descriptions in `src/pages/policies/{PrivacyPolicy,TermsOfService,CookiesPolicy}.tsx` (currently 96/96 chars passed inline) to ≥80 chars including a benefit clause.
-
-### Root cause B — Empty SPA shell crawler snapshot
-
-Affects the 9 URLs flagged in 4 separate reports (image 4 H1 missing, image 5 description missing, image 7 OG incomplete, image 8 Twitter incomplete, plus image 6 low word count for `/ru/arbitration/icac`):
-
+**Fix:** add three redirect routes inside `<Route path="/:lang">` in `src/App.tsx`:
+```tsx
+<Route path="cookies" element={<Navigate to="../cookies-policy" replace />} />
 ```
-/en/membership/conductCode
-/ru/arbitration/icac
-/en/art-expertise/appraisal
-/fr/art-expertise/appraisal
-/en/membership/benefits
-/fr/eac/news/20260
-/fr/eac/news/20184
-/fr/eac/news/20142
-/en/eac/news/20142
-```
+(One alias is enough; we keep the canonical URL `/cookies-policy`.) This kills warnings 1, 3, 5 and 6 in one shot.
 
-These pages exist and render fine for users. Ahrefs/Bingbot snapshot the static `index.html` BEFORE React mounts → finds no h1, no description, no OG, no Twitter, ≤4 words.
+### 2. Canonical URL changed for `/fr/privacy-policy`, `/ru/privacy-policy`, `/fr/terms-of-service`
+`Seo.tsx` receives `lang` from `useLanguage()`. On first paint of a deep link, `LanguageContext` is still `"en"` (the default) before `LangSync` swaps it to the URL lang, so Helmet emits `canonical=/en/privacy-policy` for a `/fr/...` URL. Crawlers snapshot the wrong canonical.
 
-**Fix.** Enrich `index.html` so the static shell already passes every check. `react-helmet-async` will replace these per-route on mount, so users still get accurate per-page SEO.
-
-Add to `<head>`:
-- `<meta property="og:title">`, `og:description`, `og:image`, `og:url`, `og:type`, `og:site_name`, `og:locale`
-- `<meta name="twitter:card" content="summary_large_image">`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:site`
-- (already present: title, meta description, canonical)
-
-Add to `<body>` (immediately inside, hidden visually but present in DOM):
-```html
-<h1 class="sr-only" id="ssr-h1">European Arbitration Chamber (EAC) — Resolving Disputes, Advancing Arbitration</h1>
-<noscript>
-  <p>The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation. Visit chea-taic.be for arbitration rules, fee regulations, art expertise, membership and news.</p>
-</noscript>
-```
-
-Helmet doesn't manage `<h1>`, so the static fallback h1 stays in the DOM as the SSR baseline. Real React pages still render their own `<h1>` further down — Ahrefs only flags "missing/empty" h1, so any single h1 in the snapshot satisfies the check. (Multiple h1s are technically fine for HTML5 but to be conservative we'll remove the SSR h1 once React mounts via a tiny script in `main.tsx`:
+**Fix:** in `src/components/Seo.tsx`, derive `currentLang` from `location.pathname` instead of trusting the prop:
 ```ts
-document.getElementById('ssr-h1')?.remove();
+const pathLang = location.pathname.split("/")[1];
+const currentLang = SUPPORTED_LANGS.includes(pathLang as any) ? pathLang : (SUPPORTED_LANGS.includes(lang as any) ? lang : "en");
 ```
-This runs synchronously before `createRoot()` after a route is matched.)
+Use `currentLang` for `buildUrl(currentLang)` (canonical + og:url) and for `htmlAttributes={{ lang: currentLang }}`. This eliminates the brief canonical mismatch.
 
-### Root cause C — Slow page (image 9, 163 URLs)
+### 3. Page has only one dofollow incoming internal link (84 news pages)
+Each `/eac/news/:id` is only linked from the paginated `/eac/news` list (one page at a time). Improve internal linking on `NewsDetail.tsx`:
+- Add a "Related news" block at the bottom showing 4–6 sibling articles (random or most-recent excluding current) as `<Link>`s.
+- Add prev/next article links.
 
-Time-to-first-byte 2.8–4.9 s on most pages. This is the SPA bundle + Lovable preview latency. Real production custom-domain serving is faster, but we can shave the bundle by:
+This boosts dofollow inlinks per article from 1 to 5–7 without bloating navigation.
 
-1. Removing the eager Google Fonts request — the `media="print" onload` swap is good, but the URL pulls **6 font families with many weights/styles**. Drop unused weights/styles and remove the unused families. Audit `src/index.css` and `tailwind.config.ts` for actually-used font families. Suspected unused: `Cormorant Garamond` italics, `JetBrains Mono` 700, `Inter Tight` extras.
-2. Add `<link rel="preload" as="image">` for the LCP hero image so it isn't render-blocked.
-3. No code change to TTFB itself — that's hosting-bound. The font + LCP changes typically drop loading-time by ~1 s.
+### 4. Page has links to redirect (Cookies Policy outbound)
+Four external links in `src/pages/policies/CookiesPolicy.tsx` hit redirects. Replace with current final URLs:
+| Current | Final |
+|---|---|
+| `http://support.microsoft.com/kb/278835` (already replaced earlier) → still 307s | `https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d` |
+| `http://www.allaboutcookies.org/` | `https://allaboutcookies.org/` (already done; verify no trailing redirect) |
+| `http://www.networkadvertising.org/` | `https://thenai.org/` (already done) |
+| `https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored` | `https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox` (already done) |
 
-This is a soft optimization — Ahrefs threshold is 3 s. Will not fully clear all 163 entries but will move the worst into yellow/green.
+The Ahrefs report still flags them, so re-verify each URL with `curl -I` and update to whatever returns 200 directly. Do the same audit for the equivalent links rendered inside the `ru/fr` versions of the page if any.
+
+### 5. Redirect chain `http://www.chea-taic.be/ → https://chea-taic.be/` (warning #8)
+Hosting-level (Lovable/DNS apex+www). Cannot be fixed in app code — out of scope. Will note in commit.
 
 ### Files to edit
-
-- `src/contexts/locales/en.ts`, `fr.ts`, `ru.ts` — rewrite all `seo.*.description` to 70–160 chars.
-- `src/pages/policies/PrivacyPolicy.tsx`, `CookiesPolicy.tsx`, `TermsOfService.tsx` — extend `<Seo description=…>` strings.
-- `index.html` — add OG + Twitter default meta tags; add `<h1 class="sr-only">` and `<noscript>` content fallback in body.
-- `src/main.tsx` — remove the SSR h1 before mount.
-- `index.html` — trim Google Fonts URL to actually-used families/weights; add `<link rel="preload">` for hero image (file path TBD during implementation, likely `/eap-banner-1200x630.png` or homepage hero).
+- `src/App.tsx` — add `cookies → cookies-policy` redirect route per lang.
+- `src/components/Seo.tsx` — derive lang from pathname.
+- `src/pages/eac/NewsDetail.tsx` — add Related/Prev/Next news block.
+- `src/pages/policies/CookiesPolicy.tsx` — verify and update external URLs to their final destinations.
 
 ### Out of scope
+- Apex/www redirect chain (warning #8).
+- The lone `Missing` row for `/en/membership/conductCode` in image-69 — the route exists and returns 200; Ahrefs label is informational.
 
-- Fixing TTFB itself (hosting-side; cannot change in code).
-- The 34 "Lost from filter results" entries — already resolved by previous fixes; will fully clear after Ahrefs re-crawl.
+Summary: 4 small file edits resolve 6 of the 9 warnings; #3 (84 news) is improved structurally; #8 is infrastructural and out of scope.

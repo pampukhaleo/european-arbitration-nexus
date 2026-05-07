@@ -161,6 +161,7 @@ function App() {
                       {/* Policy pages */}
                       <Route path="privacy-policy" element={<PrivacyPolicy />} />
                       <Route path="cookies-policy" element={<CookiesPolicy />} />
+                      <Route path="cookies" element={<Navigate to="../cookies-policy" replace />} />
                       <Route path="terms-of-service" element={<TermsOfService />} />
 
                       {/* Legacy redirect inside lang */}

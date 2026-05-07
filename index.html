@@ -24,10 +24,15 @@
           onload="this.media='all'"
   />
   <!--
-    NOTE: Do NOT add <title>, <meta name="description">, OG, or Twitter tags here.
-    They are managed per-route by src/components/Seo.tsx (react-helmet-async).
-    Static tags here would duplicate the dynamic ones and trigger SEO warnings.
+    Static SEO fallback below. react-helmet-async (src/components/Seo.tsx)
+    REPLACES these tags per-route once the app mounts. They exist only so
+    crawlers that don't execute JS or that snapshot before mount still see
+    a non-empty title, description and canonical (avoids "missing title" /
+    "duplicate empty shell" SEO findings).
   -->
+  <title>European Arbitration Chamber (EAC)</title>
+  <meta name="description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+  <link rel="canonical" href="https://chea-taic.be/en" />
 </head>
 
 <body>

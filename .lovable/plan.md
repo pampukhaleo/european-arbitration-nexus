@@ -1,54 +1,67 @@
-## Анализ
+# Fix Ahrefs SEO findings (7 issues, ~31 URLs)
 
-### 1 + 2. Broken images (Ahrefs показывает 404 для 6 файлов)
+## Root causes
 
-Все «битые» файлы имеют **пробелы в именах**:
-- `2017-07-03 15.20.16.jpg`
-- `EAC EDAC.jpg`
-- `GAR Live Zurich - Facebook promo.png`
-- `prague 2019.jpg`
-- `turkey istanbul.jpg`
-- `EAC meeting_1.jpeg`
+All findings collapse into two real bugs:
 
-Файлы физически лежат в `public/images/news/`, но пробелы в URL вызывают проблемы у части краулеров и CDN-кэша. Решение — переименовать без пробелов и точек в середине имени, обновить ссылки в `src/data/news/*.ts`.
+**A. Policy pages hard-code `lang="en"`** in `Seo`. On `/fr/...` and `/ru/...` the canonical points to `/en/...` and self-hreflang ≠ canonical. This produces:
+- Non-canonical page in sitemap (image 7) — 6 URLs
+- Hreflang to non-canonical (image 6) — 3 URLs
+- Hreflang and HTML lang mismatch (image 5) for `/fr/art-expertise/appraisal`
 
-### 3. Image file size too large (5 файлов >1.5 MB)
+**B. Crawler captures the empty SPA shell before react-helmet-async runs.** All affected URLs render fine in a browser but Ahrefs sees `index.html` with `<html lang="en">`, no `<title>`, no description, no nav links. This produces:
+- Title tag missing or empty (image 2) — 9 URLs
+- Page has no outgoing links (image 1) — `/ru/arbitration/icac`
+- Duplicate pages without canonical (image 3) — 8 URLs share content hash `14131261744751929499` (the empty shell)
+- Hreflang and HTML lang mismatch (image 5) — `/ru/arbitration/icac`, `/fr/eac/news/20260`
+- Missing reciprocal hreflang (image 4) — 6 news URLs (alternates not in shell)
 
-| Файл | Размер | Webp есть? |
-|---|---|---|
-| `DSC_0046.jpg` | 5.5 MB | ✅ |
-| `15anniversary.png` | 3.8 MB | ✅ |
-| `401_4.jpg` | 2.3 MB | ✅ |
-| `eac-2026-announcement.jpg` | 1.9 MB | ❌ |
-| `20130621_0932331.jpg` | 1.6 MB | ✅ |
+## Changes
 
-`<picture>` уже использует webp source — браузер должен брать webp. Но Ahrefs читает `<img src>` (jpg), отсюда предупреждение. Также для серий `eac-2026-meeting-*.jpg` и `eac-2026-announcement.jpg` webp вообще нет.
+### 1. Make 3 policy pages language-aware
+Files: `src/pages/policies/PrivacyPolicy.tsx`, `CookiesPolicy.tsx`, `TermsOfService.tsx`
 
-Делаем:
-- Сгенерировать `.webp` для всех `eac-2026-*.jpg` через `ffmpeg` (~80% качество).
-- Сжать пять «тяжёлых» jpg/png в место (через `ffmpeg -q:v 4`, прогрессивный jpg) — целимся в <500 KB без видимой потери качества.
+- Import `useLanguage` from `@/contexts/LanguageContext`
+- Pass `lang={language}` (instead of hard-coded `"en"`) to `<Seo>`
 
-### 4. Non-canonical page in sitemap
+This single change fixes images 6, 7, and the policy URL in image 5.
 
-Проверил `public/sitemap.xml` — указанные Ahrefs ID (`20180618`, `20140601`, `20211115` и т.д.) **уже отсутствуют**. В текущем sitemap только реальные id новостей (`20141`, `20161`, …, `20261`). Это старый отчёт Ahrefs до перегенерации sitemap.
+### 2. Pre-mount lang/title bootstrap
+File: `src/main.tsx`
 
-Действие: ничего править не нужно. После публикации попросить пересканировать сайт в Ahrefs.
+Before `ReactDOM.createRoot(...)`:
 
-## Изменения
+```ts
+const m = location.pathname.match(/^\/(en|fr|ru)(?:\/|$)/);
+const lang = m?.[1] ?? "en";
+document.documentElement.lang = lang;
+if (!document.title) document.title = "European Arbitration Chamber (EAC)";
+```
 
-1. **Переименовать файлы** (`public/images/news/`):
-   - `2017-07-03 15.20.16.jpg/.webp` → `2017-07-03-152016.jpg/.webp`
-   - `EAC EDAC.jpg/.webp` → `eac-edac.jpg/.webp`
-   - `EAC meeting_1.jpeg/.webp` → `eac-meeting-1.jpeg/.webp`
-   - `GAR Live Zurich - Facebook promo.png/.webp` → `gar-live-zurich.png/.webp`
-   - `prague 2019.jpg/.webp` → `prague-2019.jpg/.webp`
-   - `turkey istanbul.jpg/.webp` → `turkey-istanbul.jpg/.webp`
+Sets `<html lang>` synchronously so any crawler snapshot already matches the URL's language.
 
-2. **Обновить пути** в `src/data/news/2017.ts`, `2018.ts`, `2019.ts`, `2021.ts`, `2023.ts`.
+### 3. Static SEO fallback in `index.html`
+Add inside `<head>` (replacing the "do not add" comment with a "fallback only" note):
 
-3. **Сжать большие изображения** (заменяем jpg/png in-place):
-   - `DSC_0046.jpg`, `15anniversary.png`, `401_4.jpg`, `20130621_0932331.jpg`, `eac-2026-announcement.jpg` → таргет ≤ 600 KB.
+```html
+<title>European Arbitration Chamber (EAC)</title>
+<meta name="description" content="The European Arbitration Chamber (EAC) — international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+<link rel="canonical" href="https://chea-taic.be/en" />
+```
 
-4. **Сгенерировать webp** для `eac-2026-announcement.jpg` и `eac-2026-meeting-1..9.jpg`, добавить `mainImageWebp`/обновить массив `images` в `src/data/news/2026.ts`.
+Helmet replaces these on mount, so real users still get per-route SEO. Crawlers that don't execute JS (or time out) now see a non-empty title, a description, and a canonical. This eliminates the empty-shell duplicate-content cluster (image 3) and the missing-title cluster (image 2). Outgoing-links and reciprocal-hreflang issues (images 1, 4) also disappear on next crawl because Ahrefs can now wait for Helmet without falling back to a hash of `<div id="root"></div>`.
 
-5. Sitemap не трогаем.
+### 4. No sitemap change needed
+Verified: sitemap already lists `/en|/fr|/ru/privacy-policy`, `/cookies-policy`, `/terms-of-service`. After change 1, each canonicalizes to itself.
+
+## Files to edit
+
+- `src/pages/policies/PrivacyPolicy.tsx`
+- `src/pages/policies/CookiesPolicy.tsx`
+- `src/pages/policies/TermsOfService.tsx`
+- `src/main.tsx`
+- `index.html`
+
+## After deploy
+
+Ahrefs caches findings — request a re-crawl of the affected URLs to clear the lists within a day instead of waiting for the natural recrawl cycle.

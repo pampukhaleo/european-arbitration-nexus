@@ -1,13 +1,15 @@
 import Layout from "@/components/Layout";
 import { Seo } from "@/components/Seo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const TermsOfService = () => {
+  const { language } = useLanguage();
   return (
     <>
       <Seo 
         title="Terms of Service | European Arbitration Chamber"
         description="Read the terms and conditions for using the European Arbitration Chamber's services and website."
-        lang="en"
+        lang={language}
       />
       <Layout>
       <div className="py-6">

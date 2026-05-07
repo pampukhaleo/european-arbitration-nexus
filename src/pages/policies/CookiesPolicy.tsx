@@ -1,13 +1,15 @@
 import Layout from "@/components/Layout";
 import { Seo } from "@/components/Seo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CookiesPolicy = () => {
+  const { language } = useLanguage();
   return (
     <>
       <Seo 
         title="Cookies Policy | European Arbitration Chamber"
         description="Understand how the European Arbitration Chamber uses cookies and similar technologies on our website."
-        lang="en"
+        lang={language}
       />
       <Layout>
       <div className="py-6">

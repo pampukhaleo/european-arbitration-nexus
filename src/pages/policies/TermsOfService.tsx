@@ -8,7 +8,7 @@ const TermsOfService = () => {
     <>
       <Seo 
         title="Terms of Service | European Arbitration Chamber"
-        description="Read the terms and conditions for using the European Arbitration Chamber's services and website."
+        description="Read the terms and conditions governing the use of the European Arbitration Chamber's website, services and online resources — your rights and our obligations."
         lang={language}
       />
       <Layout>

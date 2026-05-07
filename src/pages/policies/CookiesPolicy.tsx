@@ -78,10 +78,10 @@ const CookiesPolicy = () => {
               </li>
               <li className="ml-5 mt-2"><b>For the Internet Explorer web browser, please visit this page from
                 Microsoft: <a
-                  href={ 'http://support.microsoft.com/kb/278835' }>http://support.microsoft.com/kb/278835</a></b>
+                  href={ 'https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d' }>https://support.microsoft.com/en-us/topic/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d</a></b>
               </li>
               <li className="ml-5 mt-2"><b>For the Firefox web browser, please visit this page from Mozilla: <a
-                href={ 'https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored' }>https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored</a></b>
+                href={ 'https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox' }>https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox</a></b>
               </li>
               <li className="ml-5 mt-2"><b>For the Safari web browser, please visit this page from Apple: <a
                 href={ 'https://support.apple.com/kb/PH21411?locale=en_US' }>https://support.apple.com/kb/PH21411?locale=en_US</a></b>
@@ -103,10 +103,10 @@ const CookiesPolicy = () => {
             You can learn more about cookies at the following third-party websites:
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
               <li className="ml-5 mt-2"><b>All About Cookies: <a
-                href={ 'http://www.allaboutcookies.org/' }>http://www.allaboutcookies.org/</a></b>
+                href={ 'https://allaboutcookies.org/' }>https://allaboutcookies.org/</a></b>
               </li>
               <li className="ml-5 mt-2"><b>Network Advertising Initiative: <a
-                href={ 'http://www.networkadvertising.org/' }>http://www.networkadvertising.org/</a></b>
+                href={ 'https://thenai.org/' }>https://thenai.org/</a></b>
               </li>
             </ul>
           </p>

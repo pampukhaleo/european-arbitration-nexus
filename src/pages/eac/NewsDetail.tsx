@@ -30,7 +30,8 @@ const NewsDetail = () => {
   const description = pickText(newsItem.description, language);
 
   // SEO data
-  const seoTitle = `${title} | News - European Arbitration Chamber`;
+  const trimmedTitle = title.length > 50 ? `${title.slice(0, 49).trimEnd()}…` : title;
+  const seoTitle = `${trimmedTitle} | EAC News`;
   const plainDescription = description
     .replace(/<[^>]*>/g, '')
     .replace(/\n+/g, ' ')

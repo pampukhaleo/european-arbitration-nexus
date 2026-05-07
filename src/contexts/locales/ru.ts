@@ -518,7 +518,7 @@ export default {
       ],
       fee: "Ежегодный членский взнос составляет 301,29 евро (включая НДС).",
       formPrompt: "Чтобы подать заявку на членство, заполните форму здесь:",
-      formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdI-Ic0-JOrRDbQO3VQqMqipTM-qrhjKM9WQiBv02ytqKD8_A/viewform",
       followUp: "Секретариат ЕАП свяжется с вами для дальнейших инструкций."
     },
     code: {

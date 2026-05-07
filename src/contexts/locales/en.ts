@@ -517,7 +517,7 @@ const en = {
       ],
       fee: "The annual membership fee is 301.29 EUR (VAT included).",
       formPrompt: "To request membership, please complete the form here:",
-      formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdI-Ic0-JOrRDbQO3VQqMqipTM-qrhjKM9WQiBv02ytqKD8_A/viewform",
       followUp: "The EAC Secretariat will reach out to you with further instructions."
     },
     code: {

@@ -513,7 +513,7 @@ export default {
       ],
       fee: "La cotisation annuelle s'élève à 301,29 EUR (TVA incluse).",
       formPrompt: "Pour demander l'adhésion, veuillez remplir le formulaire ici:",
-      formLink: "https://forms.gle/cue4X8S6g6kpWM6q8",
+      formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdI-Ic0-JOrRDbQO3VQqMqipTM-qrhjKM9WQiBv02ytqKD8_A/viewform",
       followUp: "Le Secrétariat de la CEA vous contactera pour vous fournir des instructions supplémentaires."
     },
     code: {

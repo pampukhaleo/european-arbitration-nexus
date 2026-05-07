@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
     <>
       <Seo 
         title="Privacy Policy | European Arbitration Chamber"
-        description="Learn about how the European Arbitration Chamber handles and protects your personal information."
+        description="Learn how the European Arbitration Chamber collects, stores, uses and protects your personal information when you interact with our website and services."
         lang={language}
       />
       <Layout>

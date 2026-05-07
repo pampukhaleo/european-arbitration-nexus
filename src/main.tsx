@@ -8,4 +8,7 @@ const langMatch = window.location.pathname.match(/^\/(en|fr|ru)(?:\/|$)/);
 const initialLang = langMatch?.[1] ?? 'en';
 document.documentElement.lang = initialLang;
 
+// Remove the SSR fallback h1 once React takes over (per-page renders its own h1).
+document.getElementById('ssr-h1')?.remove();
+
 createRoot(document.getElementById("root")!).render(<App />);

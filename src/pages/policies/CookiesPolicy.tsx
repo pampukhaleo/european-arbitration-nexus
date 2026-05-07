@@ -8,7 +8,7 @@ const CookiesPolicy = () => {
     <>
       <Seo 
         title="Cookies Policy | European Arbitration Chamber"
-        description="Understand how the European Arbitration Chamber uses cookies and similar technologies on our website."
+        description="Understand how the European Arbitration Chamber uses cookies and similar technologies on its website, your choices and how to manage cookie preferences."
         lang={language}
       />
       <Layout>

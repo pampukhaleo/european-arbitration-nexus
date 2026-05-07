@@ -50,7 +50,7 @@ export const CookieConsent = () => {
           <span className="text-sm">
             Learn more in our{" "}
             <Link 
-              to="/cookies" 
+              to="/cookies-policy" 
               className="text-blue-600 hover:underline font-medium"
               onClick={() => setShowConsent(false)}
             >

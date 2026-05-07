@@ -1,83 +1,83 @@
 const en = {
   seo: {
     home: {
-      title: "European Arbitration Chamber | Resolving disputes, advancing arbitration.",
+      title: "European Arbitration Chamber (EAC) | Resolving Disputes",
       description: "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine."
     },
     eac: {
-      title: "About The European Arbitration Chamber (EAC) | European Arbitration Chamber",
+      title: "About the European Arbitration Chamber (EAC)",
       description: "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation from Belgium, France, and Ukraine."
     },
     council: {
-      title: "Members of the EAC Council | European Arbitration Chamber",
+      title: "Members of the EAC Council",
       description: "Meet the professionals who form the governing council of the European Arbitration Chamber."
     },
     news: {
-      title: "News & Updates | European Arbitration Chamber",
+      title: "News & Updates | EAC",
       description: "Stay informed with the latest news, events, and developments from the European Arbitration Chamber."
     },
     icac: {
-      title: "About the ICAC under the EAC | European Arbitration Chamber",
+      title: "About the ICAC under the EAC",
       description: "The International Commercial Arbitration Court under the European Arbitration Chamber (the ICAC) is an independent permanent arbitration court, operating under its Rules, Articles 1676-1723 of the Belgian Judicial Code and Statute of the European Arbitration Chamber."
     },
     rules: {
-      title: "The Rules of the ICAC under the EAC | European Arbitration Chamber",
+      title: "ICAC Rules | EAC",
       description: "A new version of the ICAC Rules entered into force on November 11, 2020. This version was approved by the Council of the International non-profit association \"European Arbitration Chamber\". It applies to all proceedings that commenced after November 10, 2020 or will commence in the future. Of all the language versions of the ICAC Arbitration Rules, the English version is considered prevailing."
     },
     fees: {
-      title: "Fee Regulations | European Arbitration Chamber",
+      title: "Fee Regulations | EAC",
       description: "A new version of the ICAC Provisions on Arbitration Costs entered into force on November 11, 2020. This version was approved by the Council of the International non-profit association \"European Arbitration Chamber\". It applies to all proceedings that commenced after November 10, 2020 or will commence in the future. Of all the language versions of the ICAC Provisions on Arbitration Costs, the English version is considered prevailing."
     },
     calculator: {
-      title: "Cost Calculator | European Arbitration Chamber",
+      title: "Arbitration Cost Calculator | EAC",
       description: "The arbitration fee is payable by the parties for each claim submitted to the International Commercial Arbitration Court under the European Arbitration Chamber to cover the costs of arbitration. The fee amount is calculated in accordance with the Provisions on Arbitration Costs of the ICAC under the EAC."
     },
     clause: {
-      title: "Arbitration Clause | European Arbitration Chamber",
+      title: "Arbitration Clause | EAC",
       description: "Official model arbitration clause for inclusion in your international contracts."
     },
     icje: {
-      title: "ICE: EXPERT EXAMINATION | European Arbitration Chamber",
+      title: "ICE: Expert Examination | EAC",
       description: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) operates as a separate department within the European Arbitration Chamber and carries out its activities in accordance with the Statute of the European Arbitration Chamber."
     },
     areas: {
-      title: "ICE – Main Areas of Expert Research | European Arbitration Chamber",
+      title: "ICE — Main Areas of Expert Research | EAC",
       description: "The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provides a wide range of expert research and examination services across various industries."
     },
     authentication: {
-      title: "Art Authentication | European Arbitration Chamber",
+      title: "Art Authentication | EAC",
       description: "Ensuring the authenticity of a work of art is crucial for collectors, investors, museums, and galleries. The International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) under the European Arbitration Chamber provides professional art authentication services to verify the originality, authorship, and provenance of artworks."
     },
     appraisal: {
-      title: "ART APPRAISAL | European Arbitration Chamber",
+      title: "Art Appraisal | EAC",
       description: "To determine the market value of artworks, a thorough art examination and appraisal process is conducted."
     },
     artPassport: {
-      title: "AUTHORIZATION OF WORKS OF ART | European Arbitration Chamber",
+      title: "Art Passport & Authorization | EAC",
       description: "Experts at the International Center of Expertise under the European Arbitration Chamber (the ICE under the EAC) provide services for the authorization and certification of artworks. This process results in the issuance of a passport for the artwork, certifying its unique physical characteristics and features."
     },
     gallery: {
-      title: "Art Gallery | European Arbitration Chamber",
+      title: "Art Gallery | EAC",
       description: "Explore authenticated artworks with expert analysis and detailed documentation."
     },
     benefits: {
-      title: "5 Reasons to Become an EAC Member | European Arbitration Chamber",
+      title: "5 Reasons to Become an EAC Member",
       description: "Career Growth & Networking. Exclusive Training & Events. Valuable Insights & Resources. Visibility & Promotion. Accreditation as an Arbitrator"
     },
     join: {
-      title: "Membership in the European Arbitration Chamber | European Arbitration Chamber",
+      title: "Membership in the EAC",
       description: "How to become an associated member of the European Arbitration Chamber"
     },
     conductCode: {
-      title: "Code of Conduct | European Arbitration Chamber",
+      title: "Code of Conduct | EAC",
       description: "The European Arbitration Chamber (EAC) has established this Code of Conduct to ensure its members uphold the highest ethical and professional standards. All members are expected to adhere to these principles with strict observance."
     },
     contacts: {
-      title: "Contact Us | European Arbitration Chamber",
+      title: "Contact Us | EAC",
       description: "Reach out to the European Arbitration Chamber for any inquiries or support."
     },
     about: {
-      title: "About Us | European Arbitration Chamber",
+      title: "About Us | EAC",
       description: "Discover the mission, vision, and values behind the European Arbitration Council."
     }
   },

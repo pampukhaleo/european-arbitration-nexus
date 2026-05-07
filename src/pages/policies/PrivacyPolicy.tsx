@@ -1,13 +1,15 @@
 import Layout from "@/components/Layout";
 import { Seo } from "@/components/Seo";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PrivacyPolicy = () => {
+  const { language } = useLanguage();
   return (
     <>
       <Seo 
         title="Privacy Policy | European Arbitration Chamber"
         description="Learn about how the European Arbitration Chamber handles and protects your personal information."
-        lang="en"
+        lang={language}
       />
       <Layout>
       <div className="py-6">

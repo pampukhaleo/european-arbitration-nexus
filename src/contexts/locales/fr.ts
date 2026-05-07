@@ -3,79 +3,79 @@ export default {
   seo: {
     home: {
       title: "Chambre Européenne d’Arbitrage (CEA) | Litiges",
-      description: "La CEA offre des services d’arbitrage, d’évaluation d’experts et d’accompagnement juridique pour les litiges internationaux et les biens culturels."
+      description: "La CEA — association internationale sans but lucratif fondée en Belgique en 2008 — propose arbitrage commercial, médiation, expertise et authentification d’œuvres d’art."
     },
     eac: {
       title: "À propos de la Chambre Européenne d’Arbitrage (CEA)",
-      description: "L'association internationale sans but lucratif Chambre Européenne d'Arbitrage (CEA) a été fondée en Belgique en 2008 à l’initiative de professionnels de l’arbitrage commercial et de la médiation provenant de Belgique, de France et d’Ukraine."
+      description: "Découvrez la CEA, association internationale sans but lucratif fondée en Belgique en 2008 par des professionnels de l’arbitrage commercial et de la médiation."
     },
     council: {
       title: "Membres du Conseil de la CEA",
-      description: "Rencontrez les professionnels qui composent le conseil de la Chambre Européenne d'Arbitrage."
+      description: "Rencontrez les arbitres internationaux, médiateurs et experts juridiques qui composent le Conseil de la Chambre Européenne d’Arbitrage (CEA)."
     },
     news: {
       title: "Actualités et mises à jour | CEA",
-      description: "Restez informé des dernières nouvelles, événements et développements de la CEA."
+      description: "Restez informé des dernières actualités, conférences, partenariats et développements en matière d’arbitrage de la Chambre Européenne d’Arbitrage."
     },
     icac: {
       title: "À propos du TAIC auprès de la CEA",
-      description: "Le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d'Arbitrage (ci-après, \"TAIC auprès de la CEA\") est un tribunal arbitral indépendant et permanent, qui exerce ses activités conformément au Code judiciaire de Belgique (articles 1676-1722), aux statuts de la Chambre Européenne d'Arbitrage et à son propre Règlement."
+      description: "Le Tribunal d’arbitrage international de commerce (TAIC) auprès de la CEA est un tribunal arbitral indépendant et permanent régi par le Code judiciaire belge."
     },
     rules: {
       title: "Règlement d’arbitrage du TAIC | CEA",
-      description: "Une nouvelle version du Règlement du TAIC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de la Chambre Européenne d’Arbitrage. Elle s’applique à toutes les procédures entamées après le 10 novembre 2020 ou qui seront engagées à l’avenir. Parmi toutes les versions linguistiques du Règlement d’arbitrage du TAIC, la version anglaise fait foi."
+      description: "Règlement d’arbitrage du TAIC — version officielle en vigueur depuis le 11 novembre 2020, approuvée par le Conseil de la Chambre Européenne d’Arbitrage."
     },
     fees: {
       title: "Règlement des frais | CEA",
-      description: "Une nouvelle version des Dispositions sur les Frais d’Arbitrage de la CIAC est entrée en vigueur le 11 novembre 2020. Cette version a été approuvée par le Conseil de l’association internationale sans but lucratif « Chambre Européenne d’Arbitrage ». Elle s’applique à toutes les procédures commencées après le 10 novembre 2020 ou à venir. Parmi toutes les versions linguistiques, la version anglaise prévaut."
+      description: "Dispositions sur les frais d’arbitrage du TAIC — version officielle en vigueur depuis le 11 novembre 2020, approuvée par le Conseil de la CEA."
     },
     calculator: {
       title: "Calculateur de coûts d’arbitrage | CEA",
-      description: "Les frais d’arbitrage sont payés par les parties pour chaque demande acceptée à l’examen par le Tribunal d'arbitrage international de commerce auprès de la Chambre Européenne d’Arbitrage (Bruxelles, Belgique) (ci-après – TAIC), afin de couvrir les frais liés à l’organisation et au déroulement de la procédure arbitrale. Le montant des frais d’arbitrage est calculé conformément aux Dispositions relatives aux frais d’arbitrage du TAIC."
+      description: "Calculez les frais d’arbitrage du TAIC pour votre dossier en fonction de la valeur du litige, selon les Dispositions officielles sur les frais d’arbitrage."
     },
     clause: {
       title: "Clause compromissoire type | TAIC",
-      description: "Utilisez la clause type d’arbitrage à inclure dans vos contrats internationaux."
+      description: "Clause compromissoire type recommandée par le TAIC auprès de la CEA, à inclure dans vos contrats commerciaux internationaux et vos accords juridiques."
     },
     icje: {
       title: "Expertise au CEI | CEA",
-      description: "Au sein de la Chambre Européenne d'Arbitrage, le Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fonctionne en tant que département distinct, exerçant ses activités conformément aux statuts de la Chambre Européenne d'Arbitrage."
+      description: "Le Centre Expertise International (CEI) sous la CEA fournit des services d’expertise indépendants couvrant de nombreux secteurs juridiques et techniques."
     },
     areas: {
       title: "CEI — Zones de recherche d’expertise | CEA",
-      description: "Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (CEI) offre une large gamme de services d'expertise et d'examen dans divers secteurs."
+      description: "Découvrez les principaux domaines de recherche d’expertise du Centre Expertise International (CEI) sous la CEA — art, finance, technique et juridique."
     },
     authentication: {
       title: "Authentification d’art | CEA",
-      description: "Assurer l'authenticité d'une œuvre d'art est crucial pour les collectionneurs, investisseurs, musées et galeries. Le Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) sous la Chambre Européenne d'Arbitrage fournit des services professionnels d'authentification d'art pour vérifier l'originalité, l'auteur et la provenance des œuvres."
+      description: "Authentification professionnelle d’œuvres d’art par le CEI sous la CEA — vérification de l’originalité, de l’auteur et de la provenance pour collectionneurs et musées."
     },
     appraisal: {
       title: "Évaluation d’œuvres d’art | CEA",
-      description: "Pour déterminer la valeur marchande d’une œuvre d’art, un processus complet d’examen et d’évaluation est mené."
+      description: "Évaluation indépendante d’œuvres d’art et estimation de leur valeur marchande par le Centre Expertise International (CEI) sous la Chambre Européenne d’Arbitrage."
     },
     artPassport: {
       title: "Autorisation des œuvres d’art | CEA",
-      description: "Les experts du Centre Expertise International sous la Chambre Européenne d'Arbitrage (le CEI sous la CEA) fournissent des services d’autorisation et de certification des œuvres d’art. Ce processus aboutit à la délivrance d’un passeport pour l’œuvre, certifiant ses caractéristiques physiques uniques."
+      description: "Le CEI sous la CEA délivre des passeports officiels d’œuvres d’art certifiant les caractéristiques physiques uniques, l’auteur et la provenance de chaque œuvre."
     },
     benefits: {
       title: "5 raisons de devenir membre de la CEA",
-      description: "Accréditation d'arbitre. Opportunités de carrière. Améliorer les qualifications professionnelles. Échange d'informations professionnelles dans le domaine du droit international et de l'arbitrage. Opportunités publicitaires."
+      description: "Accréditation d’arbitre, opportunités de carrière, formation continue, échange d’informations et visibilité internationale — découvrez les avantages d’adhérer à la CEA."
     },
     join: {
       title: "Adhésion à la CEA",
-      description: "Comment devenir membre associé de la Chambre Européenne d'Arbitrage"
+      description: "Découvrez comment devenir membre associé de la Chambre Européenne d’Arbitrage — étapes d’adhésion, conditions et avantages pour arbitres et juristes."
     },
     conductCode: {
       title: "Code de conduite de la CEA",
-      description: "La Chambre Européenne d'Arbitrage (CEA) a établi ce Code de conduite pour garantir que ses membres respectent les plus hauts standards éthiques et professionnels. Tous les membres sont tenus de respecter strictement ces principes."
+      description: "Le Code de conduite de la CEA fixe les normes éthiques et professionnelles que doivent respecter tous les membres de la Chambre Européenne d’Arbitrage."
     },
     contacts: {
       title: "Contactez-nous | CEA",
-      description: "Prenez contact avec la Chambre Européenne d'Arbitrage pour toute question ou demande d'assistance."
+      description: "Contactez la Chambre Européenne d’Arbitrage pour toute question d’arbitrage, médiation, expertise ou adhésion — Bruxelles, Belgique. Réponse sous deux jours ouvrés."
     },
     about: {
       title: "À propos de nous | CEA",
-      description: "Découvrez la mission, la vision et les valeurs de la Chambre Européenne d'Arbitrage."
+      description: "Découvrez la mission, la vision et les valeurs de la Chambre Européenne d’Arbitrage — association internationale sans but lucratif active depuis 2008."
     }
   },
   language: {

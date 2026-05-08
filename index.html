@@ -24,11 +24,28 @@
           onload="this.media='all'"
   />
   <!--
-    SEO meta (title, description, canonical, OG, Twitter) is managed entirely
-    by react-helmet-async per route — see src/components/Seo.tsx. We only keep
-    a default <title> here for the no-JS case; it is replaced on mount.
+    Default SEO fallback for no-JS crawlers and pre-hydration snapshots.
+    react-helmet-async (src/components/Seo.tsx) replaces these per-route on mount.
   -->
   <title>European Arbitration Chamber (EAC) | Resolving Disputes</title>
+  <meta name="description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+  <link rel="canonical" href="https://chea-taic.be/en" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="European Arbitration Chamber (EAC) | Resolving Disputes" />
+  <meta property="og:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+  <meta property="og:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
+  <meta property="og:url" content="https://chea-taic.be/en" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="European Arbitration Chamber (EAC)" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@EAC_Arbitration" />
+  <meta name="twitter:title" content="European Arbitration Chamber (EAC) | Resolving Disputes" />
+  <meta name="twitter:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+  <meta name="twitter:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
 </head>
 
 <body>

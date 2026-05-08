@@ -1,53 +1,45 @@
-## Ahrefs warnings — root causes & fixes
+## Что произошло
 
-### 1. Indexable became non-indexable / Noindex on `/{en,fr,ru}/cookies`
-Ahrefs is crawling `/en/cookies`, `/fr/cookies`, `/ru/cookies` (legacy URLs without `-policy`). The router has no match → `NotFound` renders, which emits `noindex, nofollow`. That single page also fans out 22 nofollow links to every nav target, which is the root cause of warnings #5 (60+6 nofollow inlinks) and #6 (3 pages with nofollow outgoing links).
+В прошлой итерации мы удалили статические SEO-теги из `index.html` и добавили DOM-очистку в `src/main.tsx`, считая, что они конфликтуют с `react-helmet-async`. Это было ошибкой.
 
-**Fix:** add three redirect routes inside `<Route path="/:lang">` in `src/App.tsx`:
-```tsx
-<Route path="cookies" element={<Navigate to="../cookies-policy" replace />} />
-```
-(One alias is enough; we keep the canonical URL `/cookies-policy`.) This kills warnings 1, 3, 5 and 6 in one shot.
+**Новый отчёт Ahrefs показывает 28 страниц с критическими проблемами:**
+- H1 tag missing or empty — 28 новых
+- Meta description tag missing or empty — 28 новых
+- Open Graph tags missing — 28 новых
+- X (Twitter) card missing — 28 новых
+- **Duplicate pages without canonical — 28 новых (ERROR, красный)**
 
-### 2. Canonical URL changed for `/fr/privacy-policy`, `/ru/privacy-policy`, `/fr/terms-of-service`
-`Seo.tsx` receives `lang` from `useLanguage()`. On first paint of a deep link, `LanguageContext` is still `"en"` (the default) before `LangSync` swaps it to the URL lang, so Helmet emits `canonical=/en/privacy-policy` for a `/fr/...` URL. Crawlers snapshot the wrong canonical.
+Все эти 28 — одни и те же страницы. Причина: Ahrefs (как и часть других краулеров/превью-ботов) делает первичный snapshot HTML до выполнения JS. Раньше статические теги в `index.html` служили fallback'ом для no-JS-краула. Мы их убрали — и на этих 28 страницах краулер видит пустой `<head>` без description/canonical/OG/Twitter и пустой `<body>` без H1.
 
-**Fix:** in `src/components/Seo.tsx`, derive `currentLang` from `location.pathname` instead of trusting the prop:
-```ts
-const pathLang = location.pathname.split("/")[1];
-const currentLang = SUPPORTED_LANGS.includes(pathLang as any) ? pathLang : (SUPPORTED_LANGS.includes(lang as any) ? lang : "en");
-```
-Use `currentLang` for `buildUrl(currentLang)` (canonical + og:url) and for `htmlAttributes={{ lang: currentLang }}`. This eliminates the brief canonical mismatch.
+Что касается исходной жалобы (дублирующийся `<meta name="description">` и неправильный canonical на FR/RU): `react-helmet-async` на самом деле **заменяет** теги с теми же атрибутами, а не добавляет их. Реальной причиной неправильного canonical был баг в `Seo.tsx` (он брал `lang` из контекста, который на первом рендере ещё `"en"`). Этот баг **уже исправлен** — теперь `currentLang` выводится из `location.pathname`. Удаление статических тегов было лишним.
 
-### 3. Page has only one dofollow incoming internal link (84 news pages)
-Each `/eac/news/:id` is only linked from the paginated `/eac/news` list (one page at a time). Improve internal linking on `NewsDetail.tsx`:
-- Add a "Related news" block at the bottom showing 4–6 sibling articles (random or most-recent excluding current) as `<Link>`s.
-- Add prev/next article links.
+## План отката
 
-This boosts dofollow inlinks per article from 1 to 5–7 without bloating navigation.
+### 1. `index.html` — вернуть статические SEO fallback-теги в `<head>`
+Восстановить дефолты, которые краулер увидит до выполнения JS (Helmet их заменит per-route):
+- `<meta name="description" content="...">` (общее EAC-описание)
+- `<link rel="canonical" href="https://chea-taic.be/en">`
+- `<meta property="og:title">`, `og:description`, `og:image`, `og:url`, `og:type`, `og:site_name`, `og:locale`
+- `<meta name="twitter:card">`, `twitter:title`, `twitter:description`, `twitter:image`
+- Оставить существующий дефолтный `<title>` и `<noscript>` блок
 
-### 4. Page has links to redirect (Cookies Policy outbound)
-Four external links in `src/pages/policies/CookiesPolicy.tsx` hit redirects. Replace with current final URLs:
-| Current | Final |
-|---|---|
-| `http://support.microsoft.com/kb/278835` (already replaced earlier) → still 307s | `https://support.microsoft.com/en-us/windows/delete-and-manage-cookies-168dab11-0753-043d-7c16-ede5947fc64d` |
-| `http://www.allaboutcookies.org/` | `https://allaboutcookies.org/` (already done; verify no trailing redirect) |
-| `http://www.networkadvertising.org/` | `https://thenai.org/` (already done) |
-| `https://support.mozilla.org/en-US/kb/delete-cookies-remove-info-websites-stored` | `https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox` (already done) |
+Все значения — общие EAC defaults (английская версия с canonical на `/en`). Helmet перезапишет их на каждом маршруте.
 
-The Ahrefs report still flags them, so re-verify each URL with `curl -I` and update to whatever returns 200 directly. Do the same audit for the equivalent links rendered inside the `ru/fr` versions of the page if any.
+### 2. `src/main.tsx` — убрать DOM-очистку
+Удалить блок `document.querySelectorAll(...).forEach((el) => el.remove())`. Он больше не нужен и вреден: стирает fallback до того, как Helmet успеет смонтироваться. Оставить только установку `document.documentElement.lang` и удаление `#ssr-h1`.
 
-### 5. Redirect chain `http://www.chea-taic.be/ → https://chea-taic.be/` (warning #8)
-Hosting-level (Lovable/DNS apex+www). Cannot be fixed in app code — out of scope. Will note in commit.
+### 3. `src/components/Seo.tsx` — без изменений
+Уже исправлен в предыдущей итерации (canonical берётся из pathname). Это и было настоящим решением проблемы canonical на FR/RU.
 
-### Files to edit
-- `src/App.tsx` — add `cookies → cookies-policy` redirect route per lang.
-- `src/components/Seo.tsx` — derive lang from pathname.
-- `src/pages/eac/NewsDetail.tsx` — add Related/Prev/Next news block.
-- `src/pages/policies/CookiesPolicy.tsx` — verify and update external URLs to their final destinations.
+### Почему это безопасно
+- Helmet **заменяет** теги по селектору `[name=description]`, `[rel=canonical]`, `[property=og:*]`, `[name=twitter:*]` — дублей в финальном DOM не будет.
+- На JS-краулах (Google, Ahrefs JS-mode) теги будут актуальные per-route.
+- На no-JS снимках (первый pass Ahrefs, превью-боты, соцсети без JS) — будут валидные дефолты вместо пустоты.
 
-### Out of scope
-- Apex/www redirect chain (warning #8).
-- The lone `Missing` row for `/en/membership/conductCode` in image-69 — the route exists and returns 200; Ahrefs label is informational.
+### Файлы
+- `index.html` — добавить SEO fallback-теги
+- `src/main.tsx` — убрать DOM-cleanup
 
-Summary: 4 small file edits resolve 6 of the 9 warnings; #3 (84 news) is improved structurally; #8 is infrastructural and out of scope.
+### Не входит
+- Sitemap, переводы, маршрутизация, редиректы apex/www
+- 28 страниц с пустыми H1 в SSR — у нас SPA, статический H1 в `<noscript>` уже есть; per-route H1 рендерит React при выполнении JS

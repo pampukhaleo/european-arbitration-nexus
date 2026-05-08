@@ -1,55 +1,85 @@
-## Что показывает новый отчёт Ahrefs
+## Что не так сейчас (диагноз)
 
-Главные новые ошибки:
-- **Multiple meta description tags — 452 (321 новых)** — дубли description
-- **Open Graph URL not matching canonical — 451** — статический `og:url=/en` конфликтует с Helmet'овским `og:url` для FR/RU
-- **Title too long — 321** — Helmet выдаёт длинный title, но статический короткий тоже есть
-- **Hreflang to non-canonical — 71**
-- **Non-canonical page in sitemap — 28**, **Canonical URL changed — 28**
-- **H1 tag missing or empty — 42** (для no-JS снимков)
+Я проверил реальный published HTML для `/fr/eac/about` и `/ru/arbitration/fees` — оба возвращают **один и тот же `index.html`** с английским title, description, canonical=`/en` и og:url=`/en`. Так и должно быть в SPA: SPA-fallback Lovable отдаёт один HTML на все маршруты, а Helmet меняет head только в браузере с JS.
 
-## Диагноз — почему так получилось
+Ahrefs (как и часть краулеров Google) видит именно этот сырой HTML → отсюда **все** SEO-ошибки за последние недели, и они не решаются точечными правками `index.html`/`main.tsx`:
 
-Я был неправ в прошлой итерации. `react-helmet-async` **дедуплицирует только теги, которые сам же добавил**. Пре-существующие статические теги из `index.html` он **не трогает** — они остаются в DOM рядом с тегами Helmet → дубли description, og:*, twitter:* на каждой странице.
+- `Duplicate pages without canonical` (50) — 50 разных URL отдают одинаковый canonical=`/en` → Ahrefs считает их дублями без canonical на самих себя.
+- `Missing reciprocal hreflang` (78), `Hreflang to non-canonical` — в HTML deep-link страниц нет `<link rel="alternate" hreflang>` (их добавляет только Helmet в браузере).
+- `Non-canonical page in sitemap` — в sitemap лежит `/fr/eac/about`, но её canonical в HTML = `/en`.
+- В прошлых отчётах: `Multiple meta description tags`, `Open Graph URL not matching canonical`, `Title too long`, `H1 tag missing` — все из той же причины.
 
-Получается тупик:
-- Уберём статику → no-JS краулер Ahrefs видит пустой head (прошлый отчёт: 28 страниц без description/canonical/OG)
-- Оставим статику → JS-краулер Ahrefs видит дубли (текущий отчёт: 452 дубля description)
+Точечные правки `<head>` это не починят, потому что у каждой страницы должен быть **свой** HTML — а его сейчас не существует.
 
-## Решение — оба механизма одновременно
+## Решение: build-time prerender
 
-Нужен **обоих**: статика в `index.html` для no-JS краула + cleanup в `main.tsx` **до** монтирования React, чтобы JS-краул видел только теги Helmet.
+Генерируем статический HTML для каждого публичного URL **во время билда**, чтобы Lovable хостинг отдавал готовую страницу с правильными head-тегами без участия JS. React-приложение поверх сгенерированного HTML работает как раньше (гидратация, роутинг, интерактив).
 
-### 1. `index.html` — оставить статические fallback-теги
-Без изменений (уже восстановлены).
+Подход: `vite-plugin-prerender-spa` (или `vite-plugin-ssr-pre-render` / собственный postbuild-скрипт через `puppeteer`). Берём список URL из существующего `public/sitemap.xml` (он у нас уже актуален), для каждого URL рендерим страницу в headless-браузере, сохраняем готовый `index.html` в `dist/<path>/index.html`. Lovable-хостинг автоматически отдаст этот файл вместо SPA-fallback.
 
-### 2. `src/main.tsx` — вернуть cleanup, но правильно
-Перед `createRoot().render()` удалить SEO-теги из `<head>`, которые Helmet перезапишет:
-```ts
-const head = document.head;
-head.querySelectorAll('meta[name="description"]').forEach(el => el.remove());
-head.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
-head.querySelectorAll('meta[property^="og:"]').forEach(el => el.remove());
-head.querySelectorAll('meta[name^="twitter:"]').forEach(el => el.remove());
-```
+### Шаги
 
-Это работает так:
-- **No-JS краулер** (первый pass Ahrefs, соцсети без JS): JS не выполняется → видит статические теги из HTML → валидные дефолты, никаких дублей
-- **JS-краулер** (Google, Ahrefs JS-mode, браузер): cleanup стирает статику → Helmet добавляет per-route теги → нет дублей, корректный canonical/og:url
+1. **Инструмент**: добавить dev-зависимость `puppeteer` + написать `scripts/prerender.mjs`.
+   - Парсит `public/sitemap.xml` → массив путей (`/en`, `/fr/eac/about`, …).
+   - Поднимает локально `vite preview` на порту, в puppeteer открывает каждый URL.
+   - Ждёт `networkidle0` + сигнал готовности (`window.__APP_READY__ = true` после Helmet-mount).
+   - Сохраняет `document.documentElement.outerHTML` в `dist/<path>/index.html`.
 
-### 3. `src/components/Seo.tsx` — без изменений
-Уже корректно вычисляет canonical из `location.pathname`.
+2. **Хук "готово к снимку"**: добавить в `src/main.tsx` после `createRoot().render()` коротенький `requestIdleCallback(() => { window.__APP_READY__ = true })`. Используется только prerender-скриптом, на пользователя не влияет.
 
-### Почему прошлый раз не сработало
-В первой попытке мы **удалили статику ИЗ index.html** и сделали cleanup. Cleanup был избыточным (нечего стирать), а отсутствие статики ломало no-JS краул. Сейчас наоборот — статика есть, cleanup удалён, и JS-краул видит дубли.
+3. **package.json**: новый скрипт `"prerender": "node scripts/prerender.mjs"` и `"build": "vite build && npm run prerender"`. Lovable-билд после этого выложит готовые файлы.
 
-Правильно — **оба**: статика для no-JS, cleanup для JS.
+4. **Cleanup в `main.tsx`**: оставить блок удаления статических SEO-тегов **с условием** "только если страница не prerendered" — определяется по наличию маркера `<meta name="x-prerendered" content="true">`, который вставит скрипт. На prerendered страницах теги Helmet уже совпадают с DOM, удалять нечего, дублей не будет.
+
+5. **`index.html`**: оставить английский fallback как есть — он используется только для маршрутов, которые prerender не покрывает (admin, gallery/manage, динамические `/gallery/:id/access/:token`), и для них и так стоит `noindex`.
+
+6. **Sitemap**: оставить существующий — он уже консистентен с тем, что мы prerendered.
+
+### Что входит в prerender
+
+Все публичные локализованные маршруты из `sitemap.xml`:
+- `/en`, `/fr`, `/ru`
+- `/{lang}/eac/{about,council,news}` + статичные `/eac/news/:id` (ID известны из `src/data/news`)
+- `/{lang}/arbitration/{icac,rules,fees,calculator,clause}`
+- `/{lang}/expertise/{icje,expertiseFields}`
+- `/{lang}/art-expertise/{authentication,appraisal,passport}`
+- `/{lang}/gallery` (список — без детальных карточек)
+- `/{lang}/membership/{benefits,join,conductCode}`
+- `/{lang}/contacts`, `/{lang}/{privacy-policy,cookies-policy,terms-of-service}`
+- `/{lang}/landing`
+
+### Что НЕ входит
+
+- `/auth`, `/admin/*`, `/gallery/manage/*`, `/gallery/:id/access/:token` — под `noindex`, остаются как SPA.
+- `/gallery/:id` детальные карточки — динамические, добавим вторым шагом по запросу (там нужен fetch из Supabase в скрипте — больше работы).
+
+### Технические детали
+
+- Prerender выполняется на стороне Lovable во время `vite build`. Puppeteer тянет Chromium ~150 MB при первой установке — допустимо.
+- Helmet всё равно остаётся (на клиентских переходах он обновляет head).
+- Никаких изменений в Lovable-хостинге не требуется — он сам отдаст `dist/fr/eac/about/index.html` на запрос `/fr/eac/about`.
+
+### Ожидаемый эффект на отчёт Ahrefs
+
+| Ошибка | Сейчас | После |
+|---|---|---|
+| Duplicate pages without canonical | 50 | 0 |
+| Missing reciprocal hreflang | 78 | 0 |
+| Hreflang to non-canonical | 4 | 0 |
+| Non-canonical page in sitemap | 3 (+28 removed) | 0 |
+| Multiple meta description tags | 452 | 0 |
+| OG URL not matching canonical | 451 | 0 |
+| H1 tag missing | 42 | 0 |
+
+`Image file size too large` (15) — отдельная задача, не входит в этот план.
 
 ### Файлы
-- `src/main.tsx` — добавить блок `head.querySelectorAll(...).forEach(el => el.remove())` перед `createRoot().render()`
 
-### Не входит
-- `index.html`, `Seo.tsx` — без изменений
-- Sitemap (`Non-canonical page in sitemap`, `Indexable page not in sitemap`) — отдельная задача, скажите, если нужно править
-- `Image file size too large`, `Slow page` — отдельная задача оптимизации
-- `Title too long` — после фикса дублей титл будет один (Helmet'овский); если он реально длинный — отдельно подрежем по конкретным страницам
+- `package.json` — добавить `puppeteer`, скрипт `prerender`, изменить `build`.
+- `scripts/prerender.mjs` — новый.
+- `src/main.tsx` — добавить `__APP_READY__`-маркер и условие cleanup.
+
+### Риски
+
+- Puppeteer может не уложиться в build-time лимит (обычно 60–120с на ~150 страниц — нормально).
+- Если какая-то страница падает в prerender (ошибка JS), скрипт логирует URL и продолжает; SPA-fallback её обслужит как раньше.

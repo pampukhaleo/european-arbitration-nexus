@@ -1,45 +1,55 @@
-## Что произошло
+## Что показывает новый отчёт Ahrefs
 
-В прошлой итерации мы удалили статические SEO-теги из `index.html` и добавили DOM-очистку в `src/main.tsx`, считая, что они конфликтуют с `react-helmet-async`. Это было ошибкой.
+Главные новые ошибки:
+- **Multiple meta description tags — 452 (321 новых)** — дубли description
+- **Open Graph URL not matching canonical — 451** — статический `og:url=/en` конфликтует с Helmet'овским `og:url` для FR/RU
+- **Title too long — 321** — Helmet выдаёт длинный title, но статический короткий тоже есть
+- **Hreflang to non-canonical — 71**
+- **Non-canonical page in sitemap — 28**, **Canonical URL changed — 28**
+- **H1 tag missing or empty — 42** (для no-JS снимков)
 
-**Новый отчёт Ahrefs показывает 28 страниц с критическими проблемами:**
-- H1 tag missing or empty — 28 новых
-- Meta description tag missing or empty — 28 новых
-- Open Graph tags missing — 28 новых
-- X (Twitter) card missing — 28 новых
-- **Duplicate pages without canonical — 28 новых (ERROR, красный)**
+## Диагноз — почему так получилось
 
-Все эти 28 — одни и те же страницы. Причина: Ahrefs (как и часть других краулеров/превью-ботов) делает первичный snapshot HTML до выполнения JS. Раньше статические теги в `index.html` служили fallback'ом для no-JS-краула. Мы их убрали — и на этих 28 страницах краулер видит пустой `<head>` без description/canonical/OG/Twitter и пустой `<body>` без H1.
+Я был неправ в прошлой итерации. `react-helmet-async` **дедуплицирует только теги, которые сам же добавил**. Пре-существующие статические теги из `index.html` он **не трогает** — они остаются в DOM рядом с тегами Helmet → дубли description, og:*, twitter:* на каждой странице.
 
-Что касается исходной жалобы (дублирующийся `<meta name="description">` и неправильный canonical на FR/RU): `react-helmet-async` на самом деле **заменяет** теги с теми же атрибутами, а не добавляет их. Реальной причиной неправильного canonical был баг в `Seo.tsx` (он брал `lang` из контекста, который на первом рендере ещё `"en"`). Этот баг **уже исправлен** — теперь `currentLang` выводится из `location.pathname`. Удаление статических тегов было лишним.
+Получается тупик:
+- Уберём статику → no-JS краулер Ahrefs видит пустой head (прошлый отчёт: 28 страниц без description/canonical/OG)
+- Оставим статику → JS-краулер Ahrefs видит дубли (текущий отчёт: 452 дубля description)
 
-## План отката
+## Решение — оба механизма одновременно
 
-### 1. `index.html` — вернуть статические SEO fallback-теги в `<head>`
-Восстановить дефолты, которые краулер увидит до выполнения JS (Helmet их заменит per-route):
-- `<meta name="description" content="...">` (общее EAC-описание)
-- `<link rel="canonical" href="https://chea-taic.be/en">`
-- `<meta property="og:title">`, `og:description`, `og:image`, `og:url`, `og:type`, `og:site_name`, `og:locale`
-- `<meta name="twitter:card">`, `twitter:title`, `twitter:description`, `twitter:image`
-- Оставить существующий дефолтный `<title>` и `<noscript>` блок
+Нужен **обоих**: статика в `index.html` для no-JS краула + cleanup в `main.tsx` **до** монтирования React, чтобы JS-краул видел только теги Helmet.
 
-Все значения — общие EAC defaults (английская версия с canonical на `/en`). Helmet перезапишет их на каждом маршруте.
+### 1. `index.html` — оставить статические fallback-теги
+Без изменений (уже восстановлены).
 
-### 2. `src/main.tsx` — убрать DOM-очистку
-Удалить блок `document.querySelectorAll(...).forEach((el) => el.remove())`. Он больше не нужен и вреден: стирает fallback до того, как Helmet успеет смонтироваться. Оставить только установку `document.documentElement.lang` и удаление `#ssr-h1`.
+### 2. `src/main.tsx` — вернуть cleanup, но правильно
+Перед `createRoot().render()` удалить SEO-теги из `<head>`, которые Helmet перезапишет:
+```ts
+const head = document.head;
+head.querySelectorAll('meta[name="description"]').forEach(el => el.remove());
+head.querySelectorAll('link[rel="canonical"]').forEach(el => el.remove());
+head.querySelectorAll('meta[property^="og:"]').forEach(el => el.remove());
+head.querySelectorAll('meta[name^="twitter:"]').forEach(el => el.remove());
+```
+
+Это работает так:
+- **No-JS краулер** (первый pass Ahrefs, соцсети без JS): JS не выполняется → видит статические теги из HTML → валидные дефолты, никаких дублей
+- **JS-краулер** (Google, Ahrefs JS-mode, браузер): cleanup стирает статику → Helmet добавляет per-route теги → нет дублей, корректный canonical/og:url
 
 ### 3. `src/components/Seo.tsx` — без изменений
-Уже исправлен в предыдущей итерации (canonical берётся из pathname). Это и было настоящим решением проблемы canonical на FR/RU.
+Уже корректно вычисляет canonical из `location.pathname`.
 
-### Почему это безопасно
-- Helmet **заменяет** теги по селектору `[name=description]`, `[rel=canonical]`, `[property=og:*]`, `[name=twitter:*]` — дублей в финальном DOM не будет.
-- На JS-краулах (Google, Ahrefs JS-mode) теги будут актуальные per-route.
-- На no-JS снимках (первый pass Ahrefs, превью-боты, соцсети без JS) — будут валидные дефолты вместо пустоты.
+### Почему прошлый раз не сработало
+В первой попытке мы **удалили статику ИЗ index.html** и сделали cleanup. Cleanup был избыточным (нечего стирать), а отсутствие статики ломало no-JS краул. Сейчас наоборот — статика есть, cleanup удалён, и JS-краул видит дубли.
+
+Правильно — **оба**: статика для no-JS, cleanup для JS.
 
 ### Файлы
-- `index.html` — добавить SEO fallback-теги
-- `src/main.tsx` — убрать DOM-cleanup
+- `src/main.tsx` — добавить блок `head.querySelectorAll(...).forEach(el => el.remove())` перед `createRoot().render()`
 
 ### Не входит
-- Sitemap, переводы, маршрутизация, редиректы apex/www
-- 28 страниц с пустыми H1 в SSR — у нас SPA, статический H1 в `<noscript>` уже есть; per-route H1 рендерит React при выполнении JS
+- `index.html`, `Seo.tsx` — без изменений
+- Sitemap (`Non-canonical page in sitemap`, `Indexable page not in sitemap`) — отдельная задача, скажите, если нужно править
+- `Image file size too large`, `Slow page` — отдельная задача оптимизации
+- `Title too long` — после фикса дублей титл будет один (Helmet'овский); если он реально длинный — отдельно подрежем по конкретным страницам

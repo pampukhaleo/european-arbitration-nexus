@@ -1,23 +1,30 @@
-// Per-route SEO metadata used by scripts/prerender.mjs.
-// Keys are paths WITHOUT the language prefix (e.g. "" for /<lang>, "/eac/about").
-// Each entry has localized title/description for en/fr/ru.
+// Per-route SEO metadata (title / description / h1) for the localised pages.
+// Keys are paths WITHOUT the language prefix:
+//   ""              for /<lang>
+//   "/eac/about"    for /<lang>/eac/about
+//
+// Used by <RouteSeo> in <Layout> as a per-route default. Pages that need
+// dynamic metadata (news detail, gallery item, etc.) render their own <Seo>
+// on top, which overrides the title/description.
 
-export const SITE = {
-  baseUrl: "https://chea-taic.be",
-  siteName: "European Arbitration Chamber (EAC)",
-  twitter: "@EAC_Arbitration",
-  defaultImage: "https://chea-taic.be/eap-banner-1200x630.png",
-};
+type Lang = "en" | "fr" | "ru";
+type Localized = Record<Lang, string>;
 
-const fallbackDescription = {
-  en: "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation.",
-  fr: "La Chambre d'Arbitrage Européenne (EAC) est une association internationale à but non lucratif fondée en Belgique en 2008 par des professionnels de l'arbitrage commercial et de la médiation.",
-  ru: "Европейская арбитражная палата (EAC) — международная некоммерческая ассоциация, основанная в Бельгии в 2008 году профессионалами коммерческого арбитража и медиации.",
-};
+interface RouteMeta {
+  title: Localized;
+  description: Localized;
+  h1: Localized;
+}
 
-const t = (en, fr, ru) => ({ en, fr, ru });
+const t = (en: string, fr: string, ru: string): Localized => ({ en, fr, ru });
 
-export const ROUTE_META = {
+const fallbackDescription: Localized = t(
+  "The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation.",
+  "La Chambre d'Arbitrage Européenne (EAC) est une association internationale à but non lucratif fondée en Belgique en 2008 par des professionnels de l'arbitrage commercial et de la médiation.",
+  "Европейская арбитражная палата (EAC) — международная некоммерческая ассоциация, основанная в Бельгии в 2008 году профессионалами коммерческого арбитража и медиации."
+);
+
+export const ROUTE_META: Record<string, RouteMeta> = {
   "": {
     title: t(
       "European Arbitration Chamber (EAC) | Resolving Disputes",
@@ -300,29 +307,10 @@ export const ROUTE_META = {
     ),
     h1: t("Terms of Service", "Conditions d'Utilisation", "Условия использования"),
   },
-
-  "/landing": {
-    title: t(
-      "International Arbitration Services | EAC",
-      "Services d'Arbitrage International | EAC",
-      "Услуги международного арбитража | EAC"
-    ),
-    description: t(
-      "Resolve commercial disputes efficiently with the European Arbitration Chamber's international arbitration services.",
-      "Résolvez efficacement vos litiges commerciaux avec les services d'arbitrage international de la Chambre d'Arbitrage Européenne.",
-      "Эффективное разрешение коммерческих споров с помощью услуг международного арбитража Европейской арбитражной палаты."
-    ),
-    h1: t(
-      "International Commercial Arbitration",
-      "Arbitrage Commercial International",
-      "Международный коммерческий арбитраж"
-    ),
-  },
 };
 
-// Generic fallback used if a sitemap URL has no explicit metadata (e.g. news/:id).
-export function fallbackMeta(pathWithoutLang, lang) {
-  // News detail pages have format /eac/news/<id>.
+export function getRouteMeta(pathWithoutLang: string): RouteMeta {
+  if (ROUTE_META[pathWithoutLang]) return ROUTE_META[pathWithoutLang];
   if (/^\/eac\/news\/[^/]+$/.test(pathWithoutLang)) {
     return {
       title: t(
@@ -334,12 +322,8 @@ export function fallbackMeta(pathWithoutLang, lang) {
       h1: t("News", "Actualité", "Новость"),
     };
   }
-  return {
-    title: ROUTE_META[""].title,
-    description: ROUTE_META[""].description,
-    h1: ROUTE_META[""].h1,
-  };
+  if (/^\/gallery\/[^/]+/.test(pathWithoutLang)) {
+    return ROUTE_META["/gallery"];
+  }
+  return ROUTE_META[""];
 }
-
-export const OG_LOCALE = { en: "en_US", fr: "fr_FR", ru: "ru_RU" };
-export const HTML_LANG_ATTR = { en: "en", fr: "fr", ru: "ru" };

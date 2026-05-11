@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "prerender": "node scripts/prerender.mjs",
-    "build": "vite build && node scripts/prerender.mjs"
+    "build": "vite build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

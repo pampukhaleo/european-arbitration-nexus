@@ -10,40 +10,48 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-  <!-- Preconnect to backend & fonts (faster first API + font requests) -->
+  <!-- Preconnect to backend & fonts -->
   <link rel="preconnect" href="https://fwwpidktaanowpaihgzy.supabase.co" crossorigin />
   <link rel="dns-prefetch" href="https://fwwpidktaanowpaihgzy.supabase.co" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <!-- Optimized Google Fonts loading (only families actually used by Tailwind theme) -->
+  <!-- Optimized Google Fonts loading -->
   <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
           media="print"
           onload="this.media='all'"
   />
-  <!--
-    Default SEO fallback for no-JS crawlers and pre-hydration snapshots.
-    react-helmet-async (src/components/Seo.tsx) replaces these per-route on mount.
-  -->
-  <title>European Arbitration Chamber (EAC) | Resolving Disputes</title>
-  <meta name="description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
-  <link rel="canonical" href="https://chea-taic.be/en" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="European Arbitration Chamber (EAC) | Resolving Disputes" />
+  <!--
+    Generic site-wide defaults for no-JS crawlers. react-helmet-async
+    (src/components/RouteSeo.tsx + src/components/Seo.tsx) replaces these
+    per-route on hydration with the correct localized values + canonical +
+    hreflang for the current URL.
+
+    NOTE: We intentionally do NOT ship a hard-coded <link rel="canonical">
+    or <meta property="og:url"> here, because Lovable hosting serves this
+    same index.html for every deep link (e.g. /fr/eac/about). A wrong
+    canonical pointing at /en would be applied to ~150 distinct URLs and
+    flagged by SEO crawlers as "duplicate pages without canonical".
+    No canonical at all on the raw HTML pass is preferable; Helmet adds the
+    correct one on JS render.
+  -->
+  <title>European Arbitration Chamber (EAC)</title>
+  <meta name="description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
+
+  <!-- Open Graph (generic site-level fallback; per-route values injected by Helmet) -->
+  <meta property="og:title" content="European Arbitration Chamber (EAC)" />
   <meta property="og:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
   <meta property="og:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
-  <meta property="og:url" content="https://chea-taic.be/en" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="European Arbitration Chamber (EAC)" />
-  <meta property="og:locale" content="en_US" />
 
-  <!-- Twitter -->
+  <!-- Twitter (generic fallback) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@EAC_Arbitration" />
-  <meta name="twitter:title" content="European Arbitration Chamber (EAC) | Resolving Disputes" />
+  <meta name="twitter:title" content="European Arbitration Chamber (EAC)" />
   <meta name="twitter:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
   <meta name="twitter:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
 </head>
@@ -52,7 +60,7 @@
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-background focus:text-foreground focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-primary">
   Skip to main content
 </a>
-<h1 id="ssr-h1" class="sr-only">European Arbitration Chamber (EAC) — Resolving Disputes, Advancing Arbitration</h1>
+<h1 id="ssr-h1" class="sr-only">European Arbitration Chamber (EAC)</h1>
 <noscript>
   <p>The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation. Visit chea-taic.be for arbitration rules, fee regulations, art expertise, membership and news.</p>
 </noscript>

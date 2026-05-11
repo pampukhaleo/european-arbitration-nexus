@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import SectionNav from "./navigation/SectionNav";
+import { RouteSeo } from "./RouteSeo";
 import { stripLangPrefix } from "@/lib/i18nRouting";
 
 interface LayoutProps {
@@ -33,6 +34,7 @@ export default function Layout({ children }: LayoutProps) {
   
   return (
     <div className="flex flex-col min-h-screen">
+      <RouteSeo />
       <Header />
       <main id="main-content" tabIndex={-1} className="flex-grow focus:outline-none">
         {isHomePage || isContactsPage ? (

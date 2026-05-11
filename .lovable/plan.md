@@ -1,85 +1,69 @@
-## Что не так сейчас (диагноз)
+# Why the Ahrefs errors are still there
 
-Я проверил реальный published HTML для `/fr/eac/about` и `/ru/arbitration/fees` — оба возвращают **один и тот же `index.html`** с английским title, description, canonical=`/en` и og:url=`/en`. Так и должно быть в SPA: SPA-fallback Lovable отдаёт один HTML на все маршруты, а Helmet меняет head только в браузере с JS.
+I checked what the live site actually serves. The prerendered files are **on the server** (you can see them at `/fr/eac/about/index.html` directly), but Lovable hosting has a hard limitation:
 
-Ahrefs (как и часть краулеров Google) видит именно этот сырой HTML → отсюда **все** SEO-ошибки за последние недели, и они не решаются точечными правками `index.html`/`main.tsx`:
+```
+GET /fr/eac/about        → returns root /index.html (English defaults)
+GET /fr/eac/about/       → returns root /index.html (English defaults)
+GET /fr/eac/about/index.html → returns the correct prerendered file
+```
 
-- `Duplicate pages without canonical` (50) — 50 разных URL отдают одинаковый canonical=`/en` → Ahrefs считает их дублями без canonical на самих себя.
-- `Missing reciprocal hreflang` (78), `Hreflang to non-canonical` — в HTML deep-link страниц нет `<link rel="alternate" hreflang>` (их добавляет только Helmet в браузере).
-- `Non-canonical page in sitemap` — в sitemap лежит `/fr/eac/about`, но её canonical в HTML = `/en`.
-- В прошлых отчётах: `Multiple meta description tags`, `Open Graph URL not matching canonical`, `Title too long`, `H1 tag missing` — все из той же причины.
+I confirmed this in the Lovable docs: **Lovable hosting never serves nested `index.html` for clean URLs** — every deep link falls back to the root `index.html`. Our `scripts/prerender.mjs` generates 159 perfect HTML files, but no crawler will ever see them, because crawlers request `/fr/eac/about`, not `/fr/eac/about/index.html`.
 
-Точечные правки `<head>` это не починят, потому что у каждой страницы должен быть **свой** HTML — а его сейчас не существует.
+That's why Ahrefs still reports:
+- 38 duplicate pages without canonical
+- 54 missing reciprocal hreflang
+- 38 missing H1
+- 38 missing meta description
 
-## Решение: build-time prerender
+All of them get the same English root `index.html`.
 
-Генерируем статический HTML для каждого публичного URL **во время билда**, чтобы Lovable хостинг отдавал готовую страницу с правильными head-тегами без участия JS. React-приложение поверх сгенерированного HTML работает как раньше (гидратация, роутинг, интерактив).
+Your project memory says the site must stay on Lovable hosting, so we cannot solve this with a different host.
 
-Подход: `vite-plugin-prerender-spa` (или `vite-plugin-ssr-pre-render` / собственный postbuild-скрипт через `puppeteer`). Берём список URL из существующего `public/sitemap.xml` (он у нас уже актуален), для каждого URL рендерим страницу в headless-браузере, сохраняем готовый `index.html` в `dist/<path>/index.html`. Lovable-хостинг автоматически отдаст этот файл вместо SPA-fallback.
+# What we *can* do on Lovable hosting
 
-### Шаги
+Two layers:
 
-1. **Инструмент**: добавить dev-зависимость `puppeteer` + написать `scripts/prerender.mjs`.
-   - Парсит `public/sitemap.xml` → массив путей (`/en`, `/fr/eac/about`, …).
-   - Поднимает локально `vite preview` на порту, в puppeteer открывает каждый URL.
-   - Ждёт `networkidle0` + сигнал готовности (`window.__APP_READY__ = true` после Helmet-mount).
-   - Сохраняет `document.documentElement.outerHTML` в `dist/<path>/index.html`.
+### 1. Make the SPA itself produce correct per-route SEO (for JS-rendering crawlers like Google and Ahrefs' JS pass)
 
-2. **Хук "готово к снимку"**: добавить в `src/main.tsx` после `createRoot().render()` коротенький `requestIdleCallback(() => { window.__APP_READY__ = true })`. Используется только prerender-скриптом, на пользователя не влияет.
+- The app already uses `react-helmet-async` via `src/components/Seo.tsx`. I'll audit every public page and make sure each one renders `<Seo>` with: localized `title`, `description`, correct `canonical`, full `hreflang` set (en/fr/ru + x-default), `og:*`, `twitter:*`, and a real visible (or `sr-only`) `<h1>`.
+- Make sure pages that currently miss it (news detail, gallery, contacts, policies, art-expertise, expertise, membership, arbitration sub-pages) all set a proper canonical and hreflang for the *current* language path, not the English one.
 
-3. **package.json**: новый скрипт `"prerender": "node scripts/prerender.mjs"` и `"build": "vite build && npm run prerender"`. Lovable-билд после этого выложит готовые файлы.
+### 2. Make the static `index.html` fallback harmless instead of misleading (for no-JS crawlers)
 
-4. **Cleanup в `main.tsx`**: оставить блок удаления статических SEO-тегов **с условием** "только если страница не prerendered" — определяется по наличию маркера `<meta name="x-prerendered" content="true">`, который вставит скрипт. На prerendered страницах теги Helmet уже совпадают с DOM, удалять нечего, дублей не будет.
+Right now `index.html` ships with hard-coded English title, English description, `canonical=https://chea-taic.be/en`, English OG. That's exactly what Ahrefs sees for every deep link, which is why it flags duplicates and wrong canonicals.
 
-5. **`index.html`**: оставить английский fallback как есть — он используется только для маршрутов, которые prerender не покрывает (admin, gallery/manage, динамические `/gallery/:id/access/:token`), и для них и так стоит `noindex`.
+I'll change `index.html` so that:
+- `<title>` and `<meta description>` stay (generic site-level wording in English) — needed so the page isn't flagged as "missing".
+- **Remove the hard-coded `<link rel="canonical">`** from `index.html`. Helmet will inject the right one per route. No canonical at all is better than a wrong one duplicated on 50 URLs (Ahrefs will stop flagging "duplicate pages without canonical" as critical, and Google's JS render will pick up the right one from Helmet).
+- **Remove hard-coded `og:url`** for the same reason.
+- Keep a single neutral `<h1 id="ssr-h1" class="sr-only">European Arbitration Chamber</h1>` so "H1 missing" goes away even on the no-JS pass; React then overwrites it per route.
 
-6. **Sitemap**: оставить существующий — он уже консистентен с тем, что мы prerendered.
+### 3. Remove the dead prerender step
 
-### Что входит в prerender
+- Delete `scripts/prerender.mjs` and `scripts/seo-metadata.mjs`.
+- Restore `package.json` `"build": "vite build"` (no postbuild). The 159 files we generate today are never served — they only inflate build time and are confusing.
 
-Все публичные локализованные маршруты из `sitemap.xml`:
-- `/en`, `/fr`, `/ru`
-- `/{lang}/eac/{about,council,news}` + статичные `/eac/news/:id` (ID известны из `src/data/news`)
-- `/{lang}/arbitration/{icac,rules,fees,calculator,clause}`
-- `/{lang}/expertise/{icje,expertiseFields}`
-- `/{lang}/art-expertise/{authentication,appraisal,passport}`
-- `/{lang}/gallery` (список — без детальных карточек)
-- `/{lang}/membership/{benefits,join,conductCode}`
-- `/{lang}/contacts`, `/{lang}/{privacy-policy,cookies-policy,terms-of-service}`
-- `/{lang}/landing`
+# Files I'll touch
 
-### Что НЕ входит
+- `index.html` — strip wrong canonical / og:url, keep a neutral title/description/h1.
+- `src/components/Seo.tsx` — make sure it always emits canonical + 3 hreflang + x-default for the current path & language (this is the single source of truth).
+- Public page components that currently don't render `<Seo>` or render it with wrong props (audit list: `pages/eac/NewsDetail.tsx`, `pages/Contacts.tsx`, `pages/policies/*`, `pages/membership/*`, `pages/arbitration/*`, `pages/expertise/*`, `pages/artExpertise/*`, `pages/gallery/Gallery.tsx`).
+- `src/main.tsx` — drop the "x-prerendered" branching; Helmet now always manages the head.
+- `package.json` — remove `prerender` script, restore plain `vite build`.
+- Delete `scripts/prerender.mjs`, `scripts/seo-metadata.mjs`.
 
-- `/auth`, `/admin/*`, `/gallery/manage/*`, `/gallery/:id/access/:token` — под `noindex`, остаются как SPA.
-- `/gallery/:id` детальные карточки — динамические, добавим вторым шагом по запросу (там нужен fetch из Supabase в скрипте — больше работы).
+# Honest expectation about Ahrefs
 
-### Технические детали
+After this change and a fresh Ahrefs crawl:
+- **"H1 missing", "Meta description missing", "Title missing"** → fully resolved (neutral defaults in `index.html` + Helmet on JS render).
+- **"Open Graph tags missing", "Twitter card missing"** → resolved (defaults in `index.html`, per-route via Helmet).
+- **"Duplicate pages without canonical"** → resolved as a critical issue (no wrong canonical anymore; Ahrefs treats "no canonical" as a notice, not an error).
+- **"Missing reciprocal hreflang"** → resolved on Ahrefs' JS-render pass (Helmet emits all three). On the no-JS pass it can't be fully solved without per-route HTML, which Lovable hosting doesn't support.
+- **"Open Graph URL mismatch"** → resolved by removing the wrong static `og:url`.
 
-- Prerender выполняется на стороне Lovable во время `vite build`. Puppeteer тянет Chromium ~150 MB при первой установке — допустимо.
-- Helmet всё равно остаётся (на клиентских переходах он обновляет head).
-- Никаких изменений в Lovable-хостинге не требуется — он сам отдаст `dist/fr/eac/about/index.html` на запрос `/fr/eac/about`.
+The only error we cannot 100% kill on the raw-HTML pass is hreflang reciprocity, because that genuinely requires per-route HTML. Enabling Ahrefs' "Execute JavaScript" in your project's crawl settings makes it disappear there too.
 
-### Ожидаемый эффект на отчёт Ahrefs
+# Question
 
-| Ошибка | Сейчас | После |
-|---|---|---|
-| Duplicate pages without canonical | 50 | 0 |
-| Missing reciprocal hreflang | 78 | 0 |
-| Hreflang to non-canonical | 4 | 0 |
-| Non-canonical page in sitemap | 3 (+28 removed) | 0 |
-| Multiple meta description tags | 452 | 0 |
-| OG URL not matching canonical | 451 | 0 |
-| H1 tag missing | 42 | 0 |
-
-`Image file size too large` (15) — отдельная задача, не входит в этот план.
-
-### Файлы
-
-- `package.json` — добавить `puppeteer`, скрипт `prerender`, изменить `build`.
-- `scripts/prerender.mjs` — новый.
-- `src/main.tsx` — добавить `__APP_READY__`-маркер и условие cleanup.
-
-### Риски
-
-- Puppeteer может не уложиться в build-time лимит (обычно 60–120с на ~150 страниц — нормально).
-- Если какая-то страница падает в prerender (ошибка JS), скрипт логирует URL и продолжает; SPA-fallback её обслужит как раньше.
+Do you want me to go ahead with this? It involves throwing away the prerender work we just did (because Lovable hosting won't serve it) and instead doing the Helmet + clean-defaults approach. It's the only path that actually works while staying on Lovable.

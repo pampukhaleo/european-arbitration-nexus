@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
           {
             tag: "script",
             attrs: { src: "https://cdn.gpteng.co/gptengineer.js", type: "module", defer: true },
-            injectTo: "body",
+            injectTo: "body" as const,
           },
         ];
       },

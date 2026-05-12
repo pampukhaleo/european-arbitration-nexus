@@ -79,6 +79,13 @@ const NewsDetail = () => {
       .replace(/\n/g, "<br/>")
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       .replace(/\*(.*?)\*/g, "<em>$1</em>");
+    // DOMPurify needs a real DOM; during SSG we run in Node where `window`
+    // is undefined. Skip sanitisation in that case — content is hard-coded
+    // in the project's own data files and re-sanitised once Helmet/React
+    // hydrates in the browser.
+    if (typeof window === "undefined") {
+      return { __html: transformed };
+    }
     return {
       __html: DOMPurify.sanitize(transformed, {
         ALLOWED_TAGS: ["p", "br", "strong", "em", "b", "i", "ul", "ol", "li", "h1", "h2", "h3", "h4", "a"],

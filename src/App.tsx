@@ -32,7 +32,9 @@ const Landing = lazy(() => import('@/pages/Landing'));
 const EACAbout = lazy(() => import('@/pages/eac/About'));
 const Council = lazy(() => import('@/pages/eac/Council'));
 const News = lazy(() => import('@/pages/eac/News'));
-const NewsDetail = lazy(() => import('@/pages/eac/NewsDetail'));
+// NewsDetail is loaded eagerly because it's a dynamic SSG route with
+// getStaticPaths — vite-react-ssg needs the Component reference at build time.
+import NewsDetail from '@/pages/eac/NewsDetail';
 
 const ICAC = lazy(() => import('@/pages/arbitration/ICAC'));
 const Rules = lazy(() => import('@/pages/arbitration/Rules'));

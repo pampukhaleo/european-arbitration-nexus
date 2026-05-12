@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import type { RouteRecord } from 'vite-react-ssg';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+// HelmetProvider is provided automatically by vite-react-ssg in both SSR and client.
 import Index from '@/pages/Index';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import AdminRoute from '@/components/AdminRoute';
@@ -65,18 +65,16 @@ const queryClient = new QueryClient();
  */
 const RootLayout = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <AuthProvider>
-        <ErrorBoundary>
-          <Suspense fallback={<PageLoader />}>
-            <Outlet />
-          </Suspense>
-        </ErrorBoundary>
-        <ScrollToTop />
-        <Toaster />
-        <CookieConsent />
-      </AuthProvider>
-    </HelmetProvider>
+    <AuthProvider>
+      <ErrorBoundary>
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
+      </ErrorBoundary>
+      <ScrollToTop />
+      <Toaster />
+      <CookieConsent />
+    </AuthProvider>
   </QueryClientProvider>
 );
 

@@ -32,21 +32,16 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      // The app and vite-react-ssg must share the SAME react-helmet-async
-      // instance, otherwise <Helmet> writes to a different context than the
-      // SSR renderer reads and head tags never reach the pre-rendered HTML.
-      "react-helmet-async": path.resolve(
-        __dirname,
-        "node_modules/vite-react-ssg/node_modules/react-helmet-async"
-      ),
     },
-    dedupe: ["react", "react-dom"],
+    dedupe: ["react", "react-dom", "react-helmet-async"],
   },
-  // react-helmet-async must NOT be bundled (noExternal) — vite-react-ssg's
-  // runtime loads its own external copy from node_modules at SSR time, and
-  // both must share the exact same module instance for HelmetProvider's
-  // context to reach <Helmet>. The alias above ensures the app resolves to
-  // the same physical package as vite-react-ssg.
+  // Bundle react-helmet-async into the SSR pass so the app and any helmet
+  // consumer share a single module instance — without this, <Helmet> writes
+  // to a different React context than the SSR renderer reads, and head tags
+  // (title / description / canonical / hreflang) never reach the HTML.
+  ssr: {
+    noExternal: ["react-helmet-async"],
+  },
   build: {
     rollupOptions: {
       output: {

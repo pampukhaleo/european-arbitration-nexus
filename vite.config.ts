@@ -35,11 +35,8 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom", "react-helmet-async"],
   },
-  ssr: {
-    // vite-react-ssg requires bundling react-helmet-async into the SSR pass
-    // so the app and the SSR renderer share a single helmet instance.
-    noExternal: ["react-helmet-async"],
-  },
+  // Both the app and vite-react-ssg now resolve react-helmet-async externally
+  // from the same node_modules path, sharing one module instance.
   build: {
     rollupOptions: {
       output: {

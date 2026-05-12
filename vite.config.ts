@@ -42,10 +42,11 @@ export default defineConfig(({ mode }) => ({
     },
     dedupe: ["react", "react-dom"],
   },
-  // vite-react-ssg requires bundling react-helmet-async for the SSR pass.
-  ssr: {
-    noExternal: ["react-helmet-async"],
-  },
+  // react-helmet-async must NOT be bundled (noExternal) — vite-react-ssg's
+  // runtime loads its own external copy from node_modules at SSR time, and
+  // both must share the exact same module instance for HelmetProvider's
+  // context to reach <Helmet>. The alias above ensures the app resolves to
+  // the same physical package as vite-react-ssg.
   build: {
     rollupOptions: {
       output: {

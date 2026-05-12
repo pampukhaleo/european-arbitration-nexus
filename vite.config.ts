@@ -13,6 +13,21 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
+    // Inject the Lovable in-editor agent only at dev time. Including it in the
+    // production HTML breaks vite-react-ssg's SSR pass (Rollup tries to resolve
+    // it as an entry module).
+    mode === "development" && {
+      name: "lovable-gpteng-script",
+      transformIndexHtml() {
+        return [
+          {
+            tag: "script",
+            attrs: { src: "https://cdn.gpteng.co/gptengineer.js", type: "module", defer: true },
+            injectTo: "body",
+          },
+        ];
+      },
+    },
   ].filter(Boolean),
   resolve: {
     alias: {

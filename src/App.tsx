@@ -65,18 +65,16 @@ const queryClient = new QueryClient();
  */
 const RootLayout = () => (
   <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <AuthProvider>
-        <ErrorBoundary>
-          <Suspense fallback={<PageLoader />}>
-            <Outlet />
-          </Suspense>
-        </ErrorBoundary>
-        <ScrollToTop />
-        <Toaster />
-        <CookieConsent />
-      </AuthProvider>
-    </HelmetProvider>
+    <AuthProvider>
+      <ErrorBoundary>
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
+      </ErrorBoundary>
+      <ScrollToTop />
+      <Toaster />
+      <CookieConsent />
+    </AuthProvider>
   </QueryClientProvider>
 );
 

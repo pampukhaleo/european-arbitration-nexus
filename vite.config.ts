@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => ({
   // to a different React context than the SSR renderer reads, and head tags
   // (title / description / canonical / hreflang) never reach the HTML.
   ssr: {
-    noExternal: ["react-helmet-async"],
+    noExternal: ["react-helmet-async", "vite-react-ssg"],
   },
   build: {
     rollupOptions: {

@@ -1,6 +1,6 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import type { RouteRecord } from 'vite-react-ssg';
-import { Outlet, Navigate, useLocation, useParams } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Index from '@/pages/Index';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -16,46 +16,46 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { isSupportedLang, DEFAULT_LANG, SUPPORTED_LANGS } from '@/lib/i18nRouting';
 import { newsItems } from '@/data/newsData';
 
-// Lazy-loaded pages
-const Gallery = lazy(() => import('@/pages/gallery/Gallery'));
-const PaintingDetail = lazy(() => import('@/pages/gallery/PaintingDetail'));
-const PaintingForm = lazy(() => import('@/pages/gallery/PaintingForm'));
-const GalleryManage = lazy(() => import('@/pages/gallery/GalleryManage'));
-const QrCodeGenerator = lazy(() => import('@/pages/gallery/QrCodeGenerator'));
-const TokenManagement = lazy(() => import('@/pages/gallery/TokenManagement'));
-const Auth = lazy(() => import('@/pages/Auth'));
-const Contacts = lazy(() => import('@/pages/Contacts'));
-const NotFound = lazy(() => import('@/pages/NotFound'));
-const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
-const Landing = lazy(() => import('@/pages/Landing'));
+// Pages — imported eagerly so vite-react-ssg can pre-render every route at
+// build time. Vite still emits per-route chunks via manualChunks in
+// vite.config.ts, so the runtime bundle remains code-split.
+import Gallery from '@/pages/gallery/Gallery';
+import PaintingDetail from '@/pages/gallery/PaintingDetail';
+import PaintingForm from '@/pages/gallery/PaintingForm';
+import GalleryManage from '@/pages/gallery/GalleryManage';
+import QrCodeGenerator from '@/pages/gallery/QrCodeGenerator';
+import TokenManagement from '@/pages/gallery/TokenManagement';
+import Auth from '@/pages/Auth';
+import Contacts from '@/pages/Contacts';
+import NotFound from '@/pages/NotFound';
+import AdminDashboard from '@/pages/admin/AdminDashboard';
+import Landing from '@/pages/Landing';
 
-const EACAbout = lazy(() => import('@/pages/eac/About'));
-const Council = lazy(() => import('@/pages/eac/Council'));
-const News = lazy(() => import('@/pages/eac/News'));
-// NewsDetail is loaded eagerly because it's a dynamic SSG route with
-// getStaticPaths — vite-react-ssg needs the Component reference at build time.
+import EACAbout from '@/pages/eac/About';
+import Council from '@/pages/eac/Council';
+import News from '@/pages/eac/News';
 import NewsDetail from '@/pages/eac/NewsDetail';
 
-const ICAC = lazy(() => import('@/pages/arbitration/ICAC'));
-const Rules = lazy(() => import('@/pages/arbitration/Rules'));
-const FeeRegulations = lazy(() => import('@/pages/arbitration/FeeRegulations'));
-const CostCalculator = lazy(() => import('@/pages/arbitration/CostCalculator'));
-const ArbitrationClause = lazy(() => import('@/pages/arbitration/ArbitrationClause'));
+import ICAC from '@/pages/arbitration/ICAC';
+import Rules from '@/pages/arbitration/Rules';
+import FeeRegulations from '@/pages/arbitration/FeeRegulations';
+import CostCalculator from '@/pages/arbitration/CostCalculator';
+import ArbitrationClause from '@/pages/arbitration/ArbitrationClause';
 
-const ICJE = lazy(() => import('@/pages/expertise/ICJE'));
-const ExpertiseFields = lazy(() => import('@/pages/expertise/ExpertiseFields'));
+import ICJE from '@/pages/expertise/ICJE';
+import ExpertiseFields from '@/pages/expertise/ExpertiseFields';
 
-const ArtAuthentication = lazy(() => import('@/pages/artExpertise/ArtAuthentication'));
-const ArtAppraisal = lazy(() => import('@/pages/artExpertise/ArtAppraisal'));
-const ArtPassport = lazy(() => import('@/pages/artExpertise/ArtPassport'));
+import ArtAuthentication from '@/pages/artExpertise/ArtAuthentication';
+import ArtAppraisal from '@/pages/artExpertise/ArtAppraisal';
+import ArtPassport from '@/pages/artExpertise/ArtPassport';
 
-const MembershipBenefits = lazy(() => import('@/pages/membership/MembershipBenefits'));
-const HowToJoin = lazy(() => import('@/pages/membership/HowToJoin'));
-const CodeOfConduct = lazy(() => import('@/pages/membership/CodeOfConduct'));
+import MembershipBenefits from '@/pages/membership/MembershipBenefits';
+import HowToJoin from '@/pages/membership/HowToJoin';
+import CodeOfConduct from '@/pages/membership/CodeOfConduct';
 
-const PrivacyPolicy = lazy(() => import('@/pages/policies/PrivacyPolicy'));
-const CookiesPolicy = lazy(() => import('@/pages/policies/CookiesPolicy'));
-const TermsOfService = lazy(() => import('@/pages/policies/TermsOfService'));
+import PrivacyPolicy from '@/pages/policies/PrivacyPolicy';
+import CookiesPolicy from '@/pages/policies/CookiesPolicy';
+import TermsOfService from '@/pages/policies/TermsOfService';
 
 const queryClient = new QueryClient();
 

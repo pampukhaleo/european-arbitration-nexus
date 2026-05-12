@@ -26,8 +26,14 @@ const LanguageContext = createContext<LanguageContextType>({
 
 export const useLanguage = () => useContext(LanguageContext);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('en');
+export const LanguageProvider = ({
+  children,
+  initialLanguage = 'en',
+}: {
+  children: ReactNode;
+  initialLanguage?: Language;
+}) => {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
 
   const t = <T = string>(key: string): T => {
     const keys = key.split(".");

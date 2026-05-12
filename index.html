@@ -25,49 +25,21 @@
   />
 
   <!--
-    Generic site-wide defaults for no-JS crawlers. react-helmet-async
-    (src/components/RouteSeo.tsx + src/components/Seo.tsx) replaces these
-    per-route on hydration with the correct localized values + canonical +
-    hreflang for the current URL.
-
-    NOTE: We intentionally do NOT ship a hard-coded <link rel="canonical">
-    or <meta property="og:url"> here, because Lovable hosting serves this
-    same index.html for every deep link (e.g. /fr/eac/about). A wrong
-    canonical pointing at /en would be applied to ~150 distinct URLs and
-    flagged by SEO crawlers as "duplicate pages without canonical".
-    No canonical at all on the raw HTML pass is preferable; Helmet adds the
-    correct one on JS render.
+    Title, description, canonical, hreflang, og:* and twitter:* tags are
+    injected per-page by react-helmet-async (Seo / RouteSeo) during SSG.
+    Do NOT duplicate them here — duplicates break Helmet's overwrite and
+    Ahrefs reports them as "multiple title / description" errors.
   -->
-  <title>European Arbitration Chamber (EAC)</title>
-  <meta name="description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
-
-  <!-- Open Graph (generic site-level fallback; per-route values injected by Helmet) -->
-  <meta property="og:title" content="European Arbitration Chamber (EAC)" />
-  <meta property="og:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
-  <meta property="og:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="European Arbitration Chamber (EAC)" />
-
-  <!-- Twitter (generic fallback) -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@EAC_Arbitration" />
-  <meta name="twitter:title" content="European Arbitration Chamber (EAC)" />
-  <meta name="twitter:description" content="The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation." />
-  <meta name="twitter:image" content="https://chea-taic.be/eap-banner-1200x630.png" />
 </head>
 
 <body>
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-background focus:text-foreground focus:px-4 focus:py-2 focus:rounded focus:shadow-lg focus:outline focus:outline-2 focus:outline-primary">
   Skip to main content
 </a>
-<h1 id="ssr-h1" class="sr-only">European Arbitration Chamber (EAC)</h1>
-<noscript>
-  <p>The European Arbitration Chamber (EAC) is an international non-profit association founded in Belgium in 2008 by professionals in commercial arbitration and mediation. Visit chea-taic.be for arbitration rules, fee regulations, art expertise, membership and news.</p>
-</noscript>
 <div id="root"></div>
 
-<!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-<script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
+<!-- gpteng (Lovable in-editor agent) is injected at dev time by vite.config.ts. -->
+<!-- IMPORTANT: DO NOT REMOVE THIS COMMENT — required by Lovable tooling. -->
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

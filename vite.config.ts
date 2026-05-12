@@ -19,6 +19,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // vite-react-ssg requires bundling react-helmet-async for the SSR pass.
+  ssr: {
+    noExternal: ["react-helmet-async"],
+  },
   build: {
     rollupOptions: {
       output: {

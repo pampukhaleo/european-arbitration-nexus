@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "build": "vite build"
+    "build": "vite-react-ssg build && node scripts/organize-dist.mjs && node scripts/generate-sitemap.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

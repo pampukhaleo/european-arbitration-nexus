@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import type { RouteRecord } from 'vite-react-ssg';
+import { Outlet, Navigate, useLocation, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Index from '@/pages/Index';
 import ProtectedRoute from '@/components/ProtectedRoute';
@@ -7,13 +8,13 @@ import AdminRoute from '@/components/AdminRoute';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import PageLoader from '@/components/ui/PageLoader';
 import { ScrollToTop } from '@/components/ui/ScrollToTop';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, Language } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { Toaster } from '@/components/ui/toaster';
 import CookieConsent from '@/components/CookieConsent';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { LangSync } from '@/components/i18n/LangSync';
-import { RootLanguageRedirect, LegacyPathRedirect } from '@/lib/i18nRouting';
+import { isSupportedLang, DEFAULT_LANG, SUPPORTED_LANGS } from '@/lib/i18nRouting';
+import { newsItems } from '@/data/newsData';
 
 // Lazy-loaded pages
 const Gallery = lazy(() => import('@/pages/gallery/Gallery'));
@@ -28,163 +29,260 @@ const NotFound = lazy(() => import('@/pages/NotFound'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
 const Landing = lazy(() => import('@/pages/Landing'));
 
-// EAC pages
 const EACAbout = lazy(() => import('@/pages/eac/About'));
 const Council = lazy(() => import('@/pages/eac/Council'));
 const News = lazy(() => import('@/pages/eac/News'));
 const NewsDetail = lazy(() => import('@/pages/eac/NewsDetail'));
 
-// Arbitration pages
 const ICAC = lazy(() => import('@/pages/arbitration/ICAC'));
 const Rules = lazy(() => import('@/pages/arbitration/Rules'));
 const FeeRegulations = lazy(() => import('@/pages/arbitration/FeeRegulations'));
 const CostCalculator = lazy(() => import('@/pages/arbitration/CostCalculator'));
 const ArbitrationClause = lazy(() => import('@/pages/arbitration/ArbitrationClause'));
 
-// Expertise pages
 const ICJE = lazy(() => import('@/pages/expertise/ICJE'));
 const ExpertiseFields = lazy(() => import('@/pages/expertise/ExpertiseFields'));
 
-// Art Expertise pages
 const ArtAuthentication = lazy(() => import('@/pages/artExpertise/ArtAuthentication'));
 const ArtAppraisal = lazy(() => import('@/pages/artExpertise/ArtAppraisal'));
 const ArtPassport = lazy(() => import('@/pages/artExpertise/ArtPassport'));
 
-// Membership pages
 const MembershipBenefits = lazy(() => import('@/pages/membership/MembershipBenefits'));
 const HowToJoin = lazy(() => import('@/pages/membership/HowToJoin'));
 const CodeOfConduct = lazy(() => import('@/pages/membership/CodeOfConduct'));
 
-// Policy pages
 const PrivacyPolicy = lazy(() => import('@/pages/policies/PrivacyPolicy'));
 const CookiesPolicy = lazy(() => import('@/pages/policies/CookiesPolicy'));
 const TermsOfService = lazy(() => import('@/pages/policies/TermsOfService'));
 
 const queryClient = new QueryClient();
 
-function App() {
+/**
+ * Root layout — providers shared across the whole app.
+ * Rendered both at SSG-time and in the browser.
+ */
+const RootLayout = () => (
+  <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
+      <AuthProvider>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            <Outlet />
+          </Suspense>
+        </ErrorBoundary>
+        <ScrollToTop />
+        <Toaster />
+        <CookieConsent />
+      </AuthProvider>
+    </HelmetProvider>
+  </QueryClientProvider>
+);
+
+/**
+ * Per-language layout — provides LanguageProvider with the URL-derived language.
+ * Used as the layout component for each /:lang subtree.
+ */
+const LangLayout = ({ lang }: { lang: Language }) => (
+  <LanguageProvider initialLanguage={lang}>
+    <Outlet />
+  </LanguageProvider>
+);
+
+/** Redirect / → /<detected-or-stored-lang>. Client-only. */
+const RootRedirect = () => {
+  if (typeof window === 'undefined') {
+    // SSG render: just emit a meta-refresh-style placeholder. We render an
+    // empty container; actual redirect happens on hydration.
+    return null;
+  }
+  let stored: string | null = null;
+  try {
+    stored = localStorage.getItem('eac-lang');
+  } catch {
+    /* ignore */
+  }
+  let target: string = DEFAULT_LANG;
+  if (isSupportedLang(stored)) {
+    target = stored;
+  } else if (typeof navigator !== 'undefined') {
+    for (const c of [...(navigator.languages || []), navigator.language || '']) {
+      const code = c.slice(0, 2).toLowerCase();
+      if (isSupportedLang(code)) {
+        target = code;
+        break;
+      }
+    }
+  }
+  return <Navigate to={`/${target}`} replace />;
+};
+
+/** Redirect any unknown top-level URL into the user's lang subtree. */
+const LegacyPathRedirect = () => {
+  const location = useLocation();
+  if (typeof window === 'undefined') return null;
+  let stored: string | null = null;
+  try {
+    stored = localStorage.getItem('eac-lang');
+  } catch {
+    /* ignore */
+  }
+  const target = isSupportedLang(stored) ? stored : DEFAULT_LANG;
   return (
-    <QueryClientProvider client={queryClient}>
-      <HelmetProvider>
-        <AuthProvider>
-          <LanguageProvider>
-            <Router>
-              <ErrorBoundary>
-                <Suspense fallback={<PageLoader />}>
-                  <Routes>
-                    {/* Root → redirect to detected/stored language */}
-                    <Route path="/" element={<RootLanguageRedirect />} />
-
-                    {/* Auth / Admin / Gallery management — NOT localized */}
-                    <Route path="/auth" element={<Auth />} />
-                    <Route path="/admin/dashboard" element={
-                      <AdminRoute>
-                        <AdminDashboard />
-                      </AdminRoute>
-                    } />
-                    <Route path="/gallery/manage" element={
-                      <ProtectedRoute>
-                        <GalleryManage />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/gallery/manage/add" element={
-                      <AdminRoute>
-                        <PaintingForm />
-                      </AdminRoute>
-                    } />
-                    <Route path="/gallery/manage/edit/:id" element={
-                      <AdminRoute>
-                        <PaintingForm />
-                      </AdminRoute>
-                    } />
-                    <Route path="/gallery/manage/tokens/:id" element={
-                      <ProtectedRoute>
-                        <TokenManagement />
-                      </ProtectedRoute>
-                    } />
-                    <Route path="/gallery/manage/qr/:id" element={
-                      <ProtectedRoute>
-                        <QrCodeGenerator />
-                      </ProtectedRoute>
-                    } />
-
-                    {/* Localized routes — wrapped in /:lang */}
-                    <Route path="/:lang" element={<LangSync />}>
-                      <Route index element={<Index />} />
-
-                      {/* Advertising landing page */}
-                      <Route path="landing" element={<Landing />} />
-                      <Route path="landing/v1" element={<Navigate to="../landing" replace />} />
-                      <Route path="landing/v2" element={<Navigate to="../landing" replace />} />
-                      <Route path="landing/v3" element={<Navigate to="../landing" replace />} />
-
-                      {/* EAC */}
-                      <Route path="eac" element={<Navigate to="about" replace />} />
-                      <Route path="eac/about" element={<EACAbout />} />
-                      <Route path="eac/council" element={<Council />} />
-                      <Route path="eac/news" element={<News />} />
-                      <Route path="eac/news/:id" element={<NewsDetail />} />
-
-                      {/* Arbitration */}
-                      <Route path="arbitration" element={<Navigate to="icac" replace />} />
-                      <Route path="arbitration/icac" element={<ICAC />} />
-                      <Route path="arbitration/rules" element={<Rules />} />
-                      <Route path="arbitration/fees" element={<FeeRegulations />} />
-                      <Route path="arbitration/calculator" element={<CostCalculator />} />
-                      <Route path="arbitration/clause" element={<ArbitrationClause />} />
-
-                      {/* Expertise */}
-                      <Route path="expertise" element={<Navigate to="icje" replace />} />
-                      <Route path="expertise/icje" element={<ICJE />} />
-                      <Route path="expertise/expertiseFields" element={<ExpertiseFields />} />
-
-                      {/* Art expertise */}
-                      <Route path="art-expertise" element={<Navigate to="authentication" replace />} />
-                      <Route path="art-expertise/authentication" element={<ArtAuthentication />} />
-                      <Route path="art-expertise/appraisal" element={<ArtAppraisal />} />
-                      <Route path="art-expertise/passport" element={<ArtPassport />} />
-
-                      {/* Gallery (public) */}
-                      <Route path="gallery" element={<Gallery />} />
-                      <Route path="gallery/:id" element={<PaintingDetail />} />
-                      <Route path="gallery/:id/access/:token" element={<PaintingDetail />} />
-
-                      {/* Membership */}
-                      <Route path="membership" element={<Navigate to="benefits" replace />} />
-                      <Route path="membership/benefits" element={<MembershipBenefits />} />
-                      <Route path="membership/join" element={<HowToJoin />} />
-                      <Route path="membership/conductCode" element={<CodeOfConduct />} />
-
-                      {/* Contacts */}
-                      <Route path="contacts" element={<Contacts />} />
-
-                      {/* Policy pages */}
-                      <Route path="privacy-policy" element={<PrivacyPolicy />} />
-                      <Route path="cookies-policy" element={<CookiesPolicy />} />
-                      <Route path="cookies" element={<Navigate to="../cookies-policy" replace />} />
-                      <Route path="terms-of-service" element={<TermsOfService />} />
-
-                      {/* Legacy redirect inside lang */}
-                      <Route path="about" element={<Navigate to="../eac/about" replace />} />
-
-                      {/* 404 fallback inside lang */}
-                      <Route path="*" element={<NotFound />} />
-                    </Route>
-
-                    {/* Legacy non-prefixed paths → redirect to /<lang>/<path> */}
-                    <Route path="*" element={<LegacyPathRedirect />} />
-                  </Routes>
-                </Suspense>
-              </ErrorBoundary>
-              <ScrollToTop />
-              <Toaster />
-              <CookieConsent />
-            </Router>
-          </LanguageProvider>
-        </AuthProvider>
-      </HelmetProvider>
-    </QueryClientProvider>
+    <Navigate
+      to={`/${target}${location.pathname}${location.search}${location.hash}`}
+      replace
+    />
   );
-}
+};
 
-export default App;
+/**
+ * Build the localised page tree for a single language. Each entry is rendered
+ * for /<lang>/<path> at SSG time.
+ */
+const localisedChildren = (): RouteRecord[] => [
+  { index: true, Component: Index },
+
+  { path: 'landing', Component: Landing },
+
+  // EAC
+  { path: 'eac', element: <Navigate to="about" replace /> },
+  { path: 'eac/about', Component: EACAbout },
+  { path: 'eac/council', Component: Council },
+  { path: 'eac/news', Component: News },
+  {
+    path: 'eac/news/:id',
+    Component: NewsDetail,
+  },
+
+  // Arbitration
+  { path: 'arbitration', element: <Navigate to="icac" replace /> },
+  { path: 'arbitration/icac', Component: ICAC },
+  { path: 'arbitration/rules', Component: Rules },
+  { path: 'arbitration/fees', Component: FeeRegulations },
+  { path: 'arbitration/calculator', Component: CostCalculator },
+  { path: 'arbitration/clause', Component: ArbitrationClause },
+
+  // Expertise
+  { path: 'expertise', element: <Navigate to="icje" replace /> },
+  { path: 'expertise/icje', Component: ICJE },
+  { path: 'expertise/expertiseFields', Component: ExpertiseFields },
+
+  // Art expertise
+  { path: 'art-expertise', element: <Navigate to="authentication" replace /> },
+  { path: 'art-expertise/authentication', Component: ArtAuthentication },
+  { path: 'art-expertise/appraisal', Component: ArtAppraisal },
+  { path: 'art-expertise/passport', Component: ArtPassport },
+
+  // Gallery (public, runtime data → SPA-only, no SSG)
+  { path: 'gallery', Component: Gallery },
+  { path: 'gallery/:id', Component: PaintingDetail },
+  { path: 'gallery/:id/access/:token', Component: PaintingDetail },
+
+  // Membership
+  { path: 'membership', element: <Navigate to="benefits" replace /> },
+  { path: 'membership/benefits', Component: MembershipBenefits },
+  { path: 'membership/join', Component: HowToJoin },
+  { path: 'membership/conductCode', Component: CodeOfConduct },
+
+  { path: 'contacts', Component: Contacts },
+
+  { path: 'privacy-policy', Component: PrivacyPolicy },
+  { path: 'cookies-policy', Component: CookiesPolicy },
+  { path: 'cookies', element: <Navigate to="../cookies-policy" replace /> },
+  { path: 'terms-of-service', Component: TermsOfService },
+
+  { path: 'about', element: <Navigate to="../eac/about" replace /> },
+
+  { path: '*', Component: NotFound },
+];
+
+/**
+ * Tag dynamic news routes with getStaticPaths so vite-react-ssg generates
+ * one HTML file per news item per language.
+ */
+const withStaticNewsPaths = (lang: Language) =>
+  localisedChildren().map((route) => {
+    if (route.path === 'eac/news/:id') {
+      return {
+        ...route,
+        getStaticPaths: () =>
+          newsItems.map((n) => `eac/news/${n.id}`),
+      };
+    }
+    return route;
+  });
+
+const langSubtree = (lang: Language): RouteRecord => ({
+  path: lang,
+  element: <LangLayout lang={lang} />,
+  children: withStaticNewsPaths(lang),
+});
+
+export const routes: RouteRecord[] = [
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      { index: true, Component: RootRedirect },
+
+      // Non-localised utility routes (SPA-only — not pre-rendered).
+      { path: 'auth', Component: Auth },
+      {
+        path: 'admin/dashboard',
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'gallery/manage',
+        element: (
+          <ProtectedRoute>
+            <GalleryManage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'gallery/manage/add',
+        element: (
+          <AdminRoute>
+            <PaintingForm />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'gallery/manage/edit/:id',
+        element: (
+          <AdminRoute>
+            <PaintingForm />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'gallery/manage/tokens/:id',
+        element: (
+          <ProtectedRoute>
+            <TokenManagement />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'gallery/manage/qr/:id',
+        element: (
+          <ProtectedRoute>
+            <QrCodeGenerator />
+          </ProtectedRoute>
+        ),
+      },
+
+      // Per-language subtrees — pre-rendered.
+      ...SUPPORTED_LANGS.map((lang) => langSubtree(lang as Language)),
+
+      // Legacy non-prefixed paths → client-side redirect on hydration.
+      { path: '*', Component: LegacyPathRedirect },
+    ],
+  },
+];
+
+export default routes;

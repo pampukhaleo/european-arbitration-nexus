@@ -16,13 +16,6 @@ export const RouteSeo = () => {
 
   const title = meta.title[lang] ?? meta.title.en;
   const description = meta.description[lang] ?? meta.description.en;
-  const h1 = meta.h1[lang] ?? meta.h1.en;
 
-  return (
-    <>
-      <Seo title={title} description={description} lang={lang} />
-      {/* Visually hidden H1 fallback so every route has at least one H1 in the DOM. */}
-      <h1 className="sr-only">{h1}</h1>
-    </>
-  );
+  return <Seo title={title} description={description} lang={lang} />;
 };

@@ -1,20 +1,20 @@
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var _a, _b;
+import { ViteReactSSG } from "vite-react-ssg";
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import * as React from "react";
-import React__default, { Component, createContext, useContext, useState, forwardRef, useCallback, useEffect, Suspense } from "react";
-import fastCompare from "react-fast-compare";
-import invariant from "invariant";
-import shallowEqual from "shallowequal";
-import { matchRoutes, createBrowserRouter, RouterProvider, Link as Link$1, NavLink, useParams, useLocation, useNavigate, Navigate, Outlet } from "react-router-dom";
-import * as ReactDOM from "react-dom";
+import React__default, { createContext, useContext, useState, forwardRef, useCallback, Component, useEffect, Suspense } from "react";
+import { Link as Link$1, NavLink, useParams, useLocation, useNavigate, Navigate, Outlet } from "react-router-dom";
 import { ChevronDown, X, Menu, MapPin, Phone, Mail, Home, ArrowLeft, CalendarIcon, Gavel, Lightbulb, Palette, BookOpen, Scale, FileText, Calculator, Loader2, AlertTriangle, Cookie, Info, Settings, Plus, QrCode, LogOut, LogIn, Search, Crown, UserMinus, Edit, Trash2, Lock, Award, ChevronUp, Check, Image, Upload, Save, Eye, Copy, ExternalLink, Globe, Clock, BarChart3, Shield, UserPlus, Users, MessageCircle, ArrowRight, Download, Circle } from "lucide-react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import r from "prop-types";
+import n from "react-fast-compare";
+import i from "invariant";
+import o from "shallowequal";
 import { createClient } from "@supabase/supabase-js";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
@@ -29,1252 +29,8 @@ import QRCode from "react-qr-code";
 import DOMPurify from "dompurify";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { useFormContext, FormProvider, Controller, useForm } from "react-hook-form";
-import { z } from "zod";
+import { z as z$1 } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-var TAG_NAMES = /* @__PURE__ */ ((TAG_NAMES2) => {
-  TAG_NAMES2["BASE"] = "base";
-  TAG_NAMES2["BODY"] = "body";
-  TAG_NAMES2["HEAD"] = "head";
-  TAG_NAMES2["HTML"] = "html";
-  TAG_NAMES2["LINK"] = "link";
-  TAG_NAMES2["META"] = "meta";
-  TAG_NAMES2["NOSCRIPT"] = "noscript";
-  TAG_NAMES2["SCRIPT"] = "script";
-  TAG_NAMES2["STYLE"] = "style";
-  TAG_NAMES2["TITLE"] = "title";
-  TAG_NAMES2["FRAGMENT"] = "Symbol(react.fragment)";
-  return TAG_NAMES2;
-})(TAG_NAMES || {});
-var SEO_PRIORITY_TAGS = {
-  link: { rel: ["amphtml", "canonical", "alternate"] },
-  script: { type: ["application/ld+json"] },
-  meta: {
-    charset: "",
-    name: ["generator", "robots", "description"],
-    property: [
-      "og:type",
-      "og:title",
-      "og:url",
-      "og:image",
-      "og:image:alt",
-      "og:description",
-      "twitter:url",
-      "twitter:title",
-      "twitter:description",
-      "twitter:image",
-      "twitter:image:alt",
-      "twitter:card",
-      "twitter:site"
-    ]
-  }
-};
-var VALID_TAG_NAMES = Object.values(TAG_NAMES);
-var REACT_TAG_MAP = {
-  accesskey: "accessKey",
-  charset: "charSet",
-  class: "className",
-  contenteditable: "contentEditable",
-  contextmenu: "contextMenu",
-  "http-equiv": "httpEquiv",
-  itemprop: "itemProp",
-  tabindex: "tabIndex"
-};
-var HTML_TAG_MAP = Object.entries(REACT_TAG_MAP).reduce(
-  (carry, [key, value]) => {
-    carry[value] = key;
-    return carry;
-  },
-  {}
-);
-var HELMET_ATTRIBUTE = "data-rh";
-var HELMET_PROPS = {
-  DEFAULT_TITLE: "defaultTitle",
-  DEFER: "defer",
-  ENCODE_SPECIAL_CHARACTERS: "encodeSpecialCharacters",
-  ON_CHANGE_CLIENT_STATE: "onChangeClientState",
-  TITLE_TEMPLATE: "titleTemplate",
-  PRIORITIZE_SEO_TAGS: "prioritizeSeoTags"
-};
-var getInnermostProperty = (propsList, property) => {
-  for (let i = propsList.length - 1; i >= 0; i -= 1) {
-    const props = propsList[i];
-    if (Object.prototype.hasOwnProperty.call(props, property)) {
-      return props[property];
-    }
-  }
-  return null;
-};
-var getTitleFromPropsList = (propsList) => {
-  let innermostTitle = getInnermostProperty(
-    propsList,
-    "title"
-    /* TITLE */
-  );
-  const innermostTemplate = getInnermostProperty(propsList, HELMET_PROPS.TITLE_TEMPLATE);
-  if (Array.isArray(innermostTitle)) {
-    innermostTitle = innermostTitle.join("");
-  }
-  if (innermostTemplate && innermostTitle) {
-    return innermostTemplate.replace(/%s/g, () => innermostTitle);
-  }
-  const innermostDefaultTitle = getInnermostProperty(propsList, HELMET_PROPS.DEFAULT_TITLE);
-  return innermostTitle || innermostDefaultTitle || void 0;
-};
-var getOnChangeClientState = (propsList) => getInnermostProperty(propsList, HELMET_PROPS.ON_CHANGE_CLIENT_STATE) || (() => {
-});
-var getAttributesFromPropsList = (tagType, propsList) => propsList.filter((props) => typeof props[tagType] !== "undefined").map((props) => props[tagType]).reduce((tagAttrs, current) => ({ ...tagAttrs, ...current }), {});
-var getBaseTagFromPropsList = (primaryAttributes, propsList) => propsList.filter((props) => typeof props[
-  "base"
-  /* BASE */
-] !== "undefined").map((props) => props[
-  "base"
-  /* BASE */
-]).reverse().reduce((innermostBaseTag, tag) => {
-  if (!innermostBaseTag.length) {
-    const keys = Object.keys(tag);
-    for (let i = 0; i < keys.length; i += 1) {
-      const attributeKey = keys[i];
-      const lowerCaseAttributeKey = attributeKey.toLowerCase();
-      if (primaryAttributes.indexOf(lowerCaseAttributeKey) !== -1 && tag[lowerCaseAttributeKey]) {
-        return innermostBaseTag.concat(tag);
-      }
-    }
-  }
-  return innermostBaseTag;
-}, []);
-var warn = (msg) => console && typeof console.warn === "function" && console.warn(msg);
-var getTagsFromPropsList = (tagName, primaryAttributes, propsList) => {
-  const approvedSeenTags = {};
-  return propsList.filter((props) => {
-    if (Array.isArray(props[tagName])) {
-      return true;
-    }
-    if (typeof props[tagName] !== "undefined") {
-      warn(
-        `Helmet: ${tagName} should be of type "Array". Instead found type "${typeof props[tagName]}"`
-      );
-    }
-    return false;
-  }).map((props) => props[tagName]).reverse().reduce((approvedTags, instanceTags) => {
-    const instanceSeenTags = {};
-    instanceTags.filter((tag) => {
-      let primaryAttributeKey;
-      const keys2 = Object.keys(tag);
-      for (let i = 0; i < keys2.length; i += 1) {
-        const attributeKey = keys2[i];
-        const lowerCaseAttributeKey = attributeKey.toLowerCase();
-        if (primaryAttributes.indexOf(lowerCaseAttributeKey) !== -1 && !(primaryAttributeKey === "rel" && tag[primaryAttributeKey].toLowerCase() === "canonical") && !(lowerCaseAttributeKey === "rel" && tag[lowerCaseAttributeKey].toLowerCase() === "stylesheet")) {
-          primaryAttributeKey = lowerCaseAttributeKey;
-        }
-        if (primaryAttributes.indexOf(attributeKey) !== -1 && (attributeKey === "innerHTML" || attributeKey === "cssText" || attributeKey === "itemprop")) {
-          primaryAttributeKey = attributeKey;
-        }
-      }
-      if (!primaryAttributeKey || !tag[primaryAttributeKey]) {
-        return false;
-      }
-      const value = tag[primaryAttributeKey].toLowerCase();
-      if (!approvedSeenTags[primaryAttributeKey]) {
-        approvedSeenTags[primaryAttributeKey] = {};
-      }
-      if (!instanceSeenTags[primaryAttributeKey]) {
-        instanceSeenTags[primaryAttributeKey] = {};
-      }
-      if (!approvedSeenTags[primaryAttributeKey][value]) {
-        instanceSeenTags[primaryAttributeKey][value] = true;
-        return true;
-      }
-      return false;
-    }).reverse().forEach((tag) => approvedTags.push(tag));
-    const keys = Object.keys(instanceSeenTags);
-    for (let i = 0; i < keys.length; i += 1) {
-      const attributeKey = keys[i];
-      const tagUnion = {
-        ...approvedSeenTags[attributeKey],
-        ...instanceSeenTags[attributeKey]
-      };
-      approvedSeenTags[attributeKey] = tagUnion;
-    }
-    return approvedTags;
-  }, []).reverse();
-};
-var getAnyTrueFromPropsList = (propsList, checkedTag) => {
-  if (Array.isArray(propsList) && propsList.length) {
-    for (let index = 0; index < propsList.length; index += 1) {
-      const prop = propsList[index];
-      if (prop[checkedTag]) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
-var reducePropsToState = (propsList) => ({
-  baseTag: getBaseTagFromPropsList([
-    "href"
-    /* HREF */
-  ], propsList),
-  bodyAttributes: getAttributesFromPropsList("bodyAttributes", propsList),
-  defer: getInnermostProperty(propsList, HELMET_PROPS.DEFER),
-  encode: getInnermostProperty(propsList, HELMET_PROPS.ENCODE_SPECIAL_CHARACTERS),
-  htmlAttributes: getAttributesFromPropsList("htmlAttributes", propsList),
-  linkTags: getTagsFromPropsList(
-    "link",
-    [
-      "rel",
-      "href"
-      /* HREF */
-    ],
-    propsList
-  ),
-  metaTags: getTagsFromPropsList(
-    "meta",
-    [
-      "name",
-      "charset",
-      "http-equiv",
-      "property",
-      "itemprop"
-      /* ITEM_PROP */
-    ],
-    propsList
-  ),
-  noscriptTags: getTagsFromPropsList("noscript", [
-    "innerHTML"
-    /* INNER_HTML */
-  ], propsList),
-  onChangeClientState: getOnChangeClientState(propsList),
-  scriptTags: getTagsFromPropsList(
-    "script",
-    [
-      "src",
-      "innerHTML"
-      /* INNER_HTML */
-    ],
-    propsList
-  ),
-  styleTags: getTagsFromPropsList("style", [
-    "cssText"
-    /* CSS_TEXT */
-  ], propsList),
-  title: getTitleFromPropsList(propsList),
-  titleAttributes: getAttributesFromPropsList("titleAttributes", propsList),
-  prioritizeSeoTags: getAnyTrueFromPropsList(propsList, HELMET_PROPS.PRIORITIZE_SEO_TAGS)
-});
-var flattenArray = (possibleArray) => Array.isArray(possibleArray) ? possibleArray.join("") : possibleArray;
-var checkIfPropsMatch = (props, toMatch) => {
-  const keys = Object.keys(props);
-  for (let i = 0; i < keys.length; i += 1) {
-    if (toMatch[keys[i]] && toMatch[keys[i]].includes(props[keys[i]])) {
-      return true;
-    }
-  }
-  return false;
-};
-var prioritizer = (elementsList, propsToMatch) => {
-  if (Array.isArray(elementsList)) {
-    return elementsList.reduce(
-      (acc, elementAttrs) => {
-        if (checkIfPropsMatch(elementAttrs, propsToMatch)) {
-          acc.priority.push(elementAttrs);
-        } else {
-          acc.default.push(elementAttrs);
-        }
-        return acc;
-      },
-      { priority: [], default: [] }
-    );
-  }
-  return { default: elementsList, priority: [] };
-};
-var without = (obj, key) => {
-  return {
-    ...obj,
-    [key]: void 0
-  };
-};
-var SELF_CLOSING_TAGS = [
-  "noscript",
-  "script",
-  "style"
-  /* STYLE */
-];
-var encodeSpecialCharacters = (str, encode = true) => {
-  if (encode === false) {
-    return String(str);
-  }
-  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
-};
-var generateElementAttributesAsString = (attributes) => Object.keys(attributes).reduce((str, key) => {
-  const attr = typeof attributes[key] !== "undefined" ? `${key}="${attributes[key]}"` : `${key}`;
-  return str ? `${str} ${attr}` : attr;
-}, "");
-var generateTitleAsString = (type, title, attributes, encode) => {
-  const attributeString = generateElementAttributesAsString(attributes);
-  const flattenedTitle = flattenArray(title);
-  return attributeString ? `<${type} ${HELMET_ATTRIBUTE}="true" ${attributeString}>${encodeSpecialCharacters(
-    flattenedTitle,
-    encode
-  )}</${type}>` : `<${type} ${HELMET_ATTRIBUTE}="true">${encodeSpecialCharacters(
-    flattenedTitle,
-    encode
-  )}</${type}>`;
-};
-var generateTagsAsString = (type, tags, encode = true) => tags.reduce((str, t2) => {
-  const tag = t2;
-  const attributeHtml = Object.keys(tag).filter(
-    (attribute) => !(attribute === "innerHTML" || attribute === "cssText")
-  ).reduce((string, attribute) => {
-    const attr = typeof tag[attribute] === "undefined" ? attribute : `${attribute}="${encodeSpecialCharacters(tag[attribute], encode)}"`;
-    return string ? `${string} ${attr}` : attr;
-  }, "");
-  const tagContent = tag.innerHTML || tag.cssText || "";
-  const isSelfClosing = SELF_CLOSING_TAGS.indexOf(type) === -1;
-  return `${str}<${type} ${HELMET_ATTRIBUTE}="true" ${attributeHtml}${isSelfClosing ? `/>` : `>${tagContent}</${type}>`}`;
-}, "");
-var convertElementAttributesToReactProps = (attributes, initProps = {}) => Object.keys(attributes).reduce((obj, key) => {
-  const mapped = REACT_TAG_MAP[key];
-  obj[mapped || key] = attributes[key];
-  return obj;
-}, initProps);
-var generateTitleAsReactComponent = (_type, title, attributes) => {
-  const initProps = {
-    key: title,
-    [HELMET_ATTRIBUTE]: true
-  };
-  const props = convertElementAttributesToReactProps(attributes, initProps);
-  return [React__default.createElement("title", props, title)];
-};
-var generateTagsAsReactComponent = (type, tags) => tags.map((tag, i) => {
-  const mappedTag = {
-    key: i,
-    [HELMET_ATTRIBUTE]: true
-  };
-  Object.keys(tag).forEach((attribute) => {
-    const mapped = REACT_TAG_MAP[attribute];
-    const mappedAttribute = mapped || attribute;
-    if (mappedAttribute === "innerHTML" || mappedAttribute === "cssText") {
-      const content = tag.innerHTML || tag.cssText;
-      mappedTag.dangerouslySetInnerHTML = { __html: content };
-    } else {
-      mappedTag[mappedAttribute] = tag[attribute];
-    }
-  });
-  return React__default.createElement(type, mappedTag);
-});
-var getMethodsForTag = (type, tags, encode = true) => {
-  switch (type) {
-    case "title":
-      return {
-        toComponent: () => generateTitleAsReactComponent(type, tags.title, tags.titleAttributes),
-        toString: () => generateTitleAsString(type, tags.title, tags.titleAttributes, encode)
-      };
-    case "bodyAttributes":
-    case "htmlAttributes":
-      return {
-        toComponent: () => convertElementAttributesToReactProps(tags),
-        toString: () => generateElementAttributesAsString(tags)
-      };
-    default:
-      return {
-        toComponent: () => generateTagsAsReactComponent(type, tags),
-        toString: () => generateTagsAsString(type, tags, encode)
-      };
-  }
-};
-var getPriorityMethods = ({ metaTags, linkTags, scriptTags, encode }) => {
-  const meta = prioritizer(metaTags, SEO_PRIORITY_TAGS.meta);
-  const link = prioritizer(linkTags, SEO_PRIORITY_TAGS.link);
-  const script = prioritizer(scriptTags, SEO_PRIORITY_TAGS.script);
-  const priorityMethods = {
-    toComponent: () => [
-      ...generateTagsAsReactComponent("meta", meta.priority),
-      ...generateTagsAsReactComponent("link", link.priority),
-      ...generateTagsAsReactComponent("script", script.priority)
-    ],
-    toString: () => (
-      // generate all the tags as strings and concatenate them
-      `${getMethodsForTag("meta", meta.priority, encode)} ${getMethodsForTag(
-        "link",
-        link.priority,
-        encode
-      )} ${getMethodsForTag("script", script.priority, encode)}`
-    )
-  };
-  return {
-    priorityMethods,
-    metaTags: meta.default,
-    linkTags: link.default,
-    scriptTags: script.default
-  };
-};
-var mapStateOnServer = (props) => {
-  const {
-    baseTag,
-    bodyAttributes,
-    encode = true,
-    htmlAttributes,
-    noscriptTags,
-    styleTags,
-    title = "",
-    titleAttributes,
-    prioritizeSeoTags
-  } = props;
-  let { linkTags, metaTags, scriptTags } = props;
-  let priorityMethods = {
-    toComponent: () => [],
-    toString: () => ""
-  };
-  if (prioritizeSeoTags) {
-    ({ priorityMethods, linkTags, metaTags, scriptTags } = getPriorityMethods(props));
-  }
-  return {
-    priority: priorityMethods,
-    base: getMethodsForTag("base", baseTag, encode),
-    bodyAttributes: getMethodsForTag("bodyAttributes", bodyAttributes, encode),
-    htmlAttributes: getMethodsForTag("htmlAttributes", htmlAttributes, encode),
-    link: getMethodsForTag("link", linkTags, encode),
-    meta: getMethodsForTag("meta", metaTags, encode),
-    noscript: getMethodsForTag("noscript", noscriptTags, encode),
-    script: getMethodsForTag("script", scriptTags, encode),
-    style: getMethodsForTag("style", styleTags, encode),
-    title: getMethodsForTag("title", { title, titleAttributes }, encode)
-  };
-};
-var server_default = mapStateOnServer;
-var instances = [];
-var isDocument = !!(typeof window !== "undefined" && window.document && window.document.createElement);
-var HelmetData = class {
-  constructor(context, canUseDOM) {
-    __publicField(this, "instances", []);
-    __publicField(this, "canUseDOM", isDocument);
-    __publicField(this, "context");
-    __publicField(this, "value", {
-      setHelmet: (serverState) => {
-        this.context.helmet = serverState;
-      },
-      helmetInstances: {
-        get: () => this.canUseDOM ? instances : this.instances,
-        add: (instance) => {
-          (this.canUseDOM ? instances : this.instances).push(instance);
-        },
-        remove: (instance) => {
-          const index = (this.canUseDOM ? instances : this.instances).indexOf(instance);
-          (this.canUseDOM ? instances : this.instances).splice(index, 1);
-        }
-      }
-    });
-    this.context = context;
-    this.canUseDOM = canUseDOM || false;
-    if (!canUseDOM) {
-      context.helmet = server_default({
-        baseTag: [],
-        bodyAttributes: {},
-        encodeSpecialCharacters: true,
-        htmlAttributes: {},
-        linkTags: [],
-        metaTags: [],
-        noscriptTags: [],
-        scriptTags: [],
-        styleTags: [],
-        title: "",
-        titleAttributes: {}
-      });
-    }
-  }
-};
-var major = parseInt(React__default.version.split(".")[0], 10);
-var isReact19$1 = major >= 19;
-var defaultValue = {};
-var Context = React__default.createContext(defaultValue);
-var HelmetProvider = (_a = class extends Component {
-  constructor(props) {
-    super(props);
-    __publicField(this, "helmetData");
-    if (isReact19$1) {
-      this.helmetData = null;
-    } else {
-      this.helmetData = new HelmetData(this.props.context || {}, _a.canUseDOM);
-    }
-  }
-  render() {
-    if (isReact19$1) {
-      return /* @__PURE__ */ React__default.createElement(React__default.Fragment, null, this.props.children);
-    }
-    return /* @__PURE__ */ React__default.createElement(Context.Provider, { value: this.helmetData.value }, this.props.children);
-  }
-}, __publicField(_a, "canUseDOM", isDocument), _a);
-var updateTags = (type, tags) => {
-  const headElement = document.head || document.querySelector(
-    "head"
-    /* HEAD */
-  );
-  const tagNodes = headElement.querySelectorAll(`${type}[${HELMET_ATTRIBUTE}]`);
-  const oldTags = [].slice.call(tagNodes);
-  const newTags = [];
-  let indexToDelete;
-  if (tags && tags.length) {
-    tags.forEach((tag) => {
-      const newElement = document.createElement(type);
-      for (const attribute in tag) {
-        if (Object.prototype.hasOwnProperty.call(tag, attribute)) {
-          if (attribute === "innerHTML") {
-            newElement.innerHTML = tag.innerHTML;
-          } else if (attribute === "cssText") {
-            const cssText = tag.cssText;
-            newElement.appendChild(document.createTextNode(cssText));
-          } else {
-            const attr = attribute;
-            const value = typeof tag[attr] === "undefined" ? "" : tag[attr];
-            newElement.setAttribute(attribute, value);
-          }
-        }
-      }
-      newElement.setAttribute(HELMET_ATTRIBUTE, "true");
-      if (oldTags.some((existingTag, index) => {
-        indexToDelete = index;
-        return newElement.isEqualNode(existingTag);
-      })) {
-        oldTags.splice(indexToDelete, 1);
-      } else {
-        newTags.push(newElement);
-      }
-    });
-  }
-  oldTags.forEach((tag) => {
-    var _a2;
-    return (_a2 = tag.parentNode) == null ? void 0 : _a2.removeChild(tag);
-  });
-  newTags.forEach((tag) => headElement.appendChild(tag));
-  return {
-    oldTags,
-    newTags
-  };
-};
-var updateAttributes = (tagName, attributes) => {
-  const elementTag = document.getElementsByTagName(tagName)[0];
-  if (!elementTag) {
-    return;
-  }
-  const helmetAttributeString = elementTag.getAttribute(HELMET_ATTRIBUTE);
-  const helmetAttributes = helmetAttributeString ? helmetAttributeString.split(",") : [];
-  const attributesToRemove = [...helmetAttributes];
-  const attributeKeys = Object.keys(attributes);
-  for (const attribute of attributeKeys) {
-    const value = attributes[attribute] || "";
-    if (elementTag.getAttribute(attribute) !== value) {
-      elementTag.setAttribute(attribute, value);
-    }
-    if (helmetAttributes.indexOf(attribute) === -1) {
-      helmetAttributes.push(attribute);
-    }
-    const indexToSave = attributesToRemove.indexOf(attribute);
-    if (indexToSave !== -1) {
-      attributesToRemove.splice(indexToSave, 1);
-    }
-  }
-  for (let i = attributesToRemove.length - 1; i >= 0; i -= 1) {
-    elementTag.removeAttribute(attributesToRemove[i]);
-  }
-  if (helmetAttributes.length === attributesToRemove.length) {
-    elementTag.removeAttribute(HELMET_ATTRIBUTE);
-  } else if (elementTag.getAttribute(HELMET_ATTRIBUTE) !== attributeKeys.join(",")) {
-    elementTag.setAttribute(HELMET_ATTRIBUTE, attributeKeys.join(","));
-  }
-};
-var updateTitle = (title, attributes) => {
-  if (typeof title !== "undefined" && document.title !== title) {
-    document.title = flattenArray(title);
-  }
-  updateAttributes("title", attributes);
-};
-var commitTagChanges = (newState, cb) => {
-  const {
-    baseTag,
-    bodyAttributes,
-    htmlAttributes,
-    linkTags,
-    metaTags,
-    noscriptTags,
-    onChangeClientState,
-    scriptTags,
-    styleTags,
-    title,
-    titleAttributes
-  } = newState;
-  updateAttributes("body", bodyAttributes);
-  updateAttributes("html", htmlAttributes);
-  updateTitle(title, titleAttributes);
-  const tagUpdates = {
-    baseTag: updateTags("base", baseTag),
-    linkTags: updateTags("link", linkTags),
-    metaTags: updateTags("meta", metaTags),
-    noscriptTags: updateTags("noscript", noscriptTags),
-    scriptTags: updateTags("script", scriptTags),
-    styleTags: updateTags("style", styleTags)
-  };
-  const addedTags = {};
-  const removedTags = {};
-  Object.keys(tagUpdates).forEach((tagType) => {
-    const { newTags, oldTags } = tagUpdates[tagType];
-    if (newTags.length) {
-      addedTags[tagType] = newTags;
-    }
-    if (oldTags.length) {
-      removedTags[tagType] = tagUpdates[tagType].oldTags;
-    }
-  });
-  if (cb) {
-    cb();
-  }
-  onChangeClientState(newState, addedTags, removedTags);
-};
-var _helmetCallback = null;
-var handleStateChangeOnClient = (newState) => {
-  if (_helmetCallback) {
-    cancelAnimationFrame(_helmetCallback);
-  }
-  if (newState.defer) {
-    _helmetCallback = requestAnimationFrame(() => {
-      commitTagChanges(newState, () => {
-        _helmetCallback = null;
-      });
-    });
-  } else {
-    commitTagChanges(newState);
-    _helmetCallback = null;
-  }
-};
-var client_default = handleStateChangeOnClient;
-var HelmetDispatcher = class extends Component {
-  constructor() {
-    super(...arguments);
-    __publicField(this, "rendered", false);
-  }
-  shouldComponentUpdate(nextProps) {
-    return !shallowEqual(nextProps, this.props);
-  }
-  componentDidUpdate() {
-    this.emitChange();
-  }
-  componentWillUnmount() {
-    const { helmetInstances } = this.props.context;
-    helmetInstances.remove(this);
-    this.emitChange();
-  }
-  emitChange() {
-    const { helmetInstances, setHelmet } = this.props.context;
-    let serverState = null;
-    const state = reducePropsToState(
-      helmetInstances.get().map((instance) => {
-        const { context: _context, ...props } = instance.props;
-        return props;
-      })
-    );
-    if (HelmetProvider.canUseDOM) {
-      client_default(state);
-    } else if (server_default) {
-      serverState = server_default(state);
-    }
-    setHelmet(serverState);
-  }
-  // componentWillMount will be deprecated
-  // for SSR, initialize on first render
-  // constructor is also unsafe in StrictMode
-  init() {
-    if (this.rendered) {
-      return;
-    }
-    this.rendered = true;
-    const { helmetInstances } = this.props.context;
-    helmetInstances.add(this);
-    this.emitChange();
-  }
-  render() {
-    this.init();
-    return null;
-  }
-};
-var react19Instances = [];
-var toHtmlAttributes = (props) => {
-  const result = {};
-  for (const key of Object.keys(props)) {
-    result[HTML_TAG_MAP[key] || key] = props[key];
-  }
-  return result;
-};
-var toReactProps = (attrs) => {
-  const result = {};
-  for (const key of Object.keys(attrs)) {
-    const mapped = REACT_TAG_MAP[key];
-    result[mapped || key] = attrs[key];
-  }
-  return result;
-};
-var applyAttributes = (tagName, attributes) => {
-  if (!isDocument)
-    return;
-  const el = document.getElementsByTagName(tagName)[0];
-  if (!el)
-    return;
-  const managedAttr = "data-rh-managed";
-  const prev = el.getAttribute(managedAttr);
-  const prevKeys = prev ? prev.split(",") : [];
-  const nextKeys = Object.keys(attributes);
-  for (const key of prevKeys) {
-    if (!nextKeys.includes(key)) {
-      el.removeAttribute(key);
-    }
-  }
-  for (const key of nextKeys) {
-    const value = attributes[key];
-    if (value === void 0 || value === null || value === false) {
-      el.removeAttribute(key);
-    } else if (value === true) {
-      el.setAttribute(key, "");
-    } else {
-      el.setAttribute(key, String(value));
-    }
-  }
-  if (nextKeys.length > 0) {
-    el.setAttribute(managedAttr, nextKeys.join(","));
-  } else {
-    el.removeAttribute(managedAttr);
-  }
-};
-var syncAllAttributes = () => {
-  const htmlAttrs = {};
-  const bodyAttrs = {};
-  for (const instance of react19Instances) {
-    const { htmlAttributes, bodyAttributes } = instance.props;
-    if (htmlAttributes) {
-      Object.assign(htmlAttrs, toHtmlAttributes(htmlAttributes));
-    }
-    if (bodyAttributes) {
-      Object.assign(bodyAttrs, toHtmlAttributes(bodyAttributes));
-    }
-  }
-  applyAttributes("html", htmlAttrs);
-  applyAttributes("body", bodyAttrs);
-};
-var React19Dispatcher = class extends Component {
-  componentDidMount() {
-    react19Instances.push(this);
-    syncAllAttributes();
-  }
-  componentDidUpdate() {
-    syncAllAttributes();
-  }
-  componentWillUnmount() {
-    const index = react19Instances.indexOf(this);
-    if (index !== -1) {
-      react19Instances.splice(index, 1);
-    }
-    syncAllAttributes();
-  }
-  resolveTitle() {
-    const { title, titleTemplate, defaultTitle } = this.props;
-    if (title && titleTemplate) {
-      return titleTemplate.replace(/%s/g, () => Array.isArray(title) ? title.join("") : title);
-    }
-    return title || defaultTitle || void 0;
-  }
-  renderTitle() {
-    const title = this.resolveTitle();
-    if (title === void 0)
-      return null;
-    const titleAttributes = this.props.titleAttributes || {};
-    return React__default.createElement("title", toReactProps(titleAttributes), title);
-  }
-  renderBase() {
-    const { base } = this.props;
-    if (!base)
-      return null;
-    return React__default.createElement("base", toReactProps(base));
-  }
-  renderMeta() {
-    const { meta } = this.props;
-    if (!meta || !Array.isArray(meta))
-      return null;
-    return meta.map(
-      (attrs, i) => React__default.createElement("meta", {
-        key: i,
-        ...toReactProps(attrs)
-      })
-    );
-  }
-  renderLink() {
-    const { link } = this.props;
-    if (!link || !Array.isArray(link))
-      return null;
-    return link.map(
-      (attrs, i) => React__default.createElement("link", {
-        key: i,
-        ...toReactProps(attrs)
-      })
-    );
-  }
-  renderScript() {
-    const { script } = this.props;
-    if (!script || !Array.isArray(script))
-      return null;
-    return script.map((attrs, i) => {
-      const { innerHTML, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (innerHTML) {
-        props.dangerouslySetInnerHTML = { __html: innerHTML };
-      }
-      return React__default.createElement("script", { key: i, ...props });
-    });
-  }
-  renderStyle() {
-    const { style } = this.props;
-    if (!style || !Array.isArray(style))
-      return null;
-    return style.map((attrs, i) => {
-      const { cssText, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (cssText) {
-        props.dangerouslySetInnerHTML = { __html: cssText };
-      }
-      return React__default.createElement("style", { key: i, ...props });
-    });
-  }
-  renderNoscript() {
-    const { noscript } = this.props;
-    if (!noscript || !Array.isArray(noscript))
-      return null;
-    return noscript.map((attrs, i) => {
-      const { innerHTML, ...rest } = attrs;
-      const props = toReactProps(rest);
-      if (innerHTML) {
-        props.dangerouslySetInnerHTML = { __html: innerHTML };
-      }
-      return React__default.createElement("noscript", { key: i, ...props });
-    });
-  }
-  render() {
-    return React__default.createElement(
-      React__default.Fragment,
-      null,
-      this.renderTitle(),
-      this.renderBase(),
-      this.renderMeta(),
-      this.renderLink(),
-      this.renderScript(),
-      this.renderStyle(),
-      this.renderNoscript()
-    );
-  }
-};
-var Helmet = (_b = class extends Component {
-  shouldComponentUpdate(nextProps) {
-    return !fastCompare(without(this.props, "helmetData"), without(nextProps, "helmetData"));
-  }
-  mapNestedChildrenToProps(child, nestedChildren) {
-    if (!nestedChildren) {
-      return null;
-    }
-    switch (child.type) {
-      case "script":
-      case "noscript":
-        return {
-          innerHTML: nestedChildren
-        };
-      case "style":
-        return {
-          cssText: nestedChildren
-        };
-      default:
-        throw new Error(
-          `<${child.type} /> elements are self-closing and can not contain children. Refer to our API for more information.`
-        );
-    }
-  }
-  flattenArrayTypeChildren(child, arrayTypeChildren, newChildProps, nestedChildren) {
-    return {
-      ...arrayTypeChildren,
-      [child.type]: [
-        ...arrayTypeChildren[child.type] || [],
-        {
-          ...newChildProps,
-          ...this.mapNestedChildrenToProps(child, nestedChildren)
-        }
-      ]
-    };
-  }
-  mapObjectTypeChildren(child, newProps, newChildProps, nestedChildren) {
-    switch (child.type) {
-      case "title":
-        return {
-          ...newProps,
-          [child.type]: nestedChildren,
-          titleAttributes: { ...newChildProps }
-        };
-      case "body":
-        return {
-          ...newProps,
-          bodyAttributes: { ...newChildProps }
-        };
-      case "html":
-        return {
-          ...newProps,
-          htmlAttributes: { ...newChildProps }
-        };
-      default:
-        return {
-          ...newProps,
-          [child.type]: { ...newChildProps }
-        };
-    }
-  }
-  mapArrayTypeChildrenToProps(arrayTypeChildren, newProps) {
-    let newFlattenedProps = { ...newProps };
-    Object.keys(arrayTypeChildren).forEach((arrayChildName) => {
-      newFlattenedProps = {
-        ...newFlattenedProps,
-        [arrayChildName]: arrayTypeChildren[arrayChildName]
-      };
-    });
-    return newFlattenedProps;
-  }
-  warnOnInvalidChildren(child, nestedChildren) {
-    invariant(
-      VALID_TAG_NAMES.some((name) => child.type === name),
-      typeof child.type === "function" ? `You may be attempting to nest <Helmet> components within each other, which is not allowed. Refer to our API for more information.` : `Only elements types ${VALID_TAG_NAMES.join(
-        ", "
-      )} are allowed. Helmet does not support rendering <${child.type}> elements. Refer to our API for more information.`
-    );
-    invariant(
-      !nestedChildren || typeof nestedChildren === "string" || Array.isArray(nestedChildren) && !nestedChildren.some((nestedChild) => typeof nestedChild !== "string"),
-      `Helmet expects a string as a child of <${child.type}>. Did you forget to wrap your children in braces? ( <${child.type}>{\`\`}</${child.type}> ) Refer to our API for more information.`
-    );
-    return true;
-  }
-  mapChildrenToProps(children, newProps) {
-    let arrayTypeChildren = {};
-    React__default.Children.forEach(children, (child) => {
-      if (!child || !child.props) {
-        return;
-      }
-      const { children: nestedChildren, ...childProps } = child.props;
-      const newChildProps = Object.keys(childProps).reduce((obj, key) => {
-        obj[HTML_TAG_MAP[key] || key] = childProps[key];
-        return obj;
-      }, {});
-      let { type } = child;
-      if (typeof type === "symbol") {
-        type = type.toString();
-      } else {
-        this.warnOnInvalidChildren(child, nestedChildren);
-      }
-      switch (type) {
-        case "Symbol(react.fragment)":
-          newProps = this.mapChildrenToProps(nestedChildren, newProps);
-          break;
-        case "link":
-        case "meta":
-        case "noscript":
-        case "script":
-        case "style":
-          arrayTypeChildren = this.flattenArrayTypeChildren(
-            child,
-            arrayTypeChildren,
-            newChildProps,
-            nestedChildren
-          );
-          break;
-        default:
-          newProps = this.mapObjectTypeChildren(child, newProps, newChildProps, nestedChildren);
-          break;
-      }
-    });
-    return this.mapArrayTypeChildrenToProps(arrayTypeChildren, newProps);
-  }
-  render() {
-    const { children, ...props } = this.props;
-    let newProps = { ...props };
-    let { helmetData } = props;
-    if (children) {
-      newProps = this.mapChildrenToProps(children, newProps);
-    }
-    if (helmetData && !(helmetData instanceof HelmetData)) {
-      const data = helmetData;
-      helmetData = new HelmetData(data.context, true);
-      delete newProps.helmetData;
-    }
-    if (isReact19$1) {
-      return /* @__PURE__ */ React__default.createElement(React19Dispatcher, { ...newProps });
-    }
-    return helmetData ? /* @__PURE__ */ React__default.createElement(HelmetDispatcher, { ...newProps, context: helmetData.value }) : /* @__PURE__ */ React__default.createElement(Context.Consumer, null, (context) => /* @__PURE__ */ React__default.createElement(HelmetDispatcher, { ...newProps, context }));
-  }
-}, __publicField(_b, "defaultProps", {
-  defer: true,
-  encodeSpecialCharacters: true,
-  prioritizeSeoTags: false
-}), _b);
-const CopyReactDOM = {
-  ...ReactDOM
-};
-const { version, render: reactRender, hydrate: reactHydrate } = CopyReactDOM;
-const isReact18 = Number((version || "").split(".")[0]) > 17;
-const isReact19 = Number((version || "").split(".")[0]) > 18;
-function render(app, container, renderOptions = {}) {
-  const { useLegacyRender } = renderOptions;
-  if (useLegacyRender || !isReact18) {
-    reactRender(app, container);
-  } else if (isReact19) {
-    import("react-dom/client").then(({ default: { createRoot: createRoot2 } }) => {
-      const root = createRoot2(container);
-      React__default.startTransition(() => {
-        root.render(app);
-      });
-    });
-  } else {
-    CopyReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = true;
-    const { createRoot: createRoot2 } = CopyReactDOM;
-    if (!createRoot2) {
-      throw new Error("createRoot not found");
-    }
-    const root = createRoot2(container);
-    CopyReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = false;
-    React__default.startTransition(() => {
-      root.render(app);
-    });
-  }
-}
-function hydrate(app, container, renderOptions = {}) {
-  const { useLegacyRender } = renderOptions;
-  if (useLegacyRender || !isReact18) {
-    reactHydrate(app, container);
-  } else if (isReact19) {
-    import("react-dom/client").then(({ default: { hydrateRoot } }) => {
-      React__default.startTransition(() => {
-        hydrateRoot(container, app);
-      });
-    });
-  } else {
-    CopyReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = true;
-    const { hydrateRoot } = CopyReactDOM;
-    if (!hydrateRoot) {
-      throw new Error("hydrateRoot not found");
-    }
-    React__default.startTransition(() => {
-      hydrateRoot(container, app);
-      CopyReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = false;
-    });
-  }
-}
-function documentReady(_passThrough) {
-  if (document.readyState === "loading") {
-    return new Promise((resolve) => {
-      document.addEventListener("DOMContentLoaded", () => resolve(_passThrough));
-    });
-  }
-  return Promise.resolve(_passThrough);
-}
-function joinUrlSegments(a, b) {
-  if (!a || !b)
-    return a || b || "";
-  if (a[a.length - 1] === "/")
-    a = a.substring(0, a.length - 1);
-  if (b[0] !== "/")
-    b = `/${b}`;
-  return a + b;
-}
-function stripBase(path, base) {
-  if (path === base)
-    return "/";
-  const devBase = withTrailingSlash(base);
-  return path.startsWith(devBase) ? path.slice(devBase.length - 1) : path;
-}
-function withTrailingSlash(path) {
-  if (path[path.length - 1] !== "/")
-    return `${path}/`;
-  return path;
-}
-function withLeadingSlash(path) {
-  if (path[0] !== "/")
-    return `/${path}`;
-  return path;
-}
-function convertRoutesToDataRoutes(routes2, mapRouteProperties, parentPath = []) {
-  return routes2.map((route, index) => {
-    const treePath = [...parentPath, String(index)];
-    const id = typeof route.id === "string" ? route.id : treePath.join("-");
-    route.id = id;
-    if (isIndexRoute(route)) {
-      const indexRoute = {
-        ...route,
-        ...mapRouteProperties(route),
-        id
-      };
-      return indexRoute;
-    } else {
-      const pathOrLayoutRoute = {
-        ...route,
-        ...mapRouteProperties(route),
-        id,
-        children: void 0
-      };
-      if (route.children) {
-        pathOrLayoutRoute.children = convertRoutesToDataRoutes(
-          route.children,
-          mapRouteProperties,
-          treePath
-          // manifest,
-        );
-      }
-      return pathOrLayoutRoute;
-    }
-  });
-}
-function isIndexRoute(route) {
-  return route.index === true;
-}
-function deserializeState(state) {
-  try {
-    return JSON.parse(state || "{}");
-  } catch (error) {
-    console.error("[SSG] On state deserialization -", error, state);
-    return {};
-  }
-}
-function ViteReactSSG(routerOptions, fn, options = {}) {
-  const {
-    transformState,
-    rootContainer = "#root",
-    ssrWhenDev,
-    getStyleCollector = null
-  } = options;
-  if (process.env.NODE_ENV === "development" && ssrWhenDev !== void 0) {
-    console.warn(
-      "[vite-react-ssg] `ssrWhenDev` option is no longer needed. If you want to use csr, just replace `vite-react-ssg dev` with `vite`."
-    );
-  }
-  const isClient = typeof window !== "undefined";
-  const BASE_URL = routerOptions.basename ?? "/";
-  const { v7_startTransition = true, ...routerFeature } = routerOptions.future ?? {};
-  async function createRoot2(client = false, routePath) {
-    const createRouter = routerOptions.customCreateRouter ?? createBrowserRouter;
-    const browserRouter = client ? createRouter(
-      convertRoutesToDataRoutes(
-        routerOptions.routes,
-        transformStaticLoaderRoute
-      ),
-      { basename: BASE_URL, future: routerFeature }
-    ) : void 0;
-    const appRenderCallbacks = [];
-    const onSSRAppRendered = client ? () => {
-    } : (cb) => appRenderCallbacks.push(cb);
-    const triggerOnSSRAppRendered = () => {
-      return Promise.all(appRenderCallbacks.map((cb) => cb()));
-    };
-    const context = {
-      isClient,
-      routes: routerOptions.routes,
-      router: browserRouter,
-      routerOptions,
-      onSSRAppRendered,
-      triggerOnSSRAppRendered,
-      initialState: {},
-      transformState,
-      routePath,
-      base: BASE_URL,
-      getStyleCollector,
-      routerType: "remix"
-    };
-    if (client) {
-      await documentReady();
-      context.initialState = (transformState == null ? void 0 : transformState(window.__INITIAL_STATE__ || {})) || deserializeState(window.__INITIAL_STATE__);
-    }
-    await (fn == null ? void 0 : fn(context));
-    const initialState = context.initialState;
-    return {
-      ...context,
-      initialState
-    };
-  }
-  if (isClient) {
-    (async () => {
-      var _a2;
-      const container = typeof rootContainer === "string" ? document.querySelector(rootContainer) : rootContainer;
-      if (!container) {
-        if (typeof $jsdom === "undefined")
-          console.warn("[vite-react-ssg] Root container not found.");
-        return;
-      }
-      const lazeMatches = (_a2 = matchRoutes(
-        routerOptions.routes,
-        window.location,
-        BASE_URL
-      )) == null ? void 0 : _a2.filter((m) => m.route.lazy);
-      if (lazeMatches && (lazeMatches == null ? void 0 : lazeMatches.length) > 0) {
-        await Promise.all(
-          lazeMatches.map(async (m) => {
-            const routeModule = await m.route.lazy();
-            Object.assign(m.route, { ...routeModule, lazy: void 0 });
-          })
-        );
-      }
-      const context = await createRoot2(true);
-      window.__VITE_REACT_SSG_CONTEXT__ = context;
-      const { router } = context;
-      const app = /* @__PURE__ */ jsx(HelmetProvider, { children: /* @__PURE__ */ jsx(RouterProvider, { router, future: { v7_startTransition } }) });
-      const isSSR = document.querySelector("[data-server-rendered=true]") !== null;
-      if (!isSSR && process.env.NODE_ENV === "development") {
-        render(app, container, options);
-      } else {
-        hydrate(app, container, options);
-      }
-    })();
-  }
-  return createRoot2;
-  function transformStaticLoaderRoute(route) {
-    const isSSR = document.querySelector("[data-server-rendered=true]") !== null;
-    if (!isSSR) {
-      return route;
-    }
-    const loader = async ({ request }) => {
-      var _a2;
-      if (process.env.NODE_ENV === "development") {
-        const routeId = encodeURIComponent(route.id);
-        const dataQuery = `_data=${routeId}`;
-        const url = request.url.includes("?") ? `${request.url}&${dataQuery}` : `${request.url}?${dataQuery}`;
-        return fetch(url);
-      } else {
-        if (!window.__VITE_REACT_SSG_STATIC_LOADER_MANIFEST__) {
-          const manifestUrl = joinUrlSegments(
-            BASE_URL,
-            `static-loader-data-manifest-${window.__VITE_REACT_SSG_HASH__}.json`
-          );
-          window.__VITE_REACT_SSG_STATIC_LOADER_MANIFEST__ = await (await fetch(withLeadingSlash(manifestUrl))).json();
-        }
-        const { url } = request;
-        let { pathname } = new URL(url);
-        if (BASE_URL !== "/") {
-          pathname = stripBase(pathname, BASE_URL);
-        }
-        const manifest = window.__VITE_REACT_SSG_STATIC_LOADER_MANIFEST__;
-        const dataFilePath = manifest == null ? void 0 : manifest[pathname];
-        if (!dataFilePath) {
-          return null;
-        }
-        if (!window.__VITE_REACT_SSG_STATIC_LOADER_DATA__) {
-          window.__VITE_REACT_SSG_STATIC_LOADER_DATA__ = {};
-        }
-        if (!window.__VITE_REACT_SSG_STATIC_LOADER_DATA__[pathname]) {
-          const dataUrl = joinUrlSegments(BASE_URL, dataFilePath);
-          window.__VITE_REACT_SSG_STATIC_LOADER_DATA__[pathname] = await (await fetch(withLeadingSlash(dataUrl))).json();
-        }
-        const routeData = (_a2 = window.__VITE_REACT_SSG_STATIC_LOADER_DATA__[pathname]) == null ? void 0 : _a2[route.id];
-        return routeData ?? null;
-      }
-    };
-    route.loader = loader;
-    return route;
-  }
-}
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -3045,9 +1801,9 @@ const LanguageProvider = ({
   const t2 = (key) => {
     const keys = key.split(".");
     let value = translations[language];
-    for (const k of keys) {
-      if (typeof value === "object" && value !== null && k in value) {
-        value = value[k];
+    for (const k2 of keys) {
+      if (typeof value === "object" && value !== null && k2 in value) {
+        value = value[k2];
       } else {
         return key;
       }
@@ -3062,14 +1818,14 @@ const NON_LOCALIZED_PREFIXES = ["/auth", "/admin", "/gallery/manage"];
 const isLocalizable = (path) => {
   if (!path.startsWith("/")) return false;
   return !NON_LOCALIZED_PREFIXES.some(
-    (p) => path === p || path.startsWith(p + "/") || path.startsWith(p + "?")
+    (p2) => path === p2 || path.startsWith(p2 + "/") || path.startsWith(p2 + "?")
   );
 };
-const isSupportedLang = (v) => typeof v === "string" && SUPPORTED_LANGS.includes(v);
+const isSupportedLang = (v2) => typeof v2 === "string" && SUPPORTED_LANGS.includes(v2);
 const stripLangPrefix = (pathname) => {
-  const m = pathname.match(/^\/(en|fr|ru)(\/.*)?$/);
-  if (!m) return pathname;
-  return m[2] || "";
+  const m2 = pathname.match(/^\/(en|fr|ru)(\/.*)?$/);
+  if (!m2) return pathname;
+  return m2[2] || "";
 };
 const localizePath = (path, lang) => {
   if (!path.startsWith("/")) return path;
@@ -3079,8 +1835,8 @@ const localizePath = (path, lang) => {
   return `/${lang}${path}`;
 };
 const langFromPath = (pathname) => {
-  const m = pathname.match(/^\/(en|fr|ru)(\/|$)/);
-  return (m == null ? void 0 : m[1]) || DEFAULT_LANG;
+  const m2 = pathname.match(/^\/(en|fr|ru)(\/|$)/);
+  return (m2 == null ? void 0 : m2[1]) || DEFAULT_LANG;
 };
 const useCurrentLang = () => {
   const params = useParams();
@@ -3304,12 +2060,12 @@ function NavDropdown({
         ),
         onClick: () => onToggle(item.title),
         onMouseEnter: () => {
-          var _a2;
-          return (_a2 = item.children) == null ? void 0 : _a2.forEach((c) => prefetchRoute(c.href));
+          var _a;
+          return (_a = item.children) == null ? void 0 : _a.forEach((c2) => prefetchRoute(c2.href));
         },
         onFocus: () => {
-          var _a2;
-          return (_a2 = item.children) == null ? void 0 : _a2.forEach((c) => prefetchRoute(c.href));
+          var _a;
+          return (_a = item.children) == null ? void 0 : _a.forEach((c2) => prefetchRoute(c2.href));
         },
         children: [
           t2(item.translationKey) || item.title,
@@ -3652,11 +2408,11 @@ function SectionNav({ sectionKey }) {
           }
         ),
         navItems.filter((item) => item.children && item.children.length > 0).map((section) => {
-          var _a2, _b2;
+          var _a, _b;
           return /* @__PURE__ */ jsx(
             Link,
             {
-              to: ((_b2 = (_a2 = section.children) == null ? void 0 : _a2[0]) == null ? void 0 : _b2.href) || section.href,
+              to: ((_b = (_a = section.children) == null ? void 0 : _a[0]) == null ? void 0 : _b.href) || section.href,
               className: cn(
                 "block py-2 px-3 text-sm rounded-md transition-colors",
                 // Fix: Only highlight if the current path starts with this section's path
@@ -3703,6 +2459,347 @@ function SectionNav({ sectionKey }) {
     )) })
   ] });
 }
+function a() {
+  return a = Object.assign || function(t2) {
+    for (var e = 1; e < arguments.length; e++) {
+      var r2 = arguments[e];
+      for (var n2 in r2) Object.prototype.hasOwnProperty.call(r2, n2) && (t2[n2] = r2[n2]);
+    }
+    return t2;
+  }, a.apply(this, arguments);
+}
+function s(t2, e) {
+  t2.prototype = Object.create(e.prototype), t2.prototype.constructor = t2, c(t2, e);
+}
+function c(t2, e) {
+  return c = Object.setPrototypeOf || function(t3, e2) {
+    return t3.__proto__ = e2, t3;
+  }, c(t2, e);
+}
+function u(t2, e) {
+  if (null == t2) return {};
+  var r2, n2, i2 = {}, o2 = Object.keys(t2);
+  for (n2 = 0; n2 < o2.length; n2++) e.indexOf(r2 = o2[n2]) >= 0 || (i2[r2] = t2[r2]);
+  return i2;
+}
+var l = { BASE: "base", BODY: "body", HEAD: "head", HTML: "html", LINK: "link", META: "meta", NOSCRIPT: "noscript", SCRIPT: "script", STYLE: "style", TITLE: "title", FRAGMENT: "Symbol(react.fragment)" }, p = { rel: ["amphtml", "canonical", "alternate"] }, f = { type: ["application/ld+json"] }, d = { charset: "", name: ["robots", "description"], property: ["og:type", "og:title", "og:url", "og:image", "og:image:alt", "og:description", "twitter:url", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt", "twitter:card", "twitter:site"] }, h = Object.keys(l).map(function(t2) {
+  return l[t2];
+}), m = { accesskey: "accessKey", charset: "charSet", class: "className", contenteditable: "contentEditable", contextmenu: "contextMenu", "http-equiv": "httpEquiv", itemprop: "itemProp", tabindex: "tabIndex" }, y = Object.keys(m).reduce(function(t2, e) {
+  return t2[m[e]] = e, t2;
+}, {}), T = function(t2, e) {
+  for (var r2 = t2.length - 1; r2 >= 0; r2 -= 1) {
+    var n2 = t2[r2];
+    if (Object.prototype.hasOwnProperty.call(n2, e)) return n2[e];
+  }
+  return null;
+}, g = function(t2) {
+  var e = T(t2, l.TITLE), r2 = T(t2, "titleTemplate");
+  if (Array.isArray(e) && (e = e.join("")), r2 && e) return r2.replace(/%s/g, function() {
+    return e;
+  });
+  var n2 = T(t2, "defaultTitle");
+  return e || n2 || void 0;
+}, b = function(t2) {
+  return T(t2, "onChangeClientState") || function() {
+  };
+}, v = function(t2, e) {
+  return e.filter(function(e2) {
+    return void 0 !== e2[t2];
+  }).map(function(e2) {
+    return e2[t2];
+  }).reduce(function(t3, e2) {
+    return a({}, t3, e2);
+  }, {});
+}, A = function(t2, e) {
+  return e.filter(function(t3) {
+    return void 0 !== t3[l.BASE];
+  }).map(function(t3) {
+    return t3[l.BASE];
+  }).reverse().reduce(function(e2, r2) {
+    if (!e2.length) for (var n2 = Object.keys(r2), i2 = 0; i2 < n2.length; i2 += 1) {
+      var o2 = n2[i2].toLowerCase();
+      if (-1 !== t2.indexOf(o2) && r2[o2]) return e2.concat(r2);
+    }
+    return e2;
+  }, []);
+}, C = function(t2, e, r2) {
+  var n2 = {};
+  return r2.filter(function(e2) {
+    return !!Array.isArray(e2[t2]) || (void 0 !== e2[t2] && console && "function" == typeof console.warn && console.warn("Helmet: " + t2 + ' should be of type "Array". Instead found type "' + typeof e2[t2] + '"'), false);
+  }).map(function(e2) {
+    return e2[t2];
+  }).reverse().reduce(function(t3, r3) {
+    var i2 = {};
+    r3.filter(function(t4) {
+      for (var r4, o3 = Object.keys(t4), a2 = 0; a2 < o3.length; a2 += 1) {
+        var s3 = o3[a2], c3 = s3.toLowerCase();
+        -1 === e.indexOf(c3) || "rel" === r4 && "canonical" === t4[r4].toLowerCase() || "rel" === c3 && "stylesheet" === t4[c3].toLowerCase() || (r4 = c3), -1 === e.indexOf(s3) || "innerHTML" !== s3 && "cssText" !== s3 && "itemprop" !== s3 || (r4 = s3);
+      }
+      if (!r4 || !t4[r4]) return false;
+      var u3 = t4[r4].toLowerCase();
+      return n2[r4] || (n2[r4] = {}), i2[r4] || (i2[r4] = {}), !n2[r4][u3] && (i2[r4][u3] = true, true);
+    }).reverse().forEach(function(e2) {
+      return t3.push(e2);
+    });
+    for (var o2 = Object.keys(i2), s2 = 0; s2 < o2.length; s2 += 1) {
+      var c2 = o2[s2], u2 = a({}, n2[c2], i2[c2]);
+      n2[c2] = u2;
+    }
+    return t3;
+  }, []).reverse();
+}, O = function(t2, e) {
+  if (Array.isArray(t2) && t2.length) {
+    for (var r2 = 0; r2 < t2.length; r2 += 1) if (t2[r2][e]) return true;
+  }
+  return false;
+}, S = function(t2) {
+  return Array.isArray(t2) ? t2.join("") : t2;
+}, E = function(t2, e) {
+  return Array.isArray(t2) ? t2.reduce(function(t3, r2) {
+    return function(t4, e2) {
+      for (var r3 = Object.keys(t4), n2 = 0; n2 < r3.length; n2 += 1) if (e2[r3[n2]] && e2[r3[n2]].includes(t4[r3[n2]])) return true;
+      return false;
+    }(r2, e) ? t3.priority.push(r2) : t3.default.push(r2), t3;
+  }, { priority: [], default: [] }) : { default: t2 };
+}, I = function(t2, e) {
+  var r2;
+  return a({}, t2, ((r2 = {})[e] = void 0, r2));
+}, P = [l.NOSCRIPT, l.SCRIPT, l.STYLE], w = function(t2, e) {
+  return void 0 === e && (e = true), false === e ? String(t2) : String(t2).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
+}, x = function(t2) {
+  return Object.keys(t2).reduce(function(e, r2) {
+    var n2 = void 0 !== t2[r2] ? r2 + '="' + t2[r2] + '"' : "" + r2;
+    return e ? e + " " + n2 : n2;
+  }, "");
+}, L = function(t2, e) {
+  return void 0 === e && (e = {}), Object.keys(t2).reduce(function(e2, r2) {
+    return e2[m[r2] || r2] = t2[r2], e2;
+  }, e);
+}, j = function(e, r2) {
+  return r2.map(function(r3, n2) {
+    var i2, o2 = ((i2 = { key: n2 })["data-rh"] = true, i2);
+    return Object.keys(r3).forEach(function(t2) {
+      var e2 = m[t2] || t2;
+      "innerHTML" === e2 || "cssText" === e2 ? o2.dangerouslySetInnerHTML = { __html: r3.innerHTML || r3.cssText } : o2[e2] = r3[t2];
+    }), React__default.createElement(e, o2);
+  });
+}, M = function(e, r2, n2) {
+  switch (e) {
+    case l.TITLE:
+      return { toComponent: function() {
+        return n3 = r2.titleAttributes, (i2 = { key: e2 = r2.title })["data-rh"] = true, o2 = L(n3, i2), [React__default.createElement(l.TITLE, o2, e2)];
+        var e2, n3, i2, o2;
+      }, toString: function() {
+        return function(t2, e2, r3, n3) {
+          var i2 = x(r3), o2 = S(e2);
+          return i2 ? "<" + t2 + ' data-rh="true" ' + i2 + ">" + w(o2, n3) + "</" + t2 + ">" : "<" + t2 + ' data-rh="true">' + w(o2, n3) + "</" + t2 + ">";
+        }(e, r2.title, r2.titleAttributes, n2);
+      } };
+    case "bodyAttributes":
+    case "htmlAttributes":
+      return { toComponent: function() {
+        return L(r2);
+      }, toString: function() {
+        return x(r2);
+      } };
+    default:
+      return { toComponent: function() {
+        return j(e, r2);
+      }, toString: function() {
+        return function(t2, e2, r3) {
+          return e2.reduce(function(e3, n3) {
+            var i2 = Object.keys(n3).filter(function(t3) {
+              return !("innerHTML" === t3 || "cssText" === t3);
+            }).reduce(function(t3, e4) {
+              var i3 = void 0 === n3[e4] ? e4 : e4 + '="' + w(n3[e4], r3) + '"';
+              return t3 ? t3 + " " + i3 : i3;
+            }, ""), o2 = n3.innerHTML || n3.cssText || "", a2 = -1 === P.indexOf(t2);
+            return e3 + "<" + t2 + ' data-rh="true" ' + i2 + (a2 ? "/>" : ">" + o2 + "</" + t2 + ">");
+          }, "");
+        }(e, r2, n2);
+      } };
+  }
+}, k = function(t2) {
+  var e = t2.baseTag, r2 = t2.bodyAttributes, n2 = t2.encode, i2 = t2.htmlAttributes, o2 = t2.noscriptTags, a2 = t2.styleTags, s2 = t2.title, c2 = void 0 === s2 ? "" : s2, u2 = t2.titleAttributes, h2 = t2.linkTags, m2 = t2.metaTags, y2 = t2.scriptTags, T2 = { toComponent: function() {
+  }, toString: function() {
+    return "";
+  } };
+  if (t2.prioritizeSeoTags) {
+    var g2 = function(t3) {
+      var e2 = t3.linkTags, r3 = t3.scriptTags, n3 = t3.encode, i3 = E(t3.metaTags, d), o3 = E(e2, p), a3 = E(r3, f);
+      return { priorityMethods: { toComponent: function() {
+        return [].concat(j(l.META, i3.priority), j(l.LINK, o3.priority), j(l.SCRIPT, a3.priority));
+      }, toString: function() {
+        return M(l.META, i3.priority, n3) + " " + M(l.LINK, o3.priority, n3) + " " + M(l.SCRIPT, a3.priority, n3);
+      } }, metaTags: i3.default, linkTags: o3.default, scriptTags: a3.default };
+    }(t2);
+    T2 = g2.priorityMethods, h2 = g2.linkTags, m2 = g2.metaTags, y2 = g2.scriptTags;
+  }
+  return { priority: T2, base: M(l.BASE, e, n2), bodyAttributes: M("bodyAttributes", r2, n2), htmlAttributes: M("htmlAttributes", i2, n2), link: M(l.LINK, h2, n2), meta: M(l.META, m2, n2), noscript: M(l.NOSCRIPT, o2, n2), script: M(l.SCRIPT, y2, n2), style: M(l.STYLE, a2, n2), title: M(l.TITLE, { title: c2, titleAttributes: u2 }, n2) };
+}, H = [], N = function(t2, e) {
+  var r2 = this;
+  void 0 === e && (e = "undefined" != typeof document), this.instances = [], this.value = { setHelmet: function(t3) {
+    r2.context.helmet = t3;
+  }, helmetInstances: { get: function() {
+    return r2.canUseDOM ? H : r2.instances;
+  }, add: function(t3) {
+    (r2.canUseDOM ? H : r2.instances).push(t3);
+  }, remove: function(t3) {
+    var e2 = (r2.canUseDOM ? H : r2.instances).indexOf(t3);
+    (r2.canUseDOM ? H : r2.instances).splice(e2, 1);
+  } } }, this.context = t2, this.canUseDOM = e, e || (t2.helmet = k({ baseTag: [], bodyAttributes: {}, encodeSpecialCharacters: true, htmlAttributes: {}, linkTags: [], metaTags: [], noscriptTags: [], scriptTags: [], styleTags: [], title: "", titleAttributes: {} }));
+}, R = React__default.createContext({}), D = r.shape({ setHelmet: r.func, helmetInstances: r.shape({ get: r.func, add: r.func, remove: r.func }) }), U = "undefined" != typeof document, q = /* @__PURE__ */ function(e) {
+  function r2(t2) {
+    var n2;
+    return (n2 = e.call(this, t2) || this).helmetData = new N(n2.props.context, r2.canUseDOM), n2;
+  }
+  return s(r2, e), r2.prototype.render = function() {
+    return React__default.createElement(R.Provider, { value: this.helmetData.value }, this.props.children);
+  }, r2;
+}(Component);
+q.canUseDOM = U, q.propTypes = { context: r.shape({ helmet: r.shape() }), children: r.node.isRequired }, q.defaultProps = { context: {} }, q.displayName = "HelmetProvider";
+var Y = function(t2, e) {
+  var r2, n2 = document.head || document.querySelector(l.HEAD), i2 = n2.querySelectorAll(t2 + "[data-rh]"), o2 = [].slice.call(i2), a2 = [];
+  return e && e.length && e.forEach(function(e2) {
+    var n3 = document.createElement(t2);
+    for (var i3 in e2) Object.prototype.hasOwnProperty.call(e2, i3) && ("innerHTML" === i3 ? n3.innerHTML = e2.innerHTML : "cssText" === i3 ? n3.styleSheet ? n3.styleSheet.cssText = e2.cssText : n3.appendChild(document.createTextNode(e2.cssText)) : n3.setAttribute(i3, void 0 === e2[i3] ? "" : e2[i3]));
+    n3.setAttribute("data-rh", "true"), o2.some(function(t3, e3) {
+      return r2 = e3, n3.isEqualNode(t3);
+    }) ? o2.splice(r2, 1) : a2.push(n3);
+  }), o2.forEach(function(t3) {
+    return t3.parentNode.removeChild(t3);
+  }), a2.forEach(function(t3) {
+    return n2.appendChild(t3);
+  }), { oldTags: o2, newTags: a2 };
+}, B = function(t2, e) {
+  var r2 = document.getElementsByTagName(t2)[0];
+  if (r2) {
+    for (var n2 = r2.getAttribute("data-rh"), i2 = n2 ? n2.split(",") : [], o2 = [].concat(i2), a2 = Object.keys(e), s2 = 0; s2 < a2.length; s2 += 1) {
+      var c2 = a2[s2], u2 = e[c2] || "";
+      r2.getAttribute(c2) !== u2 && r2.setAttribute(c2, u2), -1 === i2.indexOf(c2) && i2.push(c2);
+      var l2 = o2.indexOf(c2);
+      -1 !== l2 && o2.splice(l2, 1);
+    }
+    for (var p2 = o2.length - 1; p2 >= 0; p2 -= 1) r2.removeAttribute(o2[p2]);
+    i2.length === o2.length ? r2.removeAttribute("data-rh") : r2.getAttribute("data-rh") !== a2.join(",") && r2.setAttribute("data-rh", a2.join(","));
+  }
+}, K = function(t2, e) {
+  var r2 = t2.baseTag, n2 = t2.htmlAttributes, i2 = t2.linkTags, o2 = t2.metaTags, a2 = t2.noscriptTags, s2 = t2.onChangeClientState, c2 = t2.scriptTags, u2 = t2.styleTags, p2 = t2.title, f2 = t2.titleAttributes;
+  B(l.BODY, t2.bodyAttributes), B(l.HTML, n2), function(t3, e2) {
+    void 0 !== t3 && document.title !== t3 && (document.title = S(t3)), B(l.TITLE, e2);
+  }(p2, f2);
+  var d2 = { baseTag: Y(l.BASE, r2), linkTags: Y(l.LINK, i2), metaTags: Y(l.META, o2), noscriptTags: Y(l.NOSCRIPT, a2), scriptTags: Y(l.SCRIPT, c2), styleTags: Y(l.STYLE, u2) }, h2 = {}, m2 = {};
+  Object.keys(d2).forEach(function(t3) {
+    var e2 = d2[t3], r3 = e2.newTags, n3 = e2.oldTags;
+    r3.length && (h2[t3] = r3), n3.length && (m2[t3] = d2[t3].oldTags);
+  }), e && e(), s2(t2, h2, m2);
+}, _ = null, z = /* @__PURE__ */ function(t2) {
+  function e() {
+    for (var e2, r3 = arguments.length, n2 = new Array(r3), i2 = 0; i2 < r3; i2++) n2[i2] = arguments[i2];
+    return (e2 = t2.call.apply(t2, [this].concat(n2)) || this).rendered = false, e2;
+  }
+  s(e, t2);
+  var r2 = e.prototype;
+  return r2.shouldComponentUpdate = function(t3) {
+    return !o(t3, this.props);
+  }, r2.componentDidUpdate = function() {
+    this.emitChange();
+  }, r2.componentWillUnmount = function() {
+    this.props.context.helmetInstances.remove(this), this.emitChange();
+  }, r2.emitChange = function() {
+    var t3, e2, r3 = this.props.context, n2 = r3.setHelmet, i2 = null, o2 = (t3 = r3.helmetInstances.get().map(function(t4) {
+      var e3 = a({}, t4.props);
+      return delete e3.context, e3;
+    }), { baseTag: A(["href"], t3), bodyAttributes: v("bodyAttributes", t3), defer: T(t3, "defer"), encode: T(t3, "encodeSpecialCharacters"), htmlAttributes: v("htmlAttributes", t3), linkTags: C(l.LINK, ["rel", "href"], t3), metaTags: C(l.META, ["name", "charset", "http-equiv", "property", "itemprop"], t3), noscriptTags: C(l.NOSCRIPT, ["innerHTML"], t3), onChangeClientState: b(t3), scriptTags: C(l.SCRIPT, ["src", "innerHTML"], t3), styleTags: C(l.STYLE, ["cssText"], t3), title: g(t3), titleAttributes: v("titleAttributes", t3), prioritizeSeoTags: O(t3, "prioritizeSeoTags") });
+    q.canUseDOM ? (e2 = o2, _ && cancelAnimationFrame(_), e2.defer ? _ = requestAnimationFrame(function() {
+      K(e2, function() {
+        _ = null;
+      });
+    }) : (K(e2), _ = null)) : k && (i2 = k(o2)), n2(i2);
+  }, r2.init = function() {
+    this.rendered || (this.rendered = true, this.props.context.helmetInstances.add(this), this.emitChange());
+  }, r2.render = function() {
+    return this.init(), null;
+  }, e;
+}(Component);
+z.propTypes = { context: D.isRequired }, z.displayName = "HelmetDispatcher";
+var F = ["children"], G = ["children"], W = /* @__PURE__ */ function(e) {
+  function r2() {
+    return e.apply(this, arguments) || this;
+  }
+  s(r2, e);
+  var o2 = r2.prototype;
+  return o2.shouldComponentUpdate = function(t2) {
+    return !n(I(this.props, "helmetData"), I(t2, "helmetData"));
+  }, o2.mapNestedChildrenToProps = function(t2, e2) {
+    if (!e2) return null;
+    switch (t2.type) {
+      case l.SCRIPT:
+      case l.NOSCRIPT:
+        return { innerHTML: e2 };
+      case l.STYLE:
+        return { cssText: e2 };
+      default:
+        throw new Error("<" + t2.type + " /> elements are self-closing and can not contain children. Refer to our API for more information.");
+    }
+  }, o2.flattenArrayTypeChildren = function(t2) {
+    var e2, r3 = t2.child, n2 = t2.arrayTypeChildren;
+    return a({}, n2, ((e2 = {})[r3.type] = [].concat(n2[r3.type] || [], [a({}, t2.newChildProps, this.mapNestedChildrenToProps(r3, t2.nestedChildren))]), e2));
+  }, o2.mapObjectTypeChildren = function(t2) {
+    var e2, r3, n2 = t2.child, i2 = t2.newProps, o3 = t2.newChildProps, s2 = t2.nestedChildren;
+    switch (n2.type) {
+      case l.TITLE:
+        return a({}, i2, ((e2 = {})[n2.type] = s2, e2.titleAttributes = a({}, o3), e2));
+      case l.BODY:
+        return a({}, i2, { bodyAttributes: a({}, o3) });
+      case l.HTML:
+        return a({}, i2, { htmlAttributes: a({}, o3) });
+      default:
+        return a({}, i2, ((r3 = {})[n2.type] = a({}, o3), r3));
+    }
+  }, o2.mapArrayTypeChildrenToProps = function(t2, e2) {
+    var r3 = a({}, e2);
+    return Object.keys(t2).forEach(function(e3) {
+      var n2;
+      r3 = a({}, r3, ((n2 = {})[e3] = t2[e3], n2));
+    }), r3;
+  }, o2.warnOnInvalidChildren = function(t2, e2) {
+    return i(h.some(function(e3) {
+      return t2.type === e3;
+    }), "function" == typeof t2.type ? "You may be attempting to nest <Helmet> components within each other, which is not allowed. Refer to our API for more information." : "Only elements types " + h.join(", ") + " are allowed. Helmet does not support rendering <" + t2.type + "> elements. Refer to our API for more information."), i(!e2 || "string" == typeof e2 || Array.isArray(e2) && !e2.some(function(t3) {
+      return "string" != typeof t3;
+    }), "Helmet expects a string as a child of <" + t2.type + ">. Did you forget to wrap your children in braces? ( <" + t2.type + ">{``}</" + t2.type + "> ) Refer to our API for more information."), true;
+  }, o2.mapChildrenToProps = function(e2, r3) {
+    var n2 = this, i2 = {};
+    return React__default.Children.forEach(e2, function(t2) {
+      if (t2 && t2.props) {
+        var e3 = t2.props, o3 = e3.children, a2 = u(e3, F), s2 = Object.keys(a2).reduce(function(t3, e4) {
+          return t3[y[e4] || e4] = a2[e4], t3;
+        }, {}), c2 = t2.type;
+        switch ("symbol" == typeof c2 ? c2 = c2.toString() : n2.warnOnInvalidChildren(t2, o3), c2) {
+          case l.FRAGMENT:
+            r3 = n2.mapChildrenToProps(o3, r3);
+            break;
+          case l.LINK:
+          case l.META:
+          case l.NOSCRIPT:
+          case l.SCRIPT:
+          case l.STYLE:
+            i2 = n2.flattenArrayTypeChildren({ child: t2, arrayTypeChildren: i2, newChildProps: s2, nestedChildren: o3 });
+            break;
+          default:
+            r3 = n2.mapObjectTypeChildren({ child: t2, newProps: r3, newChildProps: s2, nestedChildren: o3 });
+        }
+      }
+    }), this.mapArrayTypeChildrenToProps(i2, r3);
+  }, o2.render = function() {
+    var e2 = this.props, r3 = e2.children, n2 = u(e2, G), i2 = a({}, n2), o3 = n2.helmetData;
+    return r3 && (i2 = this.mapChildrenToProps(r3, i2)), !o3 || o3 instanceof N || (o3 = new N(o3.context, o3.instances)), o3 ? /* @__PURE__ */ React__default.createElement(z, a({}, i2, { context: o3.value, helmetData: void 0 })) : /* @__PURE__ */ React__default.createElement(R.Consumer, null, function(e3) {
+      return React__default.createElement(z, a({}, i2, { context: e3 }));
+    });
+  }, r2;
+}(Component);
+W.propTypes = { base: r.object, bodyAttributes: r.object, children: r.oneOfType([r.arrayOf(r.node), r.node]), defaultTitle: r.string, defer: r.bool, encodeSpecialCharacters: r.bool, htmlAttributes: r.object, link: r.arrayOf(r.object), meta: r.arrayOf(r.object), noscript: r.arrayOf(r.object), onChangeClientState: r.func, script: r.arrayOf(r.object), style: r.arrayOf(r.object), title: r.string, titleAttributes: r.object, titleTemplate: r.string, prioritizeSeoTags: r.bool, helmetData: r.object }, W.defaultProps = { defer: true, encodeSpecialCharacters: true, prioritizeSeoTags: false }, W.displayName = "Helmet";
 const PUBLIC_BASE_URL_KEY = "gallery_public_base_url";
 const getPublicBaseUrl = () => {
   if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
@@ -3742,12 +2839,12 @@ const Seo = ({
   const cleanRest = stripLangPrefix(location.pathname).replace(/\/+$/, "");
   const pathLang = location.pathname.split("/")[1];
   const currentLang = SUPPORTED_LANGS.includes(pathLang) ? pathLang : SUPPORTED_LANGS.includes(lang) ? lang : "en";
-  const buildUrl = (l) => `${baseUrl}/${l}${cleanRest}`;
+  const buildUrl = (l2) => `${baseUrl}/${l2}${cleanRest}`;
   const canonicalUrl = buildUrl(currentLang);
   const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
   const ogLocale = currentLang === "en" ? "en_US" : currentLang === "ru" ? "ru_RU" : "fr_FR";
-  return /* @__PURE__ */ jsxs(Helmet, { htmlAttributes: { lang: currentLang }, children: [
+  return /* @__PURE__ */ jsxs(W, { htmlAttributes: { lang: currentLang }, children: [
     /* @__PURE__ */ jsx("title", { children: title }),
     /* @__PURE__ */ jsx("meta", { name: "description", content: description }),
     /* @__PURE__ */ jsx("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }),
@@ -5476,14 +4573,14 @@ const Gallery = () => {
     return item[`${field}_${language}`] || item[`${field}_en`];
   };
   const filteredPaintings = paintings.filter((painting) => {
-    var _a2;
+    var _a;
     const title = getLocalizedText(painting, "title").toLowerCase();
     const artist = getLocalizedText(painting, "artist").toLowerCase();
     const matchesSearch = title.includes(searchTerm.toLowerCase()) || artist.includes(searchTerm.toLowerCase());
-    const matchesYear = !yearFilter || ((_a2 = painting.year) == null ? void 0 : _a2.toString()) === yearFilter;
+    const matchesYear = !yearFilter || ((_a = painting.year) == null ? void 0 : _a.toString()) === yearFilter;
     return matchesSearch && matchesYear;
   });
-  const availableYears = [...new Set(paintings.map((p) => p.year).filter(Boolean))].sort((a, b) => b - a);
+  const availableYears = [...new Set(paintings.map((p2) => p2.year).filter(Boolean))].sort((a2, b2) => b2 - a2);
   if (loading) {
     return /* @__PURE__ */ jsxs(Fragment, { children: [
       /* @__PURE__ */ jsx(
@@ -5502,13 +4599,13 @@ const Gallery = () => {
             /* @__PURE__ */ jsx("span", { children: t2("common.loading") })
           ] })
         ] }),
-        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6", children: Array.from({ length: 8 }).map((_, i) => /* @__PURE__ */ jsxs("div", { className: "rounded-lg border border-border overflow-hidden", children: [
+        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6", children: Array.from({ length: 8 }).map((_2, i2) => /* @__PURE__ */ jsxs("div", { className: "rounded-lg border border-border overflow-hidden", children: [
           /* @__PURE__ */ jsx(Skeleton, { className: "aspect-square w-full" }),
           /* @__PURE__ */ jsxs("div", { className: "p-4 space-y-2", children: [
             /* @__PURE__ */ jsx(Skeleton, { className: "h-5 w-3/4" }),
             /* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-1/2" })
           ] })
-        ] }, i)) })
+        ] }, i2)) })
       ] }) })
     ] });
   }
@@ -5735,7 +4832,7 @@ const PaintingOwnersManager = ({ paintingId }) => {
     try {
       const { data: poRows, error: poError } = await supabase.from("painting_owners").select("id, owner_id").eq("painting_id", paintingId);
       if (poError) throw poError;
-      const ownerIds = (poRows || []).map((r) => r.owner_id);
+      const ownerIds = (poRows || []).map((r2) => r2.owner_id);
       if (ownerIds.length === 0) {
         setOwners([]);
         return;
@@ -5745,7 +4842,7 @@ const PaintingOwnersManager = ({ paintingId }) => {
       const ownersWithProfiles = (poRows || []).map((row) => ({
         id: row.id,
         owner_id: row.owner_id,
-        profiles: (profiles == null ? void 0 : profiles.find((p) => p.id === row.owner_id)) || null
+        profiles: (profiles == null ? void 0 : profiles.find((p2) => p2.id === row.owner_id)) || null
       }));
       setOwners(ownersWithProfiles);
     } catch (error) {
@@ -5790,15 +4887,15 @@ const PaintingOwnersManager = ({ paintingId }) => {
         ")"
       ] }),
       /* @__PURE__ */ jsx("div", { className: "space-y-2", children: owners.length === 0 ? /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground", children: "No owners assigned yet" }) : owners.map((owner) => {
-        var _a2, _b2;
+        var _a, _b;
         return /* @__PURE__ */ jsxs(
           "div",
           {
             className: "flex items-center justify-between p-3 border rounded-lg",
             children: [
               /* @__PURE__ */ jsxs("div", { children: [
-                /* @__PURE__ */ jsx("p", { className: "font-medium", children: ((_a2 = owner.profiles) == null ? void 0 : _a2.email) || "Unknown" }),
-                ((_b2 = owner.profiles) == null ? void 0 : _b2.full_name) && /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground", children: owner.profiles.full_name })
+                /* @__PURE__ */ jsx("p", { className: "font-medium", children: ((_a = owner.profiles) == null ? void 0 : _a.email) || "Unknown" }),
+                ((_b = owner.profiles) == null ? void 0 : _b.full_name) && /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground", children: owner.profiles.full_name })
               ] }),
               /* @__PURE__ */ jsxs(
                 Button,
@@ -6523,8 +5620,8 @@ const ImageUpload = ({
     }
   };
   const handleFileSelect = (e) => {
-    var _a2;
-    const file = (_a2 = e.target.files) == null ? void 0 : _a2[0];
+    var _a;
+    const file = (_a = e.target.files) == null ? void 0 : _a[0];
     if (file) {
       if (file.size > 10 * 1024 * 1024) {
         toast2({
@@ -6610,8 +5707,8 @@ const ImageUpload = ({
               type: "button",
               variant: "outline",
               onClick: () => {
-                var _a2;
-                return (_a2 = document.getElementById("image-upload")) == null ? void 0 : _a2.click();
+                var _a;
+                return (_a = document.getElementById("image-upload")) == null ? void 0 : _a.click();
               },
               disabled: uploading,
               children: [
@@ -6803,7 +5900,7 @@ const PaintingForm = () => {
       if (paintingId) {
         if (isEditing && id) {
           const { data: currentOwners } = await supabase.from("painting_owners").select("owner_id").eq("painting_id", id);
-          const currentOwnerIds = (currentOwners == null ? void 0 : currentOwners.map((o) => o.owner_id)) || [];
+          const currentOwnerIds = (currentOwners == null ? void 0 : currentOwners.map((o2) => o2.owner_id)) || [];
           const toDelete = currentOwnerIds.filter((oid) => !selectedOwnerIds.includes(oid));
           const toInsert = selectedOwnerIds.filter((oid) => !currentOwnerIds.includes(oid));
           if (toDelete.length > 0) {
@@ -6916,7 +6013,7 @@ const PaintingForm = () => {
           selectedOwnerIds.length > 0 && /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
             /* @__PURE__ */ jsx(Label, { children: "Selected Owners" }),
             /* @__PURE__ */ jsx("div", { className: "flex flex-wrap gap-2", children: selectedOwnerIds.map((ownerId) => {
-              const owner = owners.find((o) => o.id === ownerId);
+              const owner = owners.find((o2) => o2.id === ownerId);
               return /* @__PURE__ */ jsxs(
                 "div",
                 {
@@ -7439,7 +6536,7 @@ const PaintingForm = () => {
   ] }) });
 };
 const GalleryManage = () => {
-  var _a2;
+  var _a;
   const { user, signOut } = useAuth();
   const { t: t2, language } = useLanguage();
   const { role, isAdmin, isOwner, loading: roleLoading } = useUserRole();
@@ -7463,7 +6560,7 @@ const GalleryManage = () => {
       } else {
         const { data: ownershipData, error: ownershipError } = await supabase.from("painting_owners").select("painting_id").eq("owner_id", user.id);
         if (ownershipError) throw ownershipError;
-        const paintingIds = (ownershipData == null ? void 0 : ownershipData.map((o) => o.painting_id)) || [];
+        const paintingIds = (ownershipData == null ? void 0 : ownershipData.map((o2) => o2.painting_id)) || [];
         if (paintingIds.length === 0) {
           setPaintings([]);
           setLoading(false);
@@ -7494,7 +6591,7 @@ const GalleryManage = () => {
         title: "Success",
         description: "Painting deleted successfully"
       });
-      setPaintings((prev) => prev.filter((p) => p.id !== paintingId));
+      setPaintings((prev) => prev.filter((p2) => p2.id !== paintingId));
     } catch (error) {
       toast2({
         title: "Error",
@@ -7551,7 +6648,7 @@ const GalleryManage = () => {
         ] }),
         /* @__PURE__ */ jsxs("p", { className: "text-muted-foreground", children: [
           "Welcome back, ",
-          ((_a2 = user == null ? void 0 : user.user_metadata) == null ? void 0 : _a2.full_name) || (user == null ? void 0 : user.email),
+          ((_a = user == null ? void 0 : user.user_metadata) == null ? void 0 : _a.full_name) || (user == null ? void 0 : user.email),
           isAdmin && /* @__PURE__ */ jsx(Badge, { className: "ml-2", children: "Admin" }),
           isOwner && !isAdmin && /* @__PURE__ */ jsx(Badge, { variant: "secondary", className: "ml-2", children: "Owner" })
         ] })
@@ -7571,7 +6668,7 @@ const GalleryManage = () => {
         /* @__PURE__ */ jsx(Button, { variant: "outline", onClick: handleSignOut, children: "Sign Out" })
       ] })
     ] }),
-    loading ? /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6", children: Array.from({ length: 6 }).map((_, i) => /* @__PURE__ */ jsxs(Card, { className: "animate-pulse", children: [
+    loading ? /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6", children: Array.from({ length: 6 }).map((_2, i2) => /* @__PURE__ */ jsxs(Card, { className: "animate-pulse", children: [
       /* @__PURE__ */ jsx("div", { className: "h-48 bg-gray-200 rounded-t-lg" }),
       /* @__PURE__ */ jsxs(CardContent, { className: "p-4", children: [
         /* @__PURE__ */ jsx("div", { className: "h-4 bg-gray-200 rounded mb-2" }),
@@ -7581,7 +6678,7 @@ const GalleryManage = () => {
           /* @__PURE__ */ jsx("div", { className: "h-8 bg-gray-200 rounded flex-1" })
         ] })
       ] })
-    ] }, i)) }) : paintings.length === 0 ? /* @__PURE__ */ jsx(Card, { className: "text-center py-12", children: /* @__PURE__ */ jsxs(CardContent, { children: [
+    ] }, i2)) }) : paintings.length === 0 ? /* @__PURE__ */ jsx(Card, { className: "text-center py-12", children: /* @__PURE__ */ jsxs(CardContent, { children: [
       /* @__PURE__ */ jsx("h3", { className: "text-lg font-semibold mb-2", children: isAdmin ? "No paintings yet" : "No paintings assigned" }),
       /* @__PURE__ */ jsx("p", { className: "text-muted-foreground mb-4", children: isAdmin ? "Start building the gallery by adding the first painting." : "You don't have any paintings assigned to you yet." }),
       isAdmin && /* @__PURE__ */ jsxs(Button, { onClick: () => navigate("/gallery/manage/add"), children: [
@@ -9034,7 +8131,7 @@ const LandingV3 = () => {
               }
             )
           ] }),
-          /* @__PURE__ */ jsx("section", { className: "container mx-auto px-4 py-12 md:py-16", children: /* @__PURE__ */ jsx("div", { className: "grid md:grid-cols-3 gap-px", style: { backgroundColor: BLACK }, children: ADVANTAGES.map((a, i) => /* @__PURE__ */ jsxs(
+          /* @__PURE__ */ jsx("section", { className: "container mx-auto px-4 py-12 md:py-16", children: /* @__PURE__ */ jsx("div", { className: "grid md:grid-cols-3 gap-px", style: { backgroundColor: BLACK }, children: ADVANTAGES.map((a2, i2) => /* @__PURE__ */ jsxs(
             "div",
             {
               className: "p-7 md:p-8",
@@ -9058,13 +8155,13 @@ const LandingV3 = () => {
                       letterSpacing: "-0.02em",
                       lineHeight: 1.15
                     },
-                    children: a.title
+                    children: a2.title
                   }
                 ),
-                /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed", style: { color: `${BLACK}B3` }, children: a.text })
+                /* @__PURE__ */ jsx("p", { className: "text-sm leading-relaxed", style: { color: `${BLACK}B3` }, children: a2.text })
               ]
             },
-            i
+            i2
           )) }) }),
           /* @__PURE__ */ jsxs("section", { className: "grid md:grid-cols-2", children: [
             /* @__PURE__ */ jsxs("div", { className: "container md:max-w-none mx-auto md:mx-0 md:ml-auto md:pr-12 px-4 py-16 md:py-24 md:max-w-xl", children: [
@@ -9100,7 +8197,7 @@ const LandingV3 = () => {
                   ]
                 }
               ),
-              /* @__PURE__ */ jsx("div", { className: "space-y-4 text-base leading-relaxed", style: { color: `${BLACK}CC` }, children: ABOUT_PARAGRAPHS.map((p, i) => /* @__PURE__ */ jsx("p", { children: p }, i)) })
+              /* @__PURE__ */ jsx("div", { className: "space-y-4 text-base leading-relaxed", style: { color: `${BLACK}CC` }, children: ABOUT_PARAGRAPHS.map((p2, i2) => /* @__PURE__ */ jsx("p", { children: p2 }, i2)) })
             ] }),
             /* @__PURE__ */ jsx(
               "div",
@@ -9116,7 +8213,7 @@ const LandingV3 = () => {
                       children: "Що дає правильне застереження"
                     }
                   ),
-                  /* @__PURE__ */ jsx("ol", { className: "space-y-6", children: CHECKLIST.map((item, i) => /* @__PURE__ */ jsxs("li", { className: "flex gap-4", children: [
+                  /* @__PURE__ */ jsx("ol", { className: "space-y-6", children: CHECKLIST.map((item, i2) => /* @__PURE__ */ jsxs("li", { className: "flex gap-4", children: [
                     /* @__PURE__ */ jsx(
                       "span",
                       {
@@ -9125,7 +8222,7 @@ const LandingV3 = () => {
                           fontFamily: "'JetBrains Mono', 'Courier New', monospace",
                           opacity: 0.7
                         },
-                        children: String(i + 1).padStart(2, "0")
+                        children: String(i2 + 1).padStart(2, "0")
                       }
                     ),
                     /* @__PURE__ */ jsx(
@@ -9140,7 +8237,7 @@ const LandingV3 = () => {
                         children: item
                       }
                     )
-                  ] }, i)) })
+                  ] }, i2)) })
                 ] })
               }
             )
@@ -9367,7 +8464,7 @@ const DialogDescription = React.forwardRef(({ className, ...props }, ref) => /* 
 DialogDescription.displayName = SheetPrimitive.Description.displayName;
 function CouncilMember({ name, position, description, imageJpg, imageWebp }) {
   const [open, setOpen] = useState(false);
-  const initials = name.split(" ").map((n) => n[0]).join("");
+  const initials = name.split(" ").map((n2) => n2[0]).join("");
   const renderAvatar = (size) => /* @__PURE__ */ jsx("div", { className: `aspect-[3/4] ${size} rounded-lg overflow-hidden bg-transparent`, children: imageWebp || imageJpg ? /* @__PURE__ */ jsxs("picture", { children: [
     imageWebp && /* @__PURE__ */ jsx("source", { srcSet: imageWebp, type: "image/webp" }),
     /* @__PURE__ */ jsx(
@@ -9502,7 +8599,7 @@ const News$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: News
 }, Symbol.toStringTag, { value: "Module" }));
 const NewsDetail = () => {
-  var _a2;
+  var _a;
   const { id } = useParams();
   const navigate = useLocalizedNavigate();
   const { language, t: t2 } = useLanguage();
@@ -9521,8 +8618,8 @@ const NewsDetail = () => {
   const plainDescription = description.replace(/<[^>]*>/g, "").replace(/\n+/g, " ").trim();
   const seoDescription = plainDescription.length > 160 ? `${plainDescription.substring(0, 157)}...` : plainDescription;
   const isoDate = (() => {
-    const d = new Date(newsItem.date);
-    return isNaN(d.getTime()) ? newsItem.date : d.toISOString().split("T")[0];
+    const d2 = new Date(newsItem.date);
+    return isNaN(d2.getTime()) ? newsItem.date : d2.toISOString().split("T")[0];
   })();
   const structuredData = {
     "@context": "https://schema.org",
@@ -9608,7 +8705,7 @@ const NewsDetail = () => {
             }
           ) })
         ] }),
-        ((_a2 = newsItem.images) == null ? void 0 : _a2.length) > 0 && /* @__PURE__ */ jsxs("div", { className: "mt-8", children: [
+        ((_a = newsItem.images) == null ? void 0 : _a.length) > 0 && /* @__PURE__ */ jsxs("div", { className: "mt-8", children: [
           /* @__PURE__ */ jsx("h2", { className: "text-2xl font-semibold mb-4", children: t2("common.gallery") || "Gallery" }),
           /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: newsItem.images.map((image, index) => /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsx(
             "img",
@@ -9621,10 +8718,10 @@ const NewsDetail = () => {
           ) }, index)) })
         ] }),
         (() => {
-          const idx = newsItems.findIndex((n) => n.id === id);
+          const idx = newsItems.findIndex((n2) => n2.id === id);
           const prev = idx > 0 ? newsItems[idx - 1] : null;
           const next = idx >= 0 && idx < newsItems.length - 1 ? newsItems[idx + 1] : null;
-          const related = newsItems.filter((n) => n.id !== id).slice(Math.max(0, idx - 3), Math.max(0, idx - 3) + 6).filter((n) => n.id !== id).slice(0, 6);
+          const related = newsItems.filter((n2) => n2.id !== id).slice(Math.max(0, idx - 3), Math.max(0, idx - 3) + 6).filter((n2) => n2.id !== id).slice(0, 6);
           return /* @__PURE__ */ jsxs("nav", { "aria-label": "More news", className: "mt-12 border-t pt-8", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex flex-col sm:flex-row justify-between gap-4 mb-8", children: [
               prev ? /* @__PURE__ */ jsxs(Link, { to: `/eac/news/${prev.id}`, className: "group flex-1 text-left", children: [
@@ -9644,10 +8741,10 @@ const NewsDetail = () => {
             ] }),
             related.length > 0 && /* @__PURE__ */ jsxs(Fragment, { children: [
               /* @__PURE__ */ jsx("h2", { className: "text-2xl font-semibold mb-4", children: t2("common.relatedNews") || "Related news" }),
-              /* @__PURE__ */ jsx("ul", { className: "grid grid-cols-1 md:grid-cols-2 gap-3", children: related.map((n) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(Link, { to: `/eac/news/${n.id}`, className: "block p-3 rounded border hover:bg-muted transition-colors", children: [
-                /* @__PURE__ */ jsx("div", { className: "text-xs text-muted-foreground", children: n.date }),
-                /* @__PURE__ */ jsx("div", { className: "font-medium", children: pickText(n.title, language) })
-              ] }) }, n.id)) })
+              /* @__PURE__ */ jsx("ul", { className: "grid grid-cols-1 md:grid-cols-2 gap-3", children: related.map((n2) => /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsxs(Link, { to: `/eac/news/${n2.id}`, className: "block p-3 rounded border hover:bg-muted transition-colors", children: [
+                /* @__PURE__ */ jsx("div", { className: "text-xs text-muted-foreground", children: n2.date }),
+                /* @__PURE__ */ jsx("div", { className: "font-medium", children: pickText(n2.title, language) })
+              ] }) }, n2.id)) })
             ] })
           ] });
         })()
@@ -9968,9 +9065,9 @@ const FormMessage = React.forwardRef(({ className, children, ...props }, ref) =>
   );
 });
 FormMessage.displayName = "FormMessage";
-const FormSchema = z.object({
-  disputeAmount: z.coerce.number().min(1, "Amount must be greater than 0"),
-  arbitrators: z.enum(["1", "3"])
+const FormSchema = z$1.object({
+  disputeAmount: z$1.coerce.number().min(1, "Amount must be greater than 0"),
+  arbitrators: z$1.enum(["1", "3"])
 });
 function CostCalculator$1() {
   const { t: t2 } = useLanguage();
@@ -10145,13 +9242,13 @@ const ArbitrationClause = () => {
     return /* @__PURE__ */ jsxs("section", { className: "mb-12", children: [
       /* @__PURE__ */ jsx("h2", { className: "text-2xl font-semibold mb-4 text-eac-dark", children: t2(`arbitration.clause.${section}.title`) }),
       /* @__PURE__ */ jsx("p", { className: "text-lg text-gray-600 mb-4", children: t2(`arbitration.clause.${section}.description`) }),
-      /* @__PURE__ */ jsx("div", { className: "bg-gray-50 p-6 rounded-lg border border-gray-200 my-6", children: Array.from({ length: 5 }, (_, i) => /* @__PURE__ */ jsx(
+      /* @__PURE__ */ jsx("div", { className: "bg-gray-50 p-6 rounded-lg border border-gray-200 my-6", children: Array.from({ length: 5 }, (_2, i2) => /* @__PURE__ */ jsx(
         "p",
         {
-          className: `text-gray-800 ${i < 4 ? "mb-4" : ""}`,
-          children: t2(`arbitration.clause.${section}.clause${i + 1}`)
+          className: `text-gray-800 ${i2 < 4 ? "mb-4" : ""}`,
+          children: t2(`arbitration.clause.${section}.clause${i2 + 1}`)
         },
-        i
+        i2
       )) }),
       /* @__PURE__ */ jsx("p", { className: "text-lg text-gray-600", children: t2(`arbitration.clause.${section}.note`) })
     ] });
@@ -10393,10 +9490,10 @@ const CodeOfConduct = () => {
         /* @__PURE__ */ jsx("p", { className: "mb-4 text-lg text-gray-600", children: t2("membership.code.intro") }),
         /* @__PURE__ */ jsx("h3", { className: "mb-4 text-lg", children: t2("membership.code.obligations.title") }),
         /* @__PURE__ */ jsx("p", { className: "mb-4 text-lg text-gray-600", children: t2("membership.code.obligations.description") }),
-        /* @__PURE__ */ jsx("ul", { className: "mb-4 text-lg text-gray-600 list-disc pl-5", children: obligations.map((item, i) => /* @__PURE__ */ jsx("li", { className: "ml-5 mt-2", children: item }, i)) }),
+        /* @__PURE__ */ jsx("ul", { className: "mb-4 text-lg text-gray-600 list-disc pl-5", children: obligations.map((item, i2) => /* @__PURE__ */ jsx("li", { className: "ml-5 mt-2", children: item }, i2)) }),
         /* @__PURE__ */ jsx("h3", { className: "mb-4 text-lg", children: t2("membership.code.responsibilities.title") }),
         /* @__PURE__ */ jsx("p", { className: "mb-4 text-lg text-gray-600", children: t2("membership.code.responsibilities.description") }),
-        /* @__PURE__ */ jsx("ul", { className: "mb-4 text-lg text-gray-600 list-disc pl-5", children: responsibilities.map((item, i) => /* @__PURE__ */ jsx("li", { className: "ml-5 mt-2", children: item }, i)) }),
+        /* @__PURE__ */ jsx("ul", { className: "mb-4 text-lg text-gray-600 list-disc pl-5", children: responsibilities.map((item, i2) => /* @__PURE__ */ jsx("li", { className: "ml-5 mt-2", children: item }, i2)) }),
         /* @__PURE__ */ jsx("h3", { className: "mb-4 text-lg", children: t2("membership.code.sanctions.title") }),
         /* @__PURE__ */ jsx("p", { className: "mb-4 text-lg text-gray-600", children: t2("membership.code.sanctions.description") })
       ] })
@@ -10674,8 +9771,8 @@ const RootRedirect = () => {
   if (isSupportedLang(stored)) {
     target = stored;
   } else if (typeof navigator !== "undefined") {
-    for (const c of [...navigator.languages || [], navigator.language || ""]) {
-      const code = c.slice(0, 2).toLowerCase();
+    for (const c2 of [...navigator.languages || [], navigator.language || ""]) {
+      const code = c2.slice(0, 2).toLowerCase();
       if (isSupportedLang(code)) {
         target = code;
         break;
@@ -10750,7 +9847,7 @@ const withStaticNewsPaths = (lang) => localisedChildren().map((route) => {
   if (route.path === "eac/news/:id") {
     return {
       ...route,
-      getStaticPaths: () => newsItems.map((n) => `eac/news/${n.id}`)
+      getStaticPaths: () => newsItems.map((n2) => `eac/news/${n2.id}`)
     };
   }
   return route;

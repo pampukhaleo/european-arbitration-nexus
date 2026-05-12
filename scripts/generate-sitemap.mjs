@@ -7,6 +7,12 @@ import path from 'node:path';
 const SITE = 'https://chea-taic.be';
 const LANGS = ['en', 'fr', 'ru'];
 const SKIP_RE = /^\/(auth|admin|gallery\/manage)(\/|$)/;
+// Section-level redirect routes (e.g. /en/eac → /en/eac/about). Their HTML
+// canonical points elsewhere, so they must NOT appear in the sitemap.
+const REDIRECT_SEGMENTS = ['eac', 'arbitration', 'expertise', 'art-expertise', 'membership', 'cookies', 'about'];
+const SKIP_LOCALIZED_REDIRECT_RE = new RegExp(
+  `^/(en|fr|ru)/(${REDIRECT_SEGMENTS.join('|')})/?$`
+);
 
 const distRoot = path.resolve(process.cwd(), 'dist');
 

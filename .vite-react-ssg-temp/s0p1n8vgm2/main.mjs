@@ -5147,7 +5147,7 @@ const Landing = lazy(() => import("./assets/Landing-D2H7XtwN.js"));
 const EACAbout = lazy(() => import("./assets/About-DbnW_aye.js"));
 const Council = lazy(() => import("./assets/Council-CqMQiEUB.js"));
 const News = lazy(() => import("./assets/News-BupgSZPD.js"));
-const NewsDetail = lazy(() => import("./assets/NewsDetail-BmbghJcB.js"));
+const NewsDetail = lazy(() => import("./assets/NewsDetail-Bu0ETLbc.js"));
 const ICAC = lazy(() => import("./assets/ICAC-D9pg1VNy.js"));
 const Rules = lazy(() => import("./assets/Rules-CQ0RhlNK.js"));
 const FeeRegulations = lazy(() => import("./assets/FeeRegulations-CP9DVMgM.js"));

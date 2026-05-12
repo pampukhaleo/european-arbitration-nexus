@@ -67,6 +67,9 @@ const NewsDetail = () => {
   };
   const formatDescription = (html) => {
     const transformed = html.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br/>").replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>");
+    if (typeof window === "undefined") {
+      return { __html: transformed };
+    }
     return {
       __html: DOMPurify.sanitize(transformed, {
         ALLOWED_TAGS: ["p", "br", "strong", "em", "b", "i", "ul", "ol", "li", "h1", "h2", "h3", "h4", "a"],

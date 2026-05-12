@@ -34,7 +34,7 @@ function walk(dir, base = '') {
 
 const allRoutes = walk(distRoot)
   .map((r) => (r === '/' ? '/' : r.replace(/\/+$/, '')))
-  .filter((r) => !SKIP_RE.test(r));
+  .filter((r) => !SKIP_RE.test(r) && !SKIP_LOCALIZED_REDIRECT_RE.test(r));
 
 // Group by path-without-lang so we can emit hreflang alternates.
 const groups = new Map(); // key -> { en?: path, fr?: path, ru?: path }

@@ -32,15 +32,11 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      // Force the app to use the SAME react-helmet-async instance that
-      // vite-react-ssg uses internally. Otherwise <Helmet> writes into a
-      // different provider than the SSR renderer reads, and head tags never
-      // make it into the pre-rendered HTML.
-      "react-helmet-async": path.resolve(
-        __dirname,
-        "node_modules/vite-react-ssg/node_modules/react-helmet-async"
-      ),
     },
+    // Ensure a single instance of these libraries across the app and
+    // vite-react-ssg's own bundled copy. Without dedupe, <Helmet> writes
+    // to a different context than the SSR renderer reads, and head tags
+    // never reach the pre-rendered HTML.
     dedupe: ["react", "react-dom", "react-helmet-async"],
   },
   // vite-react-ssg requires bundling react-helmet-async for the SSR pass.

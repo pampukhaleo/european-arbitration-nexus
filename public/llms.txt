@@ -1,0 +1,47 @@
+# European Arbitration Chamber (EAC)
+
+> The European Arbitration Chamber is an international non-profit association founded in Belgium in 2008, providing arbitration, mediation, art expertise, and authentication services across Europe and beyond.
+
+The EAC (Chambre Européenne d'Arbitrage / Европейская арбитражная палата) administers international commercial arbitration through its International Commercial Arbitration Court (ICAC), publishes arbitration rules and fee regulations, maintains a council of experienced arbitrators, and offers specialized art appraisal, authentication, and digital art passport services. The site is available in English, French, and Russian — paths are mirrored under `/en`, `/fr`, and `/ru`.
+
+## Pages
+
+- [Home](/en): Overview of EAC's mission, services, and recent news.
+- [About EAC](/en/eac/about): History, mission, and structure of the chamber.
+- [Council](/en/eac/council): Members of the EAC council.
+- [News](/en/eac/news): Latest announcements, events, and publications.
+- [Contacts](/en/contacts): Office addresses and contact form.
+
+## Arbitration
+
+- [ICAC](/en/arbitration/icac): International Commercial Arbitration Court.
+- [Arbitration Rules](/en/arbitration/rules): Procedural rules (2020 edition).
+- [Fee Regulations](/en/arbitration/fees): Schedule of arbitration costs.
+- [Cost Calculator](/en/arbitration/calculator): Estimate arbitration fees.
+- [Model Arbitration Clause](/en/arbitration/clause): Recommended contract clause.
+
+## Expertise
+
+- [Expertise Fields](/en/expertise/fields): Areas of expert opinion services.
+- [ICJE](/en/expertise/icje): International Court of Judicial Expertise.
+
+## Art Expertise
+
+- [Art Appraisal](/en/art-expertise/appraisal): Valuation of artworks.
+- [Art Authentication](/en/art-expertise/authentication): Authenticity examination.
+- [Art Passport](/en/art-expertise/passport): Digital provenance certificate.
+- [Gallery](/en/gallery): Authenticated artworks collection.
+
+## Membership
+
+- [How to Join](/en/membership/how-to-join): Application process and requirements.
+- [Membership Benefits](/en/membership/benefits): Advantages of EAC membership.
+- [Code of Conduct](/en/membership/code-of-conduct): Ethical standards.
+
+## Optional
+
+- [Privacy Policy](/en/policies/privacy): How personal data is handled.
+- [Terms of Service](/en/policies/terms): Site usage terms.
+- [Cookies Policy](/en/policies/cookies): Cookie usage details.
+- [French version](/fr): Site en français.
+- [Russian version](/ru): Сайт на русском.

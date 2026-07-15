@@ -568,6 +568,7 @@ const en = {
     passwordsDoNotMatch: "Passwords do not match",
     registrationSuccess: "Registration successful! Please check your email for verification.",
     galleryManagementPanel: "Access your gallery management panel",
+    relatedNews: "Related news",
   }
 };
 

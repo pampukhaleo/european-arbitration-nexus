@@ -569,5 +569,6 @@ export default {
     passwordsDoNotMatch: "Пароли не совпадают",
     registrationSuccess: "Регистрация успешна! Проверьте почту для верификации.",
     galleryManagementPanel: "Доступ к панели управления галереей",
+    relatedNews: "Похожие новости",
   }
 };

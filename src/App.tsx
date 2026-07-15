@@ -186,6 +186,8 @@ const localisedChildren = (): RouteRecord[] => [
   { path: 'membership/conductCode', Component: CodeOfConduct },
 
   { path: 'contacts', Component: Contacts },
+  { path: 'fraud-warning', Component: FraudWarning },
+
 
   { path: 'privacy-policy', Component: PrivacyPolicy },
   { path: 'cookies-policy', Component: CookiesPolicy },

@@ -128,7 +128,7 @@ const NewsItem = ({
         </CardHeader>
 
         <CardContent className="flex flex-col flex-1">
-          <CardDescription className="text-muted-foreground mb-4">
+          <CardDescription className="text-muted-foreground mb-4 line-clamp-4">
             {firstParagraph}
           </CardDescription>
           <div className="mt-auto text-eac-primary font-medium group-hover:text-eac-primary/80">

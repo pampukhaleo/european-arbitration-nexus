@@ -564,5 +564,6 @@ export default {
     passwordsDoNotMatch: "Les mots de passe ne correspondent pas",
     registrationSuccess: "Inscription réussie ! Vérifiez votre e-mail.",
     galleryManagementPanel: "Accédez à votre panneau de gestion",
+    relatedNews: "Actualités liées",
   }
 };

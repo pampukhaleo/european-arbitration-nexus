@@ -8,7 +8,7 @@ The EAC (Chambre Européenne d'Arbitrage / Европейская арбитра
 
 - [Home](/en): Overview of EAC's mission, services, and recent news.
 - [About EAC](/en/eac/about): History, mission, and structure of the chamber.
-- [Council](/en/eac/council): Members of the EAC council.
+
 - [News](/en/eac/news): Latest announcements, events, and publications.
 - [Contacts](/en/contacts): Office addresses and contact form.
 

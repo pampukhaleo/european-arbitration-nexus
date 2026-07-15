@@ -52,19 +52,6 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     ),
     h1: t("About the European Arbitration Chamber", "À propos de la Chambre d'Arbitrage Européenne", "О Европейской арбитражной палате"),
   },
-  "/eac/council": {
-    title: t(
-      "Council & Members | European Arbitration Chamber",
-      "Conseil et Membres | Chambre d'Arbitrage Européenne",
-      "Совет и члены | Европейская арбитражная палата"
-    ),
-    description: t(
-      "Meet the Council of the European Arbitration Chamber and its international members.",
-      "Découvrez le Conseil de la Chambre d'Arbitrage Européenne et ses membres internationaux.",
-      "Состав Совета Европейской арбитражной палаты и её международные члены."
-    ),
-    h1: t("EAC Council", "Conseil de l'EAC", "Совет EAC"),
-  },
   "/eac/news": {
     title: t(
       "News & Events | European Arbitration Chamber",

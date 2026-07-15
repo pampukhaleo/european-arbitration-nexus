@@ -32,7 +32,7 @@ import AdminDashboard from '@/pages/admin/AdminDashboard';
 import Landing from '@/pages/Landing';
 
 import EACAbout from '@/pages/eac/About';
-import Council from '@/pages/eac/Council';
+
 import News from '@/pages/eac/News';
 import NewsDetail from '@/pages/eac/NewsDetail';
 
@@ -147,7 +147,7 @@ const localisedChildren = (): RouteRecord[] => [
   // EAC
   { path: 'eac', element: <Navigate to="about" replace /> },
   { path: 'eac/about', Component: EACAbout },
-  { path: 'eac/council', Component: Council },
+  
   { path: 'eac/news', Component: News },
   {
     path: 'eac/news/:id',

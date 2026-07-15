@@ -10,4 +10,5 @@ export interface NewsItem {
   mainImageWebp?: string;
   images?: string[];
   link?: string;
+  pinned?: boolean;
 }

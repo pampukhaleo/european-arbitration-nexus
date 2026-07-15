@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SectionNav from "./navigation/SectionNav";
 import { RouteSeo } from "./RouteSeo";
+import FraudAlertBanner from "./FraudAlertBanner";
 import { stripLangPrefix } from "@/lib/i18nRouting";
 
 interface LayoutProps {

@@ -21,23 +21,6 @@ export const news2023: NewsItem[] = [
     mainImageWebp: "/images/news/15anniversary.webp",
   },
   {
-    id: "20232",
-    title: "International Arbitration Conference in Brussels",
-    date: "Oct 05 2023",
-    excerpt: "The EAC hosted an international conference focusing on the latest developments in commercial arbitration.",
-    description: "The EAC hosted an international conference focusing on the latest developments in commercial arbitration.\n" +
-      "\n" +
-      "The event brought together over 150 legal professionals from 25 countries to discuss emerging trends and challenges in international dispute resolution. Key topics included:\n" +
-      "- Digitalization of arbitration proceedings\n" +
-      "- Cross-border enforcement challenges\n" +
-      "- Industry-specific arbitration approaches\n" +
-      "- The impact of AI on dispute resolution\n" +
-      "\n" +
-      "Distinguished speakers included leading arbitrators, corporate counsel, and academics from Europe, Asia, and North America. The conference provided valuable networking opportunities and fostered the exchange of knowledge and best practices among participants.",
-    mainImageJpg: "/images/news/Brusselsmeeting.jpg",
-    mainImageWebp: "/images/news/Brusselsmeeting.webp",
-  },
-  {
     id: "20233",
     title: "Istanbul Arbitration Week 2023",
     date: "Sep 20 2023",
@@ -89,23 +72,6 @@ export const news2023: NewsItem[] = [
       "Both organizations expressed a shared conviction that this collaboration will contribute to the advancement of commercial arbitration and expertise. This, in turn, will substantively contribute to more effective resolutions of international commercial disputes.",
     mainImageJpg: "/images/news/OSM_9816.jpg",
     mainImageWebp: "/images/news/OSM_9816.webp",
-  },
-  {
-    id: "20236",
-    title: "New Partnership with Asian Arbitration Association",
-    date: "Jul 22 2023",
-    excerpt: "The EAC is pleased to announce a new cooperation agreement with the Asian Arbitration Association (AAA).",
-    description: "The EAC is pleased to announce a new cooperation agreement with the Asian Arbitration Association (AAA).\n" +
-      "\n" +
-      "This strategic partnership aims to enhance arbitration services for businesses operating across Europe and Asia. The agreement includes:\n" +
-      "- Joint training programs for arbitrators and mediators\n" +
-      "- Exchange of expertise and best practices\n" +
-      "- Coordinated approach to complex cross-regional disputes\n" +
-      "- Promotion of alternative dispute resolution methods\n" +
-      "\n" +
-      "The partnership responds to increasing trade and investment flows between the regions and the growing need for efficient dispute resolution mechanisms that bridge different legal traditions.",
-    mainImageJpg: "/images/news/turkey-istanbul.jpg",
-    mainImageWebp: "/images/news/turkey-istanbul.webp"
   },
   {
     id: "20237",

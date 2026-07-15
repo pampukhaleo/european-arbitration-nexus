@@ -1,13 +1,40 @@
-## Проблема
-На главной в блоке "Latest News" карточка с новостью "Beware Fraud" содержит длинный текст описания, из-за чего её колонка растягивается и у соседних карточек появляется пустое пространство внизу.
+## Что в файле
 
-## Решение
-Ограничить длину превью описания в карточке новости на главной, чтобы все три карточки имели одинаковую видимую высоту текста. Используем Tailwind-утилиту `line-clamp-4` (или 3) на описании в стандартном grid-layout — так же, как уже сделано в inline-варианте (`line-clamp-3`).
+Файл содержит 7 новостей в трёх языках (EN / RU / FR).
 
-## Изменения
-- **src/components/news/NewsItem.tsx** — в блоке "Standard grid layout" (строка 131) добавить класс `line-clamp-4` к `CardDescription`, чтобы текст обрезался многоточием после 4 строк. Кнопка "Read More" уже ведёт на полную новость, так что информация не теряется.
+**Добавляю сейчас:**
 
-Опционально: применить только когда `useCardWrapper=true` (превью на главной), чтобы на странице `/eac/news` описание оставалось полным — уточните, если хотите такое поведение.
+**2025 год (новые, ещё нет на сайте):**
+1. **01.07.2025** — Webinar: Forensic Expertise as the Basis of Your Legal Position
+2. **17.06.2025** — Webinar: Features of Conducting Commodity Expertise to Determine the Value of Goods
+3. **20.05.2025** — Webinar: Forensic Psychological Examination (parental disputes on child upbringing/residence)
 
-## Результат
-Все карточки в блоке "Latest News" будут одной высоты, текст новости про фрод будет обрезан с "…", полный текст доступен по клику "Read More".
+**2018 год:**
+4. **08.10.2018** — Political and Legal Forum (Kyiv, 28 September)
+5. **18.06.2018** — VII All-Ukrainian Forum on Public Law
+
+**Не добавляю:**
+- Webinar Moral Damages — жду уточнения даты
+- Istanbul Chamber of Commerce visit — уже есть на сайте как `20183`
+
+## План
+
+### Новый файл `src/data/news/2025.ts`
+Создам с 3 вебинарами (id `20251`, `20252`, `20253`), локализованные `title/excerpt/description` (объект `{ en, fr, ru }`), сохраняя оригинальные тексты, программу и email для регистрации.
+
+### Правки `src/data/news/2018.ts`
+Добавлю 2 новости:
+- `20186` — Political and Legal Forum (`Oct 08 2018`)
+- `20187` — VII All-Ukrainian Forum on Public Law (`Jun 18 2018`)
+
+### `src/data/news/index.ts`
+Импортирую `news2025` и вставлю между `news2026` и `news2024`.
+
+### Картинки
+Поля `mainImageJpg`/`mainImageWebp` оставлю пустыми — карточка отрендерится без изображения. Когда пришлёте фото, добавлю пути одним заходом.
+
+## Технические детали
+- `LocalizedText = string | { en, fr, ru }` — использую объект.
+- Ссылки автоматически `/eac/news/<id>` на 3 языках.
+- SSG подхватит новые id через `getStaticPaths` в `NewsDetail.tsx`.
+- Sitemap/prefetch обновятся при билде.

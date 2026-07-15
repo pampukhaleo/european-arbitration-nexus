@@ -65,6 +65,7 @@ export const news2023: NewsItem[] = [
       "The European Arbitration Chamber has reported these fraudulent activities to the relevant law enforcement authorities, including the criminal police.",
     mainImageJpg: "/images/news/fraud.jpg",
     mainImageWebp: "/images/news/fraud.jpg",
+    pinned: true,
   },
   {
     id: "20235",

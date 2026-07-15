@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Seo } from "@/components/Seo.tsx";
+import { Seo } from "@/components/Seo";
 import { Link } from "@/lib/i18nRouting";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { AlertTriangle, ShieldCheck, Flag, LifeBuoy, Mail } from "lucide-react";

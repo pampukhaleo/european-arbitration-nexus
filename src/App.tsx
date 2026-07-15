@@ -32,7 +32,7 @@ import AdminDashboard from '@/pages/admin/AdminDashboard';
 import Landing from '@/pages/Landing';
 
 import EACAbout from '@/pages/eac/About';
-import Council from '@/pages/eac/Council';
+
 import News from '@/pages/eac/News';
 import NewsDetail from '@/pages/eac/NewsDetail';
 

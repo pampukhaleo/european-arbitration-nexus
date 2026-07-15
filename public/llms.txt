@@ -11,6 +11,7 @@ The EAC (Chambre Européenne d'Arbitrage / Европейская арбитра
 
 - [News](/en/eac/news): Latest announcements, events, and publications.
 - [Contacts](/en/contacts): Office addresses and contact form.
+- [Fraud Warning](/en/fraud-warning): How to recognise fraudulent letters and emails misusing the EAC/ICAC name.
 
 ## Arbitration
 

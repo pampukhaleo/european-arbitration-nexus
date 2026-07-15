@@ -569,6 +569,42 @@ const en = {
     registrationSuccess: "Registration successful! Please check your email for verification.",
     galleryManagementPanel: "Access your gallery management panel",
     relatedNews: "Related news",
+    pinned: "Pinned",
+    dismiss: "Dismiss",
+  },
+  fraud: {
+    bannerText: "Beware of fraudulent letters and payment demands falsely using the name of the EAC/ICAC.",
+    bannerCta: "Learn how to protect yourself",
+    menuLabel: "Fraud Warning",
+    page: {
+      title: "Fraud Warning",
+      intro: "The Secretariat of the European Arbitration Chamber (EAC) has been made aware of fraudulent letters, emails and documents falsely claiming to be issued by, or associated with, the EAC or the International Commercial Arbitration Court under the EAC (ICAC). These communications typically attempt to obtain money or personal data from recipients.",
+      officialHeading: "How to recognise a genuine EAC message",
+      officialItems: [
+        "Official email addresses always use the domain @chea-taic.be. Any other domain (Gmail, Outlook, Yandex, Proton, look-alike domains) is not the EAC.",
+        "Every real case has a case number issued by the ICAC Secretariat. You can always ask us to confirm it.",
+        "Official postal address: Avenue Louise 146, 1050 Brussels, Belgium. Official phone: +32 2 808 77 54.",
+        "The EAC never asks parties to transfer money to personal bank accounts or to individuals.",
+      ],
+      redFlagsHeading: "Red flags of a scam",
+      redFlagsItems: [
+        "Sender uses a free mailbox (Gmail, Outlook, Yahoo, Proton, Yandex) or a domain that only looks similar to chea-taic.be.",
+        "Notification of a supposed arbitration award, lottery or inheritance you were not aware of.",
+        "Urgent payment request, threats of penalties or short deadlines to pressure you.",
+        "Requests for scans of your ID, bank details, or advance payments to release funds.",
+        "Suspicious attachments (.zip, .exe, macro-enabled documents) or shortened links.",
+      ],
+      whatToDoHeading: "What to do if you receive a suspicious message",
+      whatToDoItems: [
+        "Do not reply, do not open attachments, do not click links.",
+        "Do not transfer any money and do not send any personal or banking data.",
+        "Forward the full message (including headers) to secretary@chea-taic.be so we can verify it.",
+        "If you have already suffered financial loss, report it to your local police and to your bank without delay.",
+      ],
+      enforcementHeading: "Actions taken by the EAC",
+      enforcementText: "The European Arbitration Chamber has reported these fraudulent activities to the competent law enforcement authorities, including the criminal police. We continue to cooperate with the authorities and to inform the public.",
+      contactCta: "Contact the Secretariat",
+    },
   }
 };
 

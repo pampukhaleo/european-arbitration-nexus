@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Pin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { LocalizedText } from "@/types/news";
 import { pickText } from "@/lib/localizedNews";
@@ -21,6 +21,7 @@ interface NewsItemProps {
   images?: string[];
   useCardWrapper?: boolean;
   useInlineLayout?: boolean;
+  pinned?: boolean;
 }
 
 const NewsItem = ({
@@ -32,6 +33,7 @@ const NewsItem = ({
                     mainImageWebp,
                     useCardWrapper = false,
                     useInlineLayout = false,
+                    pinned = false,
                   }: NewsItemProps) => {
   const { t, language } = useLanguage();
   const title = pickText(titleRaw, language);
@@ -39,12 +41,22 @@ const NewsItem = ({
   const firstParagraph = description.split("\n\n")[0];
   const linkTo = `/eac/news/${id}`;
 
+  const PinnedBadge = () =>
+    pinned ? (
+      <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 text-amber-900 px-2 py-0.5 text-xs font-medium mr-2">
+        <Pin className="h-3 w-3" />
+        {t("common.pinned")}
+      </span>
+    ) : null;
+
   const RenderDate = () => (
     <div className="flex items-center text-sm text-muted-foreground">
+      <PinnedBadge />
       <CalendarIcon className="mr-2 h-4 w-4" />
       {date}
     </div>
   );
+
 
   // Inline layout
   if (useInlineLayout) {

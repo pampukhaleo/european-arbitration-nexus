@@ -19,6 +19,7 @@ const prefetchers: Record<string, () => Promise<unknown>> = {
   '/membership/join': () => import('@/pages/membership/HowToJoin'),
   '/membership/conductCode': () => import('@/pages/membership/CodeOfConduct'),
   '/contacts': () => import('@/pages/Contacts'),
+  '/fraud-warning': () => import('@/pages/FraudWarning'),
   '/privacy-policy': () => import('@/pages/policies/PrivacyPolicy'),
   '/cookies-policy': () => import('@/pages/policies/CookiesPolicy'),
   '/terms-of-service': () => import('@/pages/policies/TermsOfService'),

@@ -27,6 +27,7 @@ export default function Footer() {
     { to: "/privacy-policy", label: "Privacy Policy" },
     { to: "/terms-of-service", label: "Terms of Service" },
     { to: "/cookies-policy", label: "Cookies Policy" },
+    { to: "/fraud-warning", label: t('fraud.menuLabel') },
   ];
 
   return (

@@ -32,6 +32,7 @@ const News = () => {
                 mainImageJpg={item.mainImageJpg}
                 mainImageWebp={item.mainImageWebp}
                 images={item.images}
+                pinned={item.pinned}
                 useInlineLayout={true}
               />
             ))}

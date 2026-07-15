@@ -122,4 +122,79 @@ export const news2018: NewsItem[] = [
     mainImageJpg: "/images/news/27752465_1764574550253959_2823128997247396433_n.jpg",
     mainImageWebp: "/images/news/27752465_1764574550253959_2823128997247396433_n.webp"
   },
+  {
+    id: "20186",
+    title: {
+      en: "Political and Legal Forum",
+      ru: "Политико-правовой форум",
+      fr: "Forum politico-juridique",
+    },
+    date: "Oct 08 2018",
+    excerpt: {
+      en: "The President of the European Arbitration Chamber Hennadii Pampukha spoke with an expert report at the Political and Legal Forum, held on September 28 in Kyiv.",
+      ru: "Президент Европейской арбитражной палаты Геннадий Пампуха выступил с экспертным докладом на политико-правовом форуме, который состоялся 28 сентября в Киеве.",
+      fr: "Le président de la Chambre européenne d'arbitrage, Hennadii Pampukha, a présenté un rapport d'expert lors du Forum politico-juridique qui s'est tenu le 28 septembre à Kyiv.",
+    },
+    description: {
+      en:
+        "The President of the European Arbitration Chamber Hennadii Pampukha spoke with an expert report at the Political and Legal Forum, held on September 28 in Kyiv.\n" +
+        "\n" +
+        "The organizers of the event were Hrushevsky, 5 and the Association of Advocates of Ukraine (UAU) / Ukrainian Advocates' Association (UAA).\n" +
+        "\n" +
+        "Theme of the Forum: \"Prospects and Strategies for Ukraine for 2019\". Important issues were discussed for the development of the country in the legal and political spheres.",
+      ru:
+        "Президент Европейской арбитражной палаты Геннадий Пампуха выступил с экспертным докладом на политико-правовом форуме, который состоялся 28 сентября в Киеве.\n" +
+        "\n" +
+        "Организаторами мероприятия выступили «Грушевского, 5» и Ассоциация адвокатов Украины (UAU) / Украинская адвокатская ассоциация (UAA).\n" +
+        "\n" +
+        "Тема форума: «Перспективы и стратегии для Украины на 2019 год». В ходе мероприятия обсуждались важные вопросы развития страны в правовой и политической сферах.",
+      fr:
+        "Le président de la Chambre européenne d'arbitrage, Hennadii Pampukha, a présenté un rapport d'expert lors du Forum politico-juridique qui s'est tenu le 28 septembre à Kyiv.\n" +
+        "\n" +
+        "Les organisateurs de l'événement étaient « Hrushevsky, 5 » et l'Association des avocats d'Ukraine (UAU) / Association ukrainienne des avocats (UAA).\n" +
+        "\n" +
+        "Le thème du forum était : « Perspectives et stratégies pour l'Ukraine pour 2019 ». Des questions importantes liées au développement du pays dans les domaines juridique et politique y ont été discutées.",
+    },
+  },
+  {
+    id: "20187",
+    title: {
+      en: "VII All-Ukrainian Forum on Public Law",
+      ru: "VII Всеукраинский форум по публичному праву",
+      fr: "VIIe Forum panukrainien de droit public",
+    },
+    date: "Jun 18 2018",
+    excerpt: {
+      en: "The European Arbitration Chamber, as an Expert Partner, supported the VII All-Ukrainian Forum on Public Law, organized by the Bar Association of Ukraine.",
+      ru: "Европейская арбитражная палата в качестве экспертного партнера поддержала VII Всеукраинский форум по публичному праву, организованный Ассоциацией адвокатов Украины.",
+      fr: "La Chambre européenne d'arbitrage a agi en tant que partenaire expert du VIIe Forum panukrainien de droit public, organisé par l'Association des avocats d'Ukraine.",
+    },
+    description: {
+      en:
+        "The European Arbitration Chamber, as an Expert Partner, supported the VII All-Ukrainian Forum on Public Law, which was organized by the Bar Association of Ukraine.\n" +
+        "\n" +
+        "President of the EAC Hennadii Pampukha solemnly opened the forum with a welcoming speech and wishing the participants fruitful work and impressions of the event.\n" +
+        "\n" +
+        "He devoted his report to the urgent issues of appointing a forensic examination in the framework of arbitration proceedings. In his report, he also spoke about peculiarities of including a so-called expert (hybrid) clause to the international commercial contracts, which allows to solve disputable issues even at the stage of pre-arbitration dispute resolution.\n" +
+        "\n" +
+        "On behalf of the European Arbitration Chamber we express gratitude to the Ukrainian Advocates' Association (UAA) for the invitation!",
+      ru:
+        "Европейская арбитражная палата в качестве экспертного партнера поддержала VII Всеукраинский форум по публичному праву, который был организован Ассоциацией адвокатов Украины.\n" +
+        "\n" +
+        "Президент ЕАП Геннадий Пампуха торжественно открыл форум приветственным словом и пожелал участникам плодотворной работы и ярких впечатлений от мероприятия.\n" +
+        "\n" +
+        "Свой доклад он посвятил актуальным вопросам назначения судебной экспертизы в рамках арбитражного разбирательства. В докладе он также рассказал об особенностях включения в международные коммерческие контракты так называемой экспертной (гибридной) оговорки, которая позволяет решать спорные вопросы уже на стадии доарбитражного урегулирования споров.\n" +
+        "\n" +
+        "От имени Европейской арбитражной палаты выражаем благодарность Ассоциации адвокатов Украины за приглашение!",
+      fr:
+        "La Chambre européenne d'arbitrage a agi en tant que partenaire expert du VIIe Forum panukrainien de droit public, organisé par l'Association des avocats d'Ukraine.\n" +
+        "\n" +
+        "Le président de la CEA, Hennadii Pampukha, a ouvert solennellement le forum en prononçant un discours de bienvenue et en souhaitant aux participants un travail fructueux ainsi que de bonnes impressions de l'événement.\n" +
+        "\n" +
+        "Son intervention était consacrée aux questions actuelles de la désignation des expertises judiciaires dans le cadre des procédures arbitrales. Dans son exposé, il s'est également arrêté sur les particularités de l'introduction, dans les contrats commerciaux, de la clause dite « d'expertise » (ou clause hybride), qui permet de résoudre les questions litigieuses dès la phase préarbitrale du règlement des différends.\n" +
+        "\n" +
+        "Au nom de la Chambre européenne d'arbitrage, nous exprimons notre gratitude à l'Association des avocats d'Ukraine pour l'invitation.",
+    },
+  },
 ];
+

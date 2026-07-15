@@ -74,23 +74,6 @@ export const news2023: NewsItem[] = [
     mainImageWebp: "/images/news/OSM_9816.webp",
   },
   {
-    id: "20236",
-    title: "New Partnership with Asian Arbitration Association",
-    date: "Jul 22 2023",
-    excerpt: "The EAC is pleased to announce a new cooperation agreement with the Asian Arbitration Association (AAA).",
-    description: "The EAC is pleased to announce a new cooperation agreement with the Asian Arbitration Association (AAA).\n" +
-      "\n" +
-      "This strategic partnership aims to enhance arbitration services for businesses operating across Europe and Asia. The agreement includes:\n" +
-      "- Joint training programs for arbitrators and mediators\n" +
-      "- Exchange of expertise and best practices\n" +
-      "- Coordinated approach to complex cross-regional disputes\n" +
-      "- Promotion of alternative dispute resolution methods\n" +
-      "\n" +
-      "The partnership responds to increasing trade and investment flows between the regions and the growing need for efficient dispute resolution mechanisms that bridge different legal traditions.",
-    mainImageJpg: "/images/news/turkey-istanbul.jpg",
-    mainImageWebp: "/images/news/turkey-istanbul.webp"
-  },
-  {
     id: "20237",
     title: "EAC General Meeting took place in Brussels",
     date: "Mar 10 2023",

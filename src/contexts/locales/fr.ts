@@ -565,5 +565,41 @@ export default {
     registrationSuccess: "Inscription réussie ! Vérifiez votre e-mail.",
     galleryManagementPanel: "Accédez à votre panneau de gestion",
     relatedNews: "Actualités liées",
+    pinned: "Épinglé",
+    dismiss: "Fermer",
+  },
+  fraud: {
+    bannerText: "Attention aux lettres et demandes de paiement frauduleuses utilisant abusivement le nom de l'EAC/ICAC.",
+    bannerCta: "Comment vous protéger",
+    menuLabel: "Alerte à la fraude",
+    page: {
+      title: "Alerte à la fraude",
+      intro: "Le Secrétariat de la Chambre d'Arbitrage Européenne (EAC) a été informé de lettres, courriels et documents frauduleux prétendant à tort émaner de l'EAC ou de la Cour d'Arbitrage Commercial International auprès de l'EAC (ICAC), ou lui être associés. Ces communications visent généralement à obtenir de l'argent ou des données personnelles des destinataires.",
+      officialHeading: "Comment reconnaître un message authentique de l'EAC",
+      officialItems: [
+        "Les adresses officielles utilisent toujours le domaine @chea-taic.be. Tout autre domaine (Gmail, Outlook, Yandex, Proton, domaines imitant le nôtre) n'est pas l'EAC.",
+        "Chaque affaire réelle possède un numéro de dossier délivré par le Secrétariat de l'ICAC. Vous pouvez toujours nous demander de le confirmer.",
+        "Adresse postale officielle : Avenue Louise 146, 1050 Bruxelles, Belgique. Téléphone officiel : +32 2 808 77 54.",
+        "L'EAC ne demande jamais de transférer de l'argent vers des comptes bancaires personnels ou vers des particuliers.",
+      ],
+      redFlagsHeading: "Signes d'une arnaque",
+      redFlagsItems: [
+        "L'expéditeur utilise une boîte gratuite (Gmail, Outlook, Yahoo, Proton, Yandex) ou un domaine ressemblant à chea-taic.be.",
+        "Notification d'une prétendue sentence arbitrale, d'une loterie ou d'un héritage dont vous n'aviez pas connaissance.",
+        "Demande de paiement urgent, menaces de sanctions ou délais très courts pour vous mettre sous pression.",
+        "Demandes de copies de pièce d'identité, de coordonnées bancaires ou de paiements anticipés pour débloquer des fonds.",
+        "Pièces jointes suspectes (.zip, .exe, documents avec macros) ou liens raccourcis.",
+      ],
+      whatToDoHeading: "Que faire en cas de message suspect",
+      whatToDoItems: [
+        "Ne répondez pas, n'ouvrez pas les pièces jointes, ne cliquez pas sur les liens.",
+        "Ne transférez aucun montant et ne communiquez aucune donnée personnelle ou bancaire.",
+        "Transférez le message complet (avec les en-têtes) à secretary@chea-taic.be pour vérification.",
+        "Si vous avez déjà subi un préjudice financier, signalez-le immédiatement à la police locale et à votre banque.",
+      ],
+      enforcementHeading: "Mesures prises par l'EAC",
+      enforcementText: "La Chambre d'Arbitrage Européenne a signalé ces activités frauduleuses aux autorités compétentes, y compris à la police judiciaire. Nous continuons de coopérer avec les autorités et d'informer le public.",
+      contactCta: "Contacter le Secrétariat",
+    },
   }
 };

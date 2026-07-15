@@ -27,6 +27,7 @@ import QrCodeGenerator from '@/pages/gallery/QrCodeGenerator';
 import TokenManagement from '@/pages/gallery/TokenManagement';
 import Auth from '@/pages/Auth';
 import Contacts from '@/pages/Contacts';
+import FraudWarning from '@/pages/FraudWarning';
 import NotFound from '@/pages/NotFound';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import Landing from '@/pages/Landing';

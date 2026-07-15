@@ -147,7 +147,7 @@ const localisedChildren = (): RouteRecord[] => [
   // EAC
   { path: 'eac', element: <Navigate to="about" replace /> },
   { path: 'eac/about', Component: EACAbout },
-  { path: 'eac/council', Component: Council },
+  
   { path: 'eac/news', Component: News },
   {
     path: 'eac/news/:id',

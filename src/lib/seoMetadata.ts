@@ -267,6 +267,22 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     h1: t("Contacts", "Contacts", "Контакты"),
   },
 
+  "/fraud-warning": {
+    title: t(
+      "Fraud Warning | European Arbitration Chamber",
+      "Alerte à la fraude | Chambre d'Arbitrage Européenne",
+      "Осторожно, мошенники | Европейская арбитражная палата"
+    ),
+    description: t(
+      "How to recognise fraudulent letters and emails falsely using the name of the European Arbitration Chamber (EAC/ICAC), and what to do if you receive one.",
+      "Comment reconnaître les lettres et courriels frauduleux utilisant abusivement le nom de la Chambre d'Arbitrage Européenne (EAC/ICAC) et que faire en cas de réception.",
+      "Как распознать мошеннические письма, использующие имя Европейской арбитражной палаты (EAC/ICAC), и что делать при их получении."
+    ),
+    h1: t("Fraud Warning", "Alerte à la fraude", "Осторожно, мошенники"),
+  },
+
+
+
   "/privacy-policy": {
     title: t("Privacy Policy | EAC", "Politique de Confidentialité | EAC", "Политика конфиденциальности | EAC"),
     description: t(

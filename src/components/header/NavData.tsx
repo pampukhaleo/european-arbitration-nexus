@@ -13,7 +13,7 @@ export const navItems: NavItem[] = [
     href: "/eac",
     children: [
       { title: "About Us", translationKey: "menu.about", href: "/eac/about" },
-      { title: "EAC Council", translationKey: "menu.council", href: "/eac/council" },
+      
       { title: "News", translationKey: "menu.news", href: "/eac/news" },
       // { title: "Event Calendar", translationKey: "menu.events", href: "/eac/events" },
     ],

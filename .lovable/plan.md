@@ -1,48 +1,20 @@
-# Fix: Non-canonical pages in sitemap
+## Goal
+Полностью скрыть страницу Council со всего сайта (навигация, sitemap, llms, prefetch, SEO-метаданные, роут).
 
-## Причина
-Routes-редиректы (`/<lang>/eac`, `/arbitration`, `/expertise`, `/art-expertise`, `/membership`, `/cookies`, `/about`) пре-рендерятся в HTML и затем подхватываются `scripts/generate-sitemap.mjs`. Их `<link rel="canonical">` указывает на конечную страницу (`/eac/about`, `/arbitration/icac`, …), из-за чего Ahrefs помечает их как «Non-canonical page in sitemap».
+## Changes
 
-## Что меняем
+1. **`src/components/header/NavData.tsx`** — удалить пункт `EAC Council` из подменю EAC.
+2. **`src/App.tsx`** — удалить импорт `Council` и роут `{ path: 'eac/council', Component: Council }`. Роут `/:lang/eac/council` при заходе попадёт в `NotFound` (`*`).
+3. **`src/lib/routePrefetch.ts`** — удалить строку `/eac/council`.
+4. **`src/lib/seoMetadata.ts`** — удалить запись `"/eac/council"` (чтобы SSG не сгенерировал под неё мета, а sitemap-генератор её не подхватил).
+5. **`public/llms.txt`** — удалить строку `- [Council](/en/eac/council): ...`.
+6. **`src/pages/eac/Council.tsx`** и **`src/components/council/CouncilMember.tsx`** — оставить файлы на диске (не импортируются, tree-shake их выкинет). Не трогаем локали и картинки — на случай если позже вернёте.
 
-### 1. `scripts/generate-sitemap.mjs`
-Добавить в `SKIP_RE` regex, исключающий redirect-разделы для всех трёх языков:
+## Out of scope
+- Локализованные строки `council.*` в `en/fr/ru.ts` — не удаляем (не мешают).
+- Изображения в `public/images/council/` — не удаляем.
+- 301-редирект со старого URL: пропускаем, страница уходит в 404 (пользователь просил "скрыть отовсюду").
 
-```js
-const REDIRECT_SEGMENTS = [
-  'eac',
-  'arbitration',
-  'expertise',
-  'art-expertise',
-  'membership',
-  'cookies',
-  'about',
-];
-const SKIP_LOCALIZED_RE = new RegExp(
-  `^/(en|fr|ru)/(${REDIRECT_SEGMENTS.join('|')})/?$`
-);
-```
-
-И отфильтровать маршруты:
-```js
-.filter((r) => !SKIP_RE.test(r) && !SKIP_LOCALIZED_RE.test(r))
-```
-
-### 2. (опционально, рекомендуется) `scripts/organize-dist.mjs`
-Дополнительно удалить сами `index.html` этих redirect-папок из `dist`, чтобы Ahrefs/Google не находили их и через внутренние ссылки. Это безопасно: внутри приложения по этим путям всё равно стоит `<Navigate>`, так что SPA-навигация продолжит работать; для прямых заходов сработает SPA fallback (`200.html` Lovable) и редирект на хидрации.
-
-Если решим **не удалять** HTML — тогда оставить только п.1, и Ahrefs перестанет ругаться (т.к. правило именно «non-canonical *in sitemap*»). Конфликта в индексе Google не будет: canonical в этих файлах честно указывает на правильную целевую страницу.
-
-### 3. Проверка после билда
-- `grep -c '<loc>' dist/sitemap.xml` — должно стать на 21 URL меньше (7 сегментов × 3 языка).
-- Открыть `dist/sitemap.xml` и убедиться, что URL вида `/en/eac`, `/ru/arbitration` и т.д. отсутствуют.
-
-## Что НЕ трогаем
-- `src/App.tsx` — `<Navigate>` редиректы для UX оставляем.
-- `Seo.tsx` / `RouteSeo.tsx` — canonical-логика корректна, менять не нужно.
-- `robots.txt` — без изменений.
-
-## После деплоя
-1. Опубликовать.
-2. В Ahrefs нажать **Rescan** на этом issue.
-3. В Google Search Console → Sitemaps → Resubmit `sitemap.xml`.
+## Verify
+- `rg "eac/council"` возвращает только оставленный `Council.tsx` (сам файл страницы).
+- После build: в `dist/sitemap.xml` нет `/eac/council`, в `dist/en/eac/council/index.html` — отсутствует.

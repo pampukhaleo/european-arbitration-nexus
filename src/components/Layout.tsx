@@ -36,6 +36,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <RouteSeo />
+      <FraudAlertBanner />
       <Header />
       <main id="main-content" tabIndex={-1} className="flex-grow focus:outline-none">
         {isHomePage || isContactsPage ? (

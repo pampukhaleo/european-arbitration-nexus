@@ -10,7 +10,7 @@ import { news2017 } from "./2017";
 import { news2016 } from "./2016";
 import { news2014 } from "./2014";
 
-export const newsItems: NewsItem[] = [
+const all: NewsItem[] = [
   ...news2026,
   ...news2024,
   ...news2023,
@@ -21,4 +21,10 @@ export const newsItems: NewsItem[] = [
   ...news2017,
   ...news2016,
   ...news2014,
+];
+
+// Pinned items float to the top; the rest preserve their chronological order.
+export const newsItems: NewsItem[] = [
+  ...all.filter((n) => n.pinned),
+  ...all.filter((n) => !n.pinned),
 ];

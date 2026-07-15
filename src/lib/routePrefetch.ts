@@ -2,7 +2,7 @@
 // we kick off the dynamic import so the chunk is in cache by the time they click.
 const prefetchers: Record<string, () => Promise<unknown>> = {
   '/eac/about': () => import('@/pages/eac/About'),
-  '/eac/council': () => import('@/pages/eac/Council'),
+  
   '/eac/news': () => import('@/pages/eac/News'),
   '/arbitration/icac': () => import('@/pages/arbitration/ICAC'),
   '/arbitration/rules': () => import('@/pages/arbitration/Rules'),

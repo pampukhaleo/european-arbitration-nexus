@@ -21,23 +21,6 @@ export const news2023: NewsItem[] = [
     mainImageWebp: "/images/news/15anniversary.webp",
   },
   {
-    id: "20232",
-    title: "International Arbitration Conference in Brussels",
-    date: "Oct 05 2023",
-    excerpt: "The EAC hosted an international conference focusing on the latest developments in commercial arbitration.",
-    description: "The EAC hosted an international conference focusing on the latest developments in commercial arbitration.\n" +
-      "\n" +
-      "The event brought together over 150 legal professionals from 25 countries to discuss emerging trends and challenges in international dispute resolution. Key topics included:\n" +
-      "- Digitalization of arbitration proceedings\n" +
-      "- Cross-border enforcement challenges\n" +
-      "- Industry-specific arbitration approaches\n" +
-      "- The impact of AI on dispute resolution\n" +
-      "\n" +
-      "Distinguished speakers included leading arbitrators, corporate counsel, and academics from Europe, Asia, and North America. The conference provided valuable networking opportunities and fostered the exchange of knowledge and best practices among participants.",
-    mainImageJpg: "/images/news/Brusselsmeeting.jpg",
-    mainImageWebp: "/images/news/Brusselsmeeting.webp",
-  },
-  {
     id: "20233",
     title: "Istanbul Arbitration Week 2023",
     date: "Sep 20 2023",

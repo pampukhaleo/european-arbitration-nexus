@@ -46,7 +46,9 @@ export const Seo = ({
   const buildUrl = (l: string) => `${baseUrl}/${l}${cleanRest}`;
 
   const canonicalUrl = buildUrl(currentLang);
-  const fullImageUrl = image.startsWith("http") ? image : `${baseUrl}/${image}`;
+  const fullImageUrl = image.startsWith("http")
+    ? image
+    : `${baseUrl}/${image.replace(/^\/+/, "")}`;
   const imageAlt = `${title} - European Arbitration Chamber`;
 
   const ogLocale =

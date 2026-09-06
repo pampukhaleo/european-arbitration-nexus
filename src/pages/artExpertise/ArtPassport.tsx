@@ -35,29 +35,29 @@ const ArtPassport = () => {
               {t("artExpertise.passport.intro")}
             </p>
 
-            <h3 className="text-lg font-semibold mb-2 text-left">
+            <h2 className="text-lg font-semibold mb-2 text-left">
               {t("artExpertise.passport.eligibleObjectsTitle")}
-            </h3>
+            </h2>
             {renderList(eligibleObjects)}
 
-            <h3 className="text-lg font-semibold mb-2 text-left">
+            <h2 className="text-lg font-semibold mb-2 text-left">
               {t("artExpertise.passport.certificationTitle")}
-            </h3>
+            </h2>
             <p className="text-lg text-gray-600 mb-6">
               {t("artExpertise.passport.certificationDesc")}
             </p>
 
-            <h3 className="text-lg font-semibold mb-2 text-left">
+            <h2 className="text-lg font-semibold mb-2 text-left">
               {t("artExpertise.passport.passportContentTitle")}
-            </h3>
+            </h2>
             <p className="text-lg text-gray-600 mb-4">
               {t("artExpertise.passport.passportContentIntro")}
             </p>
             {renderList(passportFields)}
 
-            <h3 className="text-lg font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-2">
               {t("artExpertise.passport.whyImportantTitle")}
-            </h3>
+            </h2>
             <p className="text-lg text-gray-600 mb-4">
               {t("artExpertise.passport.whyImportantIntro")}
             </p>

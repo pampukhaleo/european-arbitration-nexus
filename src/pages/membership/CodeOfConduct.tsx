@@ -18,7 +18,7 @@ const CodeOfConduct = () => {
           <div className="prose max-w-none">
             <p className="mb-4 text-lg text-gray-600">{t("membership.code.intro")}</p>
 
-            <h3 className="mb-4 text-lg">{t("membership.code.obligations.title")}</h3>
+            <h2 className="mb-4 text-lg">{t("membership.code.obligations.title")}</h2>
             <p className="mb-4 text-lg text-gray-600">{t("membership.code.obligations.description")}</p>
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
               {obligations.map((item, i) => (
@@ -26,7 +26,7 @@ const CodeOfConduct = () => {
               ))}
             </ul>
 
-            <h3 className="mb-4 text-lg">{t("membership.code.responsibilities.title")}</h3>
+            <h2 className="mb-4 text-lg">{t("membership.code.responsibilities.title")}</h2>
             <p className="mb-4 text-lg text-gray-600">{t("membership.code.responsibilities.description")}</p>
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
               {responsibilities.map((item, i) => (
@@ -34,7 +34,7 @@ const CodeOfConduct = () => {
               ))}
             </ul>
 
-            <h3 className="mb-4 text-lg">{t("membership.code.sanctions.title")}</h3>
+            <h2 className="mb-4 text-lg">{t("membership.code.sanctions.title")}</h2>
             <p className="mb-4 text-lg text-gray-600">{t("membership.code.sanctions.description")}</p>
           </div>
         </div>

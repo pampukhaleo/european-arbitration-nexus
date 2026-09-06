@@ -46,9 +46,9 @@ const ICAC = () => {
               ))}
             </ul>
 
-            <h3 className="text-2xl font-semibold text-eac-dark text-left mt-8">
+            <h2 className="text-2xl font-semibold text-eac-dark text-left mt-8">
               {t("arbitration.icac.featuresTitle")}
-            </h3>
+            </h2>
 
             {featureKeys.map((key) => (
               <div key={key} className="mt-6">

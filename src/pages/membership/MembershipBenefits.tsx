@@ -21,7 +21,7 @@ const MembershipBenefits = () => {
           <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
             {reasons.map((reason, idx) => (
               <li className="ml-5 mt-2" key={idx}>
-                <h3 className="text-lg font-bold">{reason.title}</h3>
+                <h2 className="text-lg font-bold">{reason.title}</h2>
                 {reason.description}
               </li>
             ))}

@@ -48,9 +48,9 @@ const ArtAuthentication = () => {
             </p>
             {renderList(importanceList)}
 
-            <h3 className="text-lg font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-2">
               {t("artExpertise.authentication.certificateTitle")}
-            </h3>
+            </h2>
             <p className="text-lg text-gray-600 mb-4">
               {t("artExpertise.authentication.certificateText")}
             </p>

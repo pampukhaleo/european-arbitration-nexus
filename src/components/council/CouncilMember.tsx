@@ -56,7 +56,7 @@ export default function CouncilMember({ name, position, description, imageJpg, i
           </div>
 
           <div className="flex-1 p-6">
-            <h3 className="text-xl font-semibold text-eac-dark">{name}</h3>
+            <h2 className="text-xl font-semibold text-eac-dark">{name}</h2>
             <p className="text-sm text-eac-gray mt-1">{position}</p>
             <p className="text-muted-foreground mt-3 line-clamp-3">{description}</p>
           </div>
@@ -73,9 +73,9 @@ export default function CouncilMember({ name, position, description, imageJpg, i
           <div className="flex flex-col gap-6 items-center">
             {renderAvatar("w-60")}
             <div className="text-center">
-              <h3 className="text-xl font-semibold text-eac-dark mb-2">
+              <h2 className="text-xl font-semibold text-eac-dark mb-2">
                 {position}
-              </h3>
+              </h2>
               <p className="text-muted-foreground whitespace-pre-wrap">
                 {description}
               </p>

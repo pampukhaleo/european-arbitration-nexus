@@ -33,7 +33,7 @@ const About = () => {
             <p className="mb-4">{t("aboutEAC.historyText")}</p>
             <p className="mb-4">{t("aboutEAC.representativesText")}</p>
 
-            <h3 className="text-left">{t("aboutEAC.keyAreasTitle")}</h3>
+            <h2 className="text-left">{t("aboutEAC.keyAreasTitle")}</h2>
             <ul className="list-disc pl-6">
               {renderKeyArea("aboutEAC.keyAreas.commercial")}
               {renderKeyArea("aboutEAC.keyAreas.judicial")}

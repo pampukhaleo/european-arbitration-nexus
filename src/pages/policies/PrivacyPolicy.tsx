@@ -25,14 +25,14 @@ const PrivacyPolicy = () => {
             This policy tells you about how we collect, store, use and disclose your personal data when you interact
             with us, via email, web, or any other manner.
           </p>
-          <h3 className="mb-4 text-lg">What does this Privacy Policy cover?</h3>
+          <h2 className="mb-4 text-lg">What does this Privacy Policy cover?</h2>
           <p className="mb-4 text-lg text-gray-600">
             This Privacy Policy covers our processing of your personal data that we gather when you are accessing or
             using our Websites or Services (such as our discussion forum) or when you contact us in any manner. We
             gather various types of data, including data that identifies you as an individual (“Personal Data”) from our
             users, as explained in more detail below.
           </p>
-          <h3 className="mb-4 text-lg">Information you provide to us:</h3>
+          <h2 className="mb-4 text-lg">Information you provide to us:</h2>
           <p className="mb-4 text-lg text-gray-600">
             When you use the Website: We may collect any Personal Data that you choose to send to us or provide to us,
             for example, on our “Contact Us” form or if you register to participate in our Forum. If you contact us
@@ -45,13 +45,13 @@ const PrivacyPolicy = () => {
             email addresses, postal addresses, phone numbers, job titles, as well as any other contact or other data
             provided.
           </p>
-          <h3 className="mb-4 text-lg">Information we automatically collect:</h3>
+          <h2 className="mb-4 text-lg">Information we automatically collect:</h2>
           <p className="mb-4 text-lg text-gray-600">
             When you visit the Website, we collect certain data related to your device, such as your device’s IP
             address, referring website, what pages your device visited, and the time that your device visited our
             Website.
           </p>
-          <h3 className="mb-4 text-lg">How do we use the data?</h3>
+          <h2 className="mb-4 text-lg">How do we use the data?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We will use the data we collect via our Websites:
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">
@@ -77,7 +77,7 @@ const PrivacyPolicy = () => {
             However, you will always be able to opt-out of such communications at any time (see the “Your Choices”
             section below).
           </p>
-          <h3 className="mb-4 text-lg">Do we share and disclose data to third parties?</h3>
+          <h2 className="mb-4 text-lg">Do we share and disclose data to third parties?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We do not sell your Personal Data to anyone.
           </p>
@@ -91,7 +91,7 @@ const PrivacyPolicy = () => {
             disclose your Personal Data in response to valid requests by public authorities, including to meet national
             security or law enforcement requirements.
           </p>
-          <h3 className="mb-4 text-lg">Is Personal Data about you secure?</h3>
+          <h2 className="mb-4 text-lg">Is Personal Data about you secure?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We use appropriate technical, organizational and administrative security measures to protect any information
             we hold in our records from loss, misuse, and unauthorized access, disclosure, alteration and destruction.
@@ -102,19 +102,19 @@ const PrivacyPolicy = () => {
             appropriately and limiting access to your computer or device and browser by signing off after you have
             finished accessing your account.
           </p>
-          <h3 className="mb-4 text-lg">Your Privacy Rights</h3>
-          <h3 className="mb-4 text-lg">What choices do you have?</h3>
+          <h2 className="mb-4 text-lg">Your Privacy Rights</h2>
+          <h2 className="mb-4 text-lg">What choices do you have?</h2>
           <p className="mb-4 text-lg text-gray-600">
             You can always opt not to disclose information to us, but keep in mind some data may be needed to register
             with us or to take advantage of some of our website-features.
           </p>
-          <h3 className="mb-4 text-lg">Marketing Communications</h3>
+          <h2 className="mb-4 text-lg">Marketing Communications</h2>
           <p className="mb-4 text-lg text-gray-600">
             You can opt-out of receiving certain promotional or marketing communications from us at any time, by using
             the unsubscribe link in the emails communications we send or by contacting us
             at <b>secretary@chea-taic.be</b>
           </p>
-          <h3 className="mb-4 text-lg">How can you access and update your information?</h3>
+          <h2 className="mb-4 text-lg">How can you access and update your information?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We provide individuals with the opportunity to access, review, update, and delete any Personal Data we hold
             about them. You can send an email to <b>secretary@chea-taic.be</b> for this purpose.
@@ -130,7 +130,7 @@ const PrivacyPolicy = () => {
             If you are resident in the European Economic Area, please see the section below headed “Additional
             Information for users in the European Economic Area” for further information about your privacy rights.
           </p>
-          <h3 className="mb-4 text-lg">Linked Websites</h3>
+          <h2 className="mb-4 text-lg">Linked Websites</h2>
           <p className="mb-4 text-lg text-gray-600">
             For your convenience, hyperlinks may be posted on the Website that link to other websites (the “Linked
             Sites”). We are not responsible for, and this Privacy Policy does not apply to, the privacy practices of any
@@ -140,13 +140,13 @@ const PrivacyPolicy = () => {
             you to seek out and read the privacy policy of each Linked Site that you visit to understand how the data
             that is collected about you is used and protected.
           </p>
-          <h3 className="mb-4 text-lg">Children</h3>
+          <h2 className="mb-4 text-lg">Children</h2>
           <p className="mb-4 text-lg text-gray-600">
             We do not knowingly collect or solicit Personal Data from anyone under the age of 16. If you are under 16,
             please do not attempt to register or send any Personal Data about yourself to us. If we learn that we have
             collected Personal Data from a child under age 16, we will delete that data as quickly as possible.
           </p>
-          <h3 className="mb-4 text-lg">Will we change this Privacy Policy?</h3>
+          <h2 className="mb-4 text-lg">Will we change this Privacy Policy?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We are constantly trying to improve our Website and Services, so we may need to change this Privacy Policy
             from time to time as well. We will alert you to material changes by placing a notice on our Website and/or
@@ -154,7 +154,7 @@ const PrivacyPolicy = () => {
             by applicable law. You can see when this Privacy Policy was last updated by checking the date at the top of
             this page. You are responsible for periodically reviewing this Privacy Policy.
           </p>
-          <h3 className="mb-4 text-lg">If you have questions about this policy</h3>
+          <h2 className="mb-4 text-lg">If you have questions about this policy</h2>
           <p className="mb-4 text-lg text-gray-600">
             If you have any questions or concerns regarding our privacy policies, please send us a detailed message to <b>secretary@chea-taic.be</b> and we will try to resolve your concerns.
           </p>

@@ -80,7 +80,7 @@ const NewsItem = ({
             </div>
 
             <div className="flex-1 p-6">
-              <CardTitle className="text-xl mb-2 group-hover:text-eac-primary/80 transition-colors">
+              <CardTitle as="h2" className="text-xl mb-2 group-hover:text-eac-primary/80 transition-colors">
                 {title}
               </CardTitle>
               <RenderDate />
@@ -122,7 +122,7 @@ const NewsItem = ({
 
         <CardHeader className={`${(mainImageJpg || mainImageWebp) ? "pt-4" : "pt-6"} pb-2`}>
         <RenderDate />
-          <CardTitle className="text-lg mt-2 text-center group-hover:text-eac-primary/80 transition-colors">
+          <CardTitle as="h2" className="text-lg mt-2 text-center group-hover:text-eac-primary/80 transition-colors">
             {title}
           </CardTitle>
         </CardHeader>

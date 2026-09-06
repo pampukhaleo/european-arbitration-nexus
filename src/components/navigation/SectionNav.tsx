@@ -25,7 +25,7 @@ export default function SectionNav({ sectionKey }: SectionNavProps) {
   if (showMainMenu) {
     return (
       <Card className="p-4">
-        <h3 className="font-medium text-lg mb-3">{t("menu.sections") || "Sections"}</h3>
+        <h2 className="font-medium text-lg mb-3">{t("menu.sections") || "Sections"}</h2>
         <div className="space-y-2">
           {/* Home link */}
           <Link
@@ -77,7 +77,7 @@ export default function SectionNav({ sectionKey }: SectionNavProps) {
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h3 className="font-medium text-lg ml-2">{t(currentSection.translationKey) || currentSection.title}</h3>
+        <h2 className="font-medium text-lg ml-2">{t(currentSection.translationKey) || currentSection.title}</h2>
       </div>
       <div className="space-y-2">
         {currentSection.children.map((child) => (

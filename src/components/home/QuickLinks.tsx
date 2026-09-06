@@ -51,7 +51,7 @@ export default function QuickLinks() {
                   {/* Text + Button on the right */ }
                   <div className="flex flex-col justify-between items-start h-full">
                     <div>
-                      <h3 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h3>
+                      <h2 className="font-semibold text-white text-lg mb-1">{t(titleKey)}</h2>
                       <p className="text-white/80 text-sm mb-3">{t(descriptionKey)}</p>
                     </div>
                     <Button variant="link" className="p-0 text-white hover:text-white/80">

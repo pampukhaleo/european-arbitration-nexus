@@ -46,9 +46,9 @@ const ArtAppraisal = () => {
               {t("artExpertise.appraisal.summary")}
             </p>
 
-            <h3 className="text-lg font-semibold mb-2">
+            <h2 className="text-lg font-semibold mb-2">
               {t("artExpertise.appraisal.stagesTitle")}
-            </h3>
+            </h2>
             {renderList(stages)}
 
             <p className="text-lg text-gray-600 mb-4">

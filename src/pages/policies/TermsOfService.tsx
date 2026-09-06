@@ -15,7 +15,7 @@ const TermsOfService = () => {
       <div className="py-6">
         <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Terms of Service</h1>
         <div className="prose max-w-none">
-          <h3 className="mb-4 text-lg">Terms of Service ("Terms")</h3>
+          <h2 className="mb-4 text-lg">Terms of Service ("Terms")</h2>
           <p className="mb-4 text-lg text-gray-600">
             Last updated: 28/08/2019
           </p>
@@ -32,7 +32,7 @@ const TermsOfService = () => {
             By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the
             terms then you may not access the Service.
           </p>
-          <h3 className="mb-4 text-lg">Links To Other Web Sites</h3>
+          <h2 className="mb-4 text-lg">Links To Other Web Sites</h2>
           <p className="mb-4 text-lg text-gray-600">
             Our Service may contain links to third-party web sites or services that are not owned or controlled by
             European Arbitration Chamber.
@@ -48,7 +48,7 @@ const TermsOfService = () => {
             We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or
             services that you visit.
           </p>
-          <h3 className="mb-4 text-lg">Governing Law</h3>
+          <h2 className="mb-4 text-lg">Governing Law</h2>
           <p className="mb-4 text-lg text-gray-600">
             These Terms shall be governed and construed in accordance with the laws of Belgium, without regard to its
             conflict of law provisions.
@@ -60,7 +60,7 @@ const TermsOfService = () => {
             regarding our Service, and supersede and replace any prior agreements we might have between us regarding the
             Service.
           </p>
-          <h3 className="mb-4 text-lg">Changes</h3>
+          <h2 className="mb-4 text-lg">Changes</h2>
           <p className="mb-4 text-lg text-gray-600">
             We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is
             material we will try to provide at least 30 days notice prior to any new terms taking effect. What
@@ -70,7 +70,7 @@ const TermsOfService = () => {
             By continuing to access or use our Service after those revisions become effective, you agree to be bound by
             the revised terms. If you do not agree to the new terms, please stop using the Service.
           </p>
-          <h3 className="mb-4 text-lg">Contact Us</h3>
+          <h2 className="mb-4 text-lg">Contact Us</h2>
           <p className="mb-4 text-lg text-gray-600">
             If you have any questions about these Terms, please contact us: <b>secretary@chea-taic.be</b>
           </p>

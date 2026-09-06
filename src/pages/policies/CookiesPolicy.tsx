@@ -16,7 +16,7 @@ const CookiesPolicy = () => {
         <h1 className="text-3xl font-bold mb-6 text-eac-dark uppercase">Cookies Policy</h1>
         <div className="prose max-w-none">
           <p className="mb-4 text-lg text-gray-600">Last update: 29/08/2019</p>
-          <h3 className="mb-4 text-lg">Introduction</h3>
+          <h2 className="mb-4 text-lg">Introduction</h2>
           <p className="mb-4 text-lg text-gray-600">
             Our entity (“us”, “we”, or “our”) uses cookies on the its website (the “Service”). By using the Service, you
             consent to the use of cookies.
@@ -25,7 +25,7 @@ const CookiesPolicy = () => {
             This Cookies Policy explains what cookies are, how we use cookies, how third-parties we may partner with may
             use cookies on the Service, your choices regarding cookies and further information about cookies.
           </p>
-          <h3 className="mb-4 text-lg">What are cookies?</h3>
+          <h2 className="mb-4 text-lg">What are cookies?</h2>
           <p className="mb-4 text-lg text-gray-600">
             Cookies are small pieces of text sent to your web browser by a website you visit. A cookie file is stored in
             your web browser and allows the Service or a third-party to recognize you and make your next visit easier
@@ -36,7 +36,7 @@ const CookiesPolicy = () => {
             or mobile device when you go offline, while session cookies are deleted as soon as you close your web
             browser.
           </p>
-          <h3 className="mb-4 text-lg">How we use cookies?</h3>
+          <h2 className="mb-4 text-lg">How we use cookies?</h2>
           <p className="mb-4 text-lg text-gray-600">
             When you use and access the Service, we may place a number of cookies files in your web browser.
           </p>
@@ -63,7 +63,7 @@ const CookiesPolicy = () => {
                 them.</b></li>
             </ul>
           </p>
-          <h3 className="mb-4 text-lg">What are your choices regarding cookies?</h3>
+          <h2 className="mb-4 text-lg">What are your choices regarding cookies?</h2>
           <p className="mb-4 text-lg text-gray-600">
             If you would like to delete cookies or instruct your web browser to delete or refuse cookies, please visit
             the help pages of your web browser.
@@ -89,7 +89,7 @@ const CookiesPolicy = () => {
                 pages.</b></li>
             </ul>
           </p>
-          <h3 className="mb-4 text-lg">Will we change this Privacy Policy?</h3>
+          <h2 className="mb-4 text-lg">Will we change this Privacy Policy?</h2>
           <p className="mb-4 text-lg text-gray-600">
             We are constantly trying to improve our Website and Services, so we may need to change this Privacy Policy
             from time to time as well. We will alert you to material changes by placing a notice on our Website and/or
@@ -97,7 +97,7 @@ const CookiesPolicy = () => {
             by applicable law. You can see when this Privacy Policy was last updated by checking the date at the top of
             this page. You are responsible for periodically reviewing this Privacy Policy.
           </p>
-          <h3 className="mb-4 text-lg">Where can you find more information about cookies?</h3>
+          <h2 className="mb-4 text-lg">Where can you find more information about cookies?</h2>
           <p className="mb-4 text-lg text-gray-600">
             You can learn more about cookies at the following third-party websites:
             <ul className="mb-4 text-lg text-gray-600 list-disc pl-5">

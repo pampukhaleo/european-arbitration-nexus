@@ -151,7 +151,7 @@ export default function CostCalculator() {
       {calculationResult && (
         <Card className="border-eac-primary">
           <CardContent className="pt-6">
-            <h3 className="text-lg font-medium mb-4">{t("arbitration.calculator.costs")}</h3>
+            <h2 className="text-lg font-medium mb-4">{t("arbitration.calculator.costs")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <p className="text-sm text-gray-500">{t("arbitration.calculator.fee")}</p>

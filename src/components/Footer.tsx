@@ -98,9 +98,9 @@ export default function Footer() {
 
           {/* Column 2 - Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">
+            <h2 className="font-semibold text-lg mb-4 text-eac-dark">
               {t("footer.quickLinks")}
-            </h3>
+            </h2>
             <ul className="space-y-2 text-sm">
               {quickLinks.map(({ to, label }) => (
                 <li key={to}>
@@ -114,9 +114,9 @@ export default function Footer() {
 
           {/* Column 3 - Services */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">
+            <h2 className="font-semibold text-lg mb-4 text-eac-dark">
               {t("footer.services")}
-            </h3>
+            </h2>
             <ul className="space-y-2 text-sm">
               {services.map(({ to, label }) => (
                 <li key={to}>
@@ -130,9 +130,9 @@ export default function Footer() {
 
           {/* Column 4 - Contact */}
           <div>
-            <h3 className="font-semibold text-lg mb-4 text-eac-dark">
+            <h2 className="font-semibold text-lg mb-4 text-eac-dark">
               {t("footer.contactUs")}
-            </h3>
+            </h2>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-eac-primary flex-shrink-0 mt-0.5" />

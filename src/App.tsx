@@ -15,6 +15,8 @@ import CookieConsent from '@/components/CookieConsent';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { isSupportedLang, DEFAULT_LANG, SUPPORTED_LANGS } from '@/lib/i18nRouting';
 import { newsItems } from '@/data/newsData';
+import { Seo } from '@/components/Seo';
+import { getRouteMeta } from '@/lib/seoMetadata';
 
 // Pages — imported eagerly so vite-react-ssg can pre-render every route at
 // build time. Vite still emits per-route chunks via manualChunks in
@@ -89,12 +91,40 @@ const LangLayout = ({ lang }: { lang: Language }) => (
   </LanguageProvider>
 );
 
-/** Redirect / → /<detected-or-stored-lang>. Client-only. */
+/**
+ * Root "/" entry. Always emits full head metadata (title / description /
+ * canonical → /en / hreflang) so the pre-rendered dist/index.html is never
+ * empty for crawlers, then redirects real visitors to their language.
+ */
 const RootRedirect = () => {
+  const rootMeta = getRouteMeta('');
+  const head = (
+    <Seo
+      title={rootMeta.title.en}
+      description={rootMeta.description.en}
+      lang="en"
+    />
+  );
+
+  const languageLinks = (
+    <div className="container mx-auto px-4 py-16 text-center">
+      <h1 className="text-2xl font-bold mb-6">{rootMeta.h1.en}</h1>
+      <nav aria-label="Choose language" className="flex justify-center gap-4">
+        <a href="/en" className="underline">English</a>
+        <a href="/fr" className="underline">Français</a>
+        <a href="/ru" className="underline">Русский</a>
+      </nav>
+    </div>
+  );
+
   if (typeof window === 'undefined') {
-    // SSG render: just emit a meta-refresh-style placeholder. We render an
-    // empty container; actual redirect happens on hydration.
-    return null;
+    // SSG render: real head + visible content for crawlers without JS.
+    return (
+      <>
+        {head}
+        {languageLinks}
+      </>
+    );
   }
   let stored: string | null = null;
   try {
@@ -114,7 +144,12 @@ const RootRedirect = () => {
       }
     }
   }
-  return <Navigate to={`/${target}`} replace />;
+  return (
+    <>
+      {head}
+      <Navigate to={`/${target}`} replace />
+    </>
+  );
 };
 
 /** Redirect any unknown top-level URL into the user's lang subtree. */

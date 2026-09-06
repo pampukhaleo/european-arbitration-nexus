@@ -15,6 +15,8 @@ import CookieConsent from '@/components/CookieConsent';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { isSupportedLang, DEFAULT_LANG, SUPPORTED_LANGS } from '@/lib/i18nRouting';
 import { newsItems } from '@/data/newsData';
+import { Seo } from '@/components/Seo';
+import { getRouteMeta } from '@/lib/seoMetadata';
 
 // Pages — imported eagerly so vite-react-ssg can pre-render every route at
 // build time. Vite still emits per-route chunks via manualChunks in
